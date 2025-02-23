@@ -8,7 +8,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 const lineColours = {
     "M1": "#0971ce", //blue
     "M2": "#fd6b0d", //orange
-    "M3": "#fec524", //yellow
+    "M3": "#fec524", //yellow 
     "red": "red",
     "green": "green",
     "purple": "purple"
@@ -71,52 +71,70 @@ class Train {
             if (Date.now() >= this.pauseUntil) this.isPaused = false;
             return;
         }
-
+    
         this.currentDistance += trainSpeed * deltaTime * timeScale;
-
+        console.log(`Train moving: ${this.currentDistance}/${this.totalDistance}`);
+    
         if (this.currentDistance >= this.totalDistance) {
             this.currentDistance = 0; // Loop back
         }
-
-        // Check if train should pause at a station
-        for (let station of stations) {
-            let stationDist = turf.pointToLineDistance(turf.point(station), turf.lineString(this.route), {
-                units: "meters"
-            });
-            if (stationDist < 10) { // Close to a station
-                this.isPaused = true;
-                this.pauseUntil = Date.now() + dwellTime * 1000;
-                return;
-            }
-        }
-
-        // Get train's new position along route
-        let newPos = turf.along(turf.lineString(this.route), this.currentDistance / 1000, {
-            units: "kilometers"
-        }).geometry.coordinates;
+    
+        let newPos = turf.along(turf.lineString(this.route), this.currentDistance / 1000, { units: "kilometers" }).geometry.coordinates;
+        console.log(`New Position: ${newPos}`);
         this.marker.setLatLng([newPos[1], newPos[0]]);
     }
+    
 }
+
+// Define headways (in minutes) based on your frequency table
+const lineHeadways = {
+    "M1": 3,  // TODO: based on frequencues
+    "M2": 3,  
+    "M3": 3
+};
+
+// Function to estimate train count dynamically
+function calculateTrainsForLine(lineId) {
+    const headway = lineHeadways[lineId];
+    const routeDistanceKm = turf.length(turf.lineString(routes.find(r => r.lineId === lineId).coordinates)); 
+    const travelTimeMinutes = (routeDistanceKm / (trainSpeed * 3.6)) * 60; // Convert to minutes
+
+    return Math.round(travelTimeMinutes / headway); // Total trains on the line
+}
+
 
 
 // Start simulation function
 function startSimulation() {
-    routes.forEach(({
-        coordinates,
-        lineId
-    }) => {
-        trains.push(new Train(coordinates, lineId));
-        console.log("number of trains", trains.length);
+    routes.forEach((r) => {
+        let { coordinates, lineId } = r;
+
+        let numTrains = calculateTrainsForLine(lineId); // Now dynamically determined
+
+        for (let i = 0; i < numTrains; i++) {
+            trains.push(new Train(coordinates, lineId));
+        }
     });
 
-    let lastTime = Date.now();
-
+    let lastTime = Date.now(); 
     function animate() {
         let now = Date.now();
         let deltaTime = (now - lastTime) / 1000;
         lastTime = now;
+
         trains.forEach(train => train.update(deltaTime));
         requestAnimationFrame(animate);
     }
-    animate();
+    animate(); 
 }
+
+function animate() {
+    console.log("Animation running...");
+    let now = Date.now();
+    let deltaTime = (now - lastTime) / 1000;
+    lastTime = now;
+    
+    trains.forEach(train => train.update(deltaTime));
+    requestAnimationFrame(animate);
+}
+
