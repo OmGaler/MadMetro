@@ -16,20 +16,30 @@ const lineColours = {
     "M1": "#0971ce", // blue
     "M2": "#fd6b0d", // orange
     "M3": "#fec524", // yellow
-    "red": "red",
-    "green": "green",
-    "purple": "purple"
+    "R": "#ff0000",  // red
+    "P": "#800080",  // purple
+    "G": "#008000"   // green
 };
 
 // Load service routes, split the branches into separate files for ease of simulation 
 const serviceRouteFiles = {
+    // Metro lines
     "M1_NESE": "data/dantat_metro_M1_NESE.geojson",
     "M1_NWSE": "data/dantat_metro_M1_NWSE.geojson",
     "M1_NESW": "data/dantat_metro_M1_NESW.geojson",
     "M1_NWSW": "data/dantat_metro_M1_NWSW.geojson",
     "M2": "data/dantat_metro_M2.geojson",
     "M3": "data/dantat_metro_M3.geojson",
-    "M3_Shuttle": "data/dantat_metro_M3_shuttle.geojson"
+    "M3_Shuttle": "data/dantat_metro_M3_shuttle.geojson",
+    // Light Rail lines
+    "P1": "data/dankal_lrt_P1.geojson",
+    "P2": "data/dankal_lrt_P2.geojson",
+    "R1": "data/dankal_lrt_R1.geojson",
+    "R23": "data/dankal_lrt_R23.geojson",
+    "G1": "data/dankal_lrt_G1.geojson",
+    "G2": "data/dankal_lrt_G2.geojson",
+    "G3": "data/dankal_lrt_G3.geojson",
+    "G4": "data/dankal_lrt_G4.geojson"
 };
 // We'll store each route (an array of [lon, lat] coordinates) in serviceRoutes.
 const serviceRoutes = {}; // key: service pattern, value: polyline coordinates
@@ -58,13 +68,24 @@ Promise.all([
         ),
         fetch('data/dantat_metro_stations.geojson')
         .then(res => {
-            if (!res.ok) throw new Error("Failed to load stations");
+            if (!res.ok) throw new Error("Failed to load Metro stations");
             return res.json();
         })
         .then(data => {
-            if (!data || !data.features) throw new Error("Invalid stations GeoJSON");
+            if (!data || !data.features) throw new Error("Invalid Metro stations GeoJSON");
             stationsData = data;
-            console.log(`Loaded ${stationsData.features.length} stations.`);
+            console.log(`Loaded ${stationsData.features.length} Metro stations.`);
+        }),
+        fetch('data/dankal_lrt_stations.geojson')
+        .then(res => {
+            if (!res.ok) throw new Error("Failed to load LRT stations");
+            return res.json();
+        })
+        .then(data => {
+            if (!data || !data.features) throw new Error("Invalid LRT stations GeoJSON");
+            // Merge LRT stations with metro stations
+            stationsData.features = stationsData.features.concat(data.features);
+            console.log(`Loaded ${data.features.length} LRT stations.`);
         })
     ])
     .then(() => {
@@ -78,22 +99,27 @@ Promise.all([
             let lineStr = turf.lineString(routeObj.coords);
             let totalRouteLength = turf.length(lineStr) * 1000; // in meters
             let stationDistances = [];
-
             // First, filter stations that belong to this line
-            const lineName = key.split('_')[0]; // Extract M1, M2, M3 from route key
+            let lineName = key.split('_')[0]; // Extract M1, M2, M3 from route key
+            let l = lineName.charAt(0).toUpperCase();
+            if (l !== "M") { //check if it's a LRT line
+                lineName = {
+                    "R": "Red",
+                    "G": "Green",
+                    "P": "Purple"
+                }[l];
+            }
             const lineStations = stationsData.features.filter(feature =>
                 feature.properties.LINE &&
                 feature.properties.LINE.includes(lineName)
             );
-
             lineStations.forEach(feature => {
                 if (!feature.geometry || !feature.geometry.coordinates) return;
-
+                
                 let stationPt = turf.point(feature.geometry.coordinates);
                 let snapped = turf.nearestPointOnLine(lineStr, stationPt, {
                     units: "meters"
                 });
-
                 // Only add station if it's very close to the line (within 50 meters)
                 if (snapped.properties.dist <= 50) {
                     let distMeters = snapped.properties.location;
@@ -107,7 +133,6 @@ Promise.all([
                     }
                 }
             });
-
             // Sort by distance and remove duplicates based on rounded distance
             stationDistances.sort((a, b) => a.distance - b.distance);
             stationDistances = stationDistances.filter((station, index) => {
@@ -115,10 +140,9 @@ Promise.all([
                 // Remove stations that are within 100 meters of each other
                 return Math.abs(station.distance - stationDistances[index - 1].distance) > 100;
             });
-
             routeObj.stations = stationDistances.map(s => s.distance);
             console.log(`Route ${key} has ${stationDistances.length} stations:`, stationDistances);
-
+            console.log("coords", routeObj.coords)
             const latlngs = routeObj.coords.map(coord => [coord[1], coord[0]]);
             L.polyline(latlngs, {
                     color: "green",
@@ -145,7 +169,6 @@ Promise.all([
                     .bindPopup(`<b>${stationName}</b>`);
             });
 
-            console.log("Stations added to the map.");
         });
         // Visualize computed station points for each service route
 
@@ -154,22 +177,22 @@ Promise.all([
             let routeObj = serviceRoutes[key];
             let lineStr = turf.lineString(routeObj.coords);
             // Loop through each computed station distance
-            // routeObj.stations.forEach(dist => {
-            //     // Use turf.along to compute the coordinate along the route at the given distance (converted to km)
-            //     let snapped = turf.along(lineStr, dist / 1000, {
-            //         units: "kilometers"
-            //     });
-                // if (snapped && snapped.geometry && snapped.geometry.coordinates) {
-                //     let coord = snapped.geometry.coordinates;
-                //     L.circleMarker([coord[1], coord[0]], {
-                //         radius: 4,
-                //         color: "red",
-                //         fillOpacity: 1
-                //     }).addTo(map).bindPopup(`<b>Station on ${key}</b><br>Distance: ${Math.round(dist)} m`);
-                // } else {
-                //     console.error(`Could not compute station coordinate at ${dist} m on route ${key}`);
-                // }
-            // });
+            routeObj.stations.forEach(dist => {
+                // Use turf.along to compute the coordinate along the route at the given distance (converted to km)
+                let snapped = turf.along(lineStr, dist / 1000, {
+                    units: "kilometers"
+                });
+                if (snapped && snapped.geometry && snapped.geometry.coordinates) {
+                    let coord = snapped.geometry.coordinates;
+                    L.circleMarker([coord[1], coord[0]], {
+                        radius: 4,
+                        color: "red",
+                        fillOpacity: 1
+                    }).addTo(map).bindPopup(`<b>Station on ${key}</b><br>Distance: ${Math.round(dist)} m`);
+                } else {
+                    console.error(`Could not compute station coordinate at ${dist} m on route ${key}`);
+                }
+            });
             // ***** END */
         });
 
@@ -184,6 +207,14 @@ const timeScale = 60; // 1 real second = 1 simulated minute
 
 const DEFAULT_DWELL_TIME = 1; // seconds dwell at each station
 const STATION_TOLERANCE = 15; // meters within which a train is considered "at" a station
+
+// Add these constants near the other simulation constants
+const VEHICLE_SPEEDS = {
+    METRO: 80 * 1000 / 3600, // 80 km/h in m/s
+    LRT: 60 * 1000 / 3600 // 60 km/h in m/s
+    // LRT_UNDERGROUND: 70 * 1000 / 3600, // 70 km/h in m/s
+    // LRT_SURFACE: 50 * 1000 / 3600 // 50 km/h in m/s
+};
 
 // Train class to represent each vehicle which moves along a continuous precomputed route.
 class Train {
@@ -200,6 +231,9 @@ class Train {
         this.isDwelling = false;
         this.dwellUntil = 0;
         this.updateNextStationIndex();
+
+        // Add vehicle type determination
+        this.vehicleType = label.startsWith('M') ? 'METRO' : 'LRT_SURFACE';
 
         let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
             units: "kilometers"
@@ -253,7 +287,11 @@ class Train {
         }
 
         // Advance along the route.
-        this.distance += trainSpeed * deltaTime * timeScale * this.direction;
+        // Update the speed calculation in the update method
+        const currentSpeed = VEHICLE_SPEEDS[this.vehicleType];
+        
+        // Replace the trainSpeed usage with currentSpeed
+        this.distance += currentSpeed * deltaTime * timeScale * this.direction;
 
         // Terminal reversal check.
         if (this.distance >= this.totalDistance) {
@@ -296,6 +334,7 @@ class Train {
         let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
             units: "kilometers"
         });
+
         if (posFeature && posFeature.geometry && posFeature.geometry.coordinates) {
             let newPos = posFeature.geometry.coordinates;
             this.marker.setLatLng([newPos[1], newPos[0]]);
@@ -313,6 +352,8 @@ function startSimulation() {
     Object.keys(serviceRoutes).forEach(key => {
         let route = serviceRoutes[key];
         let color, label;
+        
+        // Determine color and label based on route key
         if (key.startsWith("M1")) {
             color = lineColours["M1"];
             label = "1";
@@ -320,15 +361,23 @@ function startSimulation() {
             color = lineColours["M2"];
             label = "2";
         } else if (key.startsWith("M3")) {
-            color = lineColours["M3"]
+            color = lineColours["M3"];
             label = "3";
+        } else if (key.startsWith("P")) {
+            color = lineColours["P"];
+            label = key;
+        } else if (key.startsWith("R")) {
+            color = lineColours["R"];
+            label = key;
+        } else if (key.startsWith("G")) {
+            color = lineColours["G"];
+            label = key;
         } else {
             color = "grey";
             label = key;
         }
-        // Create a train with a random starting offset.
+
         let offset = Math.random() * 1000; // 0 to 1000m
-        // console.log(`Service route: ${key}`, route);
         let train = new Train(serviceRoutes[key], label, color, offset);
         trains.push(train);
     });
