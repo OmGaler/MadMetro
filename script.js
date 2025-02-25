@@ -207,9 +207,8 @@ fetch('data/preprocessed_station_distances.json')
     })
     .then(data => {
         serviceRoutes = data;
-        console.log("Loaded preprocessed service routes:", serviceRoutes);
-
-        // Visualize each route
+        console.log("Successfully loaded preprocessed service routes and stations:", serviceRoutes);
+        // Visualise each route
         Object.keys(serviceRoutes).forEach(key => {
             let routeObj = serviceRoutes[key];
             const latlngs = routeObj.coords.map(coord => [coord[1], coord[0]]);
@@ -240,31 +239,6 @@ fetch('data/preprocessed_station_distances.json')
         startSimulation();
     })
     .catch(error => console.error("Error loading preprocessed data:", error));
-
-
-//output stations, temp
-// fetch('data/dantat_metro_stations.geojson')
-//         .then(res => {
-//             if (!res.ok) throw new Error("Failed to load Metro stations");
-//             return res.json();
-//         })
-//         .then(data => {
-//             if (!data || !data.features) throw new Error("Invalid Metro stations GeoJSON");
-//             stationsData = data;
-//             console.log(`Loaded ${stationsData.features.length} Metro stations.`);
-//         }),
-//         fetch('data/dankal_lrt_stations.geojson')
-//         .then(res => {
-//             if (!res.ok) throw new Error("Failed to load LRT stations");
-//             return res.json();
-//         })
-//         .then(data => {
-//             if (!data || !data.features) throw new Error("Invalid LRT stations GeoJSON");
-//             // Merge LRT stations with metro stations
-//             stationsData.features = stationsData.features.concat(data.features);
-//             console.log(`Loaded ${data.features.length} LRT stations.`);
-//         })
-//     ])
 
 // Train simulation
 const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
@@ -353,12 +327,11 @@ class Train {
 
         // Advance along the route.
         // Update the speed calculation in the update method
-        const currentSpeed = VEHICLE_SPEEDS[this.vehicleType];
+        const currentSpeed = 60;// VEHICLE_SPEEDS[this.vehicleType];
 
         // Replace the trainSpeed usage with currentSpeed
         this.distance += currentSpeed * deltaTime * timeScale * this.direction;
-
-        // Terminal reversal check.
+        // Terminal reversal check
         if (this.distance >= this.totalDistance) {
             this.distance = this.totalDistance;
             this.direction = -1;
@@ -375,7 +348,7 @@ class Train {
             return;
         }
 
-        // Station dwell check: if train is within tolerance of the next station, initiate dwell.
+        // Station dwell check: if train is within tolerance of the next station, initiate dwell
         if (this.direction === 1 && this.nextStationIndex < this.stations.length) {
             let stationDist = this.stations[this.nextStationIndex];
             if (Math.abs(this.distance - stationDist) < STATION_TOLERANCE) {
@@ -395,7 +368,7 @@ class Train {
             }
         }
 
-        // Update marker position.
+        // Update marker position
         let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
             units: "kilometers"
         });
@@ -409,42 +382,41 @@ class Train {
     }
 }
 
-// Global array to hold our trains.
+// Global array to hold all the trains.
 let trains = [];
 
 // Start simulation: create one train per service route (you can adjust this as needed).
 function startSimulation() {
     Object.keys(serviceRoutes).forEach(key => {
         let route = serviceRoutes[key];
-        let color, label;
-
+        let colour, label;
         // Determine color and label based on route key
         if (key.startsWith("M1")) {
-            color = lineColours["M1"];
+            colour = lineColours["M1"];
             label = "1";
         } else if (key === "M2") {
-            color = lineColours["M2"];
+            colour = lineColours["M2"];
             label = "2";
         } else if (key.startsWith("M3")) {
-            color = lineColours["M3"];
+            colour = lineColours["M3"];
             label = "3";
         } else if (key.startsWith("P")) {
-            color = lineColours["P"];
+            colour = lineColours["P"];
             label = "P";
         } else if (key.startsWith("R")) {
-            color = lineColours["R"];
+            colour = lineColours["R"];
             label = "R";
         } else if (key.startsWith("G")) {
-            color = lineColours["G"];
+            colour = lineColours["G"];
             label = "G";
         } else {
             console.log(key);
-            color = "grey";
+            colour = "grey";
             label = key;
         }
 
         let offset = Math.random() * 1000; // 0 to 1000m
-        let train = new Train(serviceRoutes[key], label, color, offset);
+        let train = new Train(serviceRoutes[key], label, colour, offset);
         trains.push(train);
     });
 
