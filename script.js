@@ -237,51 +237,34 @@ fetch('data/preprocessed_station_distances.json')
             });
         });
 
-        
-//output stations, temp
-fetch('data/dantat_metro_stations.geojson')
-    .then(res => {
-        if (!res.ok) throw new Error("Failed to load Metro stations");
-        return res.json();
-    })
-    .then(data => {
-        if (!data || !data.features) throw new Error("Invalid Metro stations GeoJSON");
-        stationsData = data;
-        console.log(`Loaded ${stationsData.features.length} Metro stations.`);
-    }),
-    fetch('data/dankal_lrt_stations.geojson')
-    .then(res => {
-        if (!res.ok) throw new Error("Failed to load LRT stations");
-        return res.json();
-    })
-    .then(data => {
-        if (!data || !data.features) throw new Error("Invalid LRT stations GeoJSON");
-        // Merge LRT stations with metro stations
-        stationsData.features = stationsData.features.concat(data.features);
-        console.log(`Loaded ${data.features.length} LRT stations.`);
-    })
-stationsData.features.forEach(feature => {
-    if (!feature.geometry || !feature.geometry.coordinates) return;
-    let coords = feature.geometry.coordinates;
-    let stationName = feature.properties.name || "Unnamed Station";
-
-    L.marker([coords[1], coords[0]], {
-            icon: L.divIcon({
-                className: "station-marker",
-                html: "⬤",
-                iconSize: [12, 12],
-                iconAnchor: [6, 6]
-            })
-        }).addTo(map)
-        .bindPopup(`<b>${stationName}</b>`);
-});
         startSimulation();
     })
     .catch(error => console.error("Error loading preprocessed data:", error));
 
 
-// ])/
-
+//output stations, temp
+// fetch('data/dantat_metro_stations.geojson')
+//         .then(res => {
+//             if (!res.ok) throw new Error("Failed to load Metro stations");
+//             return res.json();
+//         })
+//         .then(data => {
+//             if (!data || !data.features) throw new Error("Invalid Metro stations GeoJSON");
+//             stationsData = data;
+//             console.log(`Loaded ${stationsData.features.length} Metro stations.`);
+//         }),
+//         fetch('data/dankal_lrt_stations.geojson')
+//         .then(res => {
+//             if (!res.ok) throw new Error("Failed to load LRT stations");
+//             return res.json();
+//         })
+//         .then(data => {
+//             if (!data || !data.features) throw new Error("Invalid LRT stations GeoJSON");
+//             // Merge LRT stations with metro stations
+//             stationsData.features = stationsData.features.concat(data.features);
+//             console.log(`Loaded ${data.features.length} LRT stations.`);
+//         })
+//     ])
 
 // Train simulation
 const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s

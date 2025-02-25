@@ -35,7 +35,7 @@ const lrtStationsFile = "data/dankal_lrt_stations.geojson";
 function loadJSON(path) {
     return JSON.parse(fs.readFileSync(path, 'utf8'));
 }
-// Function to process a service route file.
+// Function to process a service route file
 function processRouteFile(path) {
     let data = loadJSON(path);
     let geom;
@@ -72,43 +72,68 @@ let lrtStationsData = loadJSON(lrtStationsFile);
 // Merge the two station sets
 let allStations = metroStationsData.features.concat(lrtStationsData.features);
 console.log(`Loaded a total of ${allStations.length} stations.`);
+// Add helper function to get line name from route key
+function getLineName(routeKey) {
+    const prefix = routeKey.split('_')[0]; // M1, M2, M3, P1, R1, etc.
+    if (prefix.startsWith('M')) {
+        return prefix; // Return M1, M2, M3 for metro lines
+    }
+    // For LRT lines, map to full names used in the GeoJSON
+    const lrtMap = {
+        'P': 'Purple',
+        'R': 'Red',
+        'G': 'Green'
+    };
+    return lrtMap[prefix[0]];
+}
+
 // Compute station distances along each service route
 Object.keys(allServiceRoutes).forEach(key => {
     let routeObj = allServiceRoutes[key];
     let lineStr = turf.lineString(routeObj.coords);
     let totalRouteLength = turf.length(lineStr) * 1000; // in meters
     let stationDistances = [];
-    // For Metro routes, filter by feature.properties.LINE if available.
-    // For LRT routes, assume all station features apply.
-    // const linePrefix = !key.startsWith("M") ? "LRT" : key.split('_')[0]; // e.g., "M1", "M2", "M3" or "LRT"
     
-
-    allStations.forEach(feature => {
+    // Get the line name for filtering
+    const lineName = getLineName(key);
+    
+    // Filter stations that belong to this line
+    const lineStations = allStations.filter(feature => 
+        feature.properties.LINE && 
+        feature.properties.LINE.includes(lineName)
+    );
+    lineStations.forEach(feature => {
         if (!feature.geometry || !feature.geometry.coordinates) return;
+
         let stationPt = turf.point(feature.geometry.coordinates);
         let snapped = turf.nearestPointOnLine(lineStr, stationPt, {
             units: "meters"
         });
-        // Only add station if it's within 50 m of the route.
-        if (snapped.properties.dist <= 50) {
-            let distMeters = Math.round(snapped.properties.location); // location is in km.
-            // console.log("total route length", totalRouteLength);
-            // console.log(distMeters);
-            //add a 1 meter buffer
-            if (distMeters >= 0 && distMeters <= totalRouteLength) {
-                stationDistances.push(distMeters);
+
+        // Only add station if it's very close to the line (within 30 meters)
+        if (snapped.properties.dist <= 20) {
+            let distMeters = Math.round(snapped.properties.location);
+            // Check if the station is within the route bounds
+            if (distMeters >= 0 && distMeters <= totalRouteLength+1) {
+                stationDistances.push({
+                    distance: distMeters,
+                    name: feature.properties.name || 'Unnamed Station',
+                    originalDist: snapped.properties.dist // for debugging
+                });
             }
         }
     });
-
-    // Remove duplicates and sort.
-    stationDistances = Array.from(new Set(stationDistances)).sort((a, b) => a - b);
-    routeObj.stations = stationDistances;
-    console.log(`Route ${key} station distances (m):`, stationDistances);
+    // Sort by distance and remove duplicates based on proximity
+    stationDistances.sort((a, b) => a.distance - b.distance);    
+    // Filter out stations that are too close to each other (within 100m)
+    stationDistances = stationDistances.filter((station, index) => {
+        if (index === 0) return true;
+        return Math.abs(station.distance - stationDistances[index - 1].distance) > 100;
+    });
+    // Store only the distances in the route object
+    routeObj.stations = stationDistances.map(s => s.distance);
     console.log(`Route ${key} has ${stationDistances.length} stations`);
-    
 });
-
 // Save the preprocessed station distances with route coordinates to a JSON file.
 fs.writeFileSync('data/preprocessed_station_distances.json', JSON.stringify(allServiceRoutes, null, 2));
-console.log('Preprocessed station distances saved to data/preprocessed_station_distances.json');
+console.log('\n\nPreprocessed station distances saved to data/preprocessed_station_distances.json');
