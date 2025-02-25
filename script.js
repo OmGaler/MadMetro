@@ -1,5 +1,7 @@
 //! TODO: preprocess the station distances 
-//TODO: up max speed to 80kmh, tweak sim speed 
+//TODO: up max speed to 80kmh, tweak sim speed
+//? TODO: M2 missing station segula IZ
+
 //discalimers
 //languaages
 //data from geo.mot.gov.il
@@ -67,34 +69,54 @@ Promise.all([
     ])
     .then(() => {
         if (!stationsData || !stationsData.features) {
-            throw new Error("stationsData is still null!");
+            throw new Error("stationsData is null!");
         }
         // ----- COMPUTE STATION DISTANCES ALONG EACH SERVICE ROUTE -----
+        console.log("stationsData ", stationsData);
         Object.keys(serviceRoutes).forEach(key => {
-            //TODO: unbugg this mess and ideally process it once and save it bec icba to wait for it everytime
             let routeObj = serviceRoutes[key];
             let lineStr = turf.lineString(routeObj.coords);
             let totalRouteLength = turf.length(lineStr) * 1000; // in meters
-            console.log(key, totalRouteLength)
             let stationDistances = [];
 
-            stationsData.features.forEach(feature => {
+            // First, filter stations that belong to this line
+            const lineName = key.split('_')[0]; // Extract M1, M2, M3 from route key
+            const lineStations = stationsData.features.filter(feature =>
+                feature.properties.LINE &&
+                feature.properties.LINE.includes(lineName)
+            );
+
+            lineStations.forEach(feature => {
                 if (!feature.geometry || !feature.geometry.coordinates) return;
+
                 let stationPt = turf.point(feature.geometry.coordinates);
                 let snapped = turf.nearestPointOnLine(lineStr, stationPt, {
                     units: "meters"
                 });
-                let distMeters = snapped.properties.location;// * 1000;
-                console.log(distMeters);
-                console.log(totalRouteLength);
-                if (distMeters >= 0 && distMeters <= totalRouteLength) {
-                    stationDistances.push(distMeters);
+
+                // Only add station if it's very close to the line (within 50 meters)
+                if (snapped.properties.dist <= 50) {
+                    let distMeters = snapped.properties.location;
+                    if (distMeters >= 0 && distMeters <= totalRouteLength) {
+                        stationDistances.push({
+                            distance: Math.round(distMeters), // Round to nearest meter
+                            name: feature.properties.name,
+                            originalDist: snapped.properties.dist // for debugging
+                        });
+                    }
                 }
             });
 
-            stationDistances = Array.from(new Set(stationDistances.map(d => Math.round(d)))).sort((a, b) => a - b);
-            routeObj.stations = stationDistances;
-            console.log(`Route ${key} station distances (m):`, stationDistances);
+            // Sort by distance and remove duplicates based on rounded distance
+            stationDistances.sort((a, b) => a.distance - b.distance);
+            stationDistances = stationDistances.filter((station, index) => {
+                if (index === 0) return true;
+                // Remove stations that are within 100 meters of each other
+                return Math.abs(station.distance - stationDistances[index - 1].distance) > 100;
+            });
+
+            routeObj.stations = stationDistances.map(s => s.distance);
+            console.log(`Route ${key} has ${stationDistances.length} stations:`, stationDistances);
 
             const latlngs = routeObj.coords.map(coord => [coord[1], coord[0]]);
             L.polyline(latlngs, {
@@ -106,12 +128,12 @@ Promise.all([
                 .addTo(map)
                 .bindPopup(`Service Route: ${key}`);
 
-                stationsData.features.forEach(feature => {
-                    if (!feature.geometry || !feature.geometry.coordinates) return;
-                    let coords = feature.geometry.coordinates;
-                    let stationName = feature.properties.name || "Unnamed Station";
-                    
-                    L.marker([coords[1], coords[0]], {
+            stationsData.features.forEach(feature => {
+                if (!feature.geometry || !feature.geometry.coordinates) return;
+                let coords = feature.geometry.coordinates;
+                let stationName = feature.properties.name || "Unnamed Station";
+
+                L.marker([coords[1], coords[0]], {
                         icon: L.divIcon({
                             className: "station-marker",
                             html: "⬤",
@@ -120,9 +142,34 @@ Promise.all([
                         })
                     }).addTo(map)
                     .bindPopup(`<b>${stationName}</b>`);
+            });
+
+            console.log("Stations added to the map.");
+        });
+        // Visualize computed station points for each service route
+
+        //****HIGHLIGHT THE COMPUTED STATIONS STOP POINTS */
+        Object.keys(serviceRoutes).forEach(key => {
+            let routeObj = serviceRoutes[key];
+            let lineStr = turf.lineString(routeObj.coords);
+            // Loop through each computed station distance
+            routeObj.stations.forEach(dist => {
+                // Use turf.along to compute the coordinate along the route at the given distance (converted to km)
+                let snapped = turf.along(lineStr, dist / 1000, {
+                    units: "kilometers"
                 });
-            
-                console.log("Stations added to the map.");
+                if (snapped && snapped.geometry && snapped.geometry.coordinates) {
+                    let coord = snapped.geometry.coordinates;
+                    L.circleMarker([coord[1], coord[0]], {
+                        radius: 4,
+                        color: "red",
+                        fillOpacity: 1
+                    }).addTo(map).bindPopup(`<b>Station on ${key}</b><br>Distance: ${Math.round(dist)} m`);
+                } else {
+                    console.error(`Could not compute station coordinate at ${dist} m on route ${key}`);
+                }
+            });
+            // ***** END */
         });
 
         startSimulation();
@@ -134,30 +181,25 @@ Promise.all([
 const trainSpeed = 60 * 1000 / 3600; // 60 km/h in m/s
 const timeScale = 60; // 1 real second = 1 simulated minute
 
-const DEFAULT_DWELL_TIME = 2; // seconds dwell at each station
+const DEFAULT_DWELL_TIME = 1; // seconds dwell at each station
 const STATION_TOLERANCE = 20; // meters within which a train is considered "at" a station
 
 // Train class to represent each vehicle which moves along a continuous precomputed route.
 class Train {
     constructor(route, label, color, offset = 0) {
-        // if (!Array.isArray(route) || route.length === 0) {
-        //     console.error(`Invalid route for train ${label}:`, route);
-        //     return;
-        // }
+        // route is an object with properties: coords (array of [lon, lat]) and stations (array of distances in m)
         this.route = route.coords; // array of [lon, lat]
-        // console.log("routeCoords", routeCoords);
-        this.stations = route.stations;
+        this.stations = route.stations; // sorted array of station distances (in m)
         this.label = label;
         this.color = color;
-        // Compute total route length in meters using Turf.js.
+        // Compute total route length in meters.
         this.totalDistance = turf.length(turf.lineString(this.route)) * 1000;
-        this.distance = offset; // initial offset (in meters) along the route
-        // 1 for forward, -1 for reverse (trains reverse at termini instead of continuing into the void)
-        this.direction = 1;
+        this.distance = offset; // current distance along route (m)
+        this.direction = 1; // 1 for forward, -1 for reverse
         this.isDwelling = false;
         this.dwellUntil = 0;
         this.updateNextStationIndex();
-        // Create a Leaflet marker at the starting position.
+
         let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
             units: "kilometers"
         });
@@ -173,33 +215,38 @@ class Train {
         this.marker.getElement().style.backgroundColor = color;
     }
 
+    // Use an epsilon to avoid repeatedly dwelling at the same station.
     updateNextStationIndex() {
+        const epsilon = 5; // 5 meters offset to move past a station once dwell expires
         if (this.direction === 1) {
-            // Forward: first station with distance >= current distance.
-            let idx = this.stations.findIndex(d => d >= this.distance);
-            this.nextStationIndex = (idx === -1) ? this.stations.length : idx;
+            // Forward: find first station with distance >= current distance + epsilon.
+            let idx = this.stations.findIndex(d => d >= this.distance + epsilon);
+            // If none found, use the last station.
+            this.nextStationIndex = (idx === -1) ? this.stations.length - 1 : idx;
         } else {
-            // Reverse: last station with distance <= current distance.
+            // Reverse: find last station with distance <= current distance - epsilon.
             let idx = -1;
             for (let i = 0; i < this.stations.length; i++) {
-                if (this.stations[i] <= this.distance) {
+                if (this.stations[i] <= this.distance - epsilon) {
                     idx = i;
                 } else {
                     break;
                 }
             }
-            this.nextStationIndex = idx;
+            // If no station found, default to first station.
+            this.nextStationIndex = (idx === -1) ? 0 : idx;
         }
     }
 
     update(deltaTime) {
-        // If dwelling (at a station or terminal), check if dwell time is over.
+        // If dwelling, check if dwell time is over.
         if (this.isDwelling) {
             if (Date.now() >= this.dwellUntil) {
-                this.isDwelling = false;
+                // Nudge the train past the station a bit to avoid re-triggering dwell.\n        this.isDwelling = false;
+                this.distance += this.direction * 5; // Move 5 meters further in current direction.
                 this.updateNextStationIndex();
             } else {
-                return;
+                return; // remain dwelling
             }
         }
 
@@ -213,30 +260,33 @@ class Train {
             this.isDwelling = true;
             this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
             this.updateNextStationIndex();
+            return;
         } else if (this.distance <= 0) {
             this.distance = 0;
             this.direction = 1;
             this.isDwelling = true;
             this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
             this.updateNextStationIndex();
+            return;
         }
 
-        // Station dwell check: if train is within tolerance of the next station, start dwelling.
+        // Station dwell check: if train is within tolerance of the next station, initiate dwell.
         if (this.direction === 1 && this.nextStationIndex < this.stations.length) {
             let stationDist = this.stations[this.nextStationIndex];
             if (Math.abs(this.distance - stationDist) < STATION_TOLERANCE) {
-                if (!this.isDwelling) {
-                    this.isDwelling = true;
-                    this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
-                }
+                this.isDwelling = true;
+                this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
+                // Snap distance to the station value.
+                this.distance = stationDist;
+                return;
             }
         } else if (this.direction === -1 && this.nextStationIndex >= 0) {
             let stationDist = this.stations[this.nextStationIndex];
             if (Math.abs(this.distance - stationDist) < STATION_TOLERANCE) {
-                if (!this.isDwelling) {
-                    this.isDwelling = true;
-                    this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
-                }
+                this.isDwelling = true;
+                this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
+                this.distance = stationDist;
+                return;
             }
         }
 
