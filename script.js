@@ -1,9 +1,9 @@
 //! TODO: preprocess the station distances 
-//TODO: up max speed to 80kmh, tweak sim speed
+//TODO: up max metro speed to 80kmh, max LRT speed to 70 (ug and 50 overground???), tweak sim speed
 //? TODO: M2 missing station segula IZ
-
+//TODO: short turns at elifelet
 //discalimers
-//languaages
+//languages
 //data from geo.mot.gov.il
 // Initialise Leaflet Map
 const map = L.map('map').setView([32.0853, 34.7818], 13);
@@ -97,7 +97,8 @@ Promise.all([
                 // Only add station if it's very close to the line (within 50 meters)
                 if (snapped.properties.dist <= 50) {
                     let distMeters = snapped.properties.location;
-                    if (distMeters >= 0 && distMeters <= totalRouteLength) {
+                    //check the station is within the route (add a 1 metre buffer)
+                    if (distMeters >= 0 && distMeters <= totalRouteLength+1) {
                         stationDistances.push({
                             distance: Math.round(distMeters), // Round to nearest meter
                             name: feature.properties.name,
@@ -153,22 +154,22 @@ Promise.all([
             let routeObj = serviceRoutes[key];
             let lineStr = turf.lineString(routeObj.coords);
             // Loop through each computed station distance
-            routeObj.stations.forEach(dist => {
-                // Use turf.along to compute the coordinate along the route at the given distance (converted to km)
-                let snapped = turf.along(lineStr, dist / 1000, {
-                    units: "kilometers"
-                });
-                if (snapped && snapped.geometry && snapped.geometry.coordinates) {
-                    let coord = snapped.geometry.coordinates;
-                    L.circleMarker([coord[1], coord[0]], {
-                        radius: 4,
-                        color: "red",
-                        fillOpacity: 1
-                    }).addTo(map).bindPopup(`<b>Station on ${key}</b><br>Distance: ${Math.round(dist)} m`);
-                } else {
-                    console.error(`Could not compute station coordinate at ${dist} m on route ${key}`);
-                }
-            });
+            // routeObj.stations.forEach(dist => {
+            //     // Use turf.along to compute the coordinate along the route at the given distance (converted to km)
+            //     let snapped = turf.along(lineStr, dist / 1000, {
+            //         units: "kilometers"
+            //     });
+                // if (snapped && snapped.geometry && snapped.geometry.coordinates) {
+                //     let coord = snapped.geometry.coordinates;
+                //     L.circleMarker([coord[1], coord[0]], {
+                //         radius: 4,
+                //         color: "red",
+                //         fillOpacity: 1
+                //     }).addTo(map).bindPopup(`<b>Station on ${key}</b><br>Distance: ${Math.round(dist)} m`);
+                // } else {
+                //     console.error(`Could not compute station coordinate at ${dist} m on route ${key}`);
+                // }
+            // });
             // ***** END */
         });
 
@@ -178,11 +179,11 @@ Promise.all([
 
 
 // Train simulation
-const trainSpeed = 60 * 1000 / 3600; // 60 km/h in m/s
+const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
 const timeScale = 60; // 1 real second = 1 simulated minute
 
 const DEFAULT_DWELL_TIME = 1; // seconds dwell at each station
-const STATION_TOLERANCE = 20; // meters within which a train is considered "at" a station
+const STATION_TOLERANCE = 15; // meters within which a train is considered "at" a station
 
 // Train class to represent each vehicle which moves along a continuous precomputed route.
 class Train {
@@ -223,6 +224,7 @@ class Train {
             let idx = this.stations.findIndex(d => d >= this.distance + epsilon);
             // If none found, use the last station.
             this.nextStationIndex = (idx === -1) ? this.stations.length - 1 : idx;
+            
         } else {
             // Reverse: find last station with distance <= current distance - epsilon.
             let idx = -1;
@@ -303,7 +305,6 @@ class Train {
     }
 }
 
-
 // Global array to hold our trains.
 let trains = [];
 
@@ -325,10 +326,9 @@ function startSimulation() {
             color = "grey";
             label = key;
         }
-
         // Create a train with a random starting offset.
         let offset = Math.random() * 1000; // 0 to 1000m
-        console.log(`Service route: ${key}`, route);
+        // console.log(`Service route: ${key}`, route);
         let train = new Train(serviceRoutes[key], label, color, offset);
         trains.push(train);
     });
