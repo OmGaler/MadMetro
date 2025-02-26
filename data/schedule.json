@@ -27,7 +27,7 @@
             }
         },
         "Shabbat": {
-            "service": "No service"
+            "tph": 0
         },
         "Saturday": {
             "evening": {
@@ -100,7 +100,7 @@
             }
         },
         "Shabbat": {
-            "service": "No service"
+            "tph": 0
         },
         "Saturday": {
             "Red Line": {
