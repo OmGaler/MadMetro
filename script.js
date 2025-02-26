@@ -2,6 +2,10 @@
 //TODO: up max metro speed to 80kmh, max LRT speed to 70 (ug and 50 overground???), tweak sim speed
 //? TODO: M2 missing station segula IZ
 //TODO: short turns at elifelet
+
+
+//// why is kahanemen and HAROEH station closed?! 
+// TODO: some stations randomly skipped
 //discalimers
 //languages
 //data from geo.mot.gov.il
@@ -24,22 +28,22 @@ const lineColours = {
 // Load service routes, split the branches into separate files for ease of simulation 
 const serviceRouteFiles = {
     // Metro lines
-    "M1_NESE": "data/dantat_metro_M1_NESE.geojson",
-    "M1_NWSE": "data/dantat_metro_M1_NWSE.geojson",
-    "M1_NESW": "data/dantat_metro_M1_NESW.geojson",
-    "M1_NWSW": "data/dantat_metro_M1_NWSW.geojson",
-    "M2": "data/dantat_metro_M2.geojson",
-    "M3": "data/dantat_metro_M3.geojson",
-    "M3_Shuttle": "data/dantat_metro_M3_shuttle.geojson",
+    "M1_NESE": "data/METRO/dantat_metro_M1_NESE.geojson",
+    "M1_NWSE": "data/METRO/dantat_metro_M1_NWSE.geojson",
+    "M1_NESW": "data/METRO/dantat_metro_M1_NESW.geojson",
+    "M1_NWSW": "data/METRO/dantat_metro_M1_NWSW.geojson",
+    "M2": "data/METRO/dantat_metro_M2.geojson",
+    "M3": "data/METRO/dantat_metro_M3.geojson",
+    "M3_Shuttle": "data/METRO/dantat_metro_M3_shuttle.geojson",
     // Light Rail lines
-    "P1": "data/dankal_lrt_P1.geojson",
-    "P2": "data/dankal_lrt_P2.geojson",
-    "R1": "data/dankal_lrt_R1.geojson",
-    "R23": "data/dankal_lrt_R23.geojson",
-    "G1": "data/dankal_lrt_G1.geojson",
-    "G2": "data/dankal_lrt_G2.geojson",
-    "G3": "data/dankal_lrt_G3.geojson",
-    "G4": "data/dankal_lrt_G4.geojson"
+    "P1": "data/LRT/dankal_lrt_P1.geojson",
+    "P2": "data/LRT/dankal_lrt_P2.geojson",
+    "R1": "data/LRT/dankal_lrt_R1.geojson",
+    "R23": "data/LRT/dankal_lrt_R23.geojson",
+    "G1": "data/LRT/dankal_lrt_G1.geojson",
+    "G2": "data/LRT/dankal_lrt_G2.geojson",
+    "G3": "data/LRT/dankal_lrt_G3.geojson",
+    "G4": "data/LRT/dankal_lrt_G4.geojson"
 };
 // We'll store each route (an array of [lon, lat] coordinates) in serviceRoutes.
 let serviceRoutes = {}; // key: service pattern, value: polyline coordinates
@@ -219,7 +223,7 @@ fetch('data/preprocessed_station_distances.json')
                 dashArray: "5,5"
             }).addTo(map).bindPopup(`Service Route: ${key}`);
 
-            // Visualize station stop points.
+            // Visualise station stop points
             let lineStr = turf.lineString(routeObj.coords);
             routeObj.stations.forEach(dist => {
                 let snapped = turf.along(lineStr, dist / 1000, {
@@ -245,7 +249,7 @@ const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
 const timeScale = 60; // 1 real second = 1 simulated minute
 
 const DEFAULT_DWELL_TIME = 1; // seconds dwell at each station
-const STATION_TOLERANCE = 15; // meters within which a train is considered "at" a station
+const STATION_TOLERANCE = 30; // meters within which a train is considered "at" a station
 
 // Add these constants near the other simulation constants
 const VEHICLE_SPEEDS = {
@@ -263,20 +267,15 @@ class Train {
         this.stations = route.stations; // sorted array of station distances (in m)
         this.label = label;
         this.color = color;
-        // Compute total route length in meters.
         this.totalDistance = turf.length(turf.lineString(this.route)) * 1000;
         this.distance = offset; // current distance along route (m)
         this.direction = 1; // 1 for forward, -1 for reverse
         this.isDwelling = false;
         this.dwellUntil = 0;
+        this.currentStationIndex = 0;
         this.updateNextStationIndex();
 
-        // Add vehicle type determination
-        this.vehicleType = label.startsWith('M') ? 'METRO' : 'LRT_SURFACE';
-
-        let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
-            units: "kilometers"
-        });
+        let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, { units: "kilometers" });
         let startCoord = posFeature.geometry.coordinates;
         this.marker = L.marker([startCoord[1], startCoord[0]], {
             icon: L.divIcon({
@@ -287,29 +286,27 @@ class Train {
             })
         }).addTo(map);
         this.marker.getElement().style.backgroundColor = color;
+        
+        // Determine vehicle type from label (Metro if label is "1","2","3", else LRT)
+        this.vehicleType = (this.label === "1" || this.label === "2" || this.label === "3") ? 'METRO' : 'LRT_SURFACE';
     }
 
     // Use an epsilon to avoid repeatedly dwelling at the same station.
     updateNextStationIndex() {
-        const epsilon = 5; // 5 meters offset to move past a station once dwell expires
+        const epsilon = 5; // 5 meters offset
         if (this.direction === 1) {
-            // Forward: find first station with distance >= current distance + epsilon.
-            let idx = this.stations.findIndex(d => d >= this.distance + epsilon);
-            // If none found, use the last station.
-            this.nextStationIndex = (idx === -1) ? this.stations.length - 1 : idx;
-
+            let idx = this.stations.findIndex(d => d > this.distance + epsilon);
+            this.currentStationIndex = (idx === -1) ? this.stations.length - 1 : idx;
         } else {
-            // Reverse: find last station with distance <= current distance - epsilon.
             let idx = -1;
             for (let i = 0; i < this.stations.length; i++) {
-                if (this.stations[i] <= this.distance - epsilon) {
+                if (this.stations[i] < this.distance - epsilon) {
                     idx = i;
                 } else {
                     break;
                 }
             }
-            // If no station found, default to first station.
-            this.nextStationIndex = (idx === -1) ? 0 : idx;
+            this.currentStationIndex = (idx === -1) ? 0 : idx;
         }
     }
 
@@ -317,62 +314,61 @@ class Train {
         // If dwelling, check if dwell time is over.
         if (this.isDwelling) {
             if (Date.now() >= this.dwellUntil) {
-                // Nudge the train past the station a bit to avoid re-triggering dwell.\n        this.isDwelling = false;
-                this.distance += this.direction * 5; // Move 5 meters further in current direction.
+                // Nudge the train past the station slightly.
+                const epsilon = 5;
+                this.distance += this.direction * epsilon;
+                this.isDwelling = false;
                 this.updateNextStationIndex();
             } else {
-                return; // remain dwelling
+                return;
             }
         }
-
-        // Advance along the route.
-        // Update the speed calculation in the update method
-        const currentSpeed = 60;// VEHICLE_SPEEDS[this.vehicleType];
-
-        // Replace the trainSpeed usage with currentSpeed
+        
+        // Save previous distance before advancing.
+        const prevDistance = this.distance;
+        // Use the appropriate speed based on the vehicle type.
+        const VEHICLE_SPEEDS = {
+            METRO: 80 * 1000 / 3600,      // 80 km/h in m/s
+            LRT: 60 * 1000 / 3600         // 60 km/h in m/s
+        };
+        const currentSpeed = (this.vehicleType === 'METRO') ? VEHICLE_SPEEDS.METRO : VEHICLE_SPEEDS.LRT;
         this.distance += currentSpeed * deltaTime * timeScale * this.direction;
-        // Terminal reversal check
+
+        // Terminal reversal check.
         if (this.distance >= this.totalDistance) {
             this.distance = this.totalDistance;
             this.direction = -1;
             this.isDwelling = true;
             this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
-            this.updateNextStationIndex();
+            this.currentStationIndex = this.stations.length - 1;
             return;
         } else if (this.distance <= 0) {
             this.distance = 0;
             this.direction = 1;
             this.isDwelling = true;
             this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
-            this.updateNextStationIndex();
+            this.currentStationIndex = 0;
             return;
         }
-
-        // Station dwell check: if train is within tolerance of the next station, initiate dwell
-        if (this.direction === 1 && this.nextStationIndex < this.stations.length) {
-            let stationDist = this.stations[this.nextStationIndex];
-            if (Math.abs(this.distance - stationDist) < STATION_TOLERANCE) {
+        
+        // Station dwell check: if we've passed a station, snap back to it.
+        if (this.stations.length > 0) {
+            let target = this.stations[this.currentStationIndex];
+            if (this.direction === 1 && prevDistance < target && this.distance >= target) {
+                this.distance = target;
                 this.isDwelling = true;
                 this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
-                // Snap distance to the station value.
-                this.distance = stationDist;
                 return;
-            }
-        } else if (this.direction === -1 && this.nextStationIndex >= 0) {
-            let stationDist = this.stations[this.nextStationIndex];
-            if (Math.abs(this.distance - stationDist) < STATION_TOLERANCE) {
+            } else if (this.direction === -1 && prevDistance > target && this.distance <= target) {
+                this.distance = target;
                 this.isDwelling = true;
                 this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
-                this.distance = stationDist;
                 return;
             }
         }
-
-        // Update marker position
-        let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
-            units: "kilometers"
-        });
-
+        
+        // Update marker position.
+        let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, { units: "kilometers" });
         if (posFeature && posFeature.geometry && posFeature.geometry.coordinates) {
             let newPos = posFeature.geometry.coordinates;
             this.marker.setLatLng([newPos[1], newPos[0]]);
@@ -381,6 +377,7 @@ class Train {
         }
     }
 }
+
 
 // Global array to hold all the trains.
 let trains = [];
@@ -414,10 +411,15 @@ function startSimulation() {
             colour = "grey";
             label = key;
         }
-
-        let offset = Math.random() * 1000; // 0 to 1000m
-        let train = new Train(serviceRoutes[key], label, colour, offset);
-        trains.push(train);
+        // for (i=0; i<5; i++) {
+        //TODO: spawn multiple trains per line in accordance with required service pattern.
+        //and spawn them spread out along the line
+        //and perhaps enforce separation 
+        //start with M2 becauses its the only one which has uniform frequency/headway throughout 
+            let offset = Math.random() * 1000; // 0 to 1000m
+            let train = new Train(serviceRoutes[key], label, colour, offset);
+            trains.push(train);
+        // }
     });
 
     // Animation loop.

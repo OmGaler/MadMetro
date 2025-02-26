@@ -11,26 +11,26 @@ const turf = require('@turf/turf');
 // Define file paths for the service routes (both Metro & LRT)
 const serviceRouteFiles = {
     // Metro routes
-    "M1_NESE": "data/dantat_metro_M1_NESE.geojson",
-    "M1_NWSE": "data/dantat_metro_M1_NWSE.geojson",
-    "M1_NESW": "data/dantat_metro_M1_NESW.geojson",
-    "M1_NWSW": "data/dantat_metro_M1_NWSW.geojson",
-    "M2": "data/dantat_metro_M2.geojson",
-    "M3": "data/dantat_metro_M3.geojson",
+    "M1_NESE": "data/METRO/dantat_metro_M1_NESE.geojson",
+    "M1_NWSE": "data/METRO/dantat_metro_M1_NWSE.geojson",
+    "M1_NESW": "data/METRO/dantat_metro_M1_NESW.geojson",
+    "M1_NWSW": "data/METRO/dantat_metro_M1_NWSW.geojson",
+    "M2": "data/METRO/dantat_metro_M2.geojson",
+    "M3": "data/METRO/dantat_metro_M3.geojson",
     "M3_Shuttle": "data/dantat_metro_M3_shuttle.geojson",
     // LRT routes
-    "P1": "data/dankal_lrt_P1.geojson",
-    "P2": "data/dankal_lrt_P2.geojson",
-    "G1": "data/dankal_lrt_G1.geojson",
-    "G2": "data/dankal_lrt_G2.geojson",
-    "G3": "data/dankal_lrt_G3.geojson",
-    "G4": "data/dankal_lrt_G4.geojson",
-    "R1": "data/dankal_lrt_R1.geojson",
-    "R23": "data/dankal_lrt_R23.geojson"
+    "P1": "data/LRT/dankal_lrt_P1.geojson",
+    "P2": "data/LRT/dankal_lrt_P2.geojson",
+    "G1": "data/LRT/dankal_lrt_G1.geojson",
+    "G2": "data/LRT/dankal_lrt_G2.geojson",
+    "G3": "data/LRT/dankal_lrt_G3.geojson",
+    "G4": "data/LRT/dankal_lrt_G4.geojson",
+    "R1": "data/LRT/dankal_lrt_R1.geojson",
+    "R23": "data/LRT/dankal_lrt_R23.geojson"
 };
 // Define file paths for station layers (Metro and LRT)
-const metroStationsFile = "data/dantat_metro_stations.geojson";
-const lrtStationsFile = "data/dankal_lrt_stations.geojson";
+const metroStationsFile = "data/METRO/dantat_metro_stations.geojson";
+const lrtStationsFile = "data/LRT/dankal_lrt_stations.geojson";
 // Helper function: load and parse JSON from file.
 function loadJSON(path) {
     return JSON.parse(fs.readFileSync(path, 'utf8'));
