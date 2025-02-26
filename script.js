@@ -1,11 +1,12 @@
 //! TODO: preprocess the station distances 
 //TODO: up max metro speed to 80kmh, max LRT speed to 70 (ug and 50 overground???), tweak sim speed
-//? TODO: M2 missing station segula IZ
 //TODO: short turns at elifelet
 
+//TODO: enforce headway separation
 
-//// why is kahanemen and HAROEH station closed?! 
-// TODO: some stations randomly skipped
+//TODO TODO when spawned, trains travelling in reverse skipp all stations until reversing
+
+
 //discalimers
 //languages
 //data from geo.mot.gov.il
@@ -49,132 +50,6 @@ const serviceRouteFiles = {
 let serviceRoutes = {}; // key: service pattern, value: polyline coordinates
 let stationsData = null; // will hold the stations GeoJSON
 
-// Promise.all([
-//         ...Object.keys(serviceRouteFiles).map(key =>
-//             fetch(serviceRouteFiles[key])
-//             .then(res => {
-//                 if (!res.ok) throw new Error(`Failed to load ${key}`);
-//                 return res.json();
-//             })
-//             .then(data => {
-//                 let geom = (data.type === "FeatureCollection") ? data.features[0].geometry :
-//                     (data.type === "Feature") ? data.geometry : data;
-//                 let coords = geom.type === "LineString" ? geom.coordinates :
-//                     geom.type === "MultiLineString" ? geom.coordinates.flat() : null;
-
-//                 if (!coords) throw new Error(`Invalid geometry in ${key}`);
-//                 serviceRoutes[key] = {
-//                     coords,
-//                     stations: []
-//                 };
-//                 // console.log(`Loaded route ${key} with ${coords.length} points.`);
-//             })
-//         ),
-//         fetch('data/dantat_metro_stations.geojson')
-//         .then(res => {
-//             if (!res.ok) throw new Error("Failed to load Metro stations");
-//             return res.json();
-//         })
-//         .then(data => {
-//             if (!data || !data.features) throw new Error("Invalid Metro stations GeoJSON");
-//             stationsData = data;
-//             console.log(`Loaded ${stationsData.features.length} Metro stations.`);
-//         }),
-//         fetch('data/dankal_lrt_stations.geojson')
-//         .then(res => {
-//             if (!res.ok) throw new Error("Failed to load LRT stations");
-//             return res.json();
-//         })
-//         .then(data => {
-//             if (!data || !data.features) throw new Error("Invalid LRT stations GeoJSON");
-//             // Merge LRT stations with metro stations
-//             stationsData.features = stationsData.features.concat(data.features);
-//             console.log(`Loaded ${data.features.length} LRT stations.`);
-//         })
-//     ])
-//     .then(() => {
-//         if (!stationsData || !stationsData.features) {
-//             throw new Error("stationsData is null!");
-//         }
-//         // ----- COMPUTE STATION DISTANCES ALONG EACH SERVICE ROUTE -----
-//         console.log("stationsData ", stationsData);
-//         Object.keys(serviceRoutes).forEach(key => {
-//             let routeObj = serviceRoutes[key];
-//             let lineStr = turf.lineString(routeObj.coords);
-//             let totalRouteLength = turf.length(lineStr) * 1000; // in meters
-//             let stationDistances = [];
-//             // First, filter stations that belong to this line
-//             let lineName = key.split('_')[0]; // Extract M1, M2, M3 from route key
-//             let l = lineName.charAt(0).toUpperCase();
-//             if (l !== "M") { //check if it's a LRT line
-//                 lineName = {
-//                     "R": "Red",
-//                     "G": "Green",
-//                     "P": "Purple"
-//                 }[l];
-//             }
-//             const lineStations = stationsData.features.filter(feature =>
-//                 feature.properties.LINE &&
-//                 feature.properties.LINE.includes(lineName)
-//             );
-//             lineStations.forEach(feature => {
-//                 if (!feature.geometry || !feature.geometry.coordinates) return;
-
-//                 let stationPt = turf.point(feature.geometry.coordinates);
-//                 let snapped = turf.nearestPointOnLine(lineStr, stationPt, {
-//                     units: "meters"
-//                 });
-//                 // Only add station if it's very close to the line (within 50 meters)
-//                 if (snapped.properties.dist <= 50) {
-//                     let distMeters = snapped.properties.location;
-//                     //check the station is within the route (add a 1 metre buffer)
-//                     if (distMeters >= 0 && distMeters <= totalRouteLength+1) {
-//                         stationDistances.push({
-//                             distance: Math.round(distMeters), // Round to nearest meter
-//                             name: feature.properties.name,
-//                             originalDist: snapped.properties.dist // for debugging
-//                         });
-//                     }
-//                 }
-//             });
-//             // Sort by distance and remove duplicates based on rounded distance
-//             stationDistances.sort((a, b) => a.distance - b.distance);
-//             stationDistances = stationDistances.filter((station, index) => {
-//                 if (index === 0) return true;
-//                 // Remove stations that are within 100 meters of each other
-//                 return Math.abs(station.distance - stationDistances[index - 1].distance) > 100;
-//             });
-//             routeObj.stations = stationDistances.map(s => s.distance);
-//             console.log(`Route ${key} has ${stationDistances.length} stations:`, stationDistances);
-//             console.log("coords", routeObj.coords)
-//             const latlngs = routeObj.coords.map(coord => [coord[1], coord[0]]);
-//             L.polyline(latlngs, {
-//                     color: "green",
-//                     weight: 4,
-//                     opacity: 0.7,
-//                     dashArray: "5,5"
-//                 })
-//                 .addTo(map)
-//                 .bindPopup(`Service Route: ${key}`);
-
-//             stationsData.features.forEach(feature => {
-//                 if (!feature.geometry || !feature.geometry.coordinates) return;
-//                 let coords = feature.geometry.coordinates;
-//                 let stationName = feature.properties.name || "Unnamed Station";
-
-//                 L.marker([coords[1], coords[0]], {
-//                         icon: L.divIcon({
-//                             className: "station-marker",
-//                             html: "⬤",
-//                             iconSize: [12, 12],
-//                             iconAnchor: [6, 6]
-//                         })
-//                     }).addTo(map)
-//                     .bindPopup(`<b>${stationName}</b>`);
-//             });
-
-//         });
-//         // Visualize computed station points for each service route
 
 //         //****HIGHLIGHT THE COMPUTED STATIONS STOP POINTS */
 //         Object.keys(serviceRoutes).forEach(key => {
@@ -259,6 +134,52 @@ const VEHICLE_SPEEDS = {
     // LRT_SURFACE: 50 * 1000 / 3600 // 50 km/h in m/s
 };
 
+let serviceTime = "morning_evening";
+//frequency = schedule["weekday"]["morning_evening"].tph;
+let frequency = 20;
+let headway = 60/frequency;
+// Add these constants near the top of your file
+const SERVICE_PATTERNS = {
+    // Metro lines
+    M1: {
+        branches: ['M1_NESE', 'M1_NWSE', 'M1_NESW', 'M1_NWSW'],
+        frequency: frequency, // combined frequency on core section
+        headway: headway,   // minutes between trains on core section
+        branchFrequency: frequency/4 // frequency per branch
+    },
+    M2: {
+        branches: ['M2'],
+        frequency: frequency,
+        headway: headway,
+        branchFrequency: frequency // same as frequency since no branches
+    },
+    M3: {
+        branches: ['M3', 'M3_Shuttle'],
+        frequency: frequency,
+        headway: headway,
+        branchFrequency: frequency //no shared section, the shuttle is independent
+    },
+    // Light Rail lines
+    P: {
+        branches: ['P1', 'P2'],
+        frequency: frequency,
+        headway: headway,
+        branchFrequency: frequency/2
+    },
+    R: {
+        branches: ['R1', 'R23'],
+        frequency: frequency,
+        headway: headway,
+        branchFrequency: frequency/2
+    },
+    G: {
+        branches: ['G1', 'G2', 'G3', 'G4'],
+        frequency: frequency,
+        headway: headway,
+        branchFrequency: frequency/4
+    }
+};
+
 // Train class to represent each vehicle which moves along a continuous precomputed route.
 class Train {
     constructor(route, label, color, offset = 0) {
@@ -333,7 +254,7 @@ class Train {
         };
         const currentSpeed = (this.vehicleType === 'METRO') ? VEHICLE_SPEEDS.METRO : VEHICLE_SPEEDS.LRT;
         this.distance += currentSpeed * deltaTime * timeScale * this.direction;
-
+        
         // Terminal reversal check.
         if (this.distance >= this.totalDistance) {
             this.distance = this.totalDistance;
@@ -350,7 +271,6 @@ class Train {
             this.currentStationIndex = 0;
             return;
         }
-        
         // Station dwell check: if we've passed a station, snap back to it.
         if (this.stations.length > 0) {
             let target = this.stations[this.currentStationIndex];
@@ -384,47 +304,65 @@ let trains = [];
 
 // Start simulation: create one train per service route (you can adjust this as needed).
 function startSimulation() {
-    Object.keys(serviceRoutes).forEach(key => {
-        let route = serviceRoutes[key];
-        let colour, label;
-        // Determine color and label based on route key
-        if (key.startsWith("M1")) {
-            colour = lineColours["M1"];
-            label = "1";
-        } else if (key === "M2") {
-            colour = lineColours["M2"];
-            label = "2";
-        } else if (key.startsWith("M3")) {
-            colour = lineColours["M3"];
-            label = "3";
-        } else if (key.startsWith("P")) {
-            colour = lineColours["P"];
-            label = "P";
-        } else if (key.startsWith("R")) {
-            colour = lineColours["R"];
-            label = "R";
-        } else if (key.startsWith("G")) {
-            colour = lineColours["G"];
-            label = "G";
-        } else {
-            console.log(key);
-            colour = "grey";
-            label = key;
-        }
-        // for (i=0; i<5; i++) {
-        //TODO: spawn multiple trains per line in accordance with required service pattern.
-        //and spawn them spread out along the line
-        //and perhaps enforce separation 
-        //start with M2 becauses its the only one which has uniform frequency/headway throughout 
-            let offset = Math.random() * 1000; // 0 to 1000m
-            let train = new Train(serviceRoutes[key], label, colour, offset);
-            trains.push(train);
-        // }
+    // Process each service pattern
+    Object.keys(SERVICE_PATTERNS).forEach(lineId => {
+        const pattern = SERVICE_PATTERNS[lineId];
+        
+        pattern.branches.forEach(branchId => {
+            const route = serviceRoutes[branchId];
+            if (!route) {
+                console.error(`Route data not found for branch: ${branchId}`);
+                return;
+            }
+
+            const routeLength = turf.length(turf.lineString(route.coords)) * 1000; // in meters
+            const roundTripTime = (2 * routeLength) / VEHICLE_SPEEDS[route.type || 'METRO']; // seconds
+            const requiredTrainsPerDirection = Math.ceil((roundTripTime / 60) / (2 * (60 / pattern.branchFrequency)));
+            
+            console.log(`${branchId} route length: ${Math.round(routeLength)}m`);
+            console.log(`Round trip time: ${Math.round(roundTripTime/60)} minutes`);
+            console.log(`frequency: ${pattern.frequency}tph`);
+            console.log(`headway: ${pattern.headway}mins`);
+            console.log(`Required trains per direction: ${requiredTrainsPerDirection}`);
+            console.log("\n");
+            // Spawn trains in both directions
+            for (let direction of [1, -1]) { // 1 for northbound, -1 for southbound
+                for (let i = 0; i < requiredTrainsPerDirection; i++) {
+                    const spacing = routeLength / requiredTrainsPerDirection;
+                    const offset = i * spacing;
+                    // const arrow = direction === 1 ? '↑' : '↓';
+                    let label;
+                    if (lineId.startsWith("M1")) {
+                        label = "1";
+                    } else if (lineId.startsWith("M2")) {
+                        label = "2";
+                    } else if (lineId.startsWith("M3")) {
+                        label = "3";
+                    } else if (lineId.startsWith("P")) {
+                        label = "P";
+                    } else if (lineId.startsWith("R")) {
+                        label = "R";
+                    } else if (lineId.startsWith("G")) {
+                        label = "G";
+                    } else {
+                        label = lineId;
+                    }
+                    let train = new Train(
+                        route,
+                        label,
+                        lineColours[lineId.split('_')[0]],
+                        offset
+                    );
+                    train.direction = direction;
+                    train.branchId = branchId;
+                    trains.push(train);
+                }
+            }
+        });
     });
 
-    // Animation loop.
+    // Start animation loop
     let lastTime = Date.now();
-
     function animate() {
         let now = Date.now();
         let deltaTime = (now - lastTime) / 1000;

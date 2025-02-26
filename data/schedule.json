@@ -1,126 +1,140 @@
 {
     "Metro": {
-        "early_morning_late_night": {
-            "times": ["05:30-06:00", "22:00-01:00"],
-            "tph": 16
-        },
-        "morning_evening": {
-            "times": ["06:00-06:30", "09:00-16:30", "19:00-22:00"],
-            "tph": 20
-        },
-        "morning_evening_peaks": {
-            "times": ["06:30-09:00", "16:30-19:00"],
-            "tph": 40
-        },
-        "Friday": {
+        "Weekday": {
             "early_morning_late_night": {
-                "times": ["05:30-07:00"],
+                "times": ["05:30-06:00", "22:00-01:00"],
                 "tph": 16
             },
-            "morning_peak": {
-                "times": ["07:00-09:00"],
-                "tph": 30
-            },
-            "midday": {
-                "times": ["09:00-1 hour before Shabbat"],
-                "tph": 16
-            }
-        },
-        "Shabbat": {
-            "tph": 0
-        },
-        "Saturday": {
-            "evening": {
-                "times": ["1 hour after Shabbat-22:00"],
+            "morning_evening": {
+                "times": ["06:00-06:30", "19:00-22:00"],
                 "tph": 20
             },
-            "late_night": {
-                "times": ["22:00-01:00"],
-                "tph": 16
+            "midday": {
+                "times": ["09:00-16:30"],
+                "tph": 20
+            },
+            "morning_evening_peaks": {
+                "times": ["06:30-09:00", "16:30-19:00"],
+                "tph": 40
+            }
+        },
+        "Weekend": {
+            "Friday": {
+                "early_morning": {
+                    "times": ["05:30-07:00"],
+                    "tph": 16
+                },
+                "morning_peak": {
+                    "times": ["07:00-09:00"],
+                    "tph": 30
+                },
+                "midday": {
+                    "times": ["09:00-1 hour before Shabbat"],
+                    "tph": 16
+                }
+            },
+            "Saturday": {
+                "evening": {
+                    "times": ["1 hour after Shabbat-22:00"],
+                    "tph": 20
+                },
+                "late_night": {
+                    "times": ["22:00-01:00"],
+                    "tph": 16
+                }
             }
         }
     },
     "Light Rail": {
-        "Red Line": {
-            "early_morning_late_night": {
-                "times": ["05:30-06:00", "22:00-01:00"],
-                "tph": 4
-            },
-            "morning_evening": {
-                "times": ["06:00-06:30", "09:00-16:30", "19:00-22:00"],
-                "tph": 5
-            },
-            "morning_evening_peaks": {
-                "times": ["06:30-09:00", "16:30-19:00"],
-                "tph": 10
-            }
-        },
-        "Green & Purple Lines": {
-            "early_morning_late_night": {
-                "times": ["05:30-06:00", "22:00-01:00"],
-                "tph": 6
-            },
-            "morning_evening": {
-                "times": ["06:00-06:30", "09:00-16:30", "19:00-22:00"],
-                "tph": 7
-            },
-            "morning_evening_peaks": {
-                "times": ["06:30-09:00", "16:30-19:00"],
-                "tph": 15
-            }
-        },
-        "Friday": {
+        "Weekday": {
             "Red Line": {
-                "early_morning": {
-                    "times": ["05:30-07:00"],
+                "early_morning_late_night": {
+                    "times": ["05:30-06:00", "22:00-01:00"],
                     "tph": 4
                 },
-                "morning_peak": {
-                    "times": ["07:00-09:00"],
-                    "tph": 7
-                },
-                "midday": {
-                    "times": ["09:00-1 hour before Shabbat"],
-                    "tph": 4
-                }
-            },
-            "Green & Purple Lines": {
-                "early_morning": {
-                    "times": ["05:30-07:00"],
-                    "tph": 6
-                },
-                "morning_peak": {
-                    "times": ["07:00-09:00"],
-                    "tph": 10
-                },
-                "midday": {
-                    "times": ["09:00-1 hour before Shabbat"],
-                    "tph": 6
-                }
-            }
-        },
-        "Shabbat": {
-            "tph": 0
-        },
-        "Saturday": {
-            "Red Line": {
-                "evening": {
-                    "times": ["1 hour after Shabbat-22:00"],
+                "morning_evening": {
+                    "times": ["06:00-06:30", "19:00-22:00"],
                     "tph": 5
                 },
-                "late_night": {
-                    "times": ["22:00-01:00"],
-                    "tph": 4
+                "midday": {
+                    "times": ["09:00-16:30"],
+                    "tph": 5
+                },
+                "morning_evening_peaks": {
+                    "times": ["06:30-09:00", "16:30-19:00"],
+                    "tph": 10
                 }
             },
             "Green & Purple Lines": {
-                "evening": {
-                    "times": ["1 hour after Shabbat-22:00"],
-                    "tph": 7
-                },
-                "late_night": {
-                    "times": ["22:00-01:00"],
+                "early_morning_late_night": {
+                    "times": ["05:30-06:00", "22:00-01:00"],
                     "tph": 6
+                },
+                "morning_evening": {
+                    "times": ["06:00-06:30", "19:00-22:00"],
+                    "tph": 7.5
+                },
+                "midday": {
+                    "times": ["09:00-16:30"],
+                    "tph": 7.5
+                },
+                "morning_evening_peaks": {
+                    "times": ["06:30-09:00", "16:30-19:00"],
+                    "tph": 15
+                }
+            }
+        },
+        "Weekend": {
+            "Friday": {
+                "Red Line": {
+                    "early_morning": {
+                        "times": ["05:30-07:00"],
+                        "tph": 4
+                    },
+                    "morning_peak": {
+                        "times": ["07:00-09:00"],
+                        "tph": 7
+                    },
+                    "midday": {
+                        "times": ["09:00-1 hour before Shabbat"],
+                        "tph": 4
+                    }
+                },
+                "Green & Purple Lines": {
+                    "early_morning": {
+                        "times": ["05:30-07:00"],
+                        "tph": 6
+                    },
+                    "morning_peak": {
+                        "times": ["07:00-09:00"],
+                        "tph": 10
+                    },
+                    "midday": {
+                        "times": ["09:00-1 hour before Shabbat"],
+                        "tph": 6
+                    }
+                }
+            },
+            "Saturday": {
+                "Red Line": {
+                    "evening": {
+                        "times": ["1 hour after Shabbat-22:00"],
+                        "tph": 5
+                    },
+                    "late_night": {
+                        "times": ["22:00-01:00"],
+                        "tph": 4
+                    }
+                },
+                "Green & Purple Lines": {
+                    "evening": {
+                        "times": ["1 hour after Shabbat-22:00"],
+                        "tph": 7
+                    },
+                    "late_night": {
+                        "times": ["22:00-01:00"],
+                        "tph": 6
+                    }
                 }
             }
         }

@@ -15,6 +15,47 @@
     text-align: center;
     line-height: 24px;
     
+    
 }
+
+.legend {
+    position: absolute;
+    top: 20px;
+    left: 60px;
+    background-color: white;
+    padding: 1px 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    z-index: 1000;
+    font-family: Helvetica, sans-serif;
+}
+
+.legend-row {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin: 5px 0;
+}
+
+.bullet {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
+}
+
+.red { background-color: #ff0000; }
+.green { background-color: #008000; }
+.purple { background-color: #800080; }
+.one { background-color: #0971ce; } 
+.two { background-color: #fd6b0d; } 
+.three { background-color: #fec524; }
+
 
 
