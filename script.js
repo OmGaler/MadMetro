@@ -2,14 +2,23 @@
 //TODO: up max metro speed to 80kmh, max LRT speed to 70 (ug and 50 overground???), tweak sim speed
 //TODO: short turns at elifelet
 
-//TODO: enforce headway separation
+//TODO: enforce headway separation -Before spawning a new train or allowing a train to depart from a station, check the distance to the train ahead.
+//------------------
+//pause/play simulation button
+//settings screen-
+//configurable timescale
+//configure service day/times
+//------------------
 
 //TODO TODO when spawned, trains travelling in reverse skipp all stations until reversing
 
+//languages
 
 //discalimers
-//languages
-//data from geo.mot.gov.il
+//data from geo.mot.gov.il, openstreetmap
+//this is a simulation, not real data
+//link to the readme, which contains all the disclaimers
+
 // Initialise Leaflet Map
 const map = L.map('map').setView([32.0853, 34.7818], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -46,6 +55,54 @@ const serviceRouteFiles = {
     "G3": "data/LRT/dankal_lrt_G3.geojson",
     "G4": "data/LRT/dankal_lrt_G4.geojson"
 };
+
+let simPaused = false; //global pause flag
+// Add event listener to the pause/play button.
+document.getElementById("pause").addEventListener("click", function () {
+    simPaused = !simPaused;
+    this.textContent = simPaused ? "▶" : "⏸";
+});
+document.getElementById("dayTypeSelect").addEventListener("change", function () {
+    updateOperationSettings(document.getElementById("dayTypeSelect").value, document.getElementById("timePeriodSelect").value);
+});
+
+document.getElementById("timePeriodSelect").addEventListener("change", function () {
+    updateOperationSettings(document.getElementById("dayTypeSelect").value, document.getElementById("timePeriodSelect").value);
+});
+
+const settingsButton = document.getElementById("settings");
+const settingsModal = document.getElementById("settingsModal");
+const closeModal = document.getElementsByClassName("close")[0];
+
+// Open the settings modal and pause simulation.
+settingsButton.addEventListener("click", function () {
+    settingsModal.style.display = "block";
+    simPaused = true;
+    document.getElementById("pause").textContent = "▶";
+});
+
+// Close the settings modal and resume simulation.
+closeModal.addEventListener("click", function () {
+    settingsModal.style.display = "none";
+    simPaused = false;
+    document.getElementById("pause").textContent = "⏸";
+});
+
+// Also close the modal if the user clicks outside of the modal content
+window.addEventListener("click", function (event) {
+    if (event.target === settingsModal) {
+        settingsModal.style.display = "none";
+        simPaused = false;
+        document.getElementById('pause').textContent = "⏸";
+    }
+});
+
+function updateOperationSettings(day, time) {
+    console.log(day, time);
+}
+
+
+
 // We'll store each route (an array of [lon, lat] coordinates) in serviceRoutes.
 let serviceRoutes = {}; // key: service pattern, value: polyline coordinates
 let stationsData = null; // will hold the stations GeoJSON
@@ -137,15 +194,15 @@ const VEHICLE_SPEEDS = {
 let serviceTime = "morning_evening";
 //frequency = schedule["weekday"]["morning_evening"].tph;
 let frequency = 20;
-let headway = 60/frequency;
+let headway = 60 / frequency;
 // Add these constants near the top of your file
 const SERVICE_PATTERNS = {
     // Metro lines
     M1: {
         branches: ['M1_NESE', 'M1_NWSE', 'M1_NESW', 'M1_NWSW'],
         frequency: frequency, // combined frequency on core section
-        headway: headway,   // minutes between trains on core section
-        branchFrequency: frequency/4 // frequency per branch
+        headway: headway, // minutes between trains on core section
+        branchFrequency: frequency / 4 // frequency per branch
     },
     M2: {
         branches: ['M2'],
@@ -164,19 +221,19 @@ const SERVICE_PATTERNS = {
         branches: ['P1', 'P2'],
         frequency: frequency,
         headway: headway,
-        branchFrequency: frequency/2
+        branchFrequency: frequency / 2
     },
     R: {
         branches: ['R1', 'R23'],
         frequency: frequency,
         headway: headway,
-        branchFrequency: frequency/2
+        branchFrequency: frequency / 2
     },
     G: {
         branches: ['G1', 'G2', 'G3', 'G4'],
         frequency: frequency,
         headway: headway,
-        branchFrequency: frequency/4
+        branchFrequency: frequency / 4
     }
 };
 
@@ -196,7 +253,9 @@ class Train {
         this.currentStationIndex = 0;
         this.updateNextStationIndex();
 
-        let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, { units: "kilometers" });
+        let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
+            units: "kilometers"
+        });
         let startCoord = posFeature.geometry.coordinates;
         this.marker = L.marker([startCoord[1], startCoord[0]], {
             icon: L.divIcon({
@@ -207,7 +266,7 @@ class Train {
             })
         }).addTo(map);
         this.marker.getElement().style.backgroundColor = color;
-        
+
         // Determine vehicle type from label (Metro if label is "1","2","3", else LRT)
         this.vehicleType = (this.label === "1" || this.label === "2" || this.label === "3") ? 'METRO' : 'LRT_SURFACE';
     }
@@ -244,17 +303,17 @@ class Train {
                 return;
             }
         }
-        
+
         // Save previous distance before advancing.
         const prevDistance = this.distance;
         // Use the appropriate speed based on the vehicle type.
         const VEHICLE_SPEEDS = {
-            METRO: 80 * 1000 / 3600,      // 80 km/h in m/s
-            LRT: 60 * 1000 / 3600         // 60 km/h in m/s
+            METRO: 80 * 1000 / 3600, // 80 km/h in m/s
+            LRT: 60 * 1000 / 3600 // 60 km/h in m/s
         };
         const currentSpeed = (this.vehicleType === 'METRO') ? VEHICLE_SPEEDS.METRO : VEHICLE_SPEEDS.LRT;
         this.distance += currentSpeed * deltaTime * timeScale * this.direction;
-        
+
         // Terminal reversal check.
         if (this.distance >= this.totalDistance) {
             this.distance = this.totalDistance;
@@ -286,9 +345,11 @@ class Train {
                 return;
             }
         }
-        
+
         // Update marker position.
-        let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, { units: "kilometers" });
+        let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
+            units: "kilometers"
+        });
         if (posFeature && posFeature.geometry && posFeature.geometry.coordinates) {
             let newPos = posFeature.geometry.coordinates;
             this.marker.setLatLng([newPos[1], newPos[0]]);
@@ -307,7 +368,7 @@ function startSimulation() {
     // Process each service pattern
     Object.keys(SERVICE_PATTERNS).forEach(lineId => {
         const pattern = SERVICE_PATTERNS[lineId];
-        
+
         pattern.branches.forEach(branchId => {
             const route = serviceRoutes[branchId];
             if (!route) {
@@ -318,7 +379,7 @@ function startSimulation() {
             const routeLength = turf.length(turf.lineString(route.coords)) * 1000; // in meters
             const roundTripTime = (2 * routeLength) / VEHICLE_SPEEDS[route.type || 'METRO']; // seconds
             const requiredTrainsPerDirection = Math.ceil((roundTripTime / 60) / (2 * (60 / pattern.branchFrequency)));
-            
+
             console.log(`${branchId} route length: ${Math.round(routeLength)}m`);
             console.log(`Round trip time: ${Math.round(roundTripTime/60)} minutes`);
             console.log(`frequency: ${pattern.frequency}tph`);
@@ -363,11 +424,16 @@ function startSimulation() {
 
     // Start animation loop
     let lastTime = Date.now();
+
     function animate() {
         let now = Date.now();
-        let deltaTime = (now - lastTime) / 1000;
-        lastTime = now;
-        trains.forEach(train => train.update(deltaTime));
+        if (simPaused) {
+            lastTime = now;
+        } else {
+            let deltaTime = (now - lastTime) / 1000;
+            lastTime = now;
+            trains.forEach(train => train.update(deltaTime));
+        }
         requestAnimationFrame(animate);
     }
     animate();

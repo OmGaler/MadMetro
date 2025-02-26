@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
 </head>
+
 <body>
     <div class="legend">
         <div class="legend-row">
@@ -24,8 +26,34 @@
             &ensp;Metro
         </div>
     </div>
+    <button id="pause">⏸</button>
+    <button id="settings">⚙</button>
+
+    <div id="simulationControls">
+        <label for="dayTypeSelect">Day:</label>
+        <select id="dayTypeSelect">
+            <option value="weekday">Weekday</option>
+            <option value="weekend">Weekend</option>
+        </select>
+        <label for="timePeriodSelect">Time:</label>
+        <select id="timePeriodSelect">
+            <option value="morning_evening">Morning/Evening</option>
+            <option value="peaks">Peaks</option>
+            <option value="midday">Midday</option>
+        </select>
+    </div>
     <div id="map"></div>
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" title="Close Settings">&times;</span>
+            <h2>Settings</h2>
+            <!-- Add settings controls here -->
+            <p>Configure simulation parameters below.</p>
+        </div>
+    </div>
     <script src="script.js"></script>
 
 </body>
+
 </html>
