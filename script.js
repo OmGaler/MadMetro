@@ -1,23 +1,23 @@
-//! TODO: preprocess the station distances 
+
 //TODO: up max metro speed to 80kmh, max LRT speed to 70 (ug and 50 overground???), tweak sim speed
 //TODO: short turns at elifelet
 
 //TODO: enforce headway separation -Before spawning a new train or allowing a train to depart from a station, check the distance to the train ahead.
 //------------------
-//pause/play simulation button
+
 //settings screen-
 //configurable timescale
 //configure service day/times
-//------------------
-
-//TODO TODO when spawned, trains travelling in reverse skipp all stations until reversing
-
 //languages
-
 //discalimers
 //data from geo.mot.gov.il, openstreetmap
 //this is a simulation, not real data
 //link to the readme, which contains all the disclaimers
+//------------------
+
+//TODO TODO when spawned, trains travelling in reverse skipp all stations until reversing
+
+
 
 // Initialise Leaflet Map
 const map = L.map('map').setView([32.0853, 34.7818], 13);
@@ -60,7 +60,7 @@ let simPaused = false; //global pause flag
 // Add event listener to the pause/play button.
 document.getElementById("pause").addEventListener("click", function () {
     simPaused = !simPaused;
-    this.textContent = simPaused ? "▶" : "⏸";
+    this.innerHTML = simPaused ? "<ion-icon name='play'></ion-icon>" : "<ion-icon name='pause'></ion-icon>";
 });
 document.getElementById("dayTypeSelect").addEventListener("change", function () {
     updateOperationSettings(document.getElementById("dayTypeSelect").value, document.getElementById("timePeriodSelect").value);
@@ -78,7 +78,7 @@ const closeModal = document.getElementsByClassName("close")[0];
 settingsButton.addEventListener("click", function () {
     settingsModal.style.display = "block";
     simPaused = true;
-    document.getElementById("pause").textContent = "▶";
+    document.getElementById("pause").innerHTML = "<ion-icon name='play'></ion-icon>";
 });
 
 // Close the settings modal and resume simulation.
