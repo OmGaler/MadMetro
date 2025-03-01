@@ -405,7 +405,8 @@ class Train {
 
     // Add new method to check headway
     checkHeadway() {
-        if (!this.ahead) return true;
+        //if there's no train ahead or the train ahead is itself, return true
+        if (!this.ahead || this.ahead === this) return true;
         
         // Calculate distance to train ahead
         const aheadDist = this.ahead.distance;
