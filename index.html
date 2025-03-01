@@ -26,61 +26,34 @@
             &ensp;Metro
         </div>
     </div>
-    <button id="pause"><ion-icon name="pause"></ion-icon></button>
-    <button id="settings"><ion-icon name="settings-outline"></ion-icon></button>
+    <button id="pause">
+        <ion-icon name="pause"></ion-icon>
+    </button>
+    <button id="settings">
+        <ion-icon name="settings-outline"></ion-icon>
+    </button>
 
     <div id="simulationControls">
         <select id="dayTypeSelect">
             <option value="weekday">Weekday (Su-Th)</option>
             <option value="weekend">Weekend (F-S)</option>
         </select>
-        
+
         <label for="timePeriodSelect">Time:</label>
         <select id="timePeriodSelect"></select>
-        
+
         <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const dayTypeSelect = document.getElementById("dayTypeSelect");
-            const timePeriodSelect = document.getElementById("timePeriodSelect");
-        
-            // Define time period options for each day type
-            const timePeriods = {
-                weekday: [
-                    { value: "early_late", text: "Early Morning/Late Night" },
-                    { value: "morning_evening", text: "Morning/Evening" },
-                    { value: "peaks", text: "Morning/Evening Peak" },
-                    { value: "midday", text: "Midday" }
-                ],
-                weekend: [
-                    { value: "early", text: "Early Morning (F)" },
-                    { value: "morning_peak", text: "Morning Peak (F)" },
-                    { value: "midday", text: "Midday 09:00-1hr before Sh" },
-                    { value: "evening", text: "1hr after Sh-22:00" },
-                    { value: "late", text: "Late Night (S)" }
-                ]
-            };
-        
-            function updateTimePeriodOptions() {
-                const selectedDayType = dayTypeSelect.value;
-        
-                // Clear existing options
-                timePeriodSelect.innerHTML = "";
-        
-                // Add new options based on selected day type
-                timePeriods[selectedDayType].forEach(option => {
-                    const opt = document.createElement("option");
-                    opt.value = option.value;
-                    opt.textContent = option.text;
-                    timePeriodSelect.appendChild(opt);
-                });
-            }
-        
-            // Initialize default options
-            updateTimePeriodOptions();
-        
-            // Update options when selection changes
-            dayTypeSelect.addEventListener("change", updateTimePeriodOptions);
-        });
+            document.addEventListener("DOMContentLoaded", function () {
+                const dayTypeSelect = document.getElementById("dayTypeSelect");
+                const timePeriodSelect = document.getElementById("timePeriodSelect");
+
+                
+
+                
+
+                // Update options when selection changes
+                dayTypeSelect.addEventListener("change", updateTimePeriodOptions);
+            });
         </script>
         </select>
     </div>
