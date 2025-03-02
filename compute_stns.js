@@ -17,7 +17,7 @@ const serviceRouteFiles = {
     "M1_NWSW": "data/METRO/dantat_metro_M1_NWSW.geojson",
     "M2": "data/METRO/dantat_metro_M2.geojson",
     "M3": "data/METRO/dantat_metro_M3.geojson",
-    "M3_Shuttle": "data/dantat_metro_M3_shuttle.geojson",
+    "M3_Shuttle": "data/METRO/dantat_metro_M3_shuttle.geojson",
     // LRT routes
     "P1": "data/LRT/dankal_lrt_P1.geojson",
     "P2": "data/LRT/dankal_lrt_P2.geojson",
@@ -131,6 +131,16 @@ Object.keys(allServiceRoutes).forEach(key => {
         return Math.abs(station.distance - stationDistances[index - 1].distance) > 100;
     });
     // Store only the distances in the route object
+    
+    if (stationDistances.length === 0 || 
+        (totalRouteLength - stationDistances[stationDistances.length - 1].distance) > 50) {
+        stationDistances.push({
+            distance: Math.round(totalRouteLength),
+            name: 'Terminal Station',
+            originalDist: 0
+        });
+    }
+    
     routeObj.stations = stationDistances.map(s => s.distance);
     console.log(`Route ${key} has ${stationDistances.length} stations`);
 });

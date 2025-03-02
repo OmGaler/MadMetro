@@ -65,14 +65,15 @@ let simPaused = false; //global pause flag
 let day;
 let time;
 
-
+//===============================================
+// PAUSE controls
+//===============================================
 // Add event listener to the pause/play button.
 document.getElementById("pause").addEventListener("click", function () {
     simPaused = !simPaused;
     this.innerHTML = simPaused ? "<ion-icon name='play'></ion-icon>" : "<ion-icon name='pause'></ion-icon>";
 });
-
-
+//and for the space/p key
 document.addEventListener("keydown", function (event) {
     // Check if the key pressed is space (code "Space") or the letter "P" (case-insensitive)
     if (event.code === "Space" || event.key.toLowerCase() === "p") {
@@ -84,8 +85,50 @@ document.addEventListener("keydown", function (event) {
     event.preventDefault();
     }
 });
+//===============================================
+// SETTINGS controls
+//===============================================
+const settingsButton = document.getElementById("settings");
+const settingsModal = document.getElementById("settingsModal");
+const closeModal = document.getElementsByClassName("close")[0];
+// Open the settings modal and pause simulation.
+settingsButton.addEventListener("click", function () {
+    settingsModal.style.display = "block";
+    simPaused = true;
+    document.getElementById("pause").innerHTML = "<ion-icon name='play'></ion-icon>";   
+});
+// Close the settings modal and resume simulation.
+closeModal.addEventListener("click", function () {
+    settingsModal.style.display = "none";
+    simPaused = false;
+    document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
+});
+// Also close the modal if the user clicks outside of the modal content
+window.addEventListener("click", function (event) {
+    if (event.target === settingsModal) {
+        settingsModal.style.display = "none";
+        simPaused = false;
+        document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
+    }
+});
 
+//===============================================
+// Train info pop-up
+//===============================================
+document.addEventListener('click', () => {
+    document.getElementById("trainPopup").style.display = "none";
+  });
+// document.addEventListener("click", function (event) {
+//     const trainPopup = document.getElementById("trainPopup");
+//     // If the popup is open and the click target is not inside the popup, hide it
+//     if (trainPopup.style.display === "flex" && !trainPopup.contains(event.target)) {
+//       trainPopup.style.display = "none";
+//     }
+//   });
 
+//===============================================
+// DAY/TIME controls
+//===============================================
 document.getElementById("dayTypeSelect").addEventListener("change", updateOperationSettings);
 document.getElementById("timePeriodSelect").addEventListener("change", updateOperationSettings);
 
@@ -134,7 +177,8 @@ const timePeriods = {
                 text: "Late Night (S)"
             }
         ]
-    };
+};
+
 function updateTimePeriodOptions() {
     const selectedDayType = dayTypeSelect.value;
     // Clear existing options
@@ -152,43 +196,9 @@ function updateTimePeriodOptions() {
     }
 }
 
-// Initialize default options
+// Initialise default options
 updateTimePeriodOptions();
 
-// document.getElementById("dayTypeSelect").addEventListener("change", function () {
-//     updateOperationSettings(document.getElementById("dayTypeSelect").value, document.getElementById("timePeriodSelect").value);
-// });
-
-// document.getElementById("timePeriodSelect").addEventListener("change", function () {
-//     updateOperationSettings(document.getElementById("dayTypeSelect").value, document.getElementById("timePeriodSelect").value);
-// });
-
-const settingsButton = document.getElementById("settings");
-const settingsModal = document.getElementById("settingsModal");
-const closeModal = document.getElementsByClassName("close")[0];
-
-// Open the settings modal and pause simulation.
-settingsButton.addEventListener("click", function () {
-    settingsModal.style.display = "block";
-    simPaused = true;
-    document.getElementById("pause").innerHTML = "<ion-icon name='play'></ion-icon>";
-});
-
-// Close the settings modal and resume simulation.
-closeModal.addEventListener("click", function () {
-    settingsModal.style.display = "none";
-    simPaused = false;
-    document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
-});
-
-// Also close the modal if the user clicks outside of the modal content
-window.addEventListener("click", function (event) {
-    if (event.target === settingsModal) {
-        settingsModal.style.display = "none";
-        simPaused = false;
-        document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
-    }
-});
 
 function updateOperationSettings() {
     // Get current selections
@@ -203,7 +213,9 @@ function updateOperationSettings() {
     startSimulation();
 }
 
-
+//===============================================
+// SIMULATION setup
+//===============================================
 // We'll store each route (an array of [lon, lat] coordinates) in serviceRoutes.
 let serviceRoutes = {}; // key: service pattern, value: polyline coordinates
 let stationsData = null; // will hold the stations GeoJSON
@@ -374,10 +386,19 @@ class Train {
             })
         }).addTo(map);
         this.marker.getElement().style.backgroundColor = color;
-
+        // In your Train class constructor, after creating this.marker
+        this.marker.on('click', event => {
+            // Stop propagation so the global listener isn’t triggered by this click
+            event.originalEvent.stopPropagation();
+            const popup = document.getElementById("trainPopup");
+            const routeBullet = document.getElementById("popupRouteBullet");
+            routeBullet.textContent = this.label;
+            routeBullet.style.backgroundColor = this.color;
+            routeBullet.style.color = "white"; // Ensure the text is visible
+            popup.style.display = "flex";
+        });
         // Determine vehicle type from label (Metro if label is "1","2","3", else LRT)
         this.vehicleType = (this.label === "1" || this.label === "2" || this.label === "3") ? 'METRO' : 'LRT_SURFACE';
-
         this.minimumHeadway = 90; // 90 meters minimum separation
         this.branchId = null; // Will be set when creating trains
         this.ahead = null; // Reference to train ahead on same route

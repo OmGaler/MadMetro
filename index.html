@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gush Dan Mass Transit Visualator (Visual-Simulator)</title>
+    <title>Gush Dan Mass Transit Simulator</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -47,17 +47,11 @@
                 const dayTypeSelect = document.getElementById("dayTypeSelect");
                 const timePeriodSelect = document.getElementById("timePeriodSelect");
 
-                
-
-                
-
                 // Update options when selection changes
                 dayTypeSelect.addEventListener("change", updateTimePeriodOptions);
             });
         </script>
-        </select>
     </div>
-    <div id="map"></div>
     <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
         <div class="modal-content">
@@ -67,6 +61,32 @@
             <p>Configure simulation parameters below.</p>
         </div>
     </div>
+    <div id="map"></div>
+    <!-- Train Info Modal -->
+    <div id="trainPopup" class="train-popup">
+        <div class="train-popup-content">
+            <div class="routeBulletHolder">
+                <span class="bullet" id="popupRouteBullet"></span> 
+            </div>
+            <div>
+                <strong>Destination:</strong> <span id="popupDestination">---</span><br>
+                <strong>Next Stop:</strong> <span id="popupNextStop">---</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- <div id="trainModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="trainModalClose" title="Close">&times;</span>
+            <div id="trainModalContent">
+            <div class="train-info">
+                <span id="trainBullet" class="bullet"></span>
+                <p>Destination: <span id="trainDestination"></span></p>
+                <p>Next Stop: <span id="trainNextStop"></span></p>
+            </div>
+            </div>
+        </div>
+    </div>   -->
     <script src="script.js"></script>
     <!-- for icons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

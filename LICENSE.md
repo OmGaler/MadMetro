@@ -8,16 +8,16 @@ Use of the Licensed Software for any commercial purpose is prohibited unless you
 ## 1. Definitions
 
 **1.1 "Licensor"**  
-: Means the copyright holder of the Licensed Software.
+Means the copyright holder of the Licensed Software.
 
 **1.2 "Licensed Software"**  
-: Means the original code, any modifications, and derivative works covered by this License.
+Means the original code, any modifications, and derivative works covered by this License.
 
 **1.3 "Commercial Use"**  
-: Means any use of the Licensed Software for monetary compensation or in any venture intended for commercial advantage.
+Means any use of the Licensed Software for monetary compensation or in any venture intended for commercial advantage.
 
 **1.4 "You"**  
-: Means the recipient or user of the Licensed Software, including any party that receives a copy or a derivative work.
+Means the recipient or user of the Licensed Software, including any party that receives a copy or a derivative work.
 
 ## 2. Grant of Rights
 
