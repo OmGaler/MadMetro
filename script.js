@@ -214,6 +214,26 @@ function updateOperationSettings() {
 }
 
 //===============================================
+// Localisation
+//===============================================
+let currentLang = "en";
+function updateLanguage(lang) {
+    currentLang = lang;
+    //update all the text elements
+    //===============
+    document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
+
+}
+// Call on page load to set the default language
+document.addEventListener("DOMContentLoaded", () => {
+    updateLanguage(currentLang);
+});
+function toggleLanguage() {
+    const newLang = currentLang === "en" ? "he" : "en";
+    updateLanguage(newLang);
+}
+
+//===============================================
 // SIMULATION setup
 //===============================================
 // We'll store each route (an array of [lon, lat] coordinates) in serviceRoutes.

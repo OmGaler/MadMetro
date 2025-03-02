@@ -1,5 +1,6 @@
 #map {
-    height: 100vh; width: 100%; 
+    height: 100vh;
+    width: 100%;
 }
 
 .train-marker {
@@ -14,8 +15,8 @@
     font-size: 14px;
     text-align: center;
     line-height: 24px;
-    
-    
+
+
 }
 
 .legend {
@@ -25,7 +26,7 @@
     background-color: white;
     padding: 1px 5px;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     z-index: 1000;
     font-family: Helvetica, sans-serif;
 }
@@ -50,12 +51,29 @@
     font-family: Helvetica, sans-serif;
 }
 
-.red { background-color: #ff0000; }
-.green { background-color: #008000; }
-.purple { background-color: #800080; }
-.one { background-color: #0971ce; } 
-.two { background-color: #fd6b0d; } 
-.three { background-color: #fec524; }
+.red {
+    background-color: #ff0000;
+}
+
+.green {
+    background-color: #008000;
+}
+
+.purple {
+    background-color: #800080;
+}
+
+.one {
+    background-color: #0971ce;
+}
+
+.two {
+    background-color: #fd6b0d;
+}
+
+.three {
+    background-color: #fec524;
+}
 
 #pause {
     position: absolute;
@@ -68,7 +86,7 @@
     border: 1px solid #ccc;
     cursor: pointer;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);    
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 #settings {
@@ -82,7 +100,61 @@
     border: 1px solid #ccc;
     cursor: pointer;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.language-select {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    /* padding: 8px 12px; */
+    font-size: 18px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 8px 12px;
+}
+.lang-options {
+    position: absolute;
+    left: 100%;  /* Appear immediately to the right */
+    top: 50%;
+    transform: translate(10px, -50%);
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 7px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.language-select:hover .lang-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -50%);
+}
+
+.lang-option {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 8px;
 }
 
 #settingsModal {
@@ -132,6 +204,7 @@
 #simulationControls select {
     margin: 0 5px;
 }
+
 .train-popup {
     position: fixed;
     bottom: 80px;
@@ -156,10 +229,17 @@
 }
 
 .train-popup span {
-    font-size: 18px;   
+    font-size: 18px;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, 10px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
+    from {
+        opacity: 0;
+        transform: translate(-50%, 10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
 }
