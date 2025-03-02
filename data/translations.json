@@ -1,0 +1,115 @@
+{
+    "en": {
+        "title": "Gush Dan Mass Transit Simulator",
+        "destination": "Destination",
+        "next-stop": "Next Station",
+        "settings": "Settings",
+        "close": "Close",
+        "weekday": "Weekday (Su-Th)",
+        "weekend": "Weekend (F-S)",
+        "early_late": "Early Mornings/Late Evenings",
+        "morning_evening": "Mornings/Evenings",
+        "midday": "Midday",
+        "peaks": "Peaks",
+        "times": "Times",
+        "tph": "Trains per Hour",
+        "light-rail": "Light Rail",
+        "metro": "Metro",
+        "timePeriods": {
+            "weekday": [{
+                    "value": "early_late",
+                    "text": "Early Morning/Late Night"
+                },
+                {
+                    "value": "morning_evening",
+                    "text": "Morning/Evening"
+                },
+                {
+                    "value": "peaks",
+                    "text": "Morning/Evening Peak"
+                },
+                {
+                    "value": "midday",
+                    "text": "Midday"
+                }
+            ],
+            "weekend": [{
+                    "value": "early",
+                    "text": "Early Morning (F)"
+                },
+                {
+                    "value": "morning_peak",
+                    "text": "Morning Peak (F)"
+                },
+                {
+                    "value": "midday",
+                    "text": "Midday"
+                },
+                {
+                    "value": "evening",
+                    "text": "1hr after Sh-22:00"
+                },
+                {
+                    "value": "late",
+                    "text": "Late Night (S)"
+                }
+            ]
+        }
+
+    },
+    "he": {
+        "title": "סימולטור תחב\"צ באזור גוש דן",
+        "destination": "יעד",
+        "next-stop": "התחנה הבאה",
+        "settings": "הגדרות",
+        "close": "סגור",
+        "weekday": "ימי חול",
+        "weekend": "סופי שבוע",
+        "midday": "צהריים",
+        "peaks": "שעות שיא",
+        "times": "שעות",
+        "tph": "רכבות לכל שעה",
+        "light-rail": "רכבת קלה",
+        "metro": "מטרו",
+        "timePeriods": {
+            "weekday": [{
+                    "value": "early_late",
+                    "text": "בקרים מוקדמים/לילות"
+                },
+                {
+                    "value": "morning_evening",
+                    "text": "בקרים/ערבים"
+                },
+                {
+                    "value": "peaks",
+                    "text": "שעות שיא"
+                },
+                {
+                    "value": "midday",
+                    "text": "צהריים"
+                }
+            ],
+            "weekend": [{
+                    "value": "early",
+                    "text": "בוקר מוקדם (ו)"
+                },
+                {
+                    "value": "morning_peak",
+                    "text": "שיא בוקר (ש)"
+                },
+                {
+                    "value": "midday",
+                    "text": "צהריים"
+                },
+                {
+                    "value": "evening",
+                    "text": "מוצ\"ש"
+                },
+                {
+                    "value": "late",
+                    "text": "מוצ\"ש מאוחר"
+                }
+            ]
+        }
+    }
+}

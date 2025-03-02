@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gush Dan Mass Transit Simulator</title>
+    <title data-i18n="title"></title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -17,13 +17,18 @@
             <span class="bullet red">R</span>
             <span class="bullet green">G</span>
             <span class="bullet purple">P</span>
-            &ensp;Light Rail
+            <div data-i18n="light-rail">
+                &ensp;
+            </div>
         </div>
         <div class="legend-row">
             <span class="bullet one">1</span>
             <span class="bullet two">2</span>
             <span class="bullet three">3</span>
-            &ensp;Metro
+            <div data-i18n="metro">
+                &ensp;
+            </div>
+            
         </div>
     </div>
     <button id="pause">
@@ -35,10 +40,10 @@
 
     <div id="simulationControls">
         <select id="dayTypeSelect">
-            <option value="weekday">Weekday (Su-Th)</option>
-            <option value="weekend">Weekend (F-S)</option>
+            <option data-i18n="weekday" value="weekday"></option>
+            <option data-i18n="weekend" value="weekend"></option>
         </select>
-
+        <!-- //TODO: REPLACE with icon -->
         <label for="timePeriodSelect">Time:</label>
         <select id="timePeriodSelect"></select>
 
@@ -55,8 +60,8 @@
     <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
         <div class="modal-content">
-            <span class="close" title="Close Settings">&times;</span>
-            <h2>Settings</h2>
+            <span class="close" data-i18n="close">&times;</span>
+            <h2 data-i18n="settings"></h2>
             <!-- Add settings controls here -->
             <p>Configure simulation parameters below.</p>
         </div>
@@ -69,8 +74,8 @@
                 <span class="bullet" id="popupRouteBullet"></span> 
             </div>
             <div>
-                <strong>Destination:</strong> <span id="popupDestination">---</span><br>
-                <strong>Next Stop:</strong> <span id="popupNextStop">---</span>
+                <strong></strong> <span data-i18n="destination" id="popupDestination">---</span><br>
+                <strong></strong> <span data-i18n="next-stop"="popupNextStop">---</span>
             </div>
         </div>
     </div>
