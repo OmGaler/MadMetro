@@ -15,6 +15,7 @@
         "tph": "Trains per Hour",
         "light-rail": "Light Rail",
         "metro": "Metro",
+        "terminus": "Terminus",
         "timePeriods": {
             "weekday": [{
                     "value": "early_late",
@@ -71,6 +72,7 @@
         "tph": "רכבות לכל שעה",
         "light-rail": "רכבת קלה",
         "metro": "מטרו",
+        "terminus": "תחנה סופית",
         "timePeriods": {
             "weekday": [{
                     "value": "early_late",

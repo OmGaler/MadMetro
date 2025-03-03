@@ -99,7 +99,7 @@
     background-color: #fff;
     border: 1px solid #ccc;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 5px;    
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -116,7 +116,6 @@
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
-
 
 .lang-btn {
     background: transparent;
@@ -222,6 +221,7 @@
     animation: fadeIn 0.2s ease-out;
     z-index: 9999;
 }
+
 
 .train-popup-content {
     display: flex;

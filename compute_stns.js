@@ -117,7 +117,10 @@ Object.keys(allServiceRoutes).forEach(key => {
             if (distMeters >= 0 && distMeters <= totalRouteLength+1) {
                 stationDistances.push({
                     distance: distMeters,
-                    name: feature.properties.name || 'Unnamed Station',
+                    name: {
+                        en: feature.properties.NAMEENG || feature.properties.name || 'Unnamed Station',
+                        he: feature.properties.NAME || feature.properties.name || 'תחנה ללא שם'
+                    },
                     originalDist: snapped.properties.dist // for debugging
                 });
             }
@@ -141,7 +144,18 @@ Object.keys(allServiceRoutes).forEach(key => {
         });
     }
     
-    routeObj.stations = stationDistances.map(s => s.distance);
+    // After collecting all stations, add terminus information
+    routeObj.stations = stationDistances;
+    routeObj.termini = {
+        en: {
+            start: stationDistances[0].name.en,
+            end: stationDistances[stationDistances.length - 1].name.en
+        },
+        he: {
+            start: stationDistances[0].name.he,
+            end: stationDistances[stationDistances.length - 1].name.he
+        }
+    };
     console.log(`Route ${key} has ${stationDistances.length} stations`);
 });
 // Save the preprocessed station distances with route coordinates to a JSON file.
