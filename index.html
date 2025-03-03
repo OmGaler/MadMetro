@@ -62,8 +62,36 @@
         <div class="modal-content">
             <span class="close" data-i18n="close">&times;</span>
             <h2 data-i18n="settings"></h2>
-            <!-- Add settings controls here -->
-            <p>Configure simulation parameters below.</p>
+            <!--TODO: move time settings here by uncommenting -->
+            <!-- <div id="timeDaySettings" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;"></div> -->
+            <!-- <p>Configure simulation parameters below.</p><div id="simulationControls">
+                <select id="dayTypeSelect">
+                    <option data-i18n="weekday" value="weekday"></option>
+                    <option data-i18n="weekend" value="weekend"></option>
+                </select>
+                //TODO: REPLACE with icon
+                <label for="timePeriodSelect">Time:</label>
+                <select id="timePeriodSelect"></select>
+        
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const dayTypeSelect = document.getElementById("dayTypeSelect");
+                        const timePeriodSelect = document.getElementById("timePeriodSelect");
+        
+                        // Update options when selection changes
+                        dayTypeSelect.addEventListener("change", updateTimePeriodOptions);
+                    });
+                </script>
+                    <div style="display: flex; gap: 5px;">
+                    <ion-icon name="calendar-outline" style="font-size: 24px;"></ion-icon>
+                    <ion-icon name="time-outline" style="font-size: 24px;"></ion-icon>
+                </div>
+                </div>
+            </div> -->
+            <!-- Line Information Section -->
+            <div id="lineInfo">
+            <!-- This section will be populated dynamically -->
+            </div>
         </div>
     </div>
     <div id="map"></div>
@@ -74,8 +102,8 @@
                 <span class="bullet" id="popupRouteBullet"></span> 
             </div>
             <div>
-                <strong></strong> <span data-i18n="destination" id="popupDestination">---</span><br>
-                <strong></strong> <span data-i18n="next-stop"="popupNextStop">---</span>
+                <strong><p data-i18n="destination" id="popupDestination">*</p></strong>
+                <strong><p data-i18n="next-stop" id="popupNextStop">*</p></strong>
             </div>
         </div>
     </div>

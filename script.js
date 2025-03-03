@@ -1,3 +1,23 @@
+//TODO: up max metro speed to 80kmh, max LRT speed to 70 (ug and 50 overground???), tweak sim speed
+//TODO: short turns at elifelet
+
+
+//TODO: enforce headway separation -Before spawning a new train or allowing a train to depart from a station, check the distance to the train ahead.
+//TODO: extreme bunching (irrespective of branching??)
+//TODO: headways still not being enforced
+
+//------------------
+//settings screen-
+//configurable timescale
+//configurable service day/times
+//languages
+//disclaimers
+//data from geo.mot.gov.il, openstreetmap
+//this is a simulation, not real data
+//link to the readme, which contains all the disclaimers
+//------------------
+
+
 /********************************************
  * Global Constants & Variables
  ********************************************/
@@ -6,7 +26,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-const lineColours = {
+const lineColours = { 
     "M1": "#0971ce", // blue
     "M2": "#fd6b0d", // orange
     "M3": "#fec524", // yellow
@@ -15,6 +35,14 @@ const lineColours = {
     "G": "#008000" // green
 };
 
+const lineData = {
+    "M1": { length: "85 km", stations: 62 },
+    "M2": { length: "26 km", stations: 22 },
+    "M3": { length: "39 km", stations: 25 },
+    "R":  { length: "24 km", stations: 38 },
+    "P":  { length: "27 km", stations: 46 },
+    "G":  { length: "39 km", stations: 62 }
+}
 const serviceRouteFiles = {
     // Metro routes
     "M1_NESE": "data/METRO/dantat_metro_M1_NESE.geojson",
@@ -42,7 +70,7 @@ let currentLang = localStorage.getItem("language") || "en";
 let scheduleData = null;
 let serviceRoutes = {}; // Loaded from preprocessed_station_distances.json
 let trains = [];
-
+let showRoutes = true;
 // Simulation constants:
 const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
 const timeScale = 60; // 1 real sec = 1 simulated minute
@@ -95,6 +123,7 @@ fetch("data/translations.json")
         translations = data;
         updateLanguage(currentLang);
         updateTimePeriodOptions();
+        updateLineInfo();
     })
     .catch(error => console.error("Error loading translations:", error));
 
@@ -173,19 +202,73 @@ window.addEventListener("click", function (event) {
     }
 });
 
+function updateLineInfo() {
+    const dayType = document.getElementById("dayTypeSelect").value;
+    const timePeriod = document.getElementById("timePeriodSelect").value;
+    const container = document.getElementById("lineInfo");
+    container.innerHTML = ""; // Clear previous info
+
+    Object.keys(SERVICE_PATTERNS).forEach(lineId => {
+        const pattern = SERVICE_PATTERNS[lineId];
+        let frequency;
+        if (lineId.startsWith("M")) { // Metro
+            frequency = scheduleData?.["Metro"]?.[dayType]?.[timePeriod]?.tph || pattern.defaultFrequency;
+        } else { // Light Rail
+            frequency = scheduleData?.["Light Rail"]?.[dayType]?.[lineId[0]]?.[timePeriod]?.tph || pattern.defaultFrequency;
+        }
+        // Since schedule values are per-direction, no division is needed.
+        const headway = Math.round((60 / frequency * 2)/2); //round to the nearest 0.5
+        // Use manual data for line length and stops.
+        const line = lineData[lineId] || { length: "N/A", stations: "N/A" };
+        // Create a container div for this line.
+        const lineDiv = document.createElement("div");
+        lineDiv.style.marginBottom = "10px";
+        // Create a bullet element (a small circle with the line label).
+        const bullet = document.createElement("span");
+        bullet.textContent = lineId;
+        bullet.style.backgroundColor = lineColours[lineId.charAt(0)] || "#777";
+        bullet.style.color = "white";
+        bullet.style.borderRadius = "50%";
+        bullet.style.padding = "5px 8px";
+        bullet.style.display = "inline-block";
+        bullet.style.marginRight = "10px";
+        // Create the info text.
+        const infoText = document.createTextNode(
+        `Frequency: ${frequency} tph, Headway: ${headway} mins, Length: ${line.length}, Stations: ${line.stations}`
+        );
+        lineDiv.appendChild(bullet);
+        lineDiv.appendChild(infoText);
+        container.appendChild(lineDiv);
+    });
+}
 // Train info pop-up: clicking anywhere outside the pop-up closes it.
-document.addEventListener('click', function () {
-    document.getElementById("trainPopup").style.display = "none";
+document.addEventListener('click', function (event) {
+    const popup = document.getElementById("trainPopup");
+    // If the popup or the marker itself was clicked, do nothing
+    if (popup.contains(event.target) || event.target.closest(".train-marker")) {
+        return;
+    }
+
+    hideTrainPopup();
 });
 
+function hideTrainPopup() {
+    const popup = document.getElementById("trainPopup");
+    popup.style.display = "none";
+    popup.dataset.manualOpen = "false"; // Reset manual open state
+}
 /********************************************
  * Day/Time Controls & Operation Settings
  ********************************************/
 document.getElementById("dayTypeSelect").addEventListener("change", function () {
     updateTimePeriodOptions();
     updateOperationSettings();
+    updateLineInfo();
 });
-document.getElementById("timePeriodSelect").addEventListener("change", updateOperationSettings);
+document.getElementById("timePeriodSelect").addEventListener("change", function () {
+    updateOperationSettings();
+    updateLineInfo();
+});
 
 function updateOperationSettings() {
     const dayType = document.getElementById("dayTypeSelect").value;
@@ -215,7 +298,9 @@ Promise.all([
         console.log("Loaded service routes:", serviceRoutes);
 
         // Visualize service routes and station markers
-        Object.keys(serviceRoutes).forEach(key => {
+        if (showRoutes) {
+            
+            Object.keys(serviceRoutes).forEach(key => {
             let routeObj = serviceRoutes[key];
             const latlngs = routeObj.coords.map(coord => [coord[1], coord[0]]);
             L.polyline(latlngs, {
@@ -239,6 +324,7 @@ Promise.all([
                 }
             });
         });
+    }
         // Start the simulation
         startSimulation();
     })
@@ -276,7 +362,7 @@ class Train {
         this.marker.getElement().style.backgroundColor = color;
 
         // When train marker is clicked, show pop-up with route bullet and placeholders.
-        this.marker.on('click', event => {
+        this.marker.on("click", event => {
             event.originalEvent.stopPropagation();
             const popup = document.getElementById("trainPopup");
             const routeBullet = document.getElementById("popupRouteBullet");
@@ -284,6 +370,26 @@ class Train {
             routeBullet.style.backgroundColor = this.color;
             routeBullet.style.color = "white";
             popup.style.display = "flex";
+            popup.dataset.manualOpen = "true"; // Mark popup as manually opened - prevent auto close
+        });
+        this.marker.on("mouseover", event => {
+            event.originalEvent.stopPropagation();
+            const popup = document.getElementById("trainPopup");
+            const routeBullet = document.getElementById("popupRouteBullet");
+            const dest = document.getElementById("popupDestination");
+            const ns = document.getElementById("popupNextStop");
+            routeBullet.textContent = this.label;
+            routeBullet.style.backgroundColor = this.color;
+            routeBullet.style.color = "white";
+            dest.textContent = translations[currentLang]["destination"] + ":" + this.totalDistance;
+            ns.textContent = translations[currentLang]["next-stop"] + ": N/A";
+            popup.style.display = "flex";
+            // Auto-close after 4 seconds (only if it wasn’t manually opened)
+            setTimeout(() => {
+                if (popup.dataset.manualOpen !== "true") {
+                    hideTrainPopup();
+                }
+            }, 4000);
         });
 
         // Determine vehicle type (Metro if label is "1", "2", or "3", else LRT)
@@ -381,6 +487,7 @@ class Train {
 /********************************************
  * Simulation Setup & Animation Loop
  ********************************************/
+let frameId;
 function startSimulation() {
     // Clear existing trains
     trains.forEach(train => train.marker.remove());
@@ -439,7 +546,7 @@ function startSimulation() {
             });
         });
     });
-
+    if (frameId) cancelAnimationFrame(frameId); // Stop previous animation loop to prevent multiple loops and sim slowing down
     let lastTime = Date.now();
 
     function animate() {
@@ -450,7 +557,7 @@ function startSimulation() {
         if (!simPaused) {
             trains.forEach(train => train.update(deltaTime));
         }
-        requestAnimationFrame(animate);
+        frameId = requestAnimationFrame(animate);
     }
     animate();
 }

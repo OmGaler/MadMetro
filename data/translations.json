@@ -1,6 +1,6 @@
 {
     "en": {
-        "title": "Gush Dan Mass Transit Simulator",
+        "title": "MadMetro: Gush Dan Mass Transit Simulator",
         "destination": "Destination",
         "next-stop": "Next Station",
         "settings": "Settings",
@@ -58,7 +58,7 @@
 
     },
     "he": {
-        "title": "סימולטור תחב\"צ באזור גוש דן",
+        "title": "מדמטרו: מדמה תחב\"צ באזור גוש דן",
         "destination": "יעד",
         "next-stop": "התחנה הבאה",
         "settings": "הגדרות",
