@@ -5657,7 +5657,9 @@
       },
       {
         "distance": 54771,
-        "name": "Terminal Station",
+        "name": {
+          "en": "Depot",
+        "he": "דפו"},
         "originalDist": 0
       }
     ],
@@ -11728,7 +11730,9 @@
       },
       {
         "distance": 48712,
-        "name": "Terminal Station",
+        "name": {
+          "en": "Depot",
+        "he": "דפו"},
         "originalDist": 0
       }
     ],
@@ -27901,7 +27905,7 @@
         "distance": 1,
         "name": {
           "en": "Unnamed Station",
-          "he": "תחנה מרכזית פתח"
+          "he": "תחנה מרכזית פ\"ת"
         },
         "originalDist": 1.5746523921796785
       },
@@ -28179,7 +28183,10 @@
       },
       {
         "distance": 23720,
-        "name": "Terminal Station",
+        "name": {
+          "en": "Israeli",
+          "he": "ישראלי"
+        },
         "originalDist": 0
       }
     ],
@@ -28188,7 +28195,7 @@
         "start": "Unnamed Station"
       },
       "he": {
-        "start": "תחנה מרכזית פתח"
+        "start": "תחנה מרכזית פ\"ת"
       }
     }
   },
@@ -30270,7 +30277,10 @@
       },
       {
         "distance": 22113,
-        "name": "Terminal Station",
+        "name": {
+          "en": "Israeli",
+          "he": "ישראלי"
+        },
         "originalDist": 0
       }
     ],

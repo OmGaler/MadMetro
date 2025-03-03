@@ -1,7 +1,7 @@
 //TODO fix settings modal conent
 
 //TODO: up max metro speed to 80kmh, max LRT speed to 70 (ug and 50 overground???), tweak sim speed
-    // TODO ensure traveltime is calculated with average speed 
+// TODO ensure traveltime is calculated with average speed 
 //TODO: short R23 turns at elifelet
 
 //TODO: enforce headway separation -Before spawning a new train or allowing a train to depart from a station, check the distance to the train ahead.
@@ -33,7 +33,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-const lineColours = { 
+const lineColours = {
     "M1": "#0971ce", // blue
     "M2": "#fd6b0d", // orange
     "M3": "#fec524", // yellow
@@ -43,12 +43,30 @@ const lineColours = {
 };
 
 const lineData = {
-    "M1": { length: "85 km", stations: 62 },
-    "M2": { length: "26 km", stations: 22 },
-    "M3": { length: "39 km", stations: 25 },
-    "R":  { length: "24 km", stations: 38 },
-    "P":  { length: "27 km", stations: 46 },
-    "G":  { length: "39 km", stations: 62 }
+    "M1": {
+        length: "85 km",
+        stations: 62
+    },
+    "M2": {
+        length: "26 km",
+        stations: 22
+    },
+    "M3": {
+        length: "39 km",
+        stations: 25
+    },
+    "R": {
+        length: "24 km",
+        stations: 38
+    },
+    "P": {
+        length: "27 km",
+        stations: 46
+    },
+    "G": {
+        length: "39 km",
+        stations: 62
+    }
 }
 const serviceRouteFiles = {
     // Metro routes
@@ -209,6 +227,10 @@ window.addEventListener("click", function (event) {
     }
 });
 
+function wrapLtr(text) { // Wrap text in a span with LTR direction (for numbers in RTL text)
+    return `<span dir="ltr">${text}</span>`;
+}
+
 function updateLineInfo() {
     const dayType = document.getElementById("dayTypeSelect").value;
     const timePeriod = document.getElementById("timePeriodSelect").value;
@@ -224,9 +246,12 @@ function updateLineInfo() {
             frequency = scheduleData?.["Light Rail"]?.[dayType]?.[lineId[0]]?.[timePeriod]?.tph || pattern.defaultFrequency;
         }
         // Since schedule values are per-direction, no division is needed.
-        const headway = Math.round((60 / frequency * 2)/2); //round to the nearest 0.5
+        const headway = Math.round((60 / frequency * 2) / 2); //round to the nearest 0.5
         // Use manual data for line length and stops.
-        const line = lineData[lineId] || { length: "N/A", stations: "N/A" };
+        const line = lineData[lineId] || {
+            length: "N/A",
+            stations: "N/A"
+        };
         // Create a container div for this line.
         const lineDiv = document.createElement("div");
         lineDiv.style.marginBottom = "10px";
@@ -239,12 +264,17 @@ function updateLineInfo() {
         bullet.style.padding = "5px 8px";
         bullet.style.display = "inline-block";
         bullet.style.marginRight = "10px";
-        // Create the info text.
-        const infoText = document.createTextNode(
-        `Frequency: ${frequency} tph, Headway: ${headway} mins, Length: ${line.length}, Stations: ${line.stations}`
-        );
+        // Create the info text
+        const infoHTML =
+        `${translations[currentLang]["frequency"]}: ${wrapLtr(frequency + " tph")}, ` +
+        `${translations[currentLang]["headway"]}: ${wrapLtr(headway + " mins")}, ` +
+        `${translations[currentLang]["length"]}: ${wrapLtr(line.length)}, ` +
+        `${translations[currentLang]["stations"]}: ${wrapLtr(line.stations)}`;
+        
         lineDiv.appendChild(bullet);
-        lineDiv.appendChild(infoText);
+        const infoSpan = document.createElement("span");
+    infoSpan.innerHTML = infoHTML;
+    lineDiv.appendChild(infoSpan);
         container.appendChild(lineDiv);
     });
 }
@@ -306,34 +336,34 @@ Promise.all([
 
         // Visualize service routes and station markers
         if (showRoutes) {
-            
+
             Object.keys(serviceRoutes).forEach(key => {
-            let routeObj = serviceRoutes[key];
-            const latlngs = routeObj.coords.map(coord => [coord[1], coord[0]]);
-            L.polyline(latlngs, {
-                color: "green",
-                weight: 4,
-                opacity: 0.7,
-                dashArray: "5,5"
-            }).addTo(map).bindPopup(`Service Route: ${key}`);
-            let lineStr = turf.lineString(routeObj.coords);
-            routeObj.stations.forEach(dist => {
-                let snapped = turf.along(lineStr, dist["distance"] / 1000, {
-                    units: "kilometers"
+                let routeObj = serviceRoutes[key];
+                const latlngs = routeObj.coords.map(coord => [coord[1], coord[0]]);
+                L.polyline(latlngs, {
+                    color: "green",
+                    weight: 4,
+                    opacity: 0.7,
+                    dashArray: "5,5"
+                }).addTo(map).bindPopup(`Service Route: ${key}`);
+                let lineStr = turf.lineString(routeObj.coords);
+                routeObj.stations.forEach(dist => {
+                    let snapped = turf.along(lineStr, dist["distance"] / 1000, {
+                        units: "kilometers"
+                    });
+                    if (snapped && snapped.geometry && snapped.geometry.coordinates) {
+                        let coord = snapped.geometry.coordinates;
+                        L.circleMarker([coord[1], coord[0]], {
+                            radius: 4,
+                            color: "red",
+                            fillOpacity: 1
+                        }).addTo(map).bindPopup(`<b>Station on ${key}</b><br>Distance: ${dist} m`);
+                    }
                 });
-                if (snapped && snapped.geometry && snapped.geometry.coordinates) {
-                    let coord = snapped.geometry.coordinates;
-                    L.circleMarker([coord[1], coord[0]], {
-                        radius: 4,
-                        color: "red",
-                        fillOpacity: 1
-                    }).addTo(map).bindPopup(`<b>Station on ${key}</b><br>Distance: ${dist} m`);
-                }
             });
-        });
-    }
-    // Start the simulation 
-    startSimulation();
+        }
+        // Start the simulation 
+        startSimulation();
     })
     .catch(error => console.error("Error loading data:", error));
 
@@ -342,232 +372,234 @@ Promise.all([
  ********************************************/
 class Train {
     constructor(route, label, color, offset = 0) {
-      // Extract the route coordinates.
-      this.route = route.coords; // Array of [lon, lat]
-      // Extract station distances as numbers.
-      // Also keep the full station objects in stationData.
-      this.stations = (route.stations && Array.isArray(route.stations))
-        ? route.stations.map(s => Number(s.distance)).sort((a, b) => a - b)
-        : [];
-        this.stationData = (route.stations && Array.isArray(route.stations))
-        ? route.stations.slice()  // make a shallow copy of the station objects
-        : [];
-  
-      this.label = label;
-      this.color = color;
-      this.totalDistance = turf.length(turf.lineString(this.route)) * 1000; // in meters
-      this.distance = offset;
-      this.direction = 1; // 1 for forward, -1 for reverse
-      this.isDwelling = false;
-      this.dwellUntil = 0;
-      this.currentStationIndex = 0;
-      // For next station lookup based on stationData.
-      this.nextStationIndex = 1;
-      this.updateNextStationIndex();
-  
-      let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
-        units: "kilometers"
-      });
-      let startCoord = posFeature.geometry.coordinates;
-      this.marker = L.marker([startCoord[1], startCoord[0]], {
-        icon: L.divIcon({
-          className: "train-marker",
-          html: this.label,
-          iconSize: [24, 24],
-          iconAnchor: [12, 12]
-        })
-      }).addTo(map);
-      this.marker.getElement().style.backgroundColor = color;
-  
-      // When train marker is clicked, show pop-up with route bullet and station info.
-      this.marker.on("click", event => {
-        event.originalEvent.stopPropagation();
-        // Update station info before showing popup.
-        this.updateStationInfo();
-        const popup = document.getElementById("trainPopup");
-        const routeBullet = document.getElementById("popupRouteBullet");
-        const destElem = document.getElementById("popupDestination");
-        const nsElem = document.getElementById("popupNextStop");
-  
-        routeBullet.textContent = this.label;
-        routeBullet.style.backgroundColor = this.color;
-        routeBullet.style.color = "white";
-  
-        destElem.textContent = `${translations[currentLang]["destination"]}: ${this.getCurrentDestination()}`;
-        nsElem.textContent = `${translations[currentLang]["next-stop"]}: ${this.getNextStation()}`;
-  
-        popup.style.display = "flex";
-        popup.dataset.manualOpen = "true"; // Mark as manually opened.
-      });
-  
-      // On hover, show popup with auto-close after 4 seconds.
-      this.marker.on("mouseover", event => {
-        event.originalEvent.stopPropagation();
-        this.updateStationInfo();
-        const popup = document.getElementById("trainPopup");
-        const routeBullet = document.getElementById("popupRouteBullet");
-        const destElem = document.getElementById("popupDestination");
-        const nsElem = document.getElementById("popupNextStop");
-  
-        routeBullet.textContent = this.label;
-        routeBullet.style.backgroundColor = this.color;
-        routeBullet.style.color = "white";
-  
-        destElem.textContent = `${translations[currentLang]["destination"]}: ${this.getCurrentDestination()}`;
-        nsElem.textContent = `${translations[currentLang]["next-stop"]}: ${this.getNextStation()}`;
-  
-        popup.style.display = "flex";
-        popup.dataset.manualOpen = "false";
-  
-        clearTimeout(window.trainPopupTimeout);
-        window.trainPopupTimeout = setTimeout(() => {
-          if (popup.dataset.manualOpen !== "true") {
-            hideTrainPopup();
-          }
-        }, 2500); //auto close after 2.5 seconds 
-      });
-  
-      // Determine vehicle type (Metro if label is "1","2","3", else LRT)
-      this.vehicleType = (this.label === "1" || this.label === "2" || this.label === "3") 
-        ? 'METRO' 
-        : 'LRT_SURFACE';
-      this.minimumHeadway = 90; // Minimum separation in meters
-      this.branchId = null; // To be set when spawning trains.
-      this.ahead = null;
-      this.behind = null;
+        // Extract the route coordinates.
+        this.route = route.coords; // Array of [lon, lat]
+        // Extract station distances as numbers.
+        // Also keep the full station objects in stationData.
+        this.stations = (route.stations && Array.isArray(route.stations)) ?
+            route.stations.map(s => Number(s.distance)).sort((a, b) => a - b) :
+            [];
+        this.stationData = (route.stations && Array.isArray(route.stations)) ?
+            route.stations.slice() // make a shallow copy of the station objects
+            :
+            [];
+
+        this.label = label;
+        this.color = color;
+        this.totalDistance = turf.length(turf.lineString(this.route)) * 1000; // in meters
+        this.distance = offset;
+        this.direction = 1; // 1 for forward, -1 for reverse
+        this.isDwelling = false;
+        this.dwellUntil = 0;
+        this.currentStationIndex = 0;
+        // For next station lookup based on stationData.
+        this.nextStationIndex = 1;
+        this.updateNextStationIndex();
+
+        let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
+            units: "kilometers"
+        });
+        let startCoord = posFeature.geometry.coordinates;
+        this.marker = L.marker([startCoord[1], startCoord[0]], {
+            icon: L.divIcon({
+                className: "train-marker",
+                html: this.label,
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            })
+        }).addTo(map);
+        this.marker.getElement().style.backgroundColor = color;
+
+        // When train marker is clicked, show pop-up with route bullet and station info.
+        this.marker.on("click", event => {
+            event.originalEvent.stopPropagation();
+            // Update station info before showing popup.
+            this.updateStationInfo();
+            const popup = document.getElementById("trainPopup");
+            const routeBullet = document.getElementById("popupRouteBullet");
+            const destElem = document.getElementById("popupDestination");
+            const nsElem = document.getElementById("popupNextStop");
+
+            routeBullet.textContent = this.label;
+            routeBullet.style.backgroundColor = this.color;
+            routeBullet.style.color = "white";
+
+            destElem.textContent = `${translations[currentLang]["destination"]}: ${this.getCurrentDestination()}`;
+            nsElem.textContent = `${translations[currentLang]["next-stop"]}: ${this.getNextStation()}`;
+
+            popup.style.display = "flex";
+            popup.dataset.manualOpen = "true"; // Mark as manually opened.
+        });
+
+        // On hover, show popup with auto-close after 4 seconds.
+        this.marker.on("mouseover", event => {
+            event.originalEvent.stopPropagation();
+            this.updateStationInfo();
+            const popup = document.getElementById("trainPopup");
+            const routeBullet = document.getElementById("popupRouteBullet");
+            const destElem = document.getElementById("popupDestination");
+            const nsElem = document.getElementById("popupNextStop");
+
+            routeBullet.textContent = this.label;
+            routeBullet.style.backgroundColor = this.color;
+            routeBullet.style.color = "white";
+
+            destElem.textContent = `${translations[currentLang]["destination"]}: ${this.getCurrentDestination()}`;
+            nsElem.textContent = `${translations[currentLang]["next-stop"]}: ${this.getNextStation()}`;
+
+            popup.style.display = "flex";
+            popup.dataset.manualOpen = "false";
+
+            clearTimeout(window.trainPopupTimeout);
+            window.trainPopupTimeout = setTimeout(() => {
+                if (popup.dataset.manualOpen !== "true") {
+                    hideTrainPopup();
+                }
+            }, 2500); //auto close after 2.5 seconds 
+        });
+
+        // Determine vehicle type (Metro if label is "1","2","3", else LRT)
+        this.vehicleType = (this.label === "1" || this.label === "2" || this.label === "3") ?
+            'METRO' :
+            'LRT_SURFACE';
+        this.minimumHeadway = 90; // Minimum separation in meters
+        this.branchId = null; // To be set when spawning trains.
+        this.ahead = null;
+        this.behind = null;
     }
-  
+
     updateNextStationIndex() {
-      const epsilon = 5; // 5 meters offset
-      if (this.direction === 1) {
-        let idx = this.stations.findIndex(d => d > this.distance + epsilon);
-        this.currentStationIndex = (idx === -1) ? this.stations.length - 1 : idx;
-      } else {
-        let idx = -1;
-        for (let i = 0; i < this.stations.length; i++) {
-          if (this.stations[i] < this.distance - epsilon) {
-            idx = i;
-          } else {
-            break;
-          }
+        const epsilon = 5; // 5 meters offset
+        if (this.direction === 1) {
+            let idx = this.stations.findIndex(d => d > this.distance + epsilon);
+            this.currentStationIndex = (idx === -1) ? this.stations.length - 1 : idx;
+        } else {
+            let idx = -1;
+            for (let i = 0; i < this.stations.length; i++) {
+                if (this.stations[i] < this.distance - epsilon) {
+                    idx = i;
+                } else {
+                    break;
+                }
+            }
+            this.currentStationIndex = (idx === -1) ? 0 : idx;
         }
-        this.currentStationIndex = (idx === -1) ? 0 : idx;
-      }
     }
-  
+
     getCurrentDestination() {
-      // Assume destination is the terminal station.
-      // For forward direction, use the last station's name; for reverse, the first.
-      if (this.stationData.length === 0) return "";
-      if (this.direction === 1) {
-        return this.stationData[this.stationData.length - 1].name[currentLang];
-      } else {
-        return this.stationData[0].name[currentLang];
-      }
+        // Assume destination is the terminal station.
+        // For forward direction, use the last station's name; for reverse, the first.
+        if (this.stationData.length === 0) return "";
+        if (this.direction === 1) {
+            return this.stationData[this.stationData.length - 1].name[currentLang];
+        } else {
+            return this.stationData[0].name[currentLang];
+        }
     }
-  
+
     getNextStation() {
-      if (this.nextStationIndex >= 0 && this.nextStationIndex < this.stationData.length) {
-        return this.stationData[this.nextStationIndex].name[currentLang];
-      }
-      return translations[currentLang]["terminus"];
+        if (this.nextStationIndex >= 0 && this.nextStationIndex < this.stationData.length) {
+            return this.stationData[this.nextStationIndex].name[currentLang];
+        }
+        return translations[currentLang]["terminus"];
     }
-  
+
     updateStationInfo() {
         // Instead of recalculating the current station (which conflicts with updateNextStationIndex),
         // simply update the nextStationIndex based on the current station and direction.
         if (this.direction === 1) {
-          this.nextStationIndex = this.currentStationIndex + 1;
-          if (this.nextStationIndex >= this.stationData.length) {
-            this.nextStationIndex = this.stationData.length - 1;
-          }
+            this.nextStationIndex = this.currentStationIndex + 1;
+            if (this.nextStationIndex >= this.stationData.length) {
+                this.nextStationIndex = this.stationData.length - 1;
+            }
         } else {
-          this.nextStationIndex = this.currentStationIndex - 1;
-          if (this.nextStationIndex < 0) {
-            this.nextStationIndex = 0;
-          }
+            this.nextStationIndex = this.currentStationIndex - 1;
+            if (this.nextStationIndex < 0) {
+                this.nextStationIndex = 0;
+            }
         }
-      }
-      
-  
-    checkHeadway() {
-      if (!this.ahead || this.ahead === this) return true;
-      const aheadDist = this.ahead.distance;
-      const myDist = this.distance;
-      let separation;
-      if (this.direction === 1) {
-        separation = aheadDist - myDist;
-        if (separation < 0) separation += this.totalDistance;
-      } else {
-        separation = myDist - aheadDist;
-        if (separation < 0) separation += this.totalDistance;
-      }
-      return separation >= this.minimumHeadway;
     }
-  
-    update(deltaTime) {
-        
-      if (this.isDwelling) {
-        if (Date.now() >= this.dwellUntil) {
-            if (this.checkHeadway()) {
-                this.isDwelling = false;
-                this.updateNextStationIndex();
-                this.updateStationInfo();
-            } else {
-            this.dwellUntil = Date.now() + 1000;
-          }
-        }
-        return;
-      }
-      if (this.checkHeadway()) {
-        const currentSpeed = (this.vehicleType === 'METRO') 
-          ? VEHICLE_SPEEDS.METRO 
-          : VEHICLE_SPEEDS.LRT;
 
-          this.distance += currentSpeed * deltaTime * timeScale * this.direction;
-        
-        // Terminal reversal check
-        if (this.distance >= this.totalDistance) {
-          this.distance = this.totalDistance;
-          this.direction = -1;
-          this.isDwelling = true;
-          this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
-          this.currentStationIndex = this.stations.length - 1;
-        } else if (this.distance <= 0) {
-          this.distance = 0;
-          this.direction = 1;
-          this.isDwelling = true;
-          this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
-          this.currentStationIndex = 0;
+
+    checkHeadway() {
+        if (!this.ahead || this.ahead === this) return true;
+        const aheadDist = this.ahead.distance;
+        const myDist = this.distance;
+        let separation;
+        if (this.direction === 1) {
+            separation = aheadDist - myDist;
+            if (separation < 0) separation += this.totalDistance;
+        } else {
+            separation = myDist - aheadDist;
+            if (separation < 0) separation += this.totalDistance;
         }
-        // Station check: if the train reaches (or passes) a station target, dwell.
-        if (this.stations.length > 0) {
-          let target = this.stations[this.currentStationIndex];
-          if ((this.direction === 1 && this.distance >= target) ||
-          (this.direction === -1 && this.distance <= target)) {
-            this.distance = target;
-            this.isDwelling = true;
-            this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
-            this.updateNextStationIndex();
-            this.updateStationInfo();
-          }
-        
-        }
-        let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
-          units: "kilometers"
-        });
-        if (posFeature && posFeature.geometry && posFeature.geometry.coordinates) {
-          let newPos = posFeature.geometry.coordinates;
-          this.marker.setLatLng([newPos[1], newPos[0]]);
-        }
-      }
+        return separation >= this.minimumHeadway;
     }
-  }
-  
+
+    update(deltaTime) {
+
+        if (this.isDwelling) {
+            if (Date.now() >= this.dwellUntil) {
+                if (this.checkHeadway()) {
+                    this.isDwelling = false;
+                    this.updateNextStationIndex();
+                    this.updateStationInfo();
+                } else {
+                    this.dwellUntil = Date.now() + 1000;
+                }
+            }
+            return;
+        }
+        if (this.checkHeadway()) {
+            const currentSpeed = (this.vehicleType === 'METRO') ?
+                VEHICLE_SPEEDS.METRO :
+                VEHICLE_SPEEDS.LRT;
+
+            this.distance += currentSpeed * deltaTime * timeScale * this.direction;
+
+            // Terminal reversal check
+            if (this.distance >= this.totalDistance) {
+                this.distance = this.totalDistance;
+                this.direction = -1;
+                this.isDwelling = true;
+                this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
+                this.currentStationIndex = this.stations.length - 1;
+            } else if (this.distance <= 0) {
+                this.distance = 0;
+                this.direction = 1;
+                this.isDwelling = true;
+                this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
+                this.currentStationIndex = 0;
+            }
+            // Station check: if the train reaches (or passes) a station target, dwell.
+            if (this.stations.length > 0) {
+                let target = this.stations[this.currentStationIndex];
+                if ((this.direction === 1 && this.distance >= target) ||
+                    (this.direction === -1 && this.distance <= target)) {
+                    this.distance = target;
+                    this.isDwelling = true;
+                    this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
+                    this.updateNextStationIndex();
+                    this.updateStationInfo();
+                }
+
+            }
+            let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
+                units: "kilometers"
+            });
+            if (posFeature && posFeature.geometry && posFeature.geometry.coordinates) {
+                let newPos = posFeature.geometry.coordinates;
+                this.marker.setLatLng([newPos[1], newPos[0]]);
+            }
+        }
+    }
+}
+
 /********************************************
  * Simulation Setup & Animation Loop
  ********************************************/
 let frameId;
+
 function startSimulation() {
     // Clear existing trains
     trains.forEach(train => train.marker.remove());
@@ -583,9 +615,9 @@ function startSimulation() {
         const pattern = SERVICE_PATTERNS[lineId];
         let frequency;
         if (lineId.startsWith("M")) { // Metro
-            frequency = scheduleData ?.["Metro"]?.[dayType]?.[timePeriod]?.tph || pattern.defaultFrequency;
+            frequency = scheduleData?.["Metro"]?.[dayType]?.[timePeriod]?.tph || pattern.defaultFrequency;
         } else { // Light Rail
-            frequency = scheduleData ?.["Light Rail"] ?.[dayType]?.[lineId[0]]?.[timePeriod]?.tph || pattern.defaultFrequency;
+            frequency = scheduleData?.["Light Rail"]?.[dayType]?.[lineId[0]]?.[timePeriod]?.tph || pattern.defaultFrequency;
         }
         const headway = 60 / frequency;
         console.log(`\nLine ${lineId}: Frequency=${frequency} tph, Headway=${headway} minutes`);
