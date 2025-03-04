@@ -18840,7 +18840,7 @@
       {
         "distance": 0,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Tel Aviv - Center",
           "he": "תל אביב - מרכז"
         },
         "originalDist": 5.5556951459189
@@ -18848,7 +18848,7 @@
       {
         "distance": 769,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ichilov",
           "he": "איכילוב"
         },
         "originalDist": 2.169740887018054
@@ -18856,7 +18856,7 @@
       {
         "distance": 1412,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ibn Gvirol - Arlozorov",
           "he": "אבן גבירול - ארלוזורוב"
         },
         "originalDist": 0.18760466379290924
@@ -18864,7 +18864,7 @@
       {
         "distance": 2153,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Dizengoff",
           "he": "דיזנגוף"
         },
         "originalDist": 1.753346129702123
@@ -18872,7 +18872,7 @@
       {
         "distance": 2907,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Gordon",
           "he": "גורדון"
         },
         "originalDist": 0.778331101775422
@@ -18880,7 +18880,7 @@
       {
         "distance": 3477,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Bugrashov",
           "he": "בוגרשוב"
         },
         "originalDist": 0
@@ -18888,15 +18888,15 @@
       {
         "distance": 3933,
         "name": {
-          "en": "Unnamed Station",
-          "he": "אידלסון"
+          "en": "Mugrabi",
+          "he": "מוגרבי"
         },
         "originalDist": 0.9507613086009246
       },
       {
         "distance": 4341,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaCarmel",
           "he": "הכרמל"
         },
         "originalDist": 0.06128300801777643
@@ -18904,7 +18904,7 @@
       {
         "distance": 4873,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Montefiore",
           "he": "מונטיפיורי"
         },
         "originalDist": 2.1979944758022008
@@ -18912,7 +18912,7 @@
       {
         "distance": 5257,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Allenby - Lilienblum",
           "he": "אלנבי - ליליינבלום"
         },
         "originalDist": 1.244437367639708
@@ -18920,7 +18920,7 @@
       {
         "distance": 5696,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaAliya",
           "he": "העליה"
         },
         "originalDist": 4.278675879353539
@@ -18928,7 +18928,7 @@
       {
         "distance": 6082,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Levinsky Garden",
           "he": "גינת לוינסקי"
         },
         "originalDist": 1.0263481505652776
@@ -18936,7 +18936,7 @@
       {
         "distance": 6340,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Neve Sha'anan",
           "he": "נוה שאנן"
         },
         "originalDist": 1.6117546777300074
@@ -18944,7 +18944,7 @@
       {
         "distance": 6708,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaHagana",
           "he": "ההגנה"
         },
         "originalDist": 3.1728058953334783
@@ -18952,7 +18952,7 @@
       {
         "distance": 7333,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaTikvah",
           "he": "התקווה"
         },
         "originalDist": 3.027517846865061
@@ -18960,7 +18960,7 @@
       {
         "distance": 7842,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Givati",
           "he": "גבעתי"
         },
         "originalDist": 0
@@ -18968,7 +18968,7 @@
       {
         "distance": 8187,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Moshe Dayan Way",
           "he": "דרך משה דיין"
         },
         "originalDist": 1.9978306458823347
@@ -18976,7 +18976,7 @@
       {
         "distance": 8945,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kfar Shalem",
           "he": "כפר שלם"
         },
         "originalDist": 2.97093002599573
@@ -18984,7 +18984,7 @@
       {
         "distance": 9542,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaMaavak",
           "he": "המאבק"
         },
         "originalDist": 4.482289908271982
@@ -18992,7 +18992,7 @@
       {
         "distance": 10113,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Corazin",
           "he": "כורזין"
         },
         "originalDist": 0.7018905758456605
@@ -19000,7 +19000,7 @@
       {
         "distance": 10552,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Raziel",
           "he": "רזיאל"
         },
         "originalDist": 0
@@ -19008,7 +19008,7 @@
       {
         "distance": 11235,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaYarden",
           "he": "הירדן"
         },
         "originalDist": 1.9116056378787494
@@ -19016,7 +19016,7 @@
       {
         "distance": 12021,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Aluf Sadeh",
           "he": "אלוף שדה"
         },
         "originalDist": 3.6584617218747044
@@ -19024,7 +19024,7 @@
       {
         "distance": 12656,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ramat Efal",
           "he": "רמת אפעל"
         },
         "originalDist": 3.0092436852668842
@@ -19032,7 +19032,7 @@
       {
         "distance": 13835,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kiryat Krinitsi",
           "he": "קריית קריניצי"
         },
         "originalDist": 0.9780955543584375
@@ -19040,7 +19040,7 @@
       {
         "distance": 14336,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ganei Ilan",
           "he": "גני אילן"
         },
         "originalDist": 0.8619175925937789
@@ -19048,7 +19048,7 @@
       {
         "distance": 14981,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Bar Ilan University - Center",
           "he": "אוניברסיטת בר-אילן - מרכז"
         },
         "originalDist": 0.9122924727604513
@@ -19056,7 +19056,7 @@
       {
         "distance": 15654,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Bar Ilan University - East",
           "he": "אוניברסיטת בר-אילן - מזרח"
         },
         "originalDist": 0
@@ -19064,7 +19064,7 @@
       {
         "distance": 16084,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ramat Hadar - South",
           "he": "רמת הדר - דרום"
         },
         "originalDist": 0.22929577670495657
@@ -19072,7 +19072,7 @@
       {
         "distance": 16484,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ramon Park",
           "he": "פארק רמון"
         },
         "originalDist": 0.16727588845380212
@@ -19080,7 +19080,7 @@
       {
         "distance": 17202,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kfar Ganim",
           "he": "כפר גנים"
         },
         "originalDist": 0.8623272333779803
@@ -19088,8 +19088,8 @@
     ],
     "termini": {
       "en": {
-        "start": "Unnamed Station",
-        "end": "Unnamed Station"
+        "start": "Tel Aviv - Center",
+        "end": "Kfar Ganim"
       },
       "he": {
         "start": "תל אביב - מרכז",
@@ -19820,7 +19820,7 @@
       {
         "distance": 1,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Tel Aviv - Center",
           "he": "תל אביב - מרכז"
         },
         "originalDist": 5.555686522161371
@@ -19828,7 +19828,7 @@
       {
         "distance": 769,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ichilov",
           "he": "איכילוב"
         },
         "originalDist": 2.169740887018054
@@ -19836,7 +19836,7 @@
       {
         "distance": 1413,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ibn Gvirol - Arlozorov",
           "he": "אבן גבירול - ארלוזורוב"
         },
         "originalDist": 0.18760466379290924
@@ -19844,7 +19844,7 @@
       {
         "distance": 2154,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Dizengoff",
           "he": "דיזנגוף"
         },
         "originalDist": 1.753346129702123
@@ -19852,7 +19852,7 @@
       {
         "distance": 2908,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Gordon",
           "he": "גורדון"
         },
         "originalDist": 0.778331101775422
@@ -19860,7 +19860,7 @@
       {
         "distance": 3478,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Bugrashov",
           "he": "בוגרשוב"
         },
         "originalDist": 0
@@ -19868,15 +19868,15 @@
       {
         "distance": 3934,
         "name": {
-          "en": "Unnamed Station",
-          "he": "אידלסון"
+          "en": "Mugrabi",
+          "he": "מוגרבי"
         },
         "originalDist": 0.9507613086009246
       },
       {
         "distance": 4342,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaCarmel",
           "he": "הכרמל"
         },
         "originalDist": 0.06128300801777643
@@ -19884,7 +19884,7 @@
       {
         "distance": 4873,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Montefiore",
           "he": "מונטיפיורי"
         },
         "originalDist": 2.1979944758022008
@@ -19892,7 +19892,7 @@
       {
         "distance": 5258,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Allenby - Lilienblum",
           "he": "אלנבי - ליליינבלום"
         },
         "originalDist": 1.244437367639708
@@ -19900,7 +19900,7 @@
       {
         "distance": 5697,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaAliya",
           "he": "העליה"
         },
         "originalDist": 4.278675879353539
@@ -19908,7 +19908,7 @@
       {
         "distance": 6083,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Levinsky Garden",
           "he": "גינת לוינסקי"
         },
         "originalDist": 1.0263481505652776
@@ -19916,7 +19916,7 @@
       {
         "distance": 6340,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Neve Sha'anan",
           "he": "נוה שאנן"
         },
         "originalDist": 1.6117546777300074
@@ -19924,7 +19924,7 @@
       {
         "distance": 6708,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaHagana",
           "he": "ההגנה"
         },
         "originalDist": 3.1728058953334783
@@ -19932,7 +19932,7 @@
       {
         "distance": 7333,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaTikvah",
           "he": "התקווה"
         },
         "originalDist": 3.027517846865061
@@ -19940,7 +19940,7 @@
       {
         "distance": 7843,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Givati",
           "he": "גבעתי"
         },
         "originalDist": 0
@@ -19948,7 +19948,7 @@
       {
         "distance": 8188,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Moshe Dayan Way",
           "he": "דרך משה דיין"
         },
         "originalDist": 1.9978306458823347
@@ -19956,7 +19956,7 @@
       {
         "distance": 8945,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kfar Shalem",
           "he": "כפר שלם"
         },
         "originalDist": 2.97093002599573
@@ -19964,7 +19964,7 @@
       {
         "distance": 9542,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaMaavak",
           "he": "המאבק"
         },
         "originalDist": 4.482289908271982
@@ -19972,7 +19972,7 @@
       {
         "distance": 10114,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Corazin",
           "he": "כורזין"
         },
         "originalDist": 0.7018905758456605
@@ -19980,7 +19980,7 @@
       {
         "distance": 10553,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Raziel",
           "he": "רזיאל"
         },
         "originalDist": 0
@@ -19988,7 +19988,7 @@
       {
         "distance": 11236,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaYarden",
           "he": "הירדן"
         },
         "originalDist": 1.9116056378787494
@@ -19996,7 +19996,7 @@
       {
         "distance": 12022,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Aluf Sadeh",
           "he": "אלוף שדה"
         },
         "originalDist": 3.6584617218747044
@@ -20004,7 +20004,7 @@
       {
         "distance": 12657,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ramat Efal",
           "he": "רמת אפעל"
         },
         "originalDist": 3.0092436852668842
@@ -20012,7 +20012,7 @@
       {
         "distance": 13379,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Sheba - Center",
           "he": "שיבא - מרכז"
         },
         "originalDist": 7.671580235172004
@@ -20020,7 +20020,7 @@
       {
         "distance": 13935,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Sheba - South",
           "he": "שיבא - דרום"
         },
         "originalDist": 3.8541306219130225
@@ -20028,7 +20028,7 @@
       {
         "distance": 15426,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kazaz",
           "he": "קזז"
         },
         "originalDist": 16.572493509241532
@@ -20036,7 +20036,7 @@
       {
         "distance": 16144,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Yigal Alon",
           "he": "יגאל אלון"
         },
         "originalDist": 18.858778039513652
@@ -20044,7 +20044,7 @@
       {
         "distance": 16722,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Shimon Peres",
           "he": "שמעון פרס"
         },
         "originalDist": 6.9953161470147585
@@ -20052,7 +20052,7 @@
       {
         "distance": 17285,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Savyon Junction",
           "he": "צומת סביון"
         },
         "originalDist": 11.953213346124606
@@ -20060,7 +20060,7 @@
       {
         "distance": 18501,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Savyonim",
           "he": "סביונים"
         },
         "originalDist": 15.26722916188234
@@ -20068,7 +20068,7 @@
       {
         "distance": 19077,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Yehud Junction - West",
           "he": "צומת יהוד - מערב"
         },
         "originalDist": 1.5445955340010527
@@ -20076,7 +20076,7 @@
       {
         "distance": 19721,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Yehud - Center",
           "he": "יהוד - מרכז"
         },
         "originalDist": 14.787828214747893
@@ -20084,7 +20084,7 @@
       {
         "distance": 20197,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Weizman",
           "he": "וייצמן"
         },
         "originalDist": 10.814033678966865
@@ -20092,7 +20092,7 @@
       {
         "distance": 20896,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ofek",
           "he": "אופק"
         },
         "originalDist": 0.4263083523751265
@@ -20100,7 +20100,7 @@
       {
         "distance": 22162,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaTayasim",
           "he": "הטייסים"
         },
         "originalDist": 10.482613089065943
@@ -20108,8 +20108,8 @@
     ],
     "termini": {
       "en": {
-        "start": "Unnamed Station",
-        "end": "Unnamed Station"
+        "start": "Tel Aviv - Center",
+        "end": "HaTayasim"
       },
       "he": {
         "start": "תל אביב - מרכז",
@@ -21440,7 +21440,7 @@
       {
         "distance": 0,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Neve Sharet",
           "he": "נווה שרת"
         },
         "originalDist": 3.1824005085016007
@@ -21448,7 +21448,7 @@
       {
         "distance": 434,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Dvora HaNeviah",
           "he": "דבורה הנביאה"
         },
         "originalDist": 0
@@ -21456,7 +21456,7 @@
       {
         "distance": 958,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaNechoshet",
           "he": "הנחושת"
         },
         "originalDist": 0
@@ -21464,7 +21464,7 @@
       {
         "distance": 1423,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaBarzel",
           "he": "הברזל"
         },
         "originalDist": 0
@@ -21472,7 +21472,7 @@
       {
         "distance": 1951,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Pinchas Rozen Bridge",
           "he": "גשר פנחס רוזן"
         },
         "originalDist": 0
@@ -21480,7 +21480,7 @@
       {
         "distance": 2751,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Hadar Yosef",
           "he": "הדר יוסף"
         },
         "originalDist": 0
@@ -21488,7 +21488,7 @@
       {
         "distance": 3751,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ganei Yehoshua",
           "he": "גני יהושע"
         },
         "originalDist": 0.8760128671121505
@@ -21496,7 +21496,7 @@
       {
         "distance": 4364,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaYeridim",
           "he": "הירידים"
         },
         "originalDist": 5.033766407175979
@@ -21504,15 +21504,15 @@
       {
         "distance": 5171,
         "name": {
-          "en": "Unnamed Station",
-          "he": "ברושים"
+          "en": "Rozenfeld",
+          "he": "רוזנפלד"
         },
         "originalDist": 4.945590144774608
       },
       {
         "distance": 5608,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Tel Aviv University",
           "he": "אוניברסיטת תל אביב"
         },
         "originalDist": 0.4678071648569898
@@ -21520,7 +21520,7 @@
       {
         "distance": 6258,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Brodetsky",
           "he": "בורודצקי"
         },
         "originalDist": 0
@@ -21528,7 +21528,7 @@
       {
         "distance": 6672,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Namir",
           "he": "נמיר"
         },
         "originalDist": 2.152862466274369
@@ -21536,7 +21536,7 @@
       {
         "distance": 7030,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Levi Eshkol",
           "he": "לוי אשכול"
         },
         "originalDist": 8.1086304316843
@@ -21544,7 +21544,7 @@
       {
         "distance": 7557,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Einstein",
           "he": "איינשטיין"
         },
         "originalDist": 3.945910140403805
@@ -21552,7 +21552,7 @@
       {
         "distance": 8279,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Zaharah Levitov",
           "he": "זהרה לביטוב"
         },
         "originalDist": 0.051575571415497304
@@ -21560,7 +21560,7 @@
       {
         "distance": 8969,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Reading",
           "he": "רדינג"
         },
         "originalDist": 0.5937337812051093
@@ -21568,15 +21568,15 @@
       {
         "distance": 9661,
         "name": {
-          "en": "Unnamed Station",
-          "he": "יהודה המכבי"
+          "en": "Nordau",
+          "he": "נורדאו"
         },
         "originalDist": 2.3968792439866027
       },
       {
         "distance": 10431,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ibn Gvirol - Arlozorov",
           "he": "אבן גבירול - ארלוזורוב"
         },
         "originalDist": 0.25586436386690714
@@ -21584,7 +21584,7 @@
       {
         "distance": 11129,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Rabin Square",
           "he": "כיכר רבין"
         },
         "originalDist": 1.2922758434357895
@@ -21592,7 +21592,7 @@
       {
         "distance": 12016,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kaplan",
           "he": "קפלן"
         },
         "originalDist": 0.5420680068402877
@@ -21600,7 +21600,7 @@
       {
         "distance": 12884,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Karlebach",
           "he": "קרליבך"
         },
         "originalDist": 0
@@ -21608,7 +21608,7 @@
       {
         "distance": 13898,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Levinsky Garden",
           "he": "גינת לוינסקי"
         },
         "originalDist": 0.295310542884396
@@ -21616,7 +21616,7 @@
       {
         "distance": 14510,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Shapiro",
           "he": "שפירא"
         },
         "originalDist": 1.8209111720237143
@@ -21624,7 +21624,7 @@
       {
         "distance": 15059,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kibbutz Galuyot",
           "he": "קיבוץ גלויות"
         },
         "originalDist": 2.302891631075224
@@ -21632,7 +21632,7 @@
       {
         "distance": 15662,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaHorshot Park",
           "he": "פארק החורשות"
         },
         "originalDist": 0.6185002215530471
@@ -21640,7 +21640,7 @@
       {
         "distance": 16055,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kiryat Shalom",
           "he": "קריית שלום"
         },
         "originalDist": 1.6794925824514677
@@ -21648,7 +21648,7 @@
       {
         "distance": 16720,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Holon Junction",
           "he": "צומת חולון"
         },
         "originalDist": 0.2937804316701473
@@ -21656,7 +21656,7 @@
       {
         "distance": 18022,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Holon Theater",
           "he": "תיאטרון חולון"
         },
         "originalDist": 2.367233564061412
@@ -21664,7 +21664,7 @@
       {
         "distance": 18531,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Sokolov - West",
           "he": "סוקולוב - מערב"
         },
         "originalDist": 2.0386365355974503
@@ -21672,7 +21672,7 @@
       {
         "distance": 19218,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaHistadrut",
           "he": "ההסתדרות"
         },
         "originalDist": 1.8823166813145922
@@ -21680,7 +21680,7 @@
       {
         "distance": 19560,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Holon Institute of Technology",
           "he": "המכון הטכנולוגי חולון"
         },
         "originalDist": 1.9052191476105467
@@ -21688,7 +21688,7 @@
       {
         "distance": 20080,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Lavon",
           "he": "לבון"
         },
         "originalDist": 2.087894552898658
@@ -21696,7 +21696,7 @@
       {
         "distance": 20517,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Begin",
           "he": "בגין"
         },
         "originalDist": 0.17934940437825544
@@ -21704,7 +21704,7 @@
       {
         "distance": 20967,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Bar-Lev",
           "he": "בר-לב"
         },
         "originalDist": 2.0358434910021534
@@ -21712,7 +21712,7 @@
       {
         "distance": 21403,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Laskov",
           "he": "לסקוב"
         },
         "originalDist": 3.2442264431997194
@@ -21720,7 +21720,7 @@
       {
         "distance": 21797,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaHolot Park",
           "he": "פארק החולות"
         },
         "originalDist": 3.426298115222012
@@ -21728,7 +21728,7 @@
       {
         "distance": 22545,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Sacharov",
           "he": "סחרוב"
         },
         "originalDist": 2.0844880265142436
@@ -21736,7 +21736,7 @@
       {
         "distance": 23335,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Yaldei Tehran",
           "he": "ילדי טהרן"
         },
         "originalDist": 0
@@ -21744,7 +21744,7 @@
       {
         "distance": 24237,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Lishanski",
           "he": "לישנסקי"
         },
         "originalDist": 0
@@ -21752,7 +21752,7 @@
       {
         "distance": 24695,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Dayan Terminal",
           "he": "מסוף דיין"
         },
         "originalDist": 0
@@ -21760,8 +21760,8 @@
     ],
     "termini": {
       "en": {
-        "start": "Unnamed Station",
-        "end": "Unnamed Station"
+        "start": "Neve Sharet",
+        "end": "Dayan Terminal"
       },
       "he": {
         "start": "נווה שרת",
@@ -22916,7 +22916,7 @@
       {
         "distance": 0,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Agricultural Center",
           "he": "הקריה החקלאית"
         },
         "originalDist": 4.323926604035552
@@ -22924,7 +22924,7 @@
       {
         "distance": 503,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Nachlat Yehuda",
           "he": "נחלת יהודה"
         },
         "originalDist": 3.1910215599048164
@@ -22932,7 +22932,7 @@
       {
         "distance": 1108,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Holon - East",
           "he": "חולון - מזרח"
         },
         "originalDist": 1.9725959904799424
@@ -22940,7 +22940,7 @@
       {
         "distance": 1729,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaMerkava",
           "he": "המרכבה"
         },
         "originalDist": 1.131407007241011
@@ -22948,7 +22948,7 @@
       {
         "distance": 2309,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Peres Park",
           "he": "פארק פרס"
         },
         "originalDist": 2.3261706015198804
@@ -22956,7 +22956,7 @@
       {
         "distance": 2813,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaMelacha",
           "he": "המלאכה"
         },
         "originalDist": 0.22967726633478172
@@ -22964,7 +22964,7 @@
       {
         "distance": 3278,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Gan HaCactusim",
           "he": "גן הקקטוסים"
         },
         "originalDist": 3.0843887090958564
@@ -22972,7 +22972,7 @@
       {
         "distance": 3930,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Geulim",
           "he": "גאולים"
         },
         "originalDist": 0.512772064087007
@@ -22980,7 +22980,7 @@
       {
         "distance": 4386,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Sokolov - East",
           "he": "סוקולוב - מזרח"
         },
         "originalDist": 1.1318224376884662
@@ -22988,7 +22988,7 @@
       {
         "distance": 4954,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Krauze",
           "he": "קראוזה"
         },
         "originalDist": 0.7937681788508328
@@ -22996,7 +22996,7 @@
       {
         "distance": 5411,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Sokolov - West",
           "he": "סוקולוב - מערב"
         },
         "originalDist": 2.0386365355974503
@@ -23004,7 +23004,7 @@
       {
         "distance": 5919,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Holon Theater",
           "he": "תיאטרון חולון"
         },
         "originalDist": 2.367233564061412
@@ -23012,7 +23012,7 @@
       {
         "distance": 7222,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Holon Junction",
           "he": "צומת חולון"
         },
         "originalDist": 0.2937804316701473
@@ -23020,7 +23020,7 @@
       {
         "distance": 7887,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kiryat Shalom",
           "he": "קריית שלום"
         },
         "originalDist": 1.6794925824514677
@@ -23028,7 +23028,7 @@
       {
         "distance": 8279,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaHorshot Park",
           "he": "פארק החורשות"
         },
         "originalDist": 0.6185002215530471
@@ -23036,7 +23036,7 @@
       {
         "distance": 8883,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kibbutz Galuyot",
           "he": "קיבוץ גלויות"
         },
         "originalDist": 2.302891631075224
@@ -23044,7 +23044,7 @@
       {
         "distance": 9432,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Shapiro",
           "he": "שפירא"
         },
         "originalDist": 1.8209111720237143
@@ -23052,7 +23052,7 @@
       {
         "distance": 10044,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Levinsky Garden",
           "he": "גינת לוינסקי"
         },
         "originalDist": 0.295310542884396
@@ -23060,7 +23060,7 @@
       {
         "distance": 11058,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Karlebach",
           "he": "קרליבך"
         },
         "originalDist": 0
@@ -23068,7 +23068,7 @@
       {
         "distance": 11926,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kaplan",
           "he": "קפלן"
         },
         "originalDist": 0.5420680068402877
@@ -23076,7 +23076,7 @@
       {
         "distance": 12813,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Rabin Square",
           "he": "כיכר רבין"
         },
         "originalDist": 1.2922758434357895
@@ -23084,7 +23084,7 @@
       {
         "distance": 13511,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ibn Gvirol - Arlozorov",
           "he": "אבן גבירול - ארלוזורוב"
         },
         "originalDist": 0.25586436386690714
@@ -23092,15 +23092,15 @@
       {
         "distance": 14281,
         "name": {
-          "en": "Unnamed Station",
-          "he": "יהודה המכבי"
+          "en": "Nordau",
+          "he": "נורדאו"
         },
         "originalDist": 2.3968792439866027
       },
       {
         "distance": 14973,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Reading",
           "he": "רדינג"
         },
         "originalDist": 0.5937337812051093
@@ -23108,7 +23108,7 @@
       {
         "distance": 15663,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Zaharah Levitov",
           "he": "זהרה לביטוב"
         },
         "originalDist": 0.051575571415497304
@@ -23116,7 +23116,7 @@
       {
         "distance": 16385,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Einstein",
           "he": "איינשטיין"
         },
         "originalDist": 3.945910140403805
@@ -23124,7 +23124,7 @@
       {
         "distance": 16912,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Levi Eshkol",
           "he": "לוי אשכול"
         },
         "originalDist": 8.1086304316843
@@ -23132,7 +23132,7 @@
       {
         "distance": 17270,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Namir",
           "he": "נמיר"
         },
         "originalDist": 2.152862466274369
@@ -23140,7 +23140,7 @@
       {
         "distance": 17684,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Brodetsky",
           "he": "בורודצקי"
         },
         "originalDist": 0
@@ -23148,7 +23148,7 @@
       {
         "distance": 18334,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Tel Aviv University",
           "he": "אוניברסיטת תל אביב"
         },
         "originalDist": 0.4678071648569898
@@ -23156,15 +23156,15 @@
       {
         "distance": 18771,
         "name": {
-          "en": "Unnamed Station",
-          "he": "ברושים"
+          "en": "Rozenfeld",
+          "he": "רוזנפלד"
         },
         "originalDist": 4.945590144774608
       },
       {
         "distance": 19578,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaYeridim",
           "he": "הירידים"
         },
         "originalDist": 5.033766407175979
@@ -23172,7 +23172,7 @@
       {
         "distance": 20191,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ganei Yehoshua",
           "he": "גני יהושע"
         },
         "originalDist": 0.8760128671121505
@@ -23180,7 +23180,7 @@
       {
         "distance": 21191,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Hadar Yosef",
           "he": "הדר יוסף"
         },
         "originalDist": 0
@@ -23188,7 +23188,7 @@
       {
         "distance": 21991,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Pinchas Rozen Bridge",
           "he": "גשר פנחס רוזן"
         },
         "originalDist": 0
@@ -23196,7 +23196,7 @@
       {
         "distance": 22519,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaBarzel",
           "he": "הברזל"
         },
         "originalDist": 0
@@ -23204,7 +23204,7 @@
       {
         "distance": 22984,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaNechoshet",
           "he": "הנחושת"
         },
         "originalDist": 0
@@ -23212,7 +23212,7 @@
       {
         "distance": 23508,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Dvora HaNeviah",
           "he": "דבורה הנביאה"
         },
         "originalDist": 0
@@ -23220,7 +23220,7 @@
       {
         "distance": 23941,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Neve Sharet",
           "he": "נווה שרת"
         },
         "originalDist": 3.1992328987511405
@@ -23228,8 +23228,8 @@
     ],
     "termini": {
       "en": {
-        "start": "Unnamed Station",
-        "end": "Unnamed Station"
+        "start": "Agricultural Center",
+        "end": "Neve Sharet"
       },
       "he": {
         "start": "הקריה החקלאית",
@@ -24396,7 +24396,7 @@
       {
         "distance": 0,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Dayan Terminal",
           "he": "מסוף דיין"
         },
         "originalDist": 0
@@ -24404,7 +24404,7 @@
       {
         "distance": 457,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Lishanski",
           "he": "לישנסקי"
         },
         "originalDist": 0
@@ -24412,7 +24412,7 @@
       {
         "distance": 1360,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Yaldei Tehran",
           "he": "ילדי טהרן"
         },
         "originalDist": 0
@@ -24420,7 +24420,7 @@
       {
         "distance": 2149,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Sacharov",
           "he": "סחרוב"
         },
         "originalDist": 2.0844880265142436
@@ -24428,7 +24428,7 @@
       {
         "distance": 2898,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaHolot Park",
           "he": "פארק החולות"
         },
         "originalDist": 3.426298115222012
@@ -24436,7 +24436,7 @@
       {
         "distance": 3292,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Laskov",
           "he": "לסקוב"
         },
         "originalDist": 3.2442264431997194
@@ -24444,7 +24444,7 @@
       {
         "distance": 3727,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Bar-Lev",
           "he": "בר-לב"
         },
         "originalDist": 2.0358434910021534
@@ -24452,7 +24452,7 @@
       {
         "distance": 4177,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Begin",
           "he": "בגין"
         },
         "originalDist": 0.17934940437825544
@@ -24460,7 +24460,7 @@
       {
         "distance": 4615,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Lavon",
           "he": "לבון"
         },
         "originalDist": 2.087894552898658
@@ -24468,7 +24468,7 @@
       {
         "distance": 5135,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Holon Institute of Technology",
           "he": "המכון הטכנולוגי חולון"
         },
         "originalDist": 1.9052191476105467
@@ -24476,7 +24476,7 @@
       {
         "distance": 5476,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaHistadrut",
           "he": "ההסתדרות"
         },
         "originalDist": 1.8823166813145922
@@ -24484,7 +24484,7 @@
       {
         "distance": 6163,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Sokolov - West",
           "he": "סוקולוב - מערב"
         },
         "originalDist": 2.0386365355974503
@@ -24492,7 +24492,7 @@
       {
         "distance": 6672,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Holon Theater",
           "he": "תיאטרון חולון"
         },
         "originalDist": 2.367233564061412
@@ -24500,7 +24500,7 @@
       {
         "distance": 7975,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Holon Junction",
           "he": "צומת חולון"
         },
         "originalDist": 0.2937804316701473
@@ -24508,7 +24508,7 @@
       {
         "distance": 8640,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kiryat Shalom",
           "he": "קריית שלום"
         },
         "originalDist": 1.6794925824514677
@@ -24516,7 +24516,7 @@
       {
         "distance": 9032,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaHorshot Park",
           "he": "פארק החורשות"
         },
         "originalDist": 0.6185002215530471
@@ -24524,7 +24524,7 @@
       {
         "distance": 9635,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kibbutz Galuyot",
           "he": "קיבוץ גלויות"
         },
         "originalDist": 2.302891631075224
@@ -24532,7 +24532,7 @@
       {
         "distance": 10185,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Shapiro",
           "he": "שפירא"
         },
         "originalDist": 1.8209111720237143
@@ -24540,7 +24540,7 @@
       {
         "distance": 10796,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Levinsky Garden",
           "he": "גינת לוינסקי"
         },
         "originalDist": 0.295310542884396
@@ -24548,7 +24548,7 @@
       {
         "distance": 11811,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Karlebach",
           "he": "קרליבך"
         },
         "originalDist": 0
@@ -24556,7 +24556,7 @@
       {
         "distance": 12679,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kaplan",
           "he": "קפלן"
         },
         "originalDist": 0.5420680068402877
@@ -24564,7 +24564,7 @@
       {
         "distance": 13566,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Rabin Square",
           "he": "כיכר רבין"
         },
         "originalDist": 1.2922758434357895
@@ -24572,7 +24572,7 @@
       {
         "distance": 14264,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ibn Gvirol - Arlozorov",
           "he": "אבן גבירול - ארלוזורוב"
         },
         "originalDist": 0.25586436386690714
@@ -24580,15 +24580,15 @@
       {
         "distance": 15033,
         "name": {
-          "en": "Unnamed Station",
-          "he": "יהודה המכבי"
+          "en": "Nordau",
+          "he": "נורדאו"
         },
         "originalDist": 2.3968792439866027
       },
       {
         "distance": 15726,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Reading",
           "he": "רדינג"
         },
         "originalDist": 0.5937337812051093
@@ -24596,7 +24596,7 @@
       {
         "distance": 16415,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Zaharah Levitov",
           "he": "זהרה לביטוב"
         },
         "originalDist": 0.051575571415497304
@@ -24604,7 +24604,7 @@
       {
         "distance": 17141,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Einstein",
           "he": "איינשטיין"
         },
         "originalDist": 2.169502058966258
@@ -24612,7 +24612,7 @@
       {
         "distance": 17873,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Nofei Yam",
           "he": "נופי ים"
         },
         "originalDist": 0.3814126442963727
@@ -24620,7 +24620,7 @@
       {
         "distance": 18495,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Propes",
           "he": "פרופס"
         },
         "originalDist": 0
@@ -24628,7 +24628,7 @@
       {
         "distance": 18951,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Azorei Hen",
           "he": "אזורי חן"
         },
         "originalDist": 0
@@ -24636,7 +24636,7 @@
       {
         "distance": 19609,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Shoshana Persitz",
           "he": "שושנה פרסיץ"
         },
         "originalDist": 2.9743039466884866
@@ -24644,7 +24644,7 @@
       {
         "distance": 20079,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Miriam Ben-Porat",
           "he": "מרים בן-פורת"
         },
         "originalDist": 0
@@ -24652,7 +24652,7 @@
       {
         "distance": 20459,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Miriam Yalan-Shteklis",
           "he": "מרים ילין-שטקליס"
         },
         "originalDist": 0
@@ -24660,7 +24660,7 @@
       {
         "distance": 20887,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Yunitsman",
           "he": "יוניצמן"
         },
         "originalDist": 0
@@ -24668,7 +24668,7 @@
       {
         "distance": 21340,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Hof HaTechelet - South",
           "he": "חוף תכלת - דרום"
         },
         "originalDist": 0
@@ -24676,7 +24676,7 @@
       {
         "distance": 21778,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Hof HaTechelet - North",
           "he": "חוף תכלת - צפון"
         },
         "originalDist": 0
@@ -24684,7 +24684,7 @@
       {
         "distance": 22224,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Alteneuland",
           "he": "אלטנוילנד"
         },
         "originalDist": 0
@@ -24692,7 +24692,7 @@
       {
         "distance": 22779,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaHoshlim",
           "he": "החושלים"
         },
         "originalDist": 0
@@ -24700,7 +24700,7 @@
       {
         "distance": 23212,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Abba Eban",
           "he": "אבא אבן"
         },
         "originalDist": 0.10470563237367879
@@ -24708,8 +24708,8 @@
     ],
     "termini": {
       "en": {
-        "start": "Unnamed Station",
-        "end": "Unnamed Station"
+        "start": "Dayan Terminal",
+        "end": "Aba Eban"
       },
       "he": {
         "start": "מסוף דיין",
@@ -25700,7 +25700,7 @@
       {
         "distance": 1,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Abba Eban",
           "he": "אבא אבן"
         },
         "originalDist": 0.07153675144965999
@@ -25708,7 +25708,7 @@
       {
         "distance": 434,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaHoshlim",
           "he": "החושלים"
         },
         "originalDist": 0
@@ -25716,7 +25716,7 @@
       {
         "distance": 989,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Alteneuland",
           "he": "אלטנוילנד"
         },
         "originalDist": 0
@@ -25724,7 +25724,7 @@
       {
         "distance": 1435,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Hof HaTechelet - North",
           "he": "חוף תכלת - צפון"
         },
         "originalDist": 0
@@ -25732,7 +25732,7 @@
       {
         "distance": 1873,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Hof HaTechelet - South",
           "he": "חוף תכלת - דרום"
         },
         "originalDist": 0
@@ -25740,7 +25740,7 @@
       {
         "distance": 2326,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Yunitsman",
           "he": "יוניצמן"
         },
         "originalDist": 0
@@ -25748,7 +25748,7 @@
       {
         "distance": 2754,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Miriam Yalan-Shteklis",
           "he": "מרים ילין-שטקליס"
         },
         "originalDist": 0
@@ -25756,7 +25756,7 @@
       {
         "distance": 3134,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Miriam Ben-Porat",
           "he": "מרים בן-פורת"
         },
         "originalDist": 0
@@ -25764,7 +25764,7 @@
       {
         "distance": 3604,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Shoshana Persitz",
           "he": "שושנה פרסיץ"
         },
         "originalDist": 2.9743039466884866
@@ -25772,7 +25772,7 @@
       {
         "distance": 4262,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Azorei Hen",
           "he": "אזורי חן"
         },
         "originalDist": 0
@@ -25780,7 +25780,7 @@
       {
         "distance": 4718,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Propes",
           "he": "פרופס"
         },
         "originalDist": 0
@@ -25788,7 +25788,7 @@
       {
         "distance": 5340,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Nofei Yam",
           "he": "נופי ים"
         },
         "originalDist": 0.3814126442963727
@@ -25796,7 +25796,7 @@
       {
         "distance": 6072,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Einstein",
           "he": "איינשטיין"
         },
         "originalDist": 2.169502058966258
@@ -25804,7 +25804,7 @@
       {
         "distance": 6798,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Zaharah Levitov",
           "he": "זהרה לביטוב"
         },
         "originalDist": 0.051575571415497304
@@ -25812,7 +25812,7 @@
       {
         "distance": 7487,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Reading",
           "he": "רדינג"
         },
         "originalDist": 0.5937337812051093
@@ -25820,15 +25820,15 @@
       {
         "distance": 8180,
         "name": {
-          "en": "Unnamed Station",
-          "he": "יהודה המכבי"
+          "en": "Nordau",
+          "he": "נורדאו"
         },
         "originalDist": 2.3968792439866027
       },
       {
         "distance": 8949,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ibn Gvirol - Arlozorov",
           "he": "אבן גבירול - ארלוזורוב"
         },
         "originalDist": 0.25586436386690714
@@ -25836,7 +25836,7 @@
       {
         "distance": 9647,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Rabin Square",
           "he": "כיכר רבין"
         },
         "originalDist": 1.2922758434357895
@@ -25844,7 +25844,7 @@
       {
         "distance": 10534,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kaplan",
           "he": "קפלן"
         },
         "originalDist": 0.5420680068402877
@@ -25852,7 +25852,7 @@
       {
         "distance": 11402,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Karlebach",
           "he": "קרליבך"
         },
         "originalDist": 0
@@ -25860,7 +25860,7 @@
       {
         "distance": 12417,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Levinsky Garden",
           "he": "גינת לוינסקי"
         },
         "originalDist": 0.295310542884396
@@ -25868,7 +25868,7 @@
       {
         "distance": 13028,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Shapiro",
           "he": "שפירא"
         },
         "originalDist": 1.8209111720237143
@@ -25876,7 +25876,7 @@
       {
         "distance": 13578,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kibbutz Galuyot",
           "he": "קיבוץ גלויות"
         },
         "originalDist": 2.302891631075224
@@ -25884,7 +25884,7 @@
       {
         "distance": 14181,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaHorshot Park",
           "he": "פארק החורשות"
         },
         "originalDist": 0.6185002215530471
@@ -25892,7 +25892,7 @@
       {
         "distance": 14573,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kiryat Shalom",
           "he": "קריית שלום"
         },
         "originalDist": 1.6794925824514677
@@ -25900,7 +25900,7 @@
       {
         "distance": 15238,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Holon Junction",
           "he": "צומת חולון"
         },
         "originalDist": 0.2937804316701473
@@ -25908,7 +25908,7 @@
       {
         "distance": 16541,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Holon Theater",
           "he": "תיאטרון חולון"
         },
         "originalDist": 2.367233564061412
@@ -25916,7 +25916,7 @@
       {
         "distance": 17049,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Sokolov - West",
           "he": "סוקולוב - מערב"
         },
         "originalDist": 2.0386365355974503
@@ -25924,7 +25924,7 @@
       {
         "distance": 17506,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Krauze",
           "he": "קראוזה"
         },
         "originalDist": 0.7937681788508328
@@ -25932,7 +25932,7 @@
       {
         "distance": 18074,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Sokolov - East",
           "he": "סוקולוב - מזרח"
         },
         "originalDist": 1.1318224376884662
@@ -25940,7 +25940,7 @@
       {
         "distance": 18530,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Geulim",
           "he": "גאולים"
         },
         "originalDist": 0.512772064087007
@@ -25948,7 +25948,7 @@
       {
         "distance": 19182,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Gan HaCactusim",
           "he": "גן הקקטוסים"
         },
         "originalDist": 3.0843887090958564
@@ -25956,7 +25956,7 @@
       {
         "distance": 19647,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaMelacha",
           "he": "המלאכה"
         },
         "originalDist": 0.22967726633478172
@@ -25964,7 +25964,7 @@
       {
         "distance": 20151,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Peres Park",
           "he": "פארק פרס"
         },
         "originalDist": 2.3261706015198804
@@ -25972,7 +25972,7 @@
       {
         "distance": 20732,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaMerkava",
           "he": "המרכבה"
         },
         "originalDist": 1.131407007241011
@@ -25980,7 +25980,7 @@
       {
         "distance": 21352,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Holon - East",
           "he": "חולון - מזרח"
         },
         "originalDist": 1.9725959904799424
@@ -25988,7 +25988,7 @@
       {
         "distance": 21957,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Nachlat Yehuda",
           "he": "נחלת יהודה"
         },
         "originalDist": 3.1910215599048164
@@ -25996,7 +25996,7 @@
       {
         "distance": 22462,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Agricultural Center",
           "he": "הקריה החקלאית"
         },
         "originalDist": 4.025523795570363
@@ -26004,8 +26004,8 @@
     ],
     "termini": {
       "en": {
-        "start": "Unnamed Station",
-        "end": "Unnamed Station"
+        "start": "Abbah Eban",
+        "end": "Agricultural Center"
       },
       "he": {
         "start": "אבא אבן",
@@ -27904,7 +27904,7 @@
       {
         "distance": 1,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Petah Tikva CBS",
           "he": "תחנה מרכזית פ\"ת"
         },
         "originalDist": 1.5746523921796785
@@ -27912,7 +27912,7 @@
       {
         "distance": 423,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Pinkser",
           "he": "פינסקר"
         },
         "originalDist": 7.433920685795295
@@ -27920,7 +27920,7 @@
       {
         "distance": 910,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Krol",
           "he": "קרול"
         },
         "originalDist": 1.2012746882980874
@@ -27928,7 +27928,7 @@
       {
         "distance": 1463,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Dankner",
           "he": "דנקנר"
         },
         "originalDist": 0
@@ -27936,7 +27936,7 @@
       {
         "distance": 1971,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Beilinson",
           "he": "בילינסון"
         },
         "originalDist": 0
@@ -27944,7 +27944,7 @@
       {
         "distance": 2492,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Shaham",
           "he": "שחם"
         },
         "originalDist": 0
@@ -27952,7 +27952,7 @@
       {
         "distance": 3257,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Shenkar",
           "he": "שנקר"
         },
         "originalDist": 0
@@ -27960,7 +27960,7 @@
       {
         "distance": 4612,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Aharonovitz",
           "he": "אהרונוביץ"
         },
         "originalDist": 0
@@ -27968,7 +27968,7 @@
       {
         "distance": 6082,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ben Gurion",
           "he": "בן גוריון"
         },
         "originalDist": 0
@@ -27976,7 +27976,7 @@
       {
         "distance": 7188,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Bialik",
           "he": "ביאליק"
         },
         "originalDist": 0
@@ -27984,7 +27984,7 @@
       {
         "distance": 8294,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Abba Hillel",
           "he": "אבא הלל"
         },
         "originalDist": 0
@@ -27992,7 +27992,7 @@
       {
         "distance": 8901,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Arlozorov",
           "he": "ארלוזורוב"
         },
         "originalDist": 0
@@ -28000,7 +28000,7 @@
       {
         "distance": 9623,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Shaul HaMelech",
           "he": "שאול המלך"
         },
         "originalDist": 0
@@ -28008,7 +28008,7 @@
       {
         "distance": 10424,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Yehudit",
           "he": "יהודית"
         },
         "originalDist": 0
@@ -28016,7 +28016,7 @@
       {
         "distance": 11182,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Karlebach",
           "he": "קרליבך"
         },
         "originalDist": 0
@@ -28024,7 +28024,7 @@
       {
         "distance": 11998,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Allenby",
           "he": "אלנבי"
         },
         "originalDist": 0
@@ -28032,7 +28032,7 @@
       {
         "distance": 13261,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Elifelet",
           "he": "אליפלט"
         },
         "originalDist": 0
@@ -28040,7 +28040,7 @@
       {
         "distance": 13933,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Salame",
           "he": "סלמה"
         },
         "originalDist": 0
@@ -28048,15 +28048,15 @@
       {
         "distance": 14386,
         "name": {
-          "en": "Unnamed Station",
-          "he": "בן צבי"
+          "en": "Bloomfield Stadium",
+          "he": "אצטדיון בלונפילד"
         },
         "originalDist": 0
       },
       {
         "distance": 14860,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Erlich",
           "he": "ארליך"
         },
         "originalDist": 0
@@ -28064,7 +28064,7 @@
       {
         "distance": 15308,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Isakov",
           "he": "איסקוב"
         },
         "originalDist": 0
@@ -28072,7 +28072,7 @@
       {
         "distance": 15708,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaBesht",
           "he": "הבעש\"ט"
         },
         "originalDist": 0
@@ -28080,7 +28080,7 @@
       {
         "distance": 16471,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Machrozet",
           "he": "מחרוזת"
         },
         "originalDist": 0
@@ -28088,7 +28088,7 @@
       {
         "distance": 17106,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaAtzmaut",
           "he": "העצמאות"
         },
         "originalDist": 0
@@ -28096,7 +28096,7 @@
       {
         "distance": 17594,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Rothschild",
           "he": "רוטשילד"
         },
         "originalDist": 0
@@ -28104,7 +28104,7 @@
       {
         "distance": 18248,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Jabotinsky",
           "he": "זבוטנסקי"
         },
         "originalDist": 0
@@ -28112,7 +28112,7 @@
       {
         "distance": 18775,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Balfour",
           "he": "בלפור"
         },
         "originalDist": 0
@@ -28120,7 +28120,7 @@
       {
         "distance": 19146,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Binyamin",
           "he": "בנימין"
         },
         "originalDist": 0
@@ -28128,7 +28128,7 @@
       {
         "distance": 19532,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Yoseftal",
           "he": "יוספטל"
         },
         "originalDist": 0
@@ -28136,7 +28136,7 @@
       {
         "distance": 20118,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kaf Tet BeNovember",
           "he": "כ\"ט בנובמבר"
         },
         "originalDist": 0
@@ -28144,7 +28144,7 @@
       {
         "distance": 20718,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaAmal",
           "he": "העמל"
         },
         "originalDist": 0
@@ -28152,7 +28152,7 @@
       {
         "distance": 21164,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaKomemiyut",
           "he": "הקוממיות"
         },
         "originalDist": 0
@@ -28160,7 +28160,7 @@
       {
         "distance": 21737,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Menachem Begin",
           "he": "מנחם בגין"
         },
         "originalDist": 0
@@ -28168,7 +28168,7 @@
       {
         "distance": 22185,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Koresh",
           "he": "כורש"
         },
         "originalDist": 0
@@ -28176,7 +28176,7 @@
       {
         "distance": 23135,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Rehavam Ze'evi",
           "he": "רחבעם זאבי"
         },
         "originalDist": 0
@@ -28192,7 +28192,7 @@
     ],
     "termini": {
       "en": {
-        "start": "Unnamed Station"
+        "start": "Petah Tikva CBS"
       },
       "he": {
         "start": "תחנה מרכזית פ\"ת"
@@ -30038,7 +30038,7 @@
       {
         "distance": 0,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kiryat Aryeh",
           "he": "קרית אריה"
         },
         "originalDist": 0
@@ -30046,15 +30046,15 @@
       {
         "distance": 1758,
         "name": {
-          "en": "Unnamed Station",
-          "he": "אם המושבות"
+          "en": "Em HaMoshavot Bridge",
+          "he": "גשר אם המושבות"
         },
         "originalDist": 0
       },
       {
         "distance": 3006,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Aharonovitz",
           "he": "אהרונוביץ"
         },
         "originalDist": 0
@@ -30062,7 +30062,7 @@
       {
         "distance": 4476,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Ben Gurion",
           "he": "בן גוריון"
         },
         "originalDist": 0
@@ -30070,7 +30070,7 @@
       {
         "distance": 5582,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Bialik",
           "he": "ביאליק"
         },
         "originalDist": 0
@@ -30078,7 +30078,7 @@
       {
         "distance": 6689,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Abba Hillel",
           "he": "אבא הלל"
         },
         "originalDist": 0
@@ -30086,7 +30086,7 @@
       {
         "distance": 7295,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Arlozorov",
           "he": "ארלוזורוב"
         },
         "originalDist": 0
@@ -30094,7 +30094,7 @@
       {
         "distance": 8018,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Shaul HaMelech",
           "he": "שאול המלך"
         },
         "originalDist": 0
@@ -30102,7 +30102,7 @@
       {
         "distance": 8818,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Yehudit",
           "he": "יהודית"
         },
         "originalDist": 0
@@ -30110,7 +30110,7 @@
       {
         "distance": 9576,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Karlebach",
           "he": "קרליבך"
         },
         "originalDist": 0
@@ -30118,7 +30118,7 @@
       {
         "distance": 10393,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Allenby",
           "he": "אלנבי"
         },
         "originalDist": 0
@@ -30126,7 +30126,7 @@
       {
         "distance": 11655,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Elifelet",
           "he": "אליפלט"
         },
         "originalDist": 0
@@ -30134,7 +30134,7 @@
       {
         "distance": 12327,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Salame",
           "he": "סלמה"
         },
         "originalDist": 0
@@ -30142,15 +30142,15 @@
       {
         "distance": 12780,
         "name": {
-          "en": "Unnamed Station",
-          "he": "בן צבי"
+          "en": "Bloomfield Stadium",
+          "he": "אצטדיון בלונפילד"
         },
         "originalDist": 0
       },
       {
         "distance": 13255,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Erlich",
           "he": "ארליך"
         },
         "originalDist": 0
@@ -30158,7 +30158,7 @@
       {
         "distance": 13703,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Isakov",
           "he": "איסקוב"
         },
         "originalDist": 0
@@ -30166,7 +30166,7 @@
       {
         "distance": 14102,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaBesht",
           "he": "הבעש\"ט"
         },
         "originalDist": 0
@@ -30174,7 +30174,7 @@
       {
         "distance": 14866,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Machrozet",
           "he": "מחרוזת"
         },
         "originalDist": 0
@@ -30182,7 +30182,7 @@
       {
         "distance": 15500,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaAtzmaut",
           "he": "העצמאות"
         },
         "originalDist": 0
@@ -30190,7 +30190,7 @@
       {
         "distance": 15988,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Rothschild",
           "he": "רוטשילד"
         },
         "originalDist": 0
@@ -30198,7 +30198,7 @@
       {
         "distance": 16642,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Jabotinsky",
           "he": "זבוטנסקי"
         },
         "originalDist": 0
@@ -30206,7 +30206,7 @@
       {
         "distance": 17169,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Balfour",
           "he": "בלפור"
         },
         "originalDist": 0
@@ -30214,7 +30214,7 @@
       {
         "distance": 17540,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Binyamin",
           "he": "בנימין"
         },
         "originalDist": 0
@@ -30222,7 +30222,7 @@
       {
         "distance": 17926,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Yoseftal",
           "he": "יוספטל"
         },
         "originalDist": 0
@@ -30230,7 +30230,7 @@
       {
         "distance": 18512,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Kaf Tet BeNovember",
           "he": "כ\"ט בנובמבר"
         },
         "originalDist": 0
@@ -30238,7 +30238,7 @@
       {
         "distance": 19112,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaAmal",
           "he": "העמל"
         },
         "originalDist": 0
@@ -30246,7 +30246,7 @@
       {
         "distance": 19559,
         "name": {
-          "en": "Unnamed Station",
+          "en": "HaKomemiyut",
           "he": "הקוממיות"
         },
         "originalDist": 0
@@ -30254,7 +30254,7 @@
       {
         "distance": 20132,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Menachem Begin",
           "he": "מנחם בגין"
         },
         "originalDist": 0
@@ -30262,7 +30262,7 @@
       {
         "distance": 20579,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Koresh",
           "he": "כורש"
         },
         "originalDist": 0
@@ -30270,7 +30270,7 @@
       {
         "distance": 21530,
         "name": {
-          "en": "Unnamed Station",
+          "en": "Rehavam Ze'evi",
           "he": "רחבעם זאבי"
         },
         "originalDist": 0
@@ -30286,7 +30286,7 @@
     ],
     "termini": {
       "en": {
-        "start": "Unnamed Station"
+        "start": "Kiryat Aryeh"
       },
       "he": {
         "start": "קרית אריה"

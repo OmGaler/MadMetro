@@ -9,10 +9,14 @@
 //TODO: headways still not being enforced
 
 
-//TODO: in precomputed, add english names to light rail, and clean up the modifiers for termini and others, e.g. Tel Aviv, HaShalom and Holon, Wolfson
+//TODO: in precomputed, add english names to light rail, and clean up the qualifiers for termini and others, e.g. Tel Aviv, HaShalom and Holon, Wolfson
+//Bat Yam, HaKom
 //TODO: hide all UI elements on 'f'? 
 
 //TODO: hide trainpopup on mouseoff
+
+//TODO: On occasion a train will show next station as a station after the next 
+//TODO: settins modal doesnt update languages, probably because the updatelang function doesnt have jurisdication on it
 //------------------
 //settings screen-
 //configurable timescale
@@ -44,27 +48,27 @@ const lineColours = {
 
 const lineData = {
     "M1": {
-        length: "85 km",
+        length: 85,
         stations: 62
     },
     "M2": {
-        length: "26 km",
+        length: 26,
         stations: 22
     },
     "M3": {
-        length: "39 km",
+        length: 39,
         stations: 25
     },
     "R": {
-        length: "24 km",
+        length: 24,
         stations: 38
     },
     "P": {
-        length: "27 km",
+        length: 27,
         stations: 46
     },
     "G": {
-        length: "39 km",
+        length: 39,
         stations: 62
     }
 }
@@ -257,24 +261,27 @@ function updateLineInfo() {
         lineDiv.style.marginBottom = "10px";
         // Create a bullet element (a small circle with the line label).
         const bullet = document.createElement("span");
-        bullet.textContent = lineId;
-        bullet.style.backgroundColor = lineColours[lineId.charAt(0)] || "#777";
-        bullet.style.color = "white";
-        bullet.style.borderRadius = "50%";
-        bullet.style.padding = "5px 8px";
-        bullet.style.display = "inline-block";
-        bullet.style.marginRight = "10px";
-        // Create the info text
-        const infoHTML =
-        `${translations[currentLang]["frequency"]}: ${wrapLtr(frequency + " tph")}, ` +
-        `${translations[currentLang]["headway"]}: ${wrapLtr(headway + " mins")}, ` +
-        `${translations[currentLang]["length"]}: ${wrapLtr(line.length)}, ` +
-        `${translations[currentLang]["stations"]}: ${wrapLtr(line.stations)}`;
+        bullet.classList.add("bullet");
+        if (lineId.startsWith("M")) {
+            bullet.style.backgroundColor = lineColours[lineId] || "#777";
+            bullet.textContent = lineId.charAt(1);
+        } else {
+            bullet.style.backgroundColor = lineColours[lineId.charAt(0)] || "#777";
+            bullet.textContent = lineId.charAt(0);
+        }
+        bullet.style.marginInlineEnd = "10px";
         
+        bullet.style.color = "white";
+        bullet.style.display = "inline-flex";
+        // Create the info text
+        const infoText = document.createTextNode(
+            `${translations[currentLang]["frequency"]}: ${frequency} ${translations[currentLang]["tph"]}, ` +
+            `${translations[currentLang]["headway"]}: ${headway} ${translations[currentLang]["mins"]}, ` +
+            `${translations[currentLang]["length"]}: ${line.length} ${translations[currentLang]["km"]}, ` +
+            `${translations[currentLang]["stations"]}: ${line.stations}`
+        );
         lineDiv.appendChild(bullet);
-        const infoSpan = document.createElement("span");
-    infoSpan.innerHTML = infoHTML;
-    lineDiv.appendChild(infoSpan);
+        lineDiv.appendChild(infoText);
         container.appendChild(lineDiv);
     });
 }

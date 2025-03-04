@@ -21,6 +21,8 @@
         "stations": "Stations",
         "length": "Length",
         "headway": "Headway",
+        "mins": "mins",
+        "km": "km",
         "freqDisclaimer": "Frequencies and headways given are for the core of a line, in each direction. Actual frequencies may vary.",
         "timePeriods": {
             "weekday": [{
@@ -81,6 +83,8 @@
         "stations": "תחנות",
         "length": "אורך",
         "headway": "מרווח",
+        "mins": "דק'",
+        "km": "ק\"מ",
         "freqDisclaimer": "התדירויות והמרווחים המוצגים הם לליבת הקו בכיוון אחד בלבד. תדירויות בפועל עשויות להשתנות.",
         "light-rail": "רכבת קלה",
         "metro": "מטרו",
