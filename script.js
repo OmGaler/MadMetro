@@ -1,4 +1,4 @@
-//TODO fix settings modal conent
+//TODO spread out on spawn more
 
 //TODO: up max metro speed to 80kmh, max LRT speed to 70 (ug and 50 overground???), tweak sim speed
 // TODO ensure traveltime is calculated with average speed 
@@ -579,6 +579,7 @@ class Train {
                 this.currentStationIndex = 0;
             }
             // Station check: if the train reaches (or passes) a station target, dwell.
+
             if (this.stations.length > 0) {
                 let target = this.stations[this.currentStationIndex];
                 if ((this.direction === 1 && this.distance >= target) ||
@@ -617,7 +618,6 @@ function startSimulation() {
     console.log("Day Type:", dayType);
     console.log("Time Period:", timePeriod);
     console.log("Metro schedule:", scheduleData?.["Metro"]?.[dayType]?.[timePeriod]?.tph);
-
     Object.keys(SERVICE_PATTERNS).forEach(lineId => {
         const pattern = SERVICE_PATTERNS[lineId];
         let frequency;
@@ -626,8 +626,9 @@ function startSimulation() {
         } else { // Light Rail
             frequency = scheduleData?.["Light Rail"]?.[dayType]?.[lineId[0]]?.[timePeriod]?.tph || pattern.defaultFrequency;
         }
+        console.log(`\nLine ${lineId}: Frequency=${frequency} tph, Headway=${60/frequency} minutes`);
+        frequency *= pattern.branchFrequency; // Adjust frequency for branches
         const headway = 60 / frequency;
-        console.log(`\nLine ${lineId}: Frequency=${frequency} tph, Headway=${headway} minutes`);
 
         pattern.branches.forEach(branchId => {
             const route = serviceRoutes[branchId];
@@ -636,8 +637,23 @@ function startSimulation() {
                 return;
             }
             const routeLength = turf.length(turf.lineString(route.coords)) * 1000;
-            const roundTripTime = (2 * routeLength) / VEHICLE_SPEEDS[route.type || 'METRO'];
-            const trainsPerDirection = Math.ceil((roundTripTime / 60) / (2 * headway));
+            let vtype; // Vehicle type
+            // Use a heuristic average speed to account for stopping, accelerating and decelerating.
+            let avgSpeed;
+            if (branchId.charAt(0) === 'M') {
+                vtype = "METRO";
+                if (branchId === 'M3_Shuttle') {
+                    //do not decrease the average speed for the shuttle, as it makes no stops
+                    avgSpeed = VEHICLE_SPEEDS[vtype]; 
+                } else {
+                    avgSpeed = VEHICLE_SPEEDS[vtype] * 0.5; 
+                }
+            } else {
+                vtype = "LRT"; 
+                avgSpeed = VEHICLE_SPEEDS[vtype] * 0.42;  
+            } 
+            const roundTripTime = (2 * routeLength) / avgSpeed;
+            const trainsPerDirection = Math.ceil((roundTripTime / 60) / (headway));
             console.log(`Branch ${branchId}: Length=${Math.round(routeLength/1000)}km, Trains/direction=${trainsPerDirection}`);
 
             [-1, 1].forEach(direction => {
