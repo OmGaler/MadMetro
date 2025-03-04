@@ -15,6 +15,9 @@
 
 //TODO: hide trainpopup on mouseoff
 
+//todo: perhaps, . If bunching is detected, you could gently adjust speeds or extend dwell times at the terminal to restore proper spacing.
+
+
 //TODO: On occasion a train will show next station as a station after the next 
 //TODO: settins modal doesnt update languages, probably because the updatelang function doesnt have jurisdication on it
 //------------------
@@ -99,7 +102,7 @@ let currentLang = localStorage.getItem("language") || "en";
 let scheduleData = null;
 let serviceRoutes = {}; // Loaded from preprocessed_station_distances.json
 let trains = [];
-let showRoutes = true;
+let showRoutes = true; //show lines and stations, default off
 // Simulation constants:
 const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
 const timeScale = 60; // 1 real sec = 1 simulated minute
@@ -468,7 +471,7 @@ class Train {
         // Determine vehicle type (Metro if label is "1","2","3", else LRT)
         this.vehicleType = (this.label === "1" || this.label === "2" || this.label === "3") ?
             'METRO' :
-            'LRT_SURFACE';
+            'LRT';
         this.minimumHeadway = 90; // Minimum separation in meters
         this.branchId = null; // To be set when spawning trains.
         this.ahead = null;
