@@ -23,6 +23,8 @@
         "headway": "Headway",
         "mins": "mins",
         "km": "km",
+        "line-info": "Line Information",
+        "simulation-speed": "Simulation Speed",
         "freqDisclaimer": "Frequencies and headways given are for the core of a line, in each direction. Actual frequencies may vary.",
         "timePeriods": {
             "weekday": [{
@@ -89,6 +91,8 @@
         "light-rail": "רכבת קלה",
         "metro": "מטרו",
         "terminus": "תחנה סופית",
+        "line-info": "מידע על קווים",
+        "simulation-speed": "מהירות הדמיה",
         "timePeriods": {
             "weekday": [{
                     "value": "early_late",

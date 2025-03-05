@@ -45,11 +45,13 @@
 #metroLegend {
     margin-inline-start: 5px;
 }
+
 .bullet {
     width: 22px;
     height: 22px;
     border-radius: 50%;
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     justify-content: center;
     font-size: 12px;
@@ -106,7 +108,7 @@
     background-color: #fff;
     border: 1px solid #ccc;
     cursor: pointer;
-    border-radius: 5px;    
+    border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -131,16 +133,18 @@
     font-size: 18px;
     padding: 8px 12px;
 }
+
 .lang-options {
     position: absolute;
-    left: 100%;  /* Appear immediately to the right */
+    left: 100%;
+    /* Appear immediately to the right */
     top: 50%;
     transform: translate(10px, -50%);
     background: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     padding: 7px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
@@ -184,11 +188,22 @@
     border-radius: 4px;
 }
 
+.speed-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.simulationSpeedContainer {
+    padding-bottom: 10px;
+}
+
 .routeBulletHolder {
     padding: 0 10px;
 }
 
-#simulationControls {
+/* #simulationControls {
     position: absolute;
     bottom: 20px;
     right: 20px;
@@ -201,7 +216,7 @@
 }
 
 #simulationControls button {
-    font-size: 18px;
+   font-size: 18px;
     border: none;
     background: transparent;
     cursor: pointer;
@@ -209,7 +224,7 @@
 
 #simulationControls select {
     margin: 0 5px;
-}
+}  */
 
 .train-popup {
     position: fixed;
@@ -248,5 +263,61 @@
     to {
         opacity: 1;
         transform: translate(-50%, 0);
+    }
+}
+
+.radio-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.radio-button {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f7f7f7;
+    transition: background-color 0.3s;
+    user-select: none;
+  }
+  
+  .radio-button span {
+    display: block;
+    padding: 8px 12px;
+  }
+  
+  .radio-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .radio-button input {
+    display: none;
+  }
+/*   
+  .radio-button input:checked + span {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+} */
+.radio-button:has(input:checked) {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+
+#lineContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* For wider screens, switch to a grid layout */
+@media (min-width: 750px) {
+#lineContainer {
+    display: grid;
+    /* We want 3 rows so that the first three items are in the first column and the next three in the second */
+    grid-template-rows: repeat(3, auto);
+    /* Use grid-auto-flow: column to fill columns */
+    grid-auto-flow: column;
+    gap: 10px;
     }
 }

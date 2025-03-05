@@ -1,7 +1,6 @@
 //TODO spread out on spawn more
 
-//TODO: up max metro speed to 80kmh, max LRT speed to 70 (ug and 50 overground???), tweak sim speed
-// TODO ensure traveltime is calculated with average speed 
+
 //TODO: short R23 turns at elifelet
 
 //TODO: enforce headway separation -Before spawning a new train or allowing a train to depart from a station, check the distance to the train ahead.
@@ -9,8 +8,6 @@
 //TODO: headways still not being enforced
 
 
-//TODO: in precomputed, add english names to light rail, and clean up the qualifiers for termini and others, e.g. Tel Aviv, HaShalom and Holon, Wolfson
-//Bat Yam, HaKom
 //TODO: hide all UI elements on 'f'? 
 
 //TODO: hide trainpopup on mouseoff
@@ -18,13 +15,15 @@
 //todo: perhaps, . If bunching is detected, you could gently adjust speeds or extend dwell times at the terminal to restore proper spacing.
 
 
-//TODO: On occasion a train will show next station as a station after the next 
-//TODO: settins modal doesnt update languages, probably because the updatelang function doesnt have jurisdication on it
+//TODO: Some sort of bug where switching the service time will not update the trains or settings modal properly
+//add (c) on bottom, he
+
 //------------------
 //settings screen-
 //configurable timescale
 //configurable service day/times
 //languages
+//link to readme for usage instructions
 //disclaimers
 //data from geo.mot.gov.il, openstreetmap
 //this is a simulation, not real data
@@ -105,12 +104,14 @@ let trains = [];
 let showRoutes = true; //show lines and stations, default off
 // Simulation constants:
 const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
-const timeScale = 60; // 1 real sec = 1 simulated minute
-const DEFAULT_DWELL_TIME = 1; // seconds dwell at each station
+// const timeScale = 30; // 1 real sec = 30 simulated seconds
+let timeScale = 60; // 1 real sec = 1 simulated minute
+// const timeScale = 300; // 1 real sec = 5 minutes
+let DEFAULT_DWELL_TIME = 1; // seconds dwell at each station
 const STATION_TOLERANCE = 30; // meters tolerance
 const VEHICLE_SPEEDS = {
-    METRO: 80 * 1000 / 3600,
-    LRT: 60 * 1000 / 3600
+    METRO: 80 * 1000 / 3600, //80kmh
+    LRT: 60 * 1000 / 3600 //60kmh
 };
 const SERVICE_PATTERNS = {
     M1: {
@@ -146,7 +147,7 @@ const SERVICE_PATTERNS = {
 };
 
 /********************************************
- * Localization & Time Period Options
+ * Localisation & Time Period Options
  ********************************************/
 // Load translations from JSON and then update UI elements.
 fetch("data/translations.json")
@@ -173,6 +174,7 @@ function updateLanguage(lang) {
     localStorage.setItem("language", lang);
     //repopulate time period options
     updateTimePeriodOptions();
+    updateLineInfo();
 }
 
 function toggleLanguage() {
@@ -195,6 +197,20 @@ function updateTimePeriodOptions() {
         });
     }
 }
+
+const simulationSpeedRadios = document.querySelectorAll('input[name="simulationSpeed"]');
+simulationSpeedRadios.forEach(radio => {
+radio.addEventListener("change", function () {
+    timeScale = parseInt(this.value, 10);
+    if (timeScale > 100) {
+        DEFAULT_DWELL_TIME = 0.25;
+    } else {
+        DEFAULT_DWELL_TIME = 1;
+    }
+    console.log("Simulation speed updated to:", timeScale, "simulation seconds per real second");
+    }); 
+});
+
 
 /********************************************
  * UI Controls: Pause, Settings, & Pop-up
@@ -241,7 +257,7 @@ function wrapLtr(text) { // Wrap text in a span with LTR direction (for numbers 
 function updateLineInfo() {
     const dayType = document.getElementById("dayTypeSelect").value;
     const timePeriod = document.getElementById("timePeriodSelect").value;
-    const container = document.getElementById("lineInfo");
+    const container = document.getElementById("lineContainer");
     container.innerHTML = ""; // Clear previous info
 
     Object.keys(SERVICE_PATTERNS).forEach(lineId => {
@@ -262,6 +278,7 @@ function updateLineInfo() {
         // Create a container div for this line.
         const lineDiv = document.createElement("div");
         lineDiv.style.marginBottom = "10px";
+        lineDiv.style.display = "inline-flex";
         // Create a bullet element (a small circle with the line label).
         const bullet = document.createElement("span");
         bullet.classList.add("bullet");
@@ -518,12 +535,12 @@ class Train {
         // Instead of recalculating the current station (which conflicts with updateNextStationIndex),
         // simply update the nextStationIndex based on the current station and direction.
         if (this.direction === 1) {
-            this.nextStationIndex = this.currentStationIndex + 1;
+            this.nextStationIndex = this.currentStationIndex;// + 1;
             if (this.nextStationIndex >= this.stationData.length) {
                 this.nextStationIndex = this.stationData.length - 1;
             }
         } else {
-            this.nextStationIndex = this.currentStationIndex - 1;
+            this.nextStationIndex = this.currentStationIndex//; - 1;
             if (this.nextStationIndex < 0) {
                 this.nextStationIndex = 0;
             }
@@ -618,7 +635,7 @@ function startSimulation() {
     // Get current schedule settings
     const dayType = document.getElementById("dayTypeSelect").value;
     const timePeriod = document.getElementById("timePeriodSelect").value;
-    console.log("Day Type:", dayType);
+    console.log("Day Type:", dayType);  
     console.log("Time Period:", timePeriod);
     console.log("Metro schedule:", scheduleData?.["Metro"]?.[dayType]?.[timePeriod]?.tph);
     Object.keys(SERVICE_PATTERNS).forEach(lineId => {
