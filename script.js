@@ -16,6 +16,8 @@
 
 
 //TODO: Some sort of bug where switching the service time will not update the trains or settings modal properly
+//TODO: m3_shuttle gets stuck at peak times -- probably a headway thing
+
 //add (c) on bottom, he
 
 //------------------
@@ -673,7 +675,9 @@ function startSimulation() {
                 avgSpeed = VEHICLE_SPEEDS[vtype] * 0.42;  
             } 
             const roundTripTime = (2 * routeLength) / avgSpeed;
-            const trainsPerDirection = Math.ceil((roundTripTime / 60) / (headway));
+            //divide by two as trains per direction is half of total trains needed
+            const trainsPerDirection = Math.ceil((roundTripTime / 60) / (headway)/2); 
+
             console.log(`Branch ${branchId}: Length=${Math.round(routeLength/1000)}km, Trains/direction=${trainsPerDirection}`);
 
             [-1, 1].forEach(direction => {
