@@ -67,7 +67,6 @@
                     <option data-i18n="weekday" value="weekday"></option>
                     <option data-i18n="weekend" value="weekend"></option>
                 </select>
-                <!-- //TODO: REPLACE with icon -->
                 <label for="timePeriodSelect"><ion-icon name="time-outline"></ion-icon></label>
                 <select id="timePeriodSelect"></select>
         
@@ -81,8 +80,19 @@
                     });
                 </script>
             </div>
-        
-            <div id="simulationSpeedContainer" style="margin-top: 20px;">
+                <h3 data-i18n="simulation-speed"></h3>
+                <input type="range" id="speedSlider" min="0" max="4" step="1" value="1">
+                <!-- <span id="speedValue"></span> -->
+                <p id="realTimeInfo">1 second = 1 real minute(s)</p>
+            
+                <h3>Dark Mode</h3>
+                <button id="darkModeButton">
+                    <ion-icon name="contrast-outline"></ion-icon>
+                </button>
+                
+            
+            
+            <!-- <div id="simulationSpeedContainer" style="margin-top: 20px;">
                 <h3 data-i18n="simulation-speed">Simulation Speed</h3>
                 <div id="speedOptions" class="radio-buttons">
                 <label class="radio-button">
@@ -106,8 +116,7 @@
                     <span>1 sec = 7 mins</span>
                 </label>
                 </div>
-            </div>
-            <!--TODO link to readme for usage instructions  -->
+            </div> -->
             <!-- <div id="timeDaySettings" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;"></div> -->
             <!-- <p>Configure simulation parameters below.</p><div id="simulationControls">
                 <select id="dayTypeSelect">
@@ -141,8 +150,8 @@
             <!-- Usage instructions -->
             </div>
             <!-- TODO: change readme link based on lang  -->
-            <a href="https://github.com/OmGaler/MadMetro/master/blob/README.md" data-i18n="usage-instructions">Usage Instructions</a>
-            </div>
+        
+        <a id="readmelink" href="https://github.com/OmGaler/MadMetro/blob/master/README.md" data-i18n="usage-disclaimer"></a>
         </div>
     </div>
     <div id="map"></div>

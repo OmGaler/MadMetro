@@ -14,16 +14,14 @@
 
 //todo: perhaps, . If bunching is detected, you could gently adjust speeds or extend dwell times at the terminal to restore proper spacing.
 
-
 //TODO: Some sort of bug where switching the service time will not update the trains or settings modal properly
-//TODO: m3_shuttle gets stuck at peak times -- probably a headway thing
 
 //add (c) on bottom, he
 
 //------------------
-//settings screen-
-//configurable timescale
-//configurable service day/times
+//TODO: settings screen-
+//
+//
 //languages
 //link to readme for usage instructions
 //disclaimers
@@ -131,14 +129,14 @@ const SERVICE_PATTERNS = {
         defaultFrequency: 20,
         branchFrequency: 1
     },
-    P: {
-        branches: ['P1', 'P2'],
-        defaultFrequency: 20,
-        branchFrequency: 1 / 2
-    },
     R: {
         branches: ['R1', 'R23'],
         defaultFrequency: 17,
+        branchFrequency: 1 / 2
+    },
+    P: {
+        branches: ['P1', 'P2'],
+        defaultFrequency: 20,
         branchFrequency: 1 / 2
     },
     G: {
@@ -159,6 +157,8 @@ fetch("data/translations.json")
         updateLanguage(currentLang);
         updateTimePeriodOptions();
         updateLineInfo();
+        updateSpeed();
+
     })
     .catch(error => console.error("Error loading translations:", error));
 
@@ -172,11 +172,13 @@ function updateLanguage(lang) {
             el.textContent = translations[lang][key];
         }
     });
+    document.getElementById("readmelink").href = translations[lang]["readme-link"];
     document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
     localStorage.setItem("language", lang);
     //repopulate time period options
     updateTimePeriodOptions();
     updateLineInfo();
+    updateSpeed();
 }
 
 function toggleLanguage() {
@@ -200,19 +202,39 @@ function updateTimePeriodOptions() {
     }
 }
 
-const simulationSpeedRadios = document.querySelectorAll('input[name="simulationSpeed"]');
-simulationSpeedRadios.forEach(radio => {
-radio.addEventListener("change", function () {
-    timeScale = parseInt(this.value, 10);
+// Define allowed simulation speeds
+const speedValues = [30, 60, 180, 300, 420];
+const speedSlider = document.getElementById("speedSlider");
+// const speedValue = document.getElementById("speedValue");
+const realTimeInfo = document.getElementById("realTimeInfo");
+
+// Function to update speed display
+function updateSpeed() {
+    let index = parseInt(speedSlider.value);
+    let simSpeed = speedValues[index];
+    // speedValue.textContent = `${simSpeed}x`;
+    realTimeInfo.textContent = `${translations[currentLang]["seconds"]} = ${simSpeed / 60} ${translations[currentLang]["minutes"]}`;
+    timeScale = simSpeed; 
     if (timeScale > 100) {
         DEFAULT_DWELL_TIME = 0.25;
     } else {
         DEFAULT_DWELL_TIME = 1;
     }
     console.log("Simulation speed updated to:", timeScale, "simulation seconds per real second");
-    }); 
-});
+}
 
+// Update on slider change
+speedSlider.addEventListener("input", updateSpeed);
+
+// Dark Mode Logic
+document.getElementById('darkModeButton').addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('darkMode', document.body.classList.contains('dark-mode') ? 'enabled' : null);
+});
+// Load dark mode preference
+if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+}
 
 /********************************************
  * UI Controls: Pause, Settings, & Pop-up
@@ -336,6 +358,7 @@ document.getElementById("timePeriodSelect").addEventListener("change", function 
     updateLineInfo();
 });
 
+
 function updateOperationSettings() {
     const dayType = document.getElementById("dayTypeSelect").value;
     const timePeriod = document.getElementById("timePeriodSelect").value;
@@ -362,18 +385,18 @@ Promise.all([
         serviceRoutes = routes;
         console.log("Loaded schedule data:", scheduleData);
         console.log("Loaded service routes:", serviceRoutes);
-
-        // Visualize service routes and station markers
+        // Visualise service routes and station markers
         if (showRoutes) {
 
             Object.keys(serviceRoutes).forEach(key => {
                 let routeObj = serviceRoutes[key];
                 const latlngs = routeObj.coords.map(coord => [coord[1], coord[0]]);
+                let c = key.charAt(0) === "M" ? lineColours[key.substring(0, 2)] : lineColours[key.charAt(0)];
                 L.polyline(latlngs, {
-                    color: "green",
+                    color: c,
                     weight: 4,
-                    opacity: 0.7,
-                    dashArray: "5,5"
+                    opacity: 0.75,
+                    // dashArray: "5,5"
                 }).addTo(map).bindPopup(`Service Route: ${key}`);
                 let lineStr = turf.lineString(routeObj.coords);
                 routeObj.stations.forEach(dist => {
@@ -383,9 +406,9 @@ Promise.all([
                     if (snapped && snapped.geometry && snapped.geometry.coordinates) {
                         let coord = snapped.geometry.coordinates;
                         L.circleMarker([coord[1], coord[0]], {
-                            radius: 4,
-                            color: "red",
-                            fillOpacity: 1
+                            radius: 2,
+                            color: "black",
+                            fillOpacity: 0.6
                         }).addTo(map).bindPopup(`<b>Station on ${key}</b><br>Distance: ${dist} m`);
                     }
                 });

@@ -25,7 +25,11 @@
         "km": "km",
         "line-info": "Line Information",
         "simulation-speed": "Simulation Speed",
+        "usage-disclaimer": "For usage instructions, disclaimers and more information, see the README",
+        "seconds": "1 second",
+        "minutes": "real minutes(s)",
         "freqDisclaimer": "Frequencies and headways given are for the core of a line, in each direction. Actual frequencies may vary.",
+        "readme-link": "https://github.com/OmGaler/MadMetro/blob/master/README.md",
         "timePeriods": {
             "weekday": [{
                     "value": "early_late",
@@ -93,6 +97,10 @@
         "terminus": "תחנה סופית",
         "line-info": "מידע על קווים",
         "simulation-speed": "מהירות הדמיה",
+        "usage-disclaimer": "להוראות שימוש, ויתור ועוד מידע, ראה פה",
+        "seconds": "שנייה",
+        "minutes": "דק' במציאות",
+        "readme-link": "https://github.com/OmGaler/MadMetro/blob/master/README-he.md",
         "timePeriods": {
             "weekday": [{
                     "value": "early_late",

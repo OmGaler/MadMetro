@@ -3,6 +3,82 @@
     width: 100%;
 }
 
+/* Leaflet Zoom Controls Dark Mode */
+body.dark-mode .leaflet-control-zoom {
+    border: 2px solid #333;
+    background-color: rgba(30, 30, 30, 0.8);
+    box-shadow: 0 1px 5px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .leaflet-control-zoom a {
+    background-color: rgba(50, 50, 50, 0.9);
+    color: #ffffff;
+    border-bottom: 1px solid #444;
+}
+
+body.dark-mode .leaflet-control-zoom a:hover {
+    background-color: rgba(70, 70, 70, 0.9);
+    color: #ffffff;
+}
+
+body.dark-mode .leaflet-control-zoom a:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+body.dark-mode .leaflet-control-zoom a:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+/* Ensure text is visible in dark mode */
+body.dark-mode .leaflet-control-zoom-in,
+body.dark-mode .leaflet-control-zoom-out {
+    color: #ffffff !important;
+}
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode #pause,
+body.dark-mode #settings,
+body.dark-mode #darkModeButton,
+body.dark-mode .language-select,
+body.dark-mode .modal-content {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-color: #333;
+}
+body.dark-mode .legend {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .lang-options {
+    background-color: #1e1e1e;
+    border-color: #333;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .lang-option {
+    color: #ffffff;
+}
+
+body.dark-mode input[type="range"] {
+    background-color: #2c2c2c;
+}
+
+
+body.dark-mode .lang-btn {
+    color: #ffffff;
+}
+
+.dark-mode a {
+    color: #ffffff;
+}
+
 .train-marker {
     width: 24px;
     height: 24px;
@@ -84,6 +160,15 @@
     background-color: #fec524;
 }
 
+#darkModeButton {
+    padding: 8px 12px;
+    font-size: 18px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
 #pause {
     position: absolute;
     top: 20px;
@@ -98,6 +183,8 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
+
+
 #settings {
     position: absolute;
     top: 20px;
@@ -110,6 +197,11 @@
     cursor: pointer;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.darkMode {
+    background-color: #121212;
+    color: #ffffff;
 }
 
 .language-select {
@@ -179,6 +271,12 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
+/* .dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+} */
+
+
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
@@ -187,6 +285,7 @@
     width: 80%;
     border-radius: 4px;
 }
+
 
 .speed-controls {
     display: flex;
@@ -278,22 +377,22 @@
     background-color: #f7f7f7;
     transition: background-color 0.3s;
     user-select: none;
-  }
-  
-  .radio-button span {
-    display: block;
-    padding: 8px 12px;
-  }
-  
-  .radio-button:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .radio-button input {
-    display: none;
-  }
+}
+
+.radio-button span {
+display: block;
+padding: 8px 12px;
+}
+
+.radio-button:hover {
+background-color: #e0e0e0;
+}
+
+.radio-button input {
+display: none;
+}
 /*   
-  .radio-button input:checked + span {
+.radio-button input:checked + span {
     background-color: #007bff;
     color: #fff;
     border-radius: 4px;
@@ -320,4 +419,11 @@
     grid-auto-flow: column;
     gap: 10px;
     }
+}
+
+
+/* Slider Styling */
+input[type="range"] {
+    width: 60%;
+    margin-top: 10px;
 }

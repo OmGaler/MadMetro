@@ -53,7 +53,7 @@ Then open http://localhost:8040 in your browser.
   Pan and zoom using your mouse or touch gestures.
 - Simulation Controls:
   
-  Pause/Play: Toggle the simulation with the pause/play button (top right).
+  Pause/Play: Toggle the simulation with the pause/play button (top right), or by pressing 'p' or 'space'.
 - Schedule Settings: Change the service day and time period directly from the settings modal.
   
   Advanced Settings: Access further simulation parameters, such as simulation speed, via the settings modal.
