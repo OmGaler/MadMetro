@@ -1,182 +1,200 @@
 {
     "en": {
-        "title": "MadMetro: Gush Dan Mass Transit Simulator",
-        "destination": "Destination",
-        "next-stop": "Next Station",
-        "settings": "Settings",
+        "appearance": "Appearance",
         "close": "Close",
+        "dark-mode": "Dark Mode",
+        "dark-mode-detail": "Switch between light and dark themes",
+        "day": "Day",
+        "day-select-detail": "Choose between weekday and weekend service",
+        "day-selection": "Day Selection",
+        "daytime": "Daytime",
+        "destination": "Destination",
+        "early_late": "Early Mornings/Late Evenings",
+        "early-morning": "Early morning",
+        "erev-sh": "09:00 - 1 hour before Shabbat",
+        "evening": "Evening",
+        "evening-peak": "Evening peak",
+        "freqDisclaimer": "Frequencies and headways given are for the core of a line, in each direction. Actual frequencies may vary.",
+        "frequency": "Frequency",
+        "friday": "Friday",
+        "headway": "Headway",
+        "km": "km",
+        "late-night": "Late night",
+        "length": "Length",
+        "light-rail": "Light Rail",
+        "line-details": "Line Details",
+        "line-info": "Line Information",
+        "metro": "Metro",
+        "midday": "Midday",
+        "mins": "mins",
+        "minutes": "real minutes(s)",
+        "more-info": "More Info",
+        "morning_evening": "Mornings/Evenings",
+        "morning-peak": "Morning peak",
+        "motzash": "Post-Shabbat",
+        "motzei": "1 hour after Shabbat – 22:00",
+        "next-stop": "Next Station",
+        "peaks": "Peaks",
+        "readme-link": "https://github.com/OmGaler/MadMetro/blob/master/README.md",
+        "saturday": "Saturday",
+        "seconds": "1 second",
+        "service-id": "Service Identifier",
+        "settings": "Settings",
+        "simulation": "Simulation",
+        "simulation-speed": "Simulation Speed",
+        "stations": "Stations",
+        "terminus": "Terminus",
+        "time-select-detail": "Choose service time period",
+        "time-selection": "Time Period",
+        "timePeriods": {
+            "weekday": [
+                {
+                    "text": "Early Morning/Late Night",
+                    "value": "early_late"
+                },
+                {
+                    "text": "Morning/Evening",
+                    "value": "morning_evening"
+                },
+                {
+                    "text": "Morning/Evening Peak",
+                    "value": "peaks"
+                },
+                {
+                    "text": "Midday",
+                    "value": "midday"
+                }
+            ],
+            "weekend": [
+                {
+                    "text": "Early Morning (F)",
+                    "value": "early"
+                },
+                {
+                    "text": "Morning Peak (F)",
+                    "value": "morning_peak"
+                },
+                {
+                    "text": "Midday",
+                    "value": "midday"
+                },
+                {
+                    "text": "1hr after Sh-22:00",
+                    "value": "evening"
+                },
+                {
+                    "text": "Late Night (S)",
+                    "value": "late"
+                }
+            ]
+        },
+        "times": "Times",
+        "title": "MadMetro: Gush Dan Mass Transit Simulator",
+        "toggle-routes": "Show Stations & Routes",
+        "toggle-routes-detail": "Display stations and route information on the map",
+        "tph": "tph",
+        "tphLegend": "Trains per Hour (tph)",
+        "usage-disclaimer": "For usage instructions, disclaimers and more information, see the README",
         "weekday": "Weekday (Su-Th)",
         "weekend": "Weekend (F-S)",
-        "early_late": "Early Mornings/Late Evenings",
-        "morning_evening": "Mornings/Evenings",
-        "midday": "Midday",
-        "peaks": "Peaks",
-
-        "tphLegend": "Trains per Hour (tph)",
-        "tph": "tph",
-        "light-rail": "Light Rail",
-        "metro": "Metro",
-        "terminus": "Terminus",
-        "frequency": "Frequency",
-        "stations": "Stations",
-        "length": "Length",
-        "headway": "Headway",
-        "mins": "mins",
-        "km": "km",
-        "line-info": "Line Information",
-        "simulation-speed": "Simulation Speed",
-        "usage-disclaimer": "For usage instructions, disclaimers and more information, see the README",
-        "seconds": "1 second",
-        "minutes": "real minutes(s)",
-        "freqDisclaimer": "Frequencies and headways given are for the core of a line, in each direction. Actual frequencies may vary.",
-        "readme-link": "https://github.com/OmGaler/MadMetro/blob/master/README.md",
-        "simulation": "Simulation",
-        "appearance": "Appearance",
-        "line-details": "Line Details",
-        "more-info": "More Info",
-        "day": "Day",
-        "service-id": "Service Identifier",
-        "times": "Times",
-        "wkday": "Weekday (Su-Th)",
-        "early-morning": "Early morning",
-        "morning-peak": "Morning peak",
-        "daytime": "Daytime",
-        "evening-peak": "Evening peak",
-        "evening": "Evening",
-        "late-night": "Late night",
-        "friday": "Friday",
-        "saturday": "Saturday",
-        "motzash": "Post-Shabbat",
-        "erev-sh": "09:00 - 1 hour before Shabbat",
-        "motzei": "1 hour after Shabbat – 22:00",
-        "timePeriods": {
-            "weekday": [{
-                    "value": "early_late",
-                    "text": "Early Morning/Late Night"
-                },
-                {
-                    "value": "morning_evening",
-                    "text": "Morning/Evening"
-                },
-                {
-                    "value": "peaks",
-                    "text": "Morning/Evening Peak"
-                },
-                {
-                    "value": "midday",
-                    "text": "Midday"
-                }
-            ],
-            "weekend": [{
-                    "value": "early",
-                    "text": "Early Morning (F)"
-                },
-                {
-                    "value": "morning_peak",
-                    "text": "Morning Peak (F)"
-                },
-                {
-                    "value": "midday",
-                    "text": "Midday"
-                },
-                {
-                    "value": "evening",
-                    "text": "1hr after Sh-22:00"
-                },
-                {
-                    "value": "late",
-                    "text": "Late Night (S)"
-                }
-            ]
-        }
-
+        "wkday": "Weekday (Su-Th)"
     },
     "he": {
-        "title": "מדמטרו: מדמה תחב\"צ באזור גוש דן",
-        "destination": "יעד",
-        "next-stop": "התחנה הבאה",
-        "settings": "הגדרות",
-        "close": "סגור",
-        "weekday": "ימי חול",
-        "weekend": "סופי שבוע",
-        "midday": "צהריים",
-        "peaks": "שעות שיא",
-        "tph": "רל\"ש",
-        "tphLegend": "(רל\"/ש) רכבות לשעה",
-        "frequency": "תדירות",
-        "stations": "תחנות",
-        "length": "אורך",
-        "headway": "מרווח",
-        "mins": "דק'",
-        "km": "ק\"מ",
-        "freqDisclaimer": "התדירויות והמרווחים המוצגים הם לליבת הקו בכיוון אחד בלבד. תדירויות בפועל עשויות להשתנות.",
-        "light-rail": "רכבת קלה",
-        "metro": "מטרו",
-        "terminus": "תחנה סופית",
-        "line-info": "מידע על קווים",
-        "simulation-speed": "מהירות הדמיה",
-        "usage-disclaimer": "להוראות שימוש, ויתור ועוד מידע, ראה פה",
-        "seconds": "שנייה",
-        "minutes": "דק' במציאות",
-        "readme-link": "https://github.com/OmGaler/MadMetro/blob/master/README-he.md",
-        "day": "יום",
-        "service-id": "תיאור שירות",
-        "times": "שעות",
-        "wkday": "ימי חול (א'-ה')",
-        "early-morning": "בקרים מוקדמים",
-        "morning-peak": "שיא בוקר",
-        "daytime": "צהריים",
-        "evening-peak": "שיא ערב",
-        "evening": "ערבים",
-        "late-night": "לילות",
-        "friday": "ששי",
-        "saturday": "שבת",
-        "motzash": "מוצ\"ש",
-        "erev-sh": "09:00 - שעה לפני שבת",
-        "motzei": "שעה אחר צאת שבת - 22:00",
-        "simulation": "הדמיה",
         "appearance": "??",
+        "close": "סגור",
+        "dark-mode": "תצוגה כהה",
+        "dark-mode-detail": "החלף ביו תצוגה כהה ובהירה",
+        "day": "יום",
+        "day-select-detail": "בחר בשירות יום חול/סופ\"ש",
+        "day-selection": "בחר יום",
+        "daytime": "צהריים",
+        "destination": "יעד",
+        "early-morning": "בקרים מוקדמים",
+        "erev-sh": "09:00 - שעה לפני שבת",
+        "evening": "ערבים",
+        "evening-peak": "שיא ערב",
+        "freqDisclaimer": "התדירויות והמרווחים המוצגים הם לליבת הקו בכיוון אחד בלבד. תדירויות בפועל עשויות להשתנות.",
+        "frequency": "תדירות",
+        "friday": "ששי",
+        "headway": "מרווח",
+        "km": "ק\"מ",
+        "late-night": "לילות",
+        "length": "אורך",
+        "light-rail": "רכבת קלה",
         "line-details": "פרטי הקווים",
+        "line-info": "מידע על קווים",
+        "metro": "מטרו",
+        "midday": "צהריים",
+        "mins": "דק'",
+        "minutes": "דק' במציאות",
         "more-info": "מידע נוסף",
+        "morning-peak": "שיא בוקר",
+        "motzash": "מוצ\"ש",
+        "motzei": "שעה אחר צאת שבת - 22:00",
+        "next-stop": "התחנה הבאה",
+        "peaks": "שעות שיא",
+        "readme-link": "https://github.com/OmGaler/MadMetro/blob/master/README-he.md",
+        "saturday": "שבת",
+        "seconds": "שנייה",
+        "service-id": "תיאור שירות",
+        "settings": "הגדרות",
+        "simulation": "הדמיה",
+        "simulation-speed": "מהירות הדמיה",
+        "stations": "תחנות",
+        "terminus": "תחנה סופית",
+        "time-select-detail": "בחר בתקופת זמן שירות",
+        "time-selection": "בחר שעה",
         "timePeriods": {
-            "weekday": [{
-                    "value": "early_late",
-                    "text": "בקרים מוקדמים/לילות"
+            "weekday": [
+                {
+                    "text": "בקרים מוקדמים/לילות",
+                    "value": "early_late"
                 },
                 {
-                    "value": "morning_evening",
-                    "text": "בקרים/ערבים"
+                    "text": "בקרים/ערבים",
+                    "value": "morning_evening"
                 },
                 {
-                    "value": "peaks",
-                    "text": "שעות שיא"
+                    "text": "שעות שיא",
+                    "value": "peaks"
                 },
                 {
-                    "value": "midday",
-                    "text": "צהריים"
+                    "text": "צהריים",
+                    "value": "midday"
                 }
             ],
-            "weekend": [{
-                    "value": "early",
-                    "text": "בוקר מוקדם (ו)"
+            "weekend": [
+                {
+                    "text": "בוקר מוקדם (ו)",
+                    "value": "early"
                 },
                 {
-                    "value": "morning_peak",
-                    "text": "שיא בוקר (ש)"
+                    "text": "שיא בוקר (ש)",
+                    "value": "morning_peak"
                 },
                 {
-                    "value": "midday",
-                    "text": "צהריים"
+                    "text": "צהריים",
+                    "value": "midday"
                 },
                 {
-                    "value": "evening",
-                    "text": "מוצ\"ש"
+                    "text": "מוצ\"ש",
+                    "value": "evening"
                 },
                 {
-                    "value": "late",
-                    "text": "מוצ\"ש מאוחר"
+                    "text": "מוצ\"ש מאוחר",
+                    "value": "late"
                 }
             ]
-        }
+        },
+        "times": "שעות",
+        "title": "מדמטרו: מדמה תחב\"צ באזור גוש דן",
+        "toggle-routes": "הצג תחנות ומסלולים",
+        "toggle-routes-detail": "הצג תחנות ומסלולים על המפה",
+        "tph": "רל\"ש",
+        "tphLegend": "(רל\"/ש) רכבות לשעה",
+        "usage-disclaimer": "להוראות שימוש, ויתור ועוד מידע, ראה פה",
+        "weekday": "ימי חול",
+        "weekend": "סופי שבוע",
+        "wkday": "ימי חול (א'-ה')"
     }
 }
