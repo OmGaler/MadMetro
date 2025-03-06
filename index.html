@@ -23,7 +23,7 @@
             <span class="bullet one">1</span>
             <span class="bullet two">2</span>
             <span class="bullet three">3</span>
-            <div data-i18n="metro" , id="metroLegend"></div>
+            <div data-i18n="metro" id="metroLegend"></div>
 
         </div>
     </div>
@@ -33,6 +33,7 @@
     <button id="settings">
         <ion-icon name="settings-outline"></ion-icon>
     </button>
+    
 
     <!-- <div id="simulationControls">
         <label for="dayTypeSelect"><ion-icon name="calendar"></ion-icon></label>
@@ -40,7 +41,6 @@
             <option data-i18n="weekday" value="weekday"></option>
             <option data-i18n="weekend" value="weekend"></option>
         </select>
-        //TODO: REPLACE with icon
         <label for="timePeriodSelect"><ion-icon name="time-outline"></ion-icon></label>
         <select id="timePeriodSelect"></select>
 
@@ -52,46 +52,78 @@
                 // Update options when selection changes
                 dayTypeSelect.addEventListener("change", updateTimePeriodOptions);
             });
-        </script>
-    </div> -->
-    <!-- Settings Modal -->
+        </script> -->
     <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <span class="modal-title" data-i18n="settings">Settings</span>
+                <span class="close">&times;</span>
+            </div>
             <!-- Tab Headers -->
             <div class="tabs">
-                <button class="tab-link active" data-tab="simulationTab" data-i18n="simulation">Simulation</button>
-                <button class="tab-link" data-tab="appearanceTab" data-i18n="appearance">Appearance</button>
-                <button class="tab-link" data-tab="lineDetailsTab" data-i18n="line-details">Line Details</button>
-                <button class="tab-link" data-tab="moreInfoTab" data-i18n="more-info">More Info</button>
+                <button class="tab-link active" data-tab="simulationTab"> 
+                    <ion-icon name="map-outline"></ion-icon>
+                    <span class="tab-text" data-i18n="simulation">
+                        Simulation
+                    </span>               
+                </button>
+                <button class="tab-link" data-tab="appearanceTab" >
+                    <ion-icon name="sunny-outline"></ion-icon>
+                    <span class="tab-text" data-i18n="appearance">
+                        Appearance
+                    </span> 
+                </button>
+                <button class="tab-link" data-tab="lineDetailsTab">
+                    <ion-icon name="subway-outline"></ion-icon>
+                    <span class="tab-text" data-i18n="line-details">
+                        Line Details
+                    </span> 
+                </button>
+                <button class="tab-link" data-tab="moreInfoTab">
+                    <ion-icon name="information-circle-outline"></ion-icon>
+                    <span class="tab-text" data-i18n="more-info">
+                        More Info
+                    </span> 
+                </button>
             </div>
-
             <!-- Tab Content -->
+            <!-- Simulation tab -->
             <div class="tab-content active" id="simulationTab">
                 <div class="simulation-grid">
                     <div class="simulation-controls-column">
                         <!-- Day & Time Controls -->
-                        <div id="simulationControls">
-                            <label for="dayTypeSelect">
+                        <!-- <p class="toggle-info">Select service level:</p> -->
+                        <div class="toggle-option">
+                            <div id="simulationControls">
+                                <label for="dayTypeSelect">
                                 <ion-icon name="calendar"></ion-icon>
-                            </label>
-                            <select id="dayTypeSelect">
-                                <option data-i18n="weekday" value="weekday"></option>
-                                <option data-i18n="weekend" value="weekend"></option>
-                            </select>
-                            <label for="timePeriodSelect">
-                                <ion-icon name="time-outline"></ion-icon>
-                            </label>
-                            <select id="timePeriodSelect"></select>
+                                </label>
+                                <div class="toggle-container">
+                                    <select id="dayTypeSelect">
+                                        <option data-i18n="weekday" value="weekday"></option>
+                                        <option data-i18n="weekend" value="weekend"></option>
+                                    </select>
+                                </div>
+                                <label for="timePeriodSelect">
+                                    <ion-icon name="time-outline"></ion-icon>
+                                </label>
+                                <select id="timePeriodSelect"></select>
+                            </div>
                         </div>
-
-                        <h3 data-i18n="simulation-speed">Simulation Speed</h3>
-                        <!-- Simulation Speed Slider (discrete values: 30, 60, 180, 300, 420) -->
-                        <input type="range" id="speedSlider" min="0" max="4" step="1" value="1">
-                        <span id="speedValue"></span>
-                        <p id="realTimeInfo">1 second = 1 real minute</p>
+                        <div class="toggle-option">
+                            <ion-icon name="options-outline"></ion-icon>
+                            <div class="toggle-info">
+                                <h3 data-i18n="simulation-speed">Simulation Speed</h3>
+                                <p class="toggle-description" id="realTimeInfo">1 second = 1 real minute</p>
+                                <div class="slider-container">
+                                    <!-- Simulation Speed Slider (discrete values: 30, 60, 180, 300, 420) -->
+                                    <input type="range" id="speedSlider" min="0" max="4" step="1" value="1">
+                                    <span id="speedValue"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="simulation-table-column">
@@ -165,24 +197,34 @@
                     </div>
                 </div>
             </div>
-
-            <div class="tab-content" id="appearanceTab">
-                <h3 data-i18n="dark-mode">Dark Mode</h3>
-                <!-- Dark Mode Toggle as an Icon Button -->
-                <button id="darkModeButton">
+            <!-- Appearance tab -->
+            <div class="tab-content" id="appearanceTab"> 
+                <!-- Dark Mode Section -->
+                <div class="toggle-option">
                     <ion-icon name="contrast-outline"></ion-icon>
-                </button>
-                <!-- Toggle for showing/hiding stations and routes -->
-                <div class="toggle-routes">
-                    <label for="toggleRoutes" data-i18n="show-routes">Show Stations & Routes</label>
-                    <input type="checkbox" id="toggleRoutes" checked>
-                    <!-- <input type="checkbox" id="toggleRoutes"> -->
-                    <!-- TODO: set default to off-->
+                    <div class="toggle-info">
+                        <h3 data-i18n="dark-mode">Dark Mode</h3>
+                        <p class="toggle-description">Switch between light and dark themes</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="darkModeButton">
+                        <span class="slider round"></span>
+                    </label>
                 </div>
-                <!-- TODO: add languages -->
-                <!-- Additional appearance options can go here -->
+            
+                <!-- Show Stations & Routes Toggle Section -->
+                <div class="toggle-option">
+                    <ion-icon name="git-merge-outline"></ion-icon>
+                    <div class="toggle-info">
+                        <h3 data-i18n="show-routes">Show Stations & Routes</h3>
+                        <p class="toggle-description">Display stations and route information on the map</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="toggleRoutes" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
             </div>
-
             <div class="tab-content" id="lineDetailsTab">
                 <h3 data-i18n="line-info">Line Information</h3>
                 <div id="lineContainer">
@@ -207,142 +249,6 @@
         </div>
     </div>
 
-    <!-- <style>
-        /* Styling for the two-column layout in the simulation tab */
-        .simulation-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .simulation-controls-column {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        #simulationControls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        #serviceLevelsTable {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        #serviceLevelsTable th, 
-        #serviceLevelsTable td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        #serviceLevelsTable th {
-            background-color: #f2f2f2;
-        }
-
-        #speedSlider {
-            width: 100%;
-            margin: 10px 0;
-        }
-    </style> -->
-
-
-    <!-- <p data-i18n="freqDisclaimer"></p>
-            <!--TODO: move time settings here by uncommenting -->
-    <!-- <div id="simulationControls">
-                <label for="dayTypeSelect"><ion-icon name="calendar"></ion-icon></label>
-                <select id="dayTypeSelect">
-                    <option data-i18n="weekday" value="weekday"></option>
-                    <option data-i18n="weekend" value="weekend"></option>
-                </select>
-                <label for="timePeriodSelect"><ion-icon name="time-outline"></ion-icon></label>
-                <select id="timePeriodSelect"></select>
-        
-                <script>
-                    const dayTypeSelect = document.getElementById("dayTypeSelect");
-                    document.addEventListener("DOMContentLoaded", function () {
-                        const timePeriodSelect = document.getElementById("timePeriodSelect");
-        
-                        // Update options when selection changes
-                        dayTypeSelect.addEventListener("change", updateTimePeriodOptions);
-                    });
-                </script>
-            </div>
-                <h3 data-i18n="simulation-speed"></h3>
-                <input type="range" id="speedSlider" min="0" max="4" step="1" value="1">
-                <span id="speedValue"></span> 
-                <p id="realTimeInfo">1 second = 1 real minute(s)</p>
-            
-                <h3>Dark Mode</h3>
-                <button id="darkModeButton">
-                    <ion-icon name="contrast-outline"></ion-icon>
-                </button> -->
-
-
-    <!-- <div id="simulationSpeedContainer" style="margin-top: 20px;">
-                <h3 data-i18n="simulation-speed">Simulation Speed</h3>
-                <div id="speedOptions" class="radio-buttons">
-                <label class="radio-button">
-                    <input type="radio" name="simulationSpeed" value="30">
-                    <span>1 sec = 30 sec</span>
-                </label>
-                <label class="radio-button">
-                    <input type="radio" name="simulationSpeed" value="60" checked>
-                    <span>1 sec = 1 min</span>
-                </label>
-                <label class="radio-button">
-                    <input type="radio" name="simulationSpeed" value="180">
-                    <span>1 sec = 3 mins</span>
-                </label>
-                <label class="radio-button">
-                    <input type="radio" name="simulationSpeed" value="300">
-                    <span>1 sec = 5 mins</span>
-                </label>
-                <label class="radio-button">
-                    <input type="radio" name="simulationSpeed" value="420">
-                    <span>1 sec = 7 mins</span>
-                </label>
-                </div>
-            </div> -->
-    <!-- <div id="timeDaySettings" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;"></div> -->
-    <!-- <p>Configure simulation parameters below.</p><div id="simulationControls">
-                <select id="dayTypeSelect">
-                    <option data-i18n="weekday" value="weekday"></option>
-                    <option data-i18n="weekend" value="weekend"></option>
-                </select>
-                //TODO: REPLACE with icon
-                <label for="timePeriodSelect">Time:</label>
-                <select id="timePeriodSelect"></select>
-        
-                <script>
-                    document.addEventListener("DOMContentLoaded", function () {
-                        const dayTypeSelect = document.getElementById("dayTypeSelect");
-                        const timePeriodSelect = document.getElementById("timePeriodSelect");
-        
-                        // Update options when selection changes
-                        dayTypeSelect.addEventListener("change", updateTimePeriodOptions);
-                    });
-                </script>
-                    <div style="display: flex; gap: 5px;">
-                    <ion-icon name="calendar-outline" style="font-size: 24px;"></ion-icon>
-                    <ion-icon name="time-outline" style="font-size: 24px;"></ion-icon>
-                </div>
-                </div>
-            </div> -->
-    <!-- Line Information Section -->
-    <!-- <h3 data-i18n="line-info">Line Information</h3>
-            <div id="lineContainer"></div>
-            <div id="lineInfo"> -->
-    <!-- This section will be populated dynamically -->
-    <!-- Usage instructions -->
-    <!-- </div> -->
-    <!-- <a id="readmelink" href="https://github.com/OmGaler/MadMetro/blob/master/README.md" data-i18n="usage-disclaimer"></a> -->
-    <!-- </div> -->
-    <!-- </div> -->
     <div id="map"></div>
     <!-- Train Info Pop-Up -->
     <div id="trainPopup" class="train-popup">

@@ -36,6 +36,7 @@ body.dark-mode .leaflet-control-zoom-in,
 body.dark-mode .leaflet-control-zoom-out {
     color: #ffffff !important;
 }
+
 body.dark-mode {
     background-color: #121212;
     color: #ffffff;
@@ -44,6 +45,10 @@ body.dark-mode {
 body.dark-mode #pause,
 body.dark-mode #settings,
 body.dark-mode #darkModeButton,
+body.dark-mode .tab-link,
+body.dark-mode .toggle-info p,
+body.dark-mode .toggle-info h3,
+body.dark-mode .toggle-option ion-icon,
 body.dark-mode .close,
 body.dark-mode .language-select,
 body.dark-mode .modal-content {
@@ -51,6 +56,7 @@ body.dark-mode .modal-content {
     color: #ffffff;
     border-color: #333;
 }
+
 body.dark-mode .legend {
     background-color: #1e1e1e;
     color: #ffffff;
@@ -169,6 +175,21 @@ body.dark-mode .lang-btn {
     cursor: pointer;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    /* Pushes the title to the left and close button to the right */
+    align-items: center;
+    /* Vertically centers the content */
+    padding-bottom: 10px;
+    /* margin-bottom: 20px; */
+}
+
+.modal-title {
+    font-size: 32px;
+    font-weight: bold;
 }
 
 .close {
@@ -296,6 +317,7 @@ body.dark-mode .lang-btn {
     border: 1px solid #888;
     width: 80%;
     border-radius: 4px;
+    overflow: auto;
 }
 
 
@@ -382,6 +404,7 @@ body.dark-mode .lang-btn {
     gap: 10px;
     margin-bottom: 20px;
 }
+
 .radio-button {
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -392,17 +415,18 @@ body.dark-mode .lang-btn {
 }
 
 .radio-button span {
-display: block;
-padding: 8px 12px;
+    display: block;
+    padding: 8px 12px;
 }
 
 .radio-button:hover {
-background-color: #e0e0e0;
+    background-color: #e0e0e0;
 }
 
 .radio-button input {
-display: none;
+    display: none;
 }
+
 /*   
 .radio-button input:checked + span {
     background-color: #007bff;
@@ -413,7 +437,7 @@ display: none;
     background-color: #007bff;
     color: #fff;
     border-color: #007bff;
-  }
+}
 
 #lineContainer {
     display: flex;
@@ -423,22 +447,21 @@ display: none;
 
 /* For wider screens, switch to a grid layout */
 @media (min-width: 750px) {
-#lineContainer {
-    display: grid;
-    /* We want 3 rows so that the first three items are in the first column and the next three in the second */
-    grid-template-rows: repeat(3, auto);
-    /* Use grid-auto-flow: column to fill columns */
-    grid-auto-flow: column;
-    gap: 10px;
+    #lineContainer {
+        display: grid;
+        /* We want 3 rows so that the first three items are in the first column and the next three in the second */
+        grid-template-rows: repeat(3, auto);
+        /* Use grid-auto-flow: column to fill columns */
+        grid-auto-flow: column;
+        gap: 10px;
     }
 }
 
-
-/* Slider Styling */
+/* 
 input[type="range"] {
     width: 60%;
     margin-top: 10px;
-}
+} */
 
 /* Modal Base Styling */
 .modal {
@@ -450,95 +473,120 @@ input[type="range"] {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
-background-color: #fefefe;
-margin: 5% auto;
-padding: 20px;
-border: 1px solid #888;
-width: 80%;
-border-radius: 4px;
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 4px;
 }
 
 /* Tabs Container */
 .tabs {
-display: flex;
-gap: 5px;
-margin-bottom: 15px;
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
 }
 
 /* Tab Links */
 .tab-link {
-flex: 1;
-padding: 10px;
-background: #f7f7f7;
-border: 1px solid #ccc;
-cursor: pointer;
-text-align: center;
-border-radius: 4px;
-transition: background 0.3s;
+    flex: 1;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: none;
+    /* Create space for an underline */
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    text-align: center;
+    /* Only round the top corners so the underline is flush */
+    border-radius: 4px 4px 0 0;
+    transition: color 0.3s, border-bottom 0.3s;
 }
 
 .tab-link:hover {
-background: #e0e0e0;
+    color: #007bff;
 }
 
 .tab-link.active {
-background: #007bff;
-color: #fff;
-border-color: #007bff;
+    color: #007bff;
+    font-weight: bold;
+    background: #fff;
+    border-bottom: 2px solid #007bff;
+}
+
+body.dark-mode .tab-link.active {
+    color: #007bff;
+    font-weight: bold;
+    border-bottom: 2px solid #007bff;
+}
+
+body.dark-mode .tab-link:hover {
+    color: #007bff;
+}
+
+.tab-link ion-icon {
+    display: inline-flex;
+    vertical-align: middle;
+
+    /* margin-right: 3px; */
+    font-size: 1.8em;
 }
 
 /* Tab Content */
 .tab-content {
-display: none;
+    display: none;
+    overflow: auto;
 }
 
 .tab-content.active {
-display: block;
+    display: block;
 }
 
 /* Dark Mode Button for Appearance Tab */
 #darkModeButton {
-padding: 8px;
-font-size: 24px;
-background-color: #ffffff;
-border: 1px solid #ccc;
-cursor: pointer;
-border-radius: 5px;
-display: flex;
-align-items: center;
-justify-content: center;
+    padding: 8px;
+    font-size: 24px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Ionicons inside button */
 #darkModeButton ion-icon {
-font-size: 24px;
-color: #333;
+    font-size: 24px;
+    color: #333;
 }
 
 /* Dark Mode Overrides */
 .dark-mode .modal-content {
-background-color: #1e1e1e;
-color: #ffffff;
-border: 1px solid #444;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #444;
 }
 
 .dark-mode #darkModeButton {
-background-color: #333333;
-border: 1px solid #444;
+    background-color: #333333;
+    border: 1px solid #444;
 }
 
 .dark-mode #darkModeButton ion-icon {
-color: #ffffff;
+    color: #ffffff;
 }
 
 /* Simulation Speed Slider Styling */
 input[type="range"] {
-width: 60%;
-margin-top: 10px;
+    width: 60%;
+    margin-top: 10px;
 }
 
 .simulation-grid {
@@ -565,21 +613,26 @@ margin-top: 10px;
     border-collapse: collapse;
 }
 
-#serviceLevelsTable th, 
+#serviceLevelsTable th,
 #serviceLevelsTable td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
-#serviceLevelsTable th:first-child, 
+#serviceLevelsTable th:first-child,
 #serviceLevelsTable td:first-child {
-    white-space: nowrap; /* Prevents table text from wrapping */
+    white-space: nowrap;
+    /* Prevents table text from wrapping */
 }
 
 
 #serviceLevelsTable th {
     background-color: #f2f2f2;
+}
+
+body.dark-mode #serviceLevelsTable th {
+    background-color: #1f1f1f;
 }
 
 #speedSlider {
@@ -590,13 +643,16 @@ margin-top: 10px;
 /* Responsive Layout */
 @media (max-width: 768px) {
     .simulation-grid {
-        grid-template-columns: 1fr; /* Switch to a single column */
+        grid-template-columns: 1fr;
+        /* Switch to a single column */
     }
 }
+
 /* Ensure the grid becomes a single column on narrow screens */
 @media (max-width: 850px) {
     .simulation-grid {
-        grid-template-columns: 1fr; /* Single column */
+        grid-template-columns: 1fr;
+        /* Single column */
     }
 }
 
@@ -605,7 +661,7 @@ html[dir="rtl"] #serviceLevelsTable {
     text-align: right;
 }
 
-html[dir="rtl"] #serviceLevelsTable th, 
+html[dir="rtl"] #serviceLevelsTable th,
 html[dir="rtl"] #serviceLevelsTable td {
     text-align: right;
 }
@@ -614,145 +670,165 @@ html[dir="rtl"] #serviceLevelsTable td {
 /* Prevent elements from overflowing */
 @media (max-width: 480px) {
     #serviceLevelsTable {
-        font-size: 14px; /* Reduce font size for readability */
+        font-size: 14px;
+        /* Reduce font size for readability */
     }
 
-    #serviceLevelsTable th, 
+    #serviceLevelsTable th,
     #serviceLevelsTable td {
-        padding: 6px; /* Reduce padding for better fit */
-        word-break: break-word; /* Prevent text from overflowing */
+        padding: 6px;
+        /* Reduce padding for better fit */
+        word-break: break-word;
+        /* Prevent text from overflowing */
     }
 
     #simulationControls {
-        flex-direction: column; /* Stack controls vertically */
-        align-items: stretch; /* Full width */
+        flex-direction: column;
+        /* Stack controls vertically */
+        align-items: stretch;
+        /* Full width */
     }
 
     select {
-        width: 100%; /* Make dropdowns and buttons full width */
+        width: 100%;
+        /* Make dropdowns and buttons full width */
     }
 }
-/* Enhanced Tabs Container */
-.tabs {
+
+/* Appearance Tab - Toggle Option Layout */
+.toggle-option {
     display: flex;
-    gap: 0;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid #e0e0e0;
-    background-color: #f5f5f5;
+    align-items: center;
+    padding: 10px 0;
+    justify-content: space-between;
+    border-bottom: 1px solid #e0e0e0;
 }
 
-/* Tab Links */
-.tab-link {
-    flex: 1;
-    padding: 12px 16px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    text-align: center;
-    font-weight: 500;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    position: relative;
-    color: #555;
-    border-right: 1px solid #e0e0e0;
+.toggle-option:last-child {
+    border-bottom: none;
 }
 
-.tab-link:last-child {
-    border-right: none;
-}
-
-.tab-link:hover {
-    background: #e9e9e9;
+/* Icon styling */
+.toggle-option ion-icon {
+    font-size: 24px;
+    margin-right: 15px;
     color: #333;
 }
 
-.tab-link.active {
-    background: #007bff;
-    color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+/* Container for text and switch */
+.toggle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
 }
 
-/* Indicator line for active tab */
-.tab-link.active::after {
-    content: '';
+/* Text Info Styling */
+
+.toggle-info {
+    justify-content: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.toggle-info h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.toggle-description {
+    font-size: 14px;
+    color: #666;
+    margin-top: 2px;
+}
+
+/* Ensure the switch is vertically centered */
+.switch {
+    display: flex;
+    align-items: center;
+}
+
+/* Button for Dark Mode Toggle */
+button#darkModeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 24px;
+}
+
+/* Styling for the Show Stations & Routes toggle */
+#toggleRoutes {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* Optional additional styling for the Line Details Tab */
+#lineDetailsTab {
+    padding: 10px;
+}
+
+#lineContainer {
+    margin-top: 10px;
+}
+
+
+/* Title and subtitle styling */
+.toggle-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.toggle-subtitle {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Toggle Switch Styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
     position: absolute;
-    bottom: 0;
+    cursor: pointer;
+    top: 0;
     left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: #0056b3;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
 }
 
-/* Tab Content */
-.tab-content {
-    display: none;
-    animation: fadeIn 0.3s ease;
-    padding: 5px;
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
 }
 
-.tab-content.active {
-    display: block;
+.switch input:checked+.slider {
+    background-color: #007bff;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Dark Mode Overrides */
-.dark-mode .tabs {
-    border-color: #444;
-    background-color: #2a2a2a;
-}
-
-.dark-mode .tab-link {
-    color: #ccc;
-    border-right-color: #444;
-}
-
-.dark-mode .tab-link:hover {
-    background: #333;
-    color: #fff;
-}
-
-.dark-mode .tab-link.active {
-    background: #0069d9;
-    color: #fff;
-}
-
-.dark-mode .tab-link.active::after {
-    background-color: #004ba0;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .tabs {
-        flex-direction: column;
-        border-radius: 8px;
-    }
-    
-    .tab-link {
-        border-right: none;
-        border-bottom: 1px solid #e0e0e0;
-        text-align: left;
-        padding: 10px 16px;
-    }
-    
-    .tab-link:last-child {
-        border-bottom: none;
-    }
-    
-    .dark-mode .tab-link {
-        border-bottom-color: #444;
-    }
-}
-
-/* For very small screens */
-@media (max-width: 480px) {
-    .tab-link {
-        font-size: 14px;
-        padding: 8px 12px;
-    }
+.switch input:checked+.slider:before {
+    transform: translateX(16px);
 }

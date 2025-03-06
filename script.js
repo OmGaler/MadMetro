@@ -279,6 +279,7 @@ document.getElementById('darkModeButton').addEventListener('click', () => {
 });
 // Load dark mode preference
 if (localStorage.getItem("darkMode") === "enabled") {
+    document.getElementById('darkModeButton').checked = true;
     document.body.classList.add("dark-mode");
 }
 

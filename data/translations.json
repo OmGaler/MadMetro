@@ -33,7 +33,7 @@
         "simulation": "Simulation",
         "appearance": "Appearance",
         "line-details": "Line Details",
-        "other": "Other",
+        "more-info": "More Info",
         "day": "Day",
         "service-id": "Service Identifier",
         "times": "Times",
@@ -137,7 +137,7 @@
         "simulation": "הדמיה",
         "appearance": "??",
         "line-details": "פרטי הקווים",
-        "other": "??",
+        "more-info": "מידע נוסף",
         "timePeriods": {
             "weekday": [{
                     "value": "early_late",
