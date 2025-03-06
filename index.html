@@ -23,8 +23,8 @@
             <span class="bullet one">1</span>
             <span class="bullet two">2</span>
             <span class="bullet three">3</span>
-            <div data-i18n="metro", id="metroLegend"></div>
-            
+            <div data-i18n="metro" , id="metroLegend"></div>
+
         </div>
     </div>
     <button id="pause">
@@ -55,13 +55,205 @@
         </script>
     </div> -->
     <!-- Settings Modal -->
+    <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
         <div class="modal-content">
-            <span class="close" data-i18n="close">&times;</span>
-            <h2 data-i18n="settings"></h2>
-            <p data-i18n="freqDisclaimer"></p>
+            <span class="close">&times;</span>
+
+            <!-- Tab Headers -->
+            <div class="tabs">
+                <button class="tab-link active" data-tab="simulationTab" data-i18n="simulation">Simulation</button>
+                <button class="tab-link" data-tab="appearanceTab" data-i18n="appearance">Appearance</button>
+                <button class="tab-link" data-tab="lineDetailsTab" data-i18n="line-details">Line Details</button>
+                <button class="tab-link" data-tab="moreInfoTab" data-i18n="more-info">More Info</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content active" id="simulationTab">
+                <div class="simulation-grid">
+                    <div class="simulation-controls-column">
+                        <!-- Day & Time Controls -->
+                        <div id="simulationControls">
+                            <label for="dayTypeSelect">
+                                <ion-icon name="calendar"></ion-icon>
+                            </label>
+                            <select id="dayTypeSelect">
+                                <option data-i18n="weekday" value="weekday"></option>
+                                <option data-i18n="weekend" value="weekend"></option>
+                            </select>
+                            <label for="timePeriodSelect">
+                                <ion-icon name="time-outline"></ion-icon>
+                            </label>
+                            <select id="timePeriodSelect"></select>
+                        </div>
+
+                        <h3 data-i18n="simulation-speed">Simulation Speed</h3>
+                        <!-- Simulation Speed Slider (discrete values: 30, 60, 180, 300, 420) -->
+                        <input type="range" id="speedSlider" min="0" max="4" step="1" value="1">
+                        <span id="speedValue"></span>
+                        <p id="realTimeInfo">1 second = 1 real minute</p>
+                    </div>
+
+                    <div class="simulation-table-column">
+                        <table id="serviceLevelsTable">
+                            <!-- TODO: make the table RTL -->
+                            <thead>
+                                <tr>
+                                    <th data-i18n="day">Day</th>
+                                    <th data-i18n="service-id">Service Identifier</th>
+                                    <th data-i18n="times">Times</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td data-i18n="wkday">Weekday</td>
+                                    <td data-i18n="early-morning">Early morning</td>
+                                    <td>05:00-07:00</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td data-i18n="morning-peak">Morning peak</td>
+                                    <td>07:00-09:00</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td data-i18n="daytime">Daytime</td>
+                                    <td>09:00-16:30</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td data-i18n="evening-peak">Evening peak</td>
+                                    <td>16:30-19:00</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td data-i18n="evening">Evening</td>
+                                    <td>19:00-22:00</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td data-i18n="late-night">Late Night</td>
+                                    <td>22:00-01:00</td>
+                                </tr>
+                                <tr>
+                                    <td data-i18n="friday">Friday</td>
+                                    <td data-i18n="early-morning">Early morning</td>
+                                    <td>05:30-07:00</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td data-i18n="morning-peak">Morning peak</td>
+                                    <td>07:00-09:00</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td data-i18n="daytime">Daytime</td>
+                                    <td data-i18n="erev-sh">09:00 - 1 hour before Shabbat</td>
+                                </tr>
+                                <tr>
+                                    <td data-i18n="saturday">Saturday</td>
+                                    <td data-i18n="motzash">Post-Shabbat</td>
+                                    <td data-i18n="motzei">1 hour after Shabbat – 22:00</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td data-i18n="late-night">Late night</td>
+                                    <td>22:00-01:00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="appearanceTab">
+                <h3 data-i18n="dark-mode">Dark Mode</h3>
+                <!-- Dark Mode Toggle as an Icon Button -->
+                <button id="darkModeButton">
+                    <ion-icon name="contrast-outline"></ion-icon>
+                </button>
+                <!-- Toggle for showing/hiding stations and routes -->
+                <div class="toggle-routes">
+                    <label for="toggleRoutes" data-i18n="show-routes">Show Stations & Routes</label>
+                    <input type="checkbox" id="toggleRoutes" checked>
+                    <!-- <input type="checkbox" id="toggleRoutes"> -->
+                    <!-- TODO: set default to off-->
+                </div>
+                <!-- TODO: add languages -->
+                <!-- Additional appearance options can go here -->
+            </div>
+
+            <div class="tab-content" id="lineDetailsTab">
+                <h3 data-i18n="line-info">Line Information</h3>
+                <div id="lineContainer">
+                    <!-- This container will be populated dynamically with line info -->
+                </div>
+            </div>
+
+            <div class="tab-content" id="moreInfoTab">
+                <h3>Keyboard Shortcuts</h3>
+                <ul id="keyboardShortcuts">
+                    <li><strong>P / Space:</strong> Play/Pause simulation</li>
+                    <li><strong>F:</strong> Toggle full screen</li>
+                    <li><strong>S:</strong> Open settings</li>
+                    <li><strong>&gt; / &lt;:</strong> Increase/Decrease simulation speed</li>
+                </ul>
+
+                <h3 data-i18n="more-info">More Information</h3>
+                <p data-i18n="usage-instructions">Usage instructions and additional information.</p>
+                <a id="readmelink" href="https://github.com/OmGaler/MadMetro/blob/master/README.md"
+                    data-i18n="usage-disclaimer">Read the usage disclaimer</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- <style>
+        /* Styling for the two-column layout in the simulation tab */
+        .simulation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .simulation-controls-column {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        #simulationControls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        #serviceLevelsTable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #serviceLevelsTable th, 
+        #serviceLevelsTable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #serviceLevelsTable th {
+            background-color: #f2f2f2;
+        }
+
+        #speedSlider {
+            width: 100%;
+            margin: 10px 0;
+        }
+    </style> -->
+
+
+    <!-- <p data-i18n="freqDisclaimer"></p>
             <!--TODO: move time settings here by uncommenting -->
-            <div id="simulationControls">
+    <!-- <div id="simulationControls">
                 <label for="dayTypeSelect"><ion-icon name="calendar"></ion-icon></label>
                 <select id="dayTypeSelect">
                     <option data-i18n="weekday" value="weekday"></option>
@@ -71,8 +263,8 @@
                 <select id="timePeriodSelect"></select>
         
                 <script>
+                    const dayTypeSelect = document.getElementById("dayTypeSelect");
                     document.addEventListener("DOMContentLoaded", function () {
-                        const dayTypeSelect = document.getElementById("dayTypeSelect");
                         const timePeriodSelect = document.getElementById("timePeriodSelect");
         
                         // Update options when selection changes
@@ -82,17 +274,16 @@
             </div>
                 <h3 data-i18n="simulation-speed"></h3>
                 <input type="range" id="speedSlider" min="0" max="4" step="1" value="1">
-                <!-- <span id="speedValue"></span> -->
+                <span id="speedValue"></span> 
                 <p id="realTimeInfo">1 second = 1 real minute(s)</p>
             
                 <h3>Dark Mode</h3>
                 <button id="darkModeButton">
                     <ion-icon name="contrast-outline"></ion-icon>
-                </button>
-                
-            
-            
-            <!-- <div id="simulationSpeedContainer" style="margin-top: 20px;">
+                </button> -->
+
+
+    <!-- <div id="simulationSpeedContainer" style="margin-top: 20px;">
                 <h3 data-i18n="simulation-speed">Simulation Speed</h3>
                 <div id="speedOptions" class="radio-buttons">
                 <label class="radio-button">
@@ -117,8 +308,8 @@
                 </label>
                 </div>
             </div> -->
-            <!-- <div id="timeDaySettings" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;"></div> -->
-            <!-- <p>Configure simulation parameters below.</p><div id="simulationControls">
+    <!-- <div id="timeDaySettings" style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;"></div> -->
+    <!-- <p>Configure simulation parameters below.</p><div id="simulationControls">
                 <select id="dayTypeSelect">
                     <option data-i18n="weekday" value="weekday"></option>
                     <option data-i18n="weekend" value="weekend"></option>
@@ -142,38 +333,40 @@
                 </div>
                 </div>
             </div> -->
-            <!-- Line Information Section -->
-            <h3 data-i18n="line-info">Line Information</h3>
+    <!-- Line Information Section -->
+    <!-- <h3 data-i18n="line-info">Line Information</h3>
             <div id="lineContainer"></div>
-            <div id="lineInfo">
-            <!-- This section will be populated dynamically -->
-            <!-- Usage instructions -->
-            </div>
-            <!-- TODO: change readme link based on lang  -->
-        
-        <a id="readmelink" href="https://github.com/OmGaler/MadMetro/blob/master/README.md" data-i18n="usage-disclaimer"></a>
-        </div>
-    </div>
+            <div id="lineInfo"> -->
+    <!-- This section will be populated dynamically -->
+    <!-- Usage instructions -->
+    <!-- </div> -->
+    <!-- <a id="readmelink" href="https://github.com/OmGaler/MadMetro/blob/master/README.md" data-i18n="usage-disclaimer"></a> -->
+    <!-- </div> -->
+    <!-- </div> -->
     <div id="map"></div>
     <!-- Train Info Pop-Up -->
     <div id="trainPopup" class="train-popup">
         <div class="train-popup-content">
             <div class="routeBulletHolder">
-                <span class="bullet" id="popupRouteBullet"></span> 
+                <span class="bullet" id="popupRouteBullet"></span>
             </div>
             <div>
-                <strong><p data-i18n="destination" id="popupDestination">*</p></strong>
-                <strong><p data-i18n="next-stop" id="popupNextStop">*</p></strong>
+                <strong>
+                    <p data-i18n="destination" id="popupDestination">*</p>
+                </strong>
+                <strong>
+                    <p data-i18n="next-stop" id="popupNextStop">*</p>
+                </strong>
             </div>
         </div>
     </div>
     <div id="languageSelect" class="language-select">
         <button class="lang-btn">
-        <ion-icon name="globe-outline"></ion-icon>
+            <ion-icon name="globe-outline"></ion-icon>
         </button>
         <div class="lang-options">
-        <button class="lang-option" onclick="updateLanguage('en')">en</button>
-        <button class="lang-option" onclick="updateLanguage('he')">he</button>
+            <button class="lang-option" onclick="updateLanguage('en')">en</button>
+            <button class="lang-option" onclick="updateLanguage('he')">he</button>
         </div>
     </div>
 

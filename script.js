@@ -16,18 +16,29 @@
 
 //TODO: Some sort of bug where switching the service time will not update the trains or settings modal properly
 
+// TODO: on occasion frequencies will not load so default to rush hour
+
 //add (c) on bottom, he
 
 //------------------
 //TODO: settings screen-
-//
-//
-//languages
-//link to readme for usage instructions
-//disclaimers
-//data from geo.mot.gov.il, openstreetmap
-//this is a simulation, not real data
-//link to the readme, which contains all the disclaimers
+//other 
+    //link to source code
+    //link to the readme, which contains all the disclaimers
+    //link to readme for usage instructions
+    //disclaimers
+    //data from geo.mot.gov.il, openstreetmap
+    //this is a simulation, not real data
+//appearance
+    //show lines/routes
+    //darkmode
+    //languages
+//simulation
+    //DATE/time
+    //sim speed
+    //ellucidation of service times - e.g. peaks = 06:00-09:00 etc
+//line info (maybe under simulation)
+
 //------------------
 
 
@@ -38,6 +49,7 @@ const map = L.map('map').setView([32.0853, 34.7818], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
+let routeLayersGroup = L.layerGroup().addTo(map);
 
 const lineColours = {
     "M1": "#0971ce", // blue
@@ -101,7 +113,7 @@ let currentLang = localStorage.getItem("language") || "en";
 let scheduleData = null;
 let serviceRoutes = {}; // Loaded from preprocessed_station_distances.json
 let trains = [];
-let showRoutes = true; //show lines and stations, default off
+let showRoutes = document.getElementById("toggleRoutes").checked; //show lines and stations, default off
 // Simulation constants:
 const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
 // const timeScale = 30; // 1 real sec = 30 simulated seconds
@@ -174,6 +186,7 @@ function updateLanguage(lang) {
     });
     document.getElementById("readmelink").href = translations[lang]["readme-link"];
     document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
+    
     localStorage.setItem("language", lang);
     //repopulate time period options
     updateTimePeriodOptions();
@@ -202,6 +215,39 @@ function updateTimePeriodOptions() {
     }
 }
 
+
+const toggleRoutesCheckbox = document.getElementById("toggleRoutes");
+toggleRoutesCheckbox.addEventListener("change", function() {
+    showRoutes = this.checked;
+    toggleDisplayRoutes();
+});
+
+function toggleDisplayRoutes() {
+        if (showRoutes) {
+            map.addLayer(routeLayersGroup);
+        } else {
+            map.removeLayer(routeLayersGroup);
+        }
+    
+}
+
+// Tab Switching Logic
+document.addEventListener("DOMContentLoaded", function() {
+
+    document.querySelectorAll('.tab-link').forEach(link => {
+        link.addEventListener('click', function() {
+            // Remove active class from all tab links and content
+            document.querySelectorAll('.tab-link').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Activate the clicked tab
+            this.classList.add('active');
+            const targetTab = this.getAttribute('data-tab');
+            document.getElementById(targetTab).classList.add('active');
+        });
+    });
+});
+    
 // Define allowed simulation speeds
 const speedValues = [30, 60, 180, 300, 420];
 const speedSlider = document.getElementById("speedSlider");
@@ -240,16 +286,33 @@ if (localStorage.getItem("darkMode") === "enabled") {
  * UI Controls: Pause, Settings, & Pop-up
  ********************************************/
 // Pause controls
-document.getElementById("pause").addEventListener("click", function () {
-    simPaused = !simPaused;
-    this.innerHTML = simPaused ? "<ion-icon name='play'></ion-icon>" : "<ion-icon name='pause'></ion-icon>";
-});
+
+
 document.addEventListener("keydown", function (event) {
     if (event.code === "Space" || event.key.toLowerCase() === "p") {
         simPaused = !simPaused;
         document.getElementById("pause").innerHTML = simPaused ? "<ion-icon name='play'></ion-icon>" : "<ion-icon name='pause'></ion-icon>";
         event.preventDefault();
+    } else if (event.key.toLowerCase() === "f") {
+        
+    } else if (event.key.toLowerCase() === "s") { //toggle settings
+        if (settingsModal.style.display === "block") { //if settings open, close it else open
+            settingsModal.style.display = "none";
+            simPaused = false;
+            document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
+            event.preventDefault();
+        } else {
+            settingsModal.style.display = "block";
+            simPaused = true;
+            document.getElementById("pause").innerHTML = "<ion-icon name='play'></ion-icon>";
+            event.preventDefault();
+        }
     }
+});
+
+document.getElementById("pause").addEventListener("click", function () {
+    simPaused = !simPaused;
+    this.innerHTML = simPaused ? "<ion-icon name='play'></ion-icon>" : "<ion-icon name='pause'></ion-icon>";
 });
 
 // Settings modal controls
@@ -274,9 +337,9 @@ window.addEventListener("click", function (event) {
     }
 });
 
-function wrapLtr(text) { // Wrap text in a span with LTR direction (for numbers in RTL text)
-    return `<span dir="ltr">${text}</span>`;
-}
+// function wrapLtr(text) { // Wrap text in a span with LTR direction (for numbers in RTL text)
+//     return `<span dir="ltr">${text}</span>`;
+// }
 
 function updateLineInfo() {
     const dayType = document.getElementById("dayTypeSelect").value;
@@ -386,8 +449,8 @@ Promise.all([
         console.log("Loaded schedule data:", scheduleData);
         console.log("Loaded service routes:", serviceRoutes);
         // Visualise service routes and station markers
-        if (showRoutes) {
-
+        // if (showRoutes) {
+        
             Object.keys(serviceRoutes).forEach(key => {
                 let routeObj = serviceRoutes[key];
                 const latlngs = routeObj.coords.map(coord => [coord[1], coord[0]]);
@@ -397,7 +460,7 @@ Promise.all([
                     weight: 4,
                     opacity: 0.75,
                     // dashArray: "5,5"
-                }).addTo(map).bindPopup(`Service Route: ${key}`);
+                }).addTo(routeLayersGroup);
                 let lineStr = turf.lineString(routeObj.coords);
                 routeObj.stations.forEach(dist => {
                     let snapped = turf.along(lineStr, dist["distance"] / 1000, {
@@ -409,11 +472,14 @@ Promise.all([
                             radius: 2,
                             color: "black",
                             fillOpacity: 0.6
-                        }).addTo(map).bindPopup(`<b>Station on ${key}</b><br>Distance: ${dist} m`);
+                        }).addTo(routeLayersGroup);
                     }
                 });
             });
-        }
+            if (!showRoutes) {
+                map.removeLayer(routeLayersGroup);
+            }
+        // }
         // Start the simulation 
         startSimulation();
     })

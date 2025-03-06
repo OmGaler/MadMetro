@@ -44,6 +44,7 @@ body.dark-mode {
 body.dark-mode #pause,
 body.dark-mode #settings,
 body.dark-mode #darkModeButton,
+body.dark-mode .close,
 body.dark-mode .language-select,
 body.dark-mode .modal-content {
     background-color: #1e1e1e;
@@ -169,6 +170,17 @@ body.dark-mode .lang-btn {
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
+
+.close {
+    top: 20px;
+    right: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 #pause {
     position: absolute;
     top: 20px;
@@ -426,4 +438,321 @@ display: none;
 input[type="range"] {
     width: 60%;
     margin-top: 10px;
+}
+
+/* Modal Base Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+background-color: #fefefe;
+margin: 5% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
+border-radius: 4px;
+}
+
+/* Tabs Container */
+.tabs {
+display: flex;
+gap: 5px;
+margin-bottom: 15px;
+}
+
+/* Tab Links */
+.tab-link {
+flex: 1;
+padding: 10px;
+background: #f7f7f7;
+border: 1px solid #ccc;
+cursor: pointer;
+text-align: center;
+border-radius: 4px;
+transition: background 0.3s;
+}
+
+.tab-link:hover {
+background: #e0e0e0;
+}
+
+.tab-link.active {
+background: #007bff;
+color: #fff;
+border-color: #007bff;
+}
+
+/* Tab Content */
+.tab-content {
+display: none;
+}
+
+.tab-content.active {
+display: block;
+}
+
+/* Dark Mode Button for Appearance Tab */
+#darkModeButton {
+padding: 8px;
+font-size: 24px;
+background-color: #ffffff;
+border: 1px solid #ccc;
+cursor: pointer;
+border-radius: 5px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+/* Ionicons inside button */
+#darkModeButton ion-icon {
+font-size: 24px;
+color: #333;
+}
+
+/* Dark Mode Overrides */
+.dark-mode .modal-content {
+background-color: #1e1e1e;
+color: #ffffff;
+border: 1px solid #444;
+}
+
+.dark-mode #darkModeButton {
+background-color: #333333;
+border: 1px solid #444;
+}
+
+.dark-mode #darkModeButton ion-icon {
+color: #ffffff;
+}
+
+/* Simulation Speed Slider Styling */
+input[type="range"] {
+width: 60%;
+margin-top: 10px;
+}
+
+.simulation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.simulation-controls-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#simulationControls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#serviceLevelsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#serviceLevelsTable th, 
+#serviceLevelsTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#serviceLevelsTable th:first-child, 
+#serviceLevelsTable td:first-child {
+    white-space: nowrap; /* Prevents table text from wrapping */
+}
+
+
+#serviceLevelsTable th {
+    background-color: #f2f2f2;
+}
+
+#speedSlider {
+    width: 100%;
+    margin: 10px 0;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+    .simulation-grid {
+        grid-template-columns: 1fr; /* Switch to a single column */
+    }
+}
+/* Ensure the grid becomes a single column on narrow screens */
+@media (max-width: 850px) {
+    .simulation-grid {
+        grid-template-columns: 1fr; /* Single column */
+    }
+}
+
+html[dir="rtl"] #serviceLevelsTable {
+    direction: rtl;
+    text-align: right;
+}
+
+html[dir="rtl"] #serviceLevelsTable th, 
+html[dir="rtl"] #serviceLevelsTable td {
+    text-align: right;
+}
+
+
+/* Prevent elements from overflowing */
+@media (max-width: 480px) {
+    #serviceLevelsTable {
+        font-size: 14px; /* Reduce font size for readability */
+    }
+
+    #serviceLevelsTable th, 
+    #serviceLevelsTable td {
+        padding: 6px; /* Reduce padding for better fit */
+        word-break: break-word; /* Prevent text from overflowing */
+    }
+
+    #simulationControls {
+        flex-direction: column; /* Stack controls vertically */
+        align-items: stretch; /* Full width */
+    }
+
+    select {
+        width: 100%; /* Make dropdowns and buttons full width */
+    }
+}
+/* Enhanced Tabs Container */
+.tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    background-color: #f5f5f5;
+}
+
+/* Tab Links */
+.tab-link {
+    flex: 1;
+    padding: 12px 16px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    color: #555;
+    border-right: 1px solid #e0e0e0;
+}
+
+.tab-link:last-child {
+    border-right: none;
+}
+
+.tab-link:hover {
+    background: #e9e9e9;
+    color: #333;
+}
+
+.tab-link.active {
+    background: #007bff;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Indicator line for active tab */
+.tab-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #0056b3;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+    padding: 5px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Dark Mode Overrides */
+.dark-mode .tabs {
+    border-color: #444;
+    background-color: #2a2a2a;
+}
+
+.dark-mode .tab-link {
+    color: #ccc;
+    border-right-color: #444;
+}
+
+.dark-mode .tab-link:hover {
+    background: #333;
+    color: #fff;
+}
+
+.dark-mode .tab-link.active {
+    background: #0069d9;
+    color: #fff;
+}
+
+.dark-mode .tab-link.active::after {
+    background-color: #004ba0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .tabs {
+        flex-direction: column;
+        border-radius: 8px;
+    }
+    
+    .tab-link {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        text-align: left;
+        padding: 10px 16px;
+    }
+    
+    .tab-link:last-child {
+        border-bottom: none;
+    }
+    
+    .dark-mode .tab-link {
+        border-bottom-color: #444;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+    .tab-link {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
 }
