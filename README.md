@@ -23,6 +23,11 @@ Click on any train to view its current route, next stop, and destination.
 Modify simulation parameters, such as simulation speed and schedule settings, through the settings screen.
 
 ## Screenshots
+<img src="./screenshots/MadMetro-1.png" alt="screenshot-1" width="750">
+<img src="./screenshots/MadMetro-2.png" alt="screenshot-2" width="750">
+<img src="./screenshots/MadMetro-3.png" alt="screenshot-3" width="750">
+
+![animated-gif](screenshots/MadMetro.gif)
 
 ## Usage
 1. Try it Online (Recommended)
