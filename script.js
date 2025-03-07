@@ -254,6 +254,7 @@ function updateCustomSelectOptions(selectId) {
         });
         selectItems.appendChild(div);
     });
+    
 }
 
 const toggleRoutesCheckbox = document.getElementById("toggleRoutes");
@@ -286,6 +287,8 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
     updateTimePeriodOptions();
+    // Manually trigger a day change to update line details
+    document.getElementById("dayTypeSelect").dispatchEvent(new Event("change"));
 });
     
 // Define allowed simulation speeds
@@ -396,8 +399,7 @@ function updateLineInfo() {
         } else { // Light Rail
             frequency = scheduleData?.["Light Rail"]?.[dayType]?.[lineId[0]]?.[timePeriod]?.tph || pattern.defaultFrequency;
         }
-        // Since schedule values are per-direction, no division is needed.
-        const headway = Math.round((60 / frequency * 2) / 2); //round to the nearest 0.5
+        const headway = Math.round((60 / frequency) * 2) / 2; //round to the nearest 0.5
         // Use manual data for line length and stops.
         const line = lineData[lineId] || {
             length: "N/A",
@@ -418,7 +420,6 @@ function updateLineInfo() {
             bullet.textContent = lineId.charAt(0);
         }
         bullet.style.marginInlineEnd = "10px";
-        
         bullet.style.color = "white";
         bullet.style.display = "inline-flex";
         // Create the info text

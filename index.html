@@ -91,71 +91,71 @@
             <!-- Tab Content -->
             <!-- Simulation tab -->
             <div class="tab-content active" id="simulationTab">
-                <div class="simulation-grid">
-    <div class="simulation-controls-column">
-    <!-- Day & Time Controls -->
-    <!-- Day -->
-    <div class="toggle-option">
-        <ion-icon name="calendar"></ion-icon>
-        <div class="toggle-info">
-            <h3 data-i18n="day-selection">Day Selection</h3>
-            <p class="toggle-description" data-i18n="day-select-detail">Choose between weekday and weekend service</p>
-        </div>
-        <div class="custom-select">
-            <select id="dayTypeSelect">
-                <option data-i18n="weekday" value="weekday">Weekday (Su-Th)</option>
-                <option data-i18n="weekend" value="weekend">Weekend (Fr-Sa)</option>
-            </select>
-            <div class="select-selected"> </div>
-            <div class="select-items">
-                <div data-i18n="weekday">Weekday (Su-Th)</div>
-                <div data-i18n="weekend">Weekend (Fr-Sa)</div>
+            <div class="simulation-grid">
+            <div class="simulation-controls-column">
+            <!-- Day & Time Controls -->
+            <!-- Day -->
+            <div class="toggle-option">
+                <ion-icon name="calendar"></ion-icon>
+                <div class="toggle-info">
+                    <h3 data-i18n="day-selection">Day Selection</h3>
+                    <p class="toggle-description" data-i18n="day-select-detail">Choose between weekday and weekend service</p>
+                </div>
+                <div class="custom-select">
+                    <select id="dayTypeSelect">
+                        <option data-i18n="weekday" value="weekday">Weekday (Su-Th)</option>
+                        <option data-i18n="weekend" value="weekend">Weekend (Fr-Sa)</option>
+                    </select>
+                    <div class="select-selected"> </div>
+                    <div class="select-items">
+                        <div data-i18n="weekday">Weekday (Su-Th)</div>
+                        <div data-i18n="weekend">Weekend (Fr-Sa)</div>
+                    </div>
+                </div>
+                <!-- <div>
+                    <select id="dayTypeSelect">
+                        <option data-i18n="weekday" value="weekday"></option>
+                        <option data-i18n="weekend" value="weekend"></option>
+                    </select>
+                </div> -->
+            </div>
+            <!-- Time -->
+            <div class="toggle-option">
+                <ion-icon name="time-outline"></ion-icon>
+                <div class="toggle-info">
+                    <h3 data-i18n="time-selection">Time Period</h3>
+                    <p class="toggle-description" data-i18n="time-select-detail">Select service time period</p>
+                </div>
+                <!-- <div>
+                    <select id="timePeriodSelect"></select>
+                </div> -->
+                <div class="custom-select">
+                    <select id="timePeriodSelect">
+                        <!-- <option value="morning">Early Morning/Late Night</option>
+                        <option value="day">Day</option>
+                        <option value="evening">Evening</option> -->
+                    </select>
+                    <div class="select-selected">&nbsp;</div>
+                    <div class="select-items">&nbsp;
+                        <!-- <div>Early Morning/Late Night</div> 
+                            <div>Day</div>
+                            <div>Evening</div> -->
+                    </div> 
+                </div>
+            </div>
+            
+            <div class="toggle-option">
+                <ion-icon name="options-outline"></ion-icon>
+                <div class="toggle-info">
+                    <h3 data-i18n="simulation-speed">Simulation Speed</h3>
+                    <p class="toggle-description" id="realTimeInfo">1 second = 1 real minute</p>
+                    <div class="slider-container">
+                        <input type="range" id="speedSlider" min="0" max="4" step="1" value="1">
+                        <span id="speedValue"></span>
+                    </div>
+                </div>
             </div>
         </div>
-        <!-- <div>
-            <select id="dayTypeSelect">
-                <option data-i18n="weekday" value="weekday"></option>
-                <option data-i18n="weekend" value="weekend"></option>
-            </select>
-        </div> -->
-    </div>
-    <!-- Time -->
-    <div class="toggle-option">
-        <ion-icon name="time-outline"></ion-icon>
-        <div class="toggle-info">
-            <h3 data-i18n="time-selection">Time Period</h3>
-            <p class="toggle-description" data-i18n="time-select-detail">Select service time period</p>
-        </div>
-        <!-- <div>
-            <select id="timePeriodSelect"></select>
-        </div> -->
-        <div class="custom-select">
-            <select id="timePeriodSelect">
-                <!-- <option value="morning">Early Morning/Late Night</option>
-                <option value="day">Day</option>
-                <option value="evening">Evening</option> -->
-            </select>
-            <div class="select-selected">&nbsp;</div>
-            <div class="select-items">&nbsp;
-                <!-- <div>Early Morning/Late Night</div> 
-                    <div>Day</div>
-                    <div>Evening</div> -->
-            </div> 
-        </div>
-    </div>
-    
-    <div class="toggle-option">
-        <ion-icon name="options-outline"></ion-icon>
-        <div class="toggle-info">
-            <h3 data-i18n="simulation-speed">Simulation Speed</h3>
-            <p class="toggle-description" id="realTimeInfo">1 second = 1 real minute</p>
-            <div class="slider-container">
-                <input type="range" id="speedSlider" min="0" max="4" step="1" value="1">
-                <span id="speedValue"></span>
-            </div>
-        </div>
-    </div>
-</div>
 
                     <div class="simulation-table-column">
                         <table id="serviceLevelsTable">
