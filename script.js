@@ -855,29 +855,65 @@ function startSimulation() {
             const trainsPerDirection = Math.ceil((roundTripTime / 60) / (headway)/2); 
 
             console.log(`Branch ${branchId}: Length=${Math.round(routeLength/1000)}km, Trains/direction=${trainsPerDirection}`);
+            //Spawn required trains in each direction, but do it alternating between directions (plus offset) to 
+            //spawn them spread out better (that is- trains of different directions aren't bunched together)
+            const totalTrains = 2 * trainsPerDirection; // Total number of trains (both directions)
+            const directionTrains = { "-1": [], "1": [] };
 
-            [-1, 1].forEach(direction => {
-                const directionTrains = [];
-                for (let i = 0; i < trainsPerDirection; i++) {
-                    const spacing = routeLength / trainsPerDirection;
-                    const offset = direction === 1 ? i * spacing : routeLength - (i * spacing);
-                    let trainLabel;
-                    if (lineId.startsWith('M')) {
-                        trainLabel = lineId.charAt(1);
-                    } else {
-                        trainLabel = lineId.charAt(0);
-                    }
-                    let train = new Train(route, trainLabel, lineColours[lineId.split('_')[0]], offset);
-                    train.direction = direction;
-                    train.branchId = branchId;
-                    directionTrains.push(train);
+            const oppositeDirOffset = (routeLength / totalTrains) / 2; // Offset to stagger opposite direction
+
+            for (let i = 0; i < totalTrains; i++) {
+                const direction = i % 2 === 0 ? 1 : -1; // Alternate directions
+                const index = Math.floor(i / 2); // Half as many trains per direction
+                const spacing = routeLength / trainsPerDirection;
+                
+                let offset;
+                if (direction === 1) {
+                    offset = index * spacing;
+                } else {
+                    offset = routeLength - (index * spacing) - oppositeDirOffset; // Stagger opposite direction
                 }
-                directionTrains.forEach((train, i) => {
-                    train.ahead = directionTrains[(i + 1) % directionTrains.length];
-                    train.behind = directionTrains[(i - 1 + directionTrains.length) % directionTrains.length];
+                
+                let trainLabel = lineId.startsWith('M') ? lineId.charAt(1) : lineId.charAt(0);
+                let train = new Train(route, trainLabel, lineColours[lineId.split('_')[0]], offset);
+                train.direction = direction;
+                train.branchId = branchId;
+                
+                directionTrains[direction].push(train);
+            }
+
+            // Link trains within each direction
+            [-1, 1].forEach(direction => {
+                const trainsInDir = directionTrains[direction];
+                trainsInDir.forEach((train, i) => {
+                    train.ahead = trainsInDir[(i + 1) % trainsInDir.length];
+                    train.behind = trainsInDir[(i - 1 + trainsInDir.length) % trainsInDir.length];
                 });
-                trains.push(...directionTrains);
+                trains.push(...trainsInDir);
             });
+
+            // [-1, 1].forEach(direction => {
+            //     const directionTrains = [];
+            //     for (let i = 0; i < trainsPerDirection; i++) {
+            //         const spacing = routeLength / trainsPerDirection;
+            //         const offset = direction === 1 ? i * spacing : routeLength - (i * spacing);
+            //         let trainLabel;
+            //         if (lineId.startsWith('M')) {
+            //             trainLabel = lineId.charAt(1);
+            //         } else {
+            //             trainLabel = lineId.charAt(0);
+            //         }
+            //         let train = new Train(route, trainLabel, lineColours[lineId.split('_')[0]], offset);
+            //         train.direction = direction;
+            //         train.branchId = branchId;
+            //         directionTrains.push(train);
+            //     }
+            //     directionTrains.forEach((train, i) => {
+            //         train.ahead = directionTrains[(i + 1) % directionTrains.length];
+            //         train.behind = directionTrains[(i - 1 + directionTrains.length) % directionTrains.length];
+            //     });
+            //     trains.push(...directionTrains);
+            // });
         });
     });
     if (frameId) cancelAnimationFrame(frameId); // Stop previous animation loop to prevent multiple loops and sim slowing down
