@@ -12,7 +12,7 @@
 
 //TODO: hide trainpopup on mouseoff
 
-//todo: perhaps, . If bunching is detected, you could gently adjust speeds or extend dwell times at the terminal to restore proper spacing.
+//todo: perhaps, If bunching is detected, you could gently adjust speeds or extend dwell times at the terminal to restore proper spacing.
 
 //TODO: Some sort of bug where switching the service time will not update the trains or settings modal properly
 
@@ -30,14 +30,10 @@
     //data from geo.mot.gov.il, openstreetmap
     //this is a simulation, not real data
 //appearance
-    //show lines/routes
-    //darkmode
     //languages
 //simulation
     //DATE/time
     //sim speed
-    //ellucidation of service times - e.g. peaks = 06:00-09:00 etc
-//line info (maybe under simulation)
 
 //------------------
 
@@ -186,9 +182,9 @@ function updateLanguage(lang) {
     });
     document.getElementById("readmelink").href = translations[lang]["readme-link"];
     document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
-    
     localStorage.setItem("language", lang);
-    //repopulate time period options
+    //repopulate day and time period options
+    updateCustomSelectOptions("dayTypeSelect");
     updateTimePeriodOptions();
     updateLineInfo();
     updateSpeed();
@@ -198,6 +194,22 @@ function toggleLanguage() {
     const newLang = currentLang === "en" ? "he" : "en";
     updateLanguage(newLang);
 }
+
+// function updateTimePeriodOptions() {
+//     const dayTypeSelect = document.getElementById("dayTypeSelect");
+//     const timePeriodSelect = document.getElementById("timePeriodSelect");
+//     const selectedDayType = dayTypeSelect.value;
+//     timePeriodSelect.innerHTML = "";
+//     if (translations[currentLang] && translations[currentLang].timePeriods && translations[currentLang].timePeriods[selectedDayType]) {
+//         const periods = translations[currentLang].timePeriods[selectedDayType];
+//         periods.forEach(option => {
+//             const opt = document.createElement("option");
+//             opt.value = option.value;
+//             opt.textContent = option.text;
+//             timePeriodSelect.appendChild(opt);
+//         });
+//     }
+// }
 
 function updateTimePeriodOptions() {
     const dayTypeSelect = document.getElementById("dayTypeSelect");
@@ -213,8 +225,36 @@ function updateTimePeriodOptions() {
             timePeriodSelect.appendChild(opt);
         });
     }
+    updateCustomSelectOptions("timePeriodSelect");
 }
 
+// Function to update custom select display after options change
+function updateCustomSelectOptions(selectId) {
+    const select = document.getElementById(selectId);
+    const customSelectContainer = select.closest('.custom-select');
+    if (!customSelectContainer) return;
+    // Update the selected text display based on the actual select value
+    const selectSelected = customSelectContainer.querySelector('.select-selected');
+    // Set it to the currently selected option text
+    if (select.selectedIndex >= 0) {
+        selectSelected.textContent = select.options[select.selectedIndex].textContent;
+    }
+    // Rebuild the dropdown items list
+    const selectItems = customSelectContainer.querySelector('.select-items');
+    selectItems.innerHTML = '';
+    Array.from(select.options).forEach((option, index) => {
+        const div = document.createElement('div');
+        div.textContent = option.textContent;
+        div.addEventListener('click', function() {
+            select.selectedIndex = index;
+            selectSelected.textContent = this.textContent;
+            selectItems.style.display = "none";            
+            const event = new Event('change', { bubbles: true });
+            select.dispatchEvent(event);
+        });
+        selectItems.appendChild(div);
+    });
+}
 
 const toggleRoutesCheckbox = document.getElementById("toggleRoutes");
 toggleRoutesCheckbox.addEventListener("change", function() {
@@ -233,7 +273,6 @@ function toggleDisplayRoutes() {
 
 // Tab Switching Logic
 document.addEventListener("DOMContentLoaded", function() {
-
     document.querySelectorAll('.tab-link').forEach(link => {
         link.addEventListener('click', function() {
             // Remove active class from all tab links and content
@@ -246,6 +285,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById(targetTab).classList.add('active');
         });
     });
+    updateTimePeriodOptions();
 });
     
 // Define allowed simulation speeds
@@ -412,6 +452,52 @@ function hideTrainPopup() {
 /********************************************
  * Day/Time Controls & Operation Settings
  ********************************************/
+const customSelects = document.querySelectorAll(".custom-select");
+        
+customSelects.forEach(select => {
+    const selectSelected = select.querySelector(".select-selected");
+    const selectItems = select.querySelector(".select-items");
+    const selectOptions = select.querySelectorAll(".select-items div");
+    const originalSelect = select.querySelector("select");
+    
+    // Toggle dropdown visibility
+    selectSelected.addEventListener("click", function(e) {
+        e.stopPropagation();
+        closeAllSelects(this);
+        selectItems.style.display = selectItems.style.display === "block" ? "none" : "block";
+        this.classList.toggle("select-arrow-active");
+    });
+    // Handle option selection
+    selectOptions.forEach((option, index) => {
+        option.addEventListener("click", function(e) {
+            // Update the original select
+            originalSelect.selectedIndex = index;
+            // Update the selected text
+            selectSelected.textContent = this.textContent;
+            // Close the dropdown
+            selectItems.style.display = "none"; 
+            // Trigger the change event on the original select
+            const event = new Event('change', { bubbles: true });
+            originalSelect.dispatchEvent(event);
+        });
+    });
+    
+    // Close dropdowns when clicking elsewhere
+    document.addEventListener("click", closeAllSelects);
+});
+
+function closeAllSelects(elmnt) {
+    const selectItems = document.querySelectorAll(".select-items");
+    const selectSelected = document.querySelectorAll(".select-selected");
+    
+    selectItems.forEach((items, index) => {
+        if (elmnt !== selectSelected[index]) {
+            items.style.display = "none";
+            selectSelected[index].classList.remove("select-arrow-active");
+        }
+    });
+}
+
 document.getElementById("dayTypeSelect").addEventListener("change", function () {
     updateTimePeriodOptions();
     updateOperationSettings();

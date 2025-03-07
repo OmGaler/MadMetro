@@ -35,7 +35,7 @@
                 "times": ["1 hour after Shabbat-22:00"],
                 "tph": 10
             },
-            "late_night": {
+            "late": {
                 "times": ["22:00-01:00"],
                 "tph": 8
             }
@@ -116,7 +116,7 @@
                     "times": ["1 hour after Shabbat-22:00"],
                     "tph": 5
                 },
-                "late_night": {
+                "late": {
                     "times": ["22:00-01:00"],
                     "tph": 4
                 }
@@ -138,7 +138,7 @@
                     "times": ["1 hour after Shabbat-22:00"],
                     "tph": 7
                 },
-                "late_night": {
+                "late": {
                     "times": ["22:00-01:00"],
                     "tph": 6
                 }
@@ -160,7 +160,7 @@
                     "times": ["1 hour after Shabbat-22:00"],
                     "tph": 7
                 },
-                "late_night": {
+                "late": {
                     "times": ["22:00-01:00"],
                     "tph": 6
                 }

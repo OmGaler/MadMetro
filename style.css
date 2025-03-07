@@ -641,23 +641,26 @@ body.dark-mode #serviceLevelsTable th {
 }
 
 #speedSlider {
-    width: 200%;
-    margin: 10px 0;
+    width: 167%;
 }
 
-/* Responsive Layout */
+
+/* Responsive Layout
 @media (max-width: 768px) {
     .simulation-grid {
         grid-template-columns: 1fr;
-        /* Switch to a single column */
     }
-}
+} */
 
 /* Ensure the grid becomes a single column on narrow screens */
 @media (max-width: 850px) {
     .simulation-grid {
         grid-template-columns: 1fr;
         /* Single column */
+    }
+
+    #speedSlider {
+        max-width: 100%;
     }
 }
 
@@ -694,7 +697,7 @@ html[dir="rtl"] #serviceLevelsTable td {
         /* Full width */
     }
 
-    select {
+    .custom-select {
         width: 100%;
         /* Make dropdowns and buttons full width */
     }
@@ -704,9 +707,9 @@ html[dir="rtl"] #serviceLevelsTable td {
 .toggle-option {
     display: flex;
     align-items: center;
-    padding: 10px 0;
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
     justify-content: space-between;
-    border-bottom: 1px solid #e0e0e0;
 }
 
 .toggle-option:last-child {
@@ -729,18 +732,16 @@ html[dir="rtl"] #serviceLevelsTable td {
 }
 
 /* Text Info Styling */
-
 .toggle-info {
-    justify-content: center;
     flex: 1;
-    display: flex;
-    flex-direction: column;
+    margin-right: 16px; /* Ensure spacing between text and control */
+    min-width: 0; /* Allow proper shrinking */
 }
+
 .toggle-info h3 {
     margin: 0;
     font-size: 16px;
-    font-weight: bold;
-    color: #333;
+    font-weight: 500;
 }
 
 .toggle-description {
@@ -838,3 +839,172 @@ button#darkModeButton {
     transform: translateX(16px);
 }
 
+/* CLa */
+
+/* Toggle option container */
+.toggle-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Icon styles */
+.toggle-option ion-icon {
+    font-size: 24px;
+    margin-right: 16px;
+    color: #555;
+}
+
+/* Toggle info section */
+.toggle-info {
+    flex-grow: 1;
+}
+
+.toggle-info h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.toggle-description {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: #777;
+}
+
+/* Select styling - hidden original select */
+.toggle-option select {
+    display: none;
+}
+
+.custom-select {
+    position: relative;
+    margin-left: auto;
+    /* Force a fixed width and prevent flex from expanding/shrinking */
+    flex: 0 0 150px;  
+    display: flex;
+    align-items: center;
+}
+
+.select-selected {
+    width: 100%;
+    text-align: right;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #333;
+    min-height: 1em;
+    position: relative;
+}
+
+.select-selected:empty::before {
+    content: "Select Time";
+    display: block;
+    text-align: right;
+    width: 100%;
+    color: #999;
+}
+
+
+.select-selected:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #333;
+}
+
+/* Style for the dropdown items */
+.select-items {
+    position: absolute;
+    background-color: white;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    margin-top: 5px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.select-items div {
+    padding: 10px 16px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.select-items div:hover {
+    background-color: #f0f0f0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+}
+
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.speed-slider {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.speed-slider input {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 5px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+}
+
+.speed-slider input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #2196F3;
+    cursor: pointer;
+}
