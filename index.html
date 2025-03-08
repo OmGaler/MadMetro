@@ -94,6 +94,7 @@
             <div class="simulation-grid">
             <div class="simulation-controls-column">
             <!-- Day & Time Controls -->
+            <p class="service-level-label" data-i18n="service-level-label">Select service level:</p>
             <!-- Day -->
             <div class="toggle-option">
                 <ion-icon name="calendar"></ion-icon>
@@ -103,21 +104,15 @@
                 </div>
                 <div class="custom-select">
                     <select id="dayTypeSelect">
-                        <option data-i18n="weekday" value="weekday">Weekday (Su-Th)</option>
-                        <option data-i18n="weekend" value="weekend">Weekend (Fr-Sa)</option>
+                        <option data-i18n="weekday" value="weekday">Weekday</option>
+                        <option data-i18n="weekend" value="weekend">Weekend</option>
                     </select>
                     <div class="select-selected"> </div>
                     <div class="select-items">
-                        <div data-i18n="weekday">Weekday (Su-Th)</div>
-                        <div data-i18n="weekend">Weekend (Fr-Sa)</div>
+                        <div data-i18n="weekday">Weekday</div>
+                        <div data-i18n="weekend">Weekend</div>
                     </div>
                 </div>
-                <!-- <div>
-                    <select id="dayTypeSelect">
-                        <option data-i18n="weekday" value="weekday"></option>
-                        <option data-i18n="weekend" value="weekend"></option>
-                    </select>
-                </div> -->
             </div>
             <!-- Time -->
             <div class="toggle-option">
@@ -126,20 +121,11 @@
                     <h3 data-i18n="time-selection">Time Period</h3>
                     <p class="toggle-description" data-i18n="time-select-detail">Select service time period</p>
                 </div>
-                <!-- <div>
-                    <select id="timePeriodSelect"></select>
-                </div> -->
                 <div class="custom-select">
                     <select id="timePeriodSelect">
-                        <!-- <option value="morning">Early Morning/Late Night</option>
-                        <option value="day">Day</option>
-                        <option value="evening">Evening</option> -->
                     </select>
                     <div class="select-selected">&nbsp;</div>
                     <div class="select-items">&nbsp;
-                        <!-- <div>Early Morning/Late Night</div> 
-                            <div>Day</div>
-                            <div>Evening</div> -->
                     </div> 
                 </div>
             </div>
@@ -150,7 +136,7 @@
                     <h3 data-i18n="simulation-speed">Simulation Speed</h3>
                     <p class="toggle-description" id="realTimeInfo">1 second = 1 real minute</p>
                     <div class="slider-container">
-                        <input type="range" id="speedSlider" min="0" max="4" step="1" value="1">
+                        <input type="range" id="speedSlider" min="0" max="4" step="1" value="3">
                         <span id="speedValue"></span>
                     </div>
                 </div>
@@ -171,16 +157,21 @@
                                 <tr>
                                     <td data-i18n="wkday">Weekday</td>
                                     <td data-i18n="early-morning">Early morning</td>
-                                    <td>05:00-07:00</td>
+                                    <td>05:30-06:00</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td data-i18n="morning">Morning</td>
+                                    <td>06:00-06:30</td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td data-i18n="morning-peak">Morning peak</td>
-                                    <td>07:00-09:00</td>
+                                    <td>06:30-09:00</td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td data-i18n="daytime">Daytime</td>
+                                    <td data-i18n="midday">Daytime</td>
                                     <td>09:00-16:30</td>
                                 </tr>
                                 <tr>
@@ -210,7 +201,7 @@
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td data-i18n="daytime">Daytime</td>
+                                    <td data-i18n="midday">Daytime</td>
                                     <td data-i18n="erev-sh">09:00 - 1 hour before Shabbat</td>
                                 </tr>
                                 <tr>

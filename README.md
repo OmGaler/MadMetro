@@ -74,7 +74,7 @@ Then open http://localhost:8040 in your browser.
 > Schedules, frequencies, and routes are for demonstration purposes only and may not match real-world services
 - Data Sources:
 The simulation utilises route and station data sourced from [geo.mot.gov.il](geo.mot.gov.il) along with other public repositories. All data is preprocessed for simulation purposes. The map data is courtesy of [OpenStreetMap.org](https://www.openstreetmap.org/).
-MadMetro uses synthesised and preprocessed data. The simulation is an approximation and does not reflect real-time or official transit operations in the Gush Dan region. The schedules, frequencies and operation details are indicative only, do not represent real-time or official endorsed transit operations, and are intended for demonstration only. Station names may be subject to change.
+MadMetro uses synthesised and preprocessed data. The simulation is an approximation and does not reflect real-time or official transit operations in the Gush Dan region. The schedules, frequencies and operation details are indicative only, do not represent real-time or official endorsed transit operations, and are intended for demonstration only. Station names may be subject to change and certain service patterns may be subject to abstraction.
 - Performance:
 While every effort has been made to optimise performance, the tool is designed for educational purposes and may not handle very high numbers of simulated vehicles without performance impacts.
 - No Official Endorsement:

@@ -18,7 +18,7 @@
 
 // TODO: on occasion frequencies will not load so default to rush hour
 
-//add (c) on bottom, he
+//add (c) on bottom, of settings more info page 
 
 //------------------
 //TODO: settings screen-
@@ -113,8 +113,8 @@ let showRoutes = document.getElementById("toggleRoutes").checked; //show lines a
 // Simulation constants:
 const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
 // const timeScale = 30; // 1 real sec = 30 simulated seconds
-let timeScale = 60; // 1 real sec = 1 simulated minute
-// const timeScale = 300; // 1 real sec = 5 minutes
+// let timeScale = 60; // 1 real sec = 1 simulated minute
+let timeScale = 300; // 1 real sec = 5 simulated minutes
 let DEFAULT_DWELL_TIME = 1; // seconds dwell at each station
 const STATION_TOLERANCE = 30; // meters tolerance
 const VEHICLE_SPEEDS = {
@@ -195,21 +195,6 @@ function toggleLanguage() {
     updateLanguage(newLang);
 }
 
-// function updateTimePeriodOptions() {
-//     const dayTypeSelect = document.getElementById("dayTypeSelect");
-//     const timePeriodSelect = document.getElementById("timePeriodSelect");
-//     const selectedDayType = dayTypeSelect.value;
-//     timePeriodSelect.innerHTML = "";
-//     if (translations[currentLang] && translations[currentLang].timePeriods && translations[currentLang].timePeriods[selectedDayType]) {
-//         const periods = translations[currentLang].timePeriods[selectedDayType];
-//         periods.forEach(option => {
-//             const opt = document.createElement("option");
-//             opt.value = option.value;
-//             opt.textContent = option.text;
-//             timePeriodSelect.appendChild(opt);
-//         });
-//     }
-// }
 
 function updateTimePeriodOptions() {
     const dayTypeSelect = document.getElementById("dayTypeSelect");
@@ -264,12 +249,11 @@ toggleRoutesCheckbox.addEventListener("change", function() {
 });
 
 function toggleDisplayRoutes() {
-        if (showRoutes) {
-            map.addLayer(routeLayersGroup);
-        } else {
-            map.removeLayer(routeLayersGroup);
-        }
-    
+    if (showRoutes) {
+        map.addLayer(routeLayersGroup);
+    } else {
+        map.removeLayer(routeLayersGroup);
+    }
 }
 
 // Tab Switching Logic
@@ -330,8 +314,6 @@ if (localStorage.getItem("darkMode") === "enabled") {
  * UI Controls: Pause, Settings, & Pop-up
  ********************************************/
 // Pause controls
-
-
 document.addEventListener("keydown", function (event) {
     if (event.code === "Space" || event.key.toLowerCase() === "p") {
         simPaused = !simPaused;
@@ -346,7 +328,7 @@ document.addEventListener("keydown", function (event) {
             document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
             event.preventDefault();
         } else {
-            settingsModal.style.display = "block";
+            settingsModal.style.display = "flex";
             simPaused = true;
             document.getElementById("pause").innerHTML = "<ion-icon name='play'></ion-icon>";
             event.preventDefault();
@@ -364,7 +346,7 @@ const settingsButton = document.getElementById("settings");
 const settingsModal = document.getElementById("settingsModal");
 const closeModal = document.getElementsByClassName("close")[0];
 settingsButton.addEventListener("click", function () {
-    settingsModal.style.display = "block";
+    settingsModal.style.display = "flex";
     simPaused = true;
     document.getElementById("pause").innerHTML = "<ion-icon name='play'></ion-icon>";
 });
