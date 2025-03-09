@@ -274,6 +274,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Manually trigger a day change to update line details
     document.getElementById("dayTypeSelect").dispatchEvent(new Event("change"));
 });
+
     
 // Define allowed simulation speeds
 const speedValues = [30, 60, 180, 300, 420];
@@ -281,10 +282,12 @@ const speedSlider = document.getElementById("speedSlider");
 // const speedValue = document.getElementById("speedValue");
 const realTimeInfo = document.getElementById("realTimeInfo");
 
+let speedIndex = parseInt(speedSlider.value); //track current speed index
+
 // Function to update speed display
 function updateSpeed() {
-    let index = parseInt(speedSlider.value);
-    let simSpeed = speedValues[index];
+    // let index = parseInt(speedSlider.value);
+    let simSpeed = speedValues[speedIndex];
     // speedValue.textContent = `${simSpeed}x`;
     realTimeInfo.textContent = `${translations[currentLang]["seconds"]} = ${simSpeed / 60} ${translations[currentLang]["minutes"]}`;
     timeScale = simSpeed; 
@@ -297,7 +300,28 @@ function updateSpeed() {
 }
 
 // Update on slider change
-speedSlider.addEventListener("input", updateSpeed);
+speedSlider.addEventListener("input", () => {
+    speedIndex = parseInt(speedSlider.value);
+    updateSpeed();
+
+});
+
+// Handle keypress for increasing/decreasing speed
+document.addEventListener("keydown", (event) => {
+    if (event.key === ">" || event.key === ".") {
+        if (speedIndex < speedValues.length - 1) {
+            speedIndex++;
+        }
+    } else if (event.key === "<" || event.key === ",") {
+        if (speedIndex > 0) {
+            speedIndex--;
+        }
+    } else {
+        return;
+    }
+    speedSlider.value = speedIndex;
+    updateSpeed();
+});
 
 // Dark Mode Logic
 document.getElementById('darkModeButton').addEventListener('click', () => {
@@ -492,6 +516,7 @@ document.getElementById("timePeriodSelect").addEventListener("change", function 
 });
 
 
+
 function updateOperationSettings() {
     const dayType = document.getElementById("dayTypeSelect").value;
     const timePeriod = document.getElementById("timePeriodSelect").value;
@@ -571,7 +596,7 @@ class Train {
             route.stations.slice() // make a shallow copy of the station objects
             :
             [];
-
+        
         this.label = label;
         this.color = color;
         this.totalDistance = turf.length(turf.lineString(this.route)) * 1000; // in meters
@@ -817,6 +842,8 @@ function startSimulation() {
                 console.error(`Route data not found for branch: ${branchId}`);
                 return;
             }
+            
+    
             const routeLength = turf.length(turf.lineString(route.coords)) * 1000;
             let vtype; // Vehicle type
             // Use a heuristic average speed to account for stopping, accelerating and decelerating.
@@ -848,7 +875,13 @@ function startSimulation() {
             for (let i = 0; i < totalTrains; i++) {
                 const direction = i % 2 === 0 ? 1 : -1; // Alternate directions
                 const index = Math.floor(i / 2); // Half as many trains per direction
-                const spacing = routeLength / trainsPerDirection;
+                let spacing;
+                if (branchId === 'R23' && direction === 1 && timePeriod !== 'peaks') {
+                    //use the short turn distance for short turning R23 trains
+                    spacing = 11656 / trainsPerDirection; 
+                } else {
+                    spacing = routeLength / trainsPerDirection;
+                }
                 
                 let offset;
                 if (direction === 1) {
@@ -859,6 +892,19 @@ function startSimulation() {
                 
                 let trainLabel = lineId.startsWith('M') ? lineId.charAt(1) : lineId.charAt(0);
                 let train = new Train(route, trainLabel, lineColours[lineId.split('_')[0]], offset);
+                
+                // Short turn southbound R3 trains at Elifelet outside of weekday peaks
+                if (
+                    branchId === 'R23' &&    // For the R23 branch
+                    train.direction === 1 && // Southbound trains
+                    timePeriod !== 'peaks'  // Only on weekday, outside peak periods
+                ) {
+                    const shortTurnDistance = 11656; //truncate the line to Elifelet
+                    train.stations = train.stations.filter(dist => dist <= shortTurnDistance);
+                    train.stationData = train.stationData.filter(station => Number(station.distance) <= shortTurnDistance);
+                    train.totalDistance = shortTurnDistance
+                }
+                
                 train.direction = direction;
                 train.branchId = branchId;
                 
