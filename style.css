@@ -535,6 +535,7 @@ body.dark-mode .lang-btn {
 .tab-link {
     flex: 1;
     padding: 10px;
+    
     align-items: center;
     justify-content: center;
     background: #fff;
@@ -678,6 +679,11 @@ body.dark-mode #serviceLevelsTable th {
     .simulation-grid {
         grid-template-columns: 1fr;
         /* Single column */
+    }
+    .tab-link {
+
+        display: flex;
+        flex-direction: column;
     }
 
     #speedSlider {
