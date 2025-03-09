@@ -90,6 +90,12 @@ MadMetro is compatible with most major browsers, on both desktop and mobile, inc
 - **Performance Limitations:** While every effort has been made to optimise performance, the tool is designed for educational purposes and may not handle very high numbers of simulated vehicles without performance impacts.
 - **Naming and Service Patterns:** Station names and service patterns are subject to change and may differ from final implementations. Certain service patterns may be subject to abstraction for simulation purposes.
 
+## Questions, Bug Reports, and Feature Requests
+
+If you have any questions, encounter a bug, or would like to request a new feature, please open an issue on GitHub:  
+[GitHub Issues](https://github.com/OmGaler/MadMetro/issues)
+
+
 ## License
 
 This project is licensed under the terms described in the [LICENSE](https://github.com/OmGaler/MadMetro/blob/master/LICENSE.md) file.

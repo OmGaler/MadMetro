@@ -1,41 +1,15 @@
-//TODO spread out on spawn more
-
-
-//TODO: short R23 turns at elifelet
-
 //TODO: enforce headway separation -Before spawning a new train or allowing a train to depart from a station, check the distance to the train ahead.
-//TODO: extreme bunching (irrespective of branching??)
+// // TODO: extreme bunching (irrespective of branching??)
 //TODO: headways still not being enforced
+//todo: perhaps, If bunching is detected, could gently adjust speeds or extend dwell times at the terminal to restore proper spacing.
 
-
-//TODO: hide all UI elements on 'f'? 
-
-//TODO: hide trainpopup on mouseoff
-
-//todo: perhaps, If bunching is detected, you could gently adjust speeds or extend dwell times at the terminal to restore proper spacing.
 
 //TODO: Some sort of bug where switching the service time will not update the trains or settings modal properly
-
 // TODO: on occasion frequencies will not load so default to rush hour
 
-//add (c) on bottom, of settings more info page 
 
 //------------------
-//TODO: settings screen-
-//other 
-    //link to source code
-    //link to the readme, which contains all the disclaimers
-    //link to readme for usage instructions
-    //disclaimers
-    //data from geo.mot.gov.il, openstreetmap
-    //this is a simulation, not real data
-//appearance
-    //languages
-//simulation
-    //DATE/time
-    //sim speed
-
-//------------------
+//this is a simulation, not real data
 
 
 /********************************************
@@ -241,6 +215,15 @@ function updateCustomSelectOptions(selectId) {
     });
     
 }
+
+document.addEventListener("keydown", (event) => {
+    if (event.key.toLowerCase() === "t") {
+        event.preventDefault(); // Prevent unintended browser actions
+        showRoutes = !showRoutes;
+        toggleDisplayRoutes();
+    }
+});
+
 
 const toggleRoutesCheckbox = document.getElementById("toggleRoutes");
 toggleRoutesCheckbox.addEventListener("change", function() {
@@ -544,8 +527,6 @@ Promise.all([
         console.log("Loaded schedule data:", scheduleData);
         console.log("Loaded service routes:", serviceRoutes);
         // Visualise service routes and station markers
-        // if (showRoutes) {
-        
             Object.keys(serviceRoutes).forEach(key => {
                 let routeObj = serviceRoutes[key];
                 const latlngs = routeObj.coords.map(coord => [coord[1], coord[0]]);
@@ -675,7 +656,7 @@ class Train {
         this.vehicleType = (this.label === "1" || this.label === "2" || this.label === "3") ?
             'METRO' :
             'LRT';
-        this.minimumHeadway = 90; // Minimum separation in meters
+        this.minimumHeadway = 75; // Minimum separation in meters
         this.branchId = null; // To be set when spawning trains.
         this.ahead = null;
         this.behind = null;
@@ -735,35 +716,42 @@ class Train {
 
 
     checkHeadway() {
-        if (!this.ahead || this.ahead === this) return true;
-        const aheadDist = this.ahead.distance;
-        const myDist = this.distance;
+        if (!this.ahead) return true;
+        
+        // Debug logging to ensure both trains have the same direction:
+        
         let separation;
         if (this.direction === 1) {
-            separation = aheadDist - myDist;
+            separation = this.ahead.distance - this.distance;
             if (separation < 0) separation += this.totalDistance;
         } else {
-            separation = myDist - aheadDist;
+            separation = this.distance - this.ahead.distance;
             if (separation < 0) separation += this.totalDistance;
+        }
+        if (separation < 200) {
+            
+            console.log(`Train ${this.label} (dir ${this.direction}) ahead is ${this.ahead.label} (dir ${this.ahead.direction})`);
+            console.log(`Separation: ${separation}, Minimum required: ${this.minimumHeadway}`);
         }
         return separation >= this.minimumHeadway;
     }
+    
 
     update(deltaTime) {
 
         if (this.isDwelling) {
             if (Date.now() >= this.dwellUntil) {
-                if (this.checkHeadway()) {
+                // if (this.checkHeadway()) {
                     this.isDwelling = false;
                     this.updateNextStationIndex();
                     this.updateStationInfo();
-                } else {
+                // } else {
                     this.dwellUntil = Date.now() + 1000;
-                }
+                // }
             }
             return;
         }
-        if (this.checkHeadway()) {
+        // if (this.checkHeadway()) {
             const currentSpeed = (this.vehicleType === 'METRO') ?
                 VEHICLE_SPEEDS.METRO :
                 VEHICLE_SPEEDS.LRT;
@@ -805,7 +793,7 @@ class Train {
                 let newPos = posFeature.geometry.coordinates;
                 this.marker.setLatLng([newPos[1], newPos[0]]);
             }
-        }
+        // }
     }
 }
 
