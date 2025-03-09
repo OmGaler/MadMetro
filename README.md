@@ -83,7 +83,7 @@ MadMetro is compatible with most major browsers, on both desktop and mobile, inc
 ## Disclaimers
 
 > [!WARNING]
-> Schedules, frequencies, and routes are for indicative only for demonstration purposes and may not match real-world services. The simulation is an approximation and does not reflect real-time or official transit operations in the Gush Dan region.
+> Schedules, frequencies, and routes are indicative only for demonstration purposes and may not match real-world services. The simulation is an approximation and does not reflect real-time or official transit operations in the Gush Dan region.
 
 - **Accuracy:** Schedules, frequencies, and routes are approximations and may not match planned or actual services.
 - **Not Official:** This project is not affiliated with or endorsed by NTA, MOT, or any other governmental or transit authority.

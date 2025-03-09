@@ -39,7 +39,7 @@
         "saturday": "Saturday",
         "seconds": "1 second",
         "service-id": "Service Identifier",
-        "service-level-label": "Select service level:",
+        "service-level-label": "Select service level (see table):",
         "settings": "Settings",
         "simulation": "Simulation",
         "simulation-speed": "Simulation Speed",
@@ -62,7 +62,7 @@
                     "value": "peaks"
                 },
                 {
-                    "text": "Midday",
+                    "text": "Daytime",
                     "value": "midday"
                 }
             ],
@@ -76,11 +76,11 @@
                     "value": "morning_peak"
                 },
                 {
-                    "text": "Midday",
+                    "text": "Daytime (F)",
                     "value": "midday"
                 },
                 {
-                    "text": "1hr after Sh-22:00",
+                    "text": "Post-Shabbat",
                     "value": "evening"
                 },
                 {
@@ -138,7 +138,7 @@
         "saturday": "שבת",
         "seconds": "שנייה",
         "service-id": "תיאור שירות",
-        "service-level-label": "בחר רמת שירות:",
+        "service-level-label": "בחר רמת שירות (ראה טבלה):",
         "settings": "הגדרות",
         "simulation": "הדמיה",
         "simulation-speed": "מהירות הדמיה",
@@ -167,15 +167,15 @@
             ],
             "weekend": [
                 {
-                    "text": "בוקר מוקדם (ו)",
+                    "text": "בוקר מוקדם (ו')",
                     "value": "early"
                 },
                 {
-                    "text": "שיא בוקר (ש)",
+                    "text": "שיא בוקר (ו')",
                     "value": "morning_peak"
                 },
                 {
-                    "text": "צהריים",
+                    "text": "צהריים (ו')",
                     "value": "midday"
                 },
                 {
