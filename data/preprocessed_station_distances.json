@@ -17872,8 +17872,8 @@
       {
         "distance": 22083,
         "name": {
-          "en": "KIRYAT ARYE TRAIN STATION",
-          "he": "תחנת הרכבת קרית אריה"
+          "en": "Kiryat Aryeh",
+          "he": "קרית אריה"
         },
         "originalDist": 0.11776197430920521
       },
@@ -17936,7 +17936,7 @@
     ],
     "termini": {
       "en": {
-        "start": "HaKomeimiyut",
+        "start": "HaKomemiyut",
         "end": "Herzliya Employment Area"
       },
       "he": {

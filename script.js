@@ -6,12 +6,6 @@
 
 //TODO: Some sort of bug where switching the service time will not update the trains or settings modal properly
 // TODO: on occasion frequencies will not load so default to rush hour
-
-
-//------------------
-//this is a simulation, not real data
-
-
 /********************************************
  * Global Constants & Variables
  ********************************************/
@@ -86,8 +80,6 @@ let trains = [];
 let showRoutes = document.getElementById("toggleRoutes").checked; //show lines and stations, default off
 // Simulation constants:
 const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
-// const timeScale = 30; // 1 real sec = 30 simulated seconds
-// let timeScale = 60; // 1 real sec = 1 simulated minute
 let timeScale = 300; // 1 real sec = 5 simulated minutes
 let DEFAULT_DWELL_TIME = 1; // seconds dwell at each station
 const STATION_TOLERANCE = 30; // meters tolerance
@@ -136,44 +128,72 @@ fetch("data/translations.json")
     .then(response => response.json())
     .then(data => {
         translations = data;
+        console.log("Loaded translations successfully");
         updateLanguage(currentLang);
-        updateTimePeriodOptions();
-        updateLineInfo();
-        updateSpeed();
+        // updateTimePeriodOptions();
+        // updateLineInfo();
+        // updateSpeed();
 
     })
     .catch(error => console.error("Error loading translations:", error));
-
-function updateLanguage(lang) {
-    currentLang = lang;
-    // Update all elements with the data-i18n attribute.
-    const elements = document.querySelectorAll("[data-i18n]");
-    elements.forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (translations[lang] && translations[lang][key]) {
-            el.textContent = translations[lang][key];
+    function updateLanguage(lang) {
+        currentLang = lang;
+        
+        // Store the current selected values before updating
+        const dayTypeSelect = document.getElementById("dayTypeSelect");
+        const timePeriodSelect = document.getElementById("timePeriodSelect");
+        const selectedDayType = dayTypeSelect.value;
+        const selectedTimePeriod = timePeriodSelect.value;
+        
+        // Update all elements with the data-i18n attribute.
+        const elements = document.querySelectorAll("[data-i18n]");
+        elements.forEach(el => {
+            const key = el.getAttribute("data-i18n");
+            if (translations[lang] && translations[lang][key]) {
+                el.textContent = translations[lang][key];
+            }
+        });
+        document.getElementById("readmelink").href = translations[lang]["readme-link"];
+        document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
+        localStorage.setItem("language", lang);
+        
+        //repopulate day and time period options
+        updateCustomSelectOptions("dayTypeSelect");
+        
+        // Ensure dayTypeSelect keeps its value
+        dayTypeSelect.value = selectedDayType;
+        
+        // Update time period options based on the preserved day type
+        updateTimePeriodOptions();
+        
+        // Restore the previously selected time period if it exists in the new options
+        if (selectedTimePeriod) {
+            // Check if the option exists in the updated select
+            const optionExists = Array.from(timePeriodSelect.options).some(
+                option => option.value === selectedTimePeriod
+            );
+            
+            if (optionExists) {
+                timePeriodSelect.value = selectedTimePeriod;
+                // Update the custom select display to reflect this
+                updateCustomSelectOptions("timePeriodSelect");
+            }
         }
-    });
-    document.getElementById("readmelink").href = translations[lang]["readme-link"];
-    document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
-    localStorage.setItem("language", lang);
-    //repopulate day and time period options
-    updateCustomSelectOptions("dayTypeSelect");
-    updateTimePeriodOptions();
-    updateLineInfo();
-    updateSpeed();
-}
+        
+        updateLineInfo();
+        updateSpeed();
+    }
 
 function toggleLanguage() {
     const newLang = currentLang === "en" ? "he" : "en";
     updateLanguage(newLang);
 }
-
-
 function updateTimePeriodOptions() {
     const dayTypeSelect = document.getElementById("dayTypeSelect");
     const timePeriodSelect = document.getElementById("timePeriodSelect");
     const selectedDayType = dayTypeSelect.value;
+    const previouslySelectedValue = timePeriodSelect.value; // Store current selection
+    
     timePeriodSelect.innerHTML = "";
     if (translations[currentLang] && translations[currentLang].timePeriods && translations[currentLang].timePeriods[selectedDayType]) {
         const periods = translations[currentLang].timePeriods[selectedDayType];
@@ -183,6 +203,17 @@ function updateTimePeriodOptions() {
             opt.textContent = option.text;
             timePeriodSelect.appendChild(opt);
         });
+        
+        // Try to restore the previous selection if it exists
+        if (previouslySelectedValue) {
+            const optionExists = Array.from(timePeriodSelect.options).some(
+                option => option.value === previouslySelectedValue
+            );
+            
+            if (optionExists) {
+                timePeriodSelect.value = previouslySelectedValue;
+            }
+        }
     }
     updateCustomSelectOptions("timePeriodSelect");
 }
@@ -233,8 +264,10 @@ toggleRoutesCheckbox.addEventListener("change", function() {
 
 function toggleDisplayRoutes() {
     if (showRoutes) {
+        toggleRoutesCheckbox.checked = true;
         map.addLayer(routeLayersGroup);
     } else {
+        toggleRoutesCheckbox.checked = false;
         map.removeLayer(routeLayersGroup);
     }
 }
@@ -261,7 +294,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
 // Define allowed simulation speeds
 const speedValues = [30, 60, 180, 300, 420];
-const speedSlider = document.getElementById("speedSlider");
+const speedSlider = document.getElementById("speedSlider"); 
 // const speedValue = document.getElementById("speedValue");
 const realTimeInfo = document.getElementById("realTimeInfo");
 
@@ -524,6 +557,7 @@ Promise.all([
     .then(([schedule, routes]) => {
         scheduleData = schedule;
         serviceRoutes = routes;
+        updateLineInfo(); // Update line info in settings with schedule 
         console.log("Loaded schedule data:", scheduleData);
         console.log("Loaded service routes:", serviceRoutes);
         // Visualise service routes and station markers
@@ -858,8 +892,7 @@ function startSimulation() {
             const totalTrains = 2 * trainsPerDirection; // Total number of trains (both directions)
             const directionTrains = { "-1": [], "1": [] };
 
-            const oppositeDirOffset = (routeLength / totalTrains) / 2; // Offset to stagger opposite direction
-
+            let oppositeDirOffset = (routeLength / totalTrains) / 2; // Offset to stagger opposite direction
             for (let i = 0; i < totalTrains; i++) {
                 const direction = i % 2 === 0 ? 1 : -1; // Alternate directions
                 const index = Math.floor(i / 2); // Half as many trains per direction
@@ -880,7 +913,6 @@ function startSimulation() {
                 
                 let trainLabel = lineId.startsWith('M') ? lineId.charAt(1) : lineId.charAt(0);
                 let train = new Train(route, trainLabel, lineColours[lineId.split('_')[0]], offset);
-                
                 // Short turn southbound R3 trains at Elifelet outside of weekday peaks
                 if (
                     branchId === 'R23' &&    // For the R23 branch

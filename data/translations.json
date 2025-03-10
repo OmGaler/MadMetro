@@ -10,6 +10,7 @@
         "day-select-detail": "Choose between weekday and weekend service",
         "day-selection": "Day Selection",
         "destination": "Destination",
+        "disclaimer": "This is a simulation, not real data. For indicative purpose only.",
         "early_late": "Early Mornings/Late Evenings",
         "early-morning": "Early morning",
         "erev-sh": "09:00 - 1 hour before Shabbat",
@@ -56,6 +57,10 @@
         "timePeriods": {
             "weekday": [
                 {
+                    "text": "Daytime",
+                    "value": "midday"
+                },
+                {
                     "text": "Early Morning/Late Night",
                     "value": "early_late"
                 },
@@ -66,10 +71,6 @@
                 {
                     "text": "Morning/Evening Peak",
                     "value": "peaks"
-                },
-                {
-                    "text": "Daytime",
-                    "value": "midday"
                 }
             ],
             "weekend": [
@@ -119,6 +120,7 @@
         "day-select-detail": "בחר בשירות יום חול/סופ\"ש",
         "day-selection": "בחר יום",
         "destination": "יעד",
+        "disclaimer": "זו הדמיה, לא נתוני זמן אמת. להמחשה בלבד.",
         "early-morning": "בקרים מוקדמים",
         "erev-sh": "09:00 - שעה לפני שבת",
         "evening": "ערבים",
@@ -163,6 +165,10 @@
         "timePeriods": {
             "weekday": [
                 {
+                    "text": "צהריים",
+                    "value": "midday"
+                },
+                {
                     "text": "בקרים מוקדמים/לילות",
                     "value": "early_late"
                 },
@@ -173,10 +179,6 @@
                 {
                     "text": "שעות שיא",
                     "value": "peaks"
-                },
-                {
-                    "text": "צהריים",
-                    "value": "midday"
                 }
             ],
             "weekend": [

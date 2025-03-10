@@ -1,112 +1,292 @@
+/* ==========================================
+   BASE STYLES
+   ========================================== */
+body {
+    font-family: Helvetica;
+}
+
 #map {
     height: 100vh;
     width: 100%;
 }
 
-body {
+/* ==========================================
+   LAYOUT & CONTAINERS
+   ========================================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
     font-family: Helvetica;
 }
 
-/* Leaflet Zoom Controls Dark Mode */
-body.dark-mode .leaflet-control-zoom {
-    border: 2px solid #333;
-    background-color: rgba(30, 30, 30, 0.8);
-    box-shadow: 0 1px 5px rgba(255, 255, 255, 0.1);
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 4px;
+    overflow: auto;
+    height: 70vh;
 }
 
-body.dark-mode .leaflet-control-zoom a {
-    background-color: rgba(50, 50, 50, 0.9);
-    color: #ffffff;
-    border-bottom: 1px solid #444;
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
 }
 
-body.dark-mode .leaflet-control-zoom a:hover {
-    background-color: rgba(70, 70, 70, 0.9);
-    color: #ffffff;
+.modal-title {
+    font-size: 32px;
+    font-weight: bold;
 }
 
-body.dark-mode .leaflet-control-zoom a:first-child {
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+#settingsModal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    align-items: center; 
+    justify-content: center;
 }
 
-body.dark-mode .leaflet-control-zoom a:last-child {
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-}
-
-/* Ensure text is visible in dark mode */
-body.dark-mode .leaflet-control-zoom-in,
-body.dark-mode .leaflet-control-zoom-out {
-    color: #ffffff !important;
-}
-
-body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-body.dark-mode #pause,
-body.dark-mode #settings,
-body.dark-mode #darkModeButton,
-body.dark-mode .tab-link,
-body.dark-mode .toggle-info p,
-body.dark-mode .toggle-info h3,
-body.dark-mode .toggle-option ion-icon,
-body.dark-mode .close,
-body.dark-mode .language-select,
-body.dark-mode .modal-content {
-    background-color: #1e1e1e;
-    color: #ffffff;
-    border-color: #333;
-}
-
-
-body.dark-mode .legend {
-    background-color: #1e1e1e;
-    color: #ffffff;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-}
-
-body.dark-mode .lang-options {
-    background-color: #1e1e1e;
-    border-color: #333;
-    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
-}
-
-body.dark-mode .lang-option {
-    color: #ffffff;
-}
-
-body.dark-mode input[type="range"] {
-    background-color: #2c2c2c;
-}
-
-
-body.dark-mode .lang-btn {
-    color: #ffffff;
-}
-
-.dark-mode a {
-    color: #ffffff;
-}
-
-.train-marker {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
+/* ==========================================
+   CONTROLS & BUTTONS
+   ========================================== */
+#pause {
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    z-index: 1000;
+    padding: 8px 12px;
+    font-size: 18px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    color: white;
-    font-size: 14px;
-    text-align: center;
-    line-height: 24px;
-
-
+    width: 45px; 
+    height: 45px; 
 }
 
+#pause ion-icon {
+    flex-shrink: 0;
+    font-size: 1.2em; 
+}
+
+#settings {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    z-index: 1000;
+    padding: 8px 12px;
+    font-size: 18px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px; 
+    height: 45px; 
+}
+
+#settings ion-icon {
+    flex-shrink: 0;
+    font-size: 1.2em; 
+}
+
+.close {
+    top: 20px;
+    right: 20px;
+    font-size: 36px;
+    font-weight: bold;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#darkModeButton {
+    padding: 8px 12px;
+    font-size: 18px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+#darkModeButton ion-icon {
+    font-size: 24px;
+    color: #333;
+}
+
+button#darkModeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 24px;
+}
+
+/* ==========================================
+   LANGUAGE SELECTOR
+   ========================================== */
+.language-select {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    font-size: 18px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+}
+
+#language-select ion-icon {
+    flex-shrink: 0;
+    font-size: 1.2em;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    flex-shrink: 0;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.lang-options {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translate(10px, -50%);
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.language-select:hover .lang-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0, -50%);
+}
+
+.lang-option {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==========================================
+   TABS & CONTENT
+   ========================================== */
+.tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.tab-link {
+    flex: 1;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 4px 4px 0 0;
+    transition: color 0.3s, border-bottom 0.3s;
+}
+
+.tab-link:hover {
+    color: #007bff;
+}
+
+.tab-link.active {
+    color: #007bff;
+    font-weight: bold;
+    background: #fff;
+    border-bottom: 2px solid #007bff;
+}
+
+.tab-link ion-icon {
+    display: inline-flex;
+    vertical-align: middle;
+    font-size: 1.8em;
+}
+
+.tab-content {
+    display: none;
+    overflow: auto;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+#lineDetailsTab {
+    padding: 10px;
+}
+
+#lineContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* ==========================================
+   MAP ELEMENTS & LEGEND
+   ========================================== */
 .legend {
     position: absolute;
     top: 20px;
@@ -148,6 +328,50 @@ body.dark-mode .lang-btn {
     font-family: Helvetica, sans-serif;
 }
 
+.train-marker {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    line-height: 24px;
+}
+
+.train-popup {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 16px;
+    font-size: 14px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    font-family: Helvetica;
+    animation: fadeIn 0.2s ease-out;
+    z-index: 9999;
+}
+
+.train-popup-content {
+    display: flex;
+    align-items: center;
+}
+
+.train-popup span {
+    font-size: 18px;
+}
+
+/* ==========================================
+   COLOR DEFINITIONS
+   ========================================== */
 .red {
     background-color: #ff0000;
 }
@@ -172,583 +396,27 @@ body.dark-mode .lang-btn {
     background-color: #fec524;
 }
 
-#darkModeButton {
-    padding: 8px 12px;
-    font-size: 18px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    /* Pushes the title to the left and close button to the right */
-    align-items: center;
-    /* Vertically centers the content */
-    padding-bottom: 10px;
-    /* margin-bottom: 20px; */
-}
-
-.modal-title {
-    font-size: 32px;
-    font-weight: bold;
-}
-
-.close {
-    top: 20px;
-    right: 20px;
-    font-size: 36px;
-    font-weight: bold;
-    background-color: #fff;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-#pause {
-    position: absolute;
-    top: 20px;
-    right: 60px;
-    z-index: 1000;
-    padding: 8px 12px;
-    font-size: 18px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px; 
-    height: 45px; 
-}
-
-#pause ion-icon {
-    flex-shrink: 0;
-    font-size: 1.2em; 
-} 
-
-
-
-#settings {
-    position: absolute;
-    top: 20px;
-    right: 10px;
-    z-index: 1000;
-    padding: 8px 12px;
-    font-size: 18px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-   width: 45px; 
-   height: 45px; 
-}
-#settings ion-icon {
-    flex-shrink: 0;
-    font-size: 1.2em; 
-} 
-.darkMode {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-.language-select {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    z-index: 1000;
-    font-size: 18px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px; /* Main button size */
-    height: 45px; /* Main button size */
-}
-
-#language-select ion-icon {
-    flex-shrink: 0;
-    font-size: 1.2em;
-}
-
-.lang-btn {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2em;  /* Match font size */
-    flex-shrink: 0;
-    width: 45px; /* Exact size of main button */
-    height: 45px; /* Exact size of main button */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;  /* Ensure no extra padding */
-}
-
-.lang-options {
-    position: absolute;
-    left: 100%;
-    top: 50%;
-    transform: translate(10px, -50%);
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 0; /* No extra padding */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-}
-
-.language-select:hover .lang-options {
-    opacity: 1;
-    visibility: visible;
-    transform: translate(0, -50%);
-}
-
-.lang-option {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 14px; /* Adjust font size to fit inside */
-    padding: 0; /* No padding to avoid size mismatch */
-    width: 45px; /* Match size of main button */
-    height: 45px; /* Match size of main button */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#settingsModal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-    align-items: center; 
-    justify-content: center;
-}
-
-.modal-content {
-    background-color: #fefefe;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    border-radius: 4px;
-    overflow: auto;
-    height: 70vh;
-    margin: 0;  
-}
-
-@media (max-width: 1115px) {
-    .modal-content {
-        height: 75vh;    
-    }
-}
-
-
-.speed-controls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 10px;
-}
-
-.simulationSpeedContainer {
-    padding-bottom: 10px;
-}
-
-.routeBulletHolder {
-    padding: 0 10px;
-}
-
-/* #simulationControls {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-family: sans-serif;
-}
-
-#simulationControls button {
-   font-size: 18px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-}
-
-#simulationControls select {
-    margin: 0 5px;
-}  */
-
-.train-popup {
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 12px 18px;
-    border-radius: 16px;
-    font-size: 14px;
-    display: none;
-    align-items: center;
-    gap: 10px;
-    font-family: Helvetica;
-    animation: fadeIn 0.2s ease-out;
-    z-index: 9999;
-}
-
-
-.train-popup-content {
-    display: flex;
-    align-items: center;
-}
-
-.train-popup span {
-    font-size: 18px;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, 10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translate(-50%, 0);
-    }
-}
-
-.radio-buttons {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.radio-button {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #f7f7f7;
-    transition: background-color 0.3s;
-    user-select: none;
-}
-
-.radio-button span {
-    display: block;
-    padding: 8px 12px;
-}
-
-.radio-button:hover {
-    background-color: #e0e0e0;
-}
-
-.radio-button input {
-    display: none;
-}
-
-/*   
-.radio-button input:checked + span {
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 4px;
-} */
-.radio-button:has(input:checked) {
-    background-color: #007bff;
-    color: #fff;
-    border-color: #007bff;
-}
-
-#lineContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-/* For wider screens, switch to a grid layout */
-@media (min-width: 750px) {
-    #lineContainer {
-        display: grid;
-        /* We want 3 rows so that the first three items are in the first column and the next three in the second */
-        grid-template-rows: repeat(3, auto);
-        /* Use grid-auto-flow: column to fill columns */
-        grid-auto-flow: column;
-        gap: 10px;
-    }
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-    font-family: Helvetica;
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    border-radius: 4px;
-}
-
-/* Tabs Container */
-.tabs {
-    display: flex;
-    gap: 5px;
-    margin-bottom: 15px;
-}
-
-/* Tab Links */
-.tab-link {
-    flex: 1;
-    padding: 10px;
-    
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    border: none;
-    /* Create space for an underline */
-    border-bottom: 2px solid transparent;
-    cursor: pointer;
-    text-align: center;
-    /* Only round the top corners so the underline is flush */
-    border-radius: 4px 4px 0 0;
-    transition: color 0.3s, border-bottom 0.3s;
-}
-
-.tab-link:hover {
-    color: #007bff;
-}
-
-.tab-link.active {
-    color: #007bff;
-    font-weight: bold;
-    background: #fff;
-    border-bottom: 2px solid #007bff;
-}
-
-body.dark-mode .tab-link.active {
-    color: #007bff;
-    font-weight: bold;
-    border-bottom: 2px solid #007bff;
-}
-
-body.dark-mode .tab-link:hover {
-    color: #007bff;
-}
-
-.tab-link ion-icon {
-    display: inline-flex;
-    vertical-align: middle;
-
-    /* margin-right: 3px; */
-    font-size: 1.8em;
-}
-
-/* Tab Content */
-.tab-content {
-    display: none;
-    overflow: auto;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-/* Dark Mode Button for Appearance Tab */
-#darkModeButton {
-    padding: 8px;
-    font-size: 24px;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    cursor: pointer;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Ionicons inside button */
-#darkModeButton ion-icon {
-    font-size: 24px;
-    color: #333;
-}
-
-/* Dark Mode Overrides */
-.dark-mode .modal-content {
-    background-color: #1e1e1e;
-    color: #ffffff;
-    border: 1px solid #444;
-}
-
-.dark-mode #darkModeButton {
-    background-color: #333333;
-    border: 1px solid #444;
-}
-
-.dark-mode #darkModeButton ion-icon {
-    color: #ffffff;
-}
-
-/* Simulation Speed Slider Styling */
-input[type="range"] {
-    width: 60%;
-    margin-top: 10px;
-}
-
-.simulation-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-#simulationControls {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-#serviceLevelsTable {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-#serviceLevelsTable th,
-#serviceLevelsTable td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-#serviceLevelsTable th:first-child,
-#serviceLevelsTable td:first-child {
-    white-space: nowrap;
-    /* Prevents table text from wrapping */
-}
-
-
-#serviceLevelsTable th {
-    background-color: #f2f2f2;
-}
-
-body.dark-mode #serviceLevelsTable th {
-    background-color: #1f1f1f;
-}
-
-#speedSlider {
-    width: 100%;
-}
-
-
-/* Ensure the grid becomes a single column on narrow screens */
-@media (max-width: 850px) {
-    .simulation-grid {
-        grid-template-columns: 1fr;
-        /* Single column */
-    }
-    .tab-link {
-
-        display: flex;
-        flex-direction: column;
-    }
-
-    #speedSlider {
-        max-width: 100%;
-    }
-}
-
-html[dir="rtl"] #serviceLevelsTable {
-    direction: rtl;
-    text-align: right;
-}
-
-html[dir="rtl"] #serviceLevelsTable th,
-html[dir="rtl"] #serviceLevelsTable td {
-    text-align: right;
-}
-
-
-/* Prevent elements from overflowing */
-@media (max-width: 480px) {
-    #serviceLevelsTable {
-        font-size: 14px;
-        /* Reduce font size for readability */
-    }
-
-    #serviceLevelsTable th,
-    #serviceLevelsTable td {
-        padding: 6px;
-        /* Reduce padding for better fit */
-        word-break: break-word;
-        /* Prevent text from overflowing */
-    }
-
-    #simulationControls {
-        flex-direction: column;
-        /* Stack controls vertically */
-        align-items: stretch;
-        /* Full width */
-    }
-
-    .custom-select {
-        width: 100%;
-        /* Make dropdowns and buttons full width */
-    }
-}
-
+/* ==========================================
+   TOGGLE & FORM CONTROLS
+   ========================================== */
 .toggle-option {
     display: flex;
-    align-items: center; /* Ensures icons and selects align properly */
-    margin-bottom: 10px; /* Adjust for spacing between each row */
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
 }
-
 
 .toggle-option:last-child {
     border-bottom: none;
 }
 
-/* Icon styling */
 .toggle-option ion-icon {
     font-size: 24px;
-    margin-right: 15px;
-    color: #333;
+    margin-right: 16px;
+    color: #555;
 }
 
-/* Container for text and switch */
 .toggle-container {
     display: flex;
     justify-content: space-between;
@@ -756,11 +424,10 @@ html[dir="rtl"] #serviceLevelsTable td {
     flex: 1;
 }
 
-/* Text Info Styling */
 .toggle-info {
     flex: 1;
-    margin-right: 16px; /* Ensure spacing between text and control */
-    min-width: 0; /* Allow proper shrinking */
+    margin-right: 16px;
+    min-width: 0;
 }
 
 .toggle-info h3 {
@@ -775,38 +442,6 @@ html[dir="rtl"] #serviceLevelsTable td {
     margin-top: 2px;
 }
 
-/* Ensure the switch is vertically centered */
-.switch {
-    display: flex;
-    align-items: center;
-}
-
-/* Button for Dark Mode Toggle */
-button#darkModeButton {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    font-size: 24px;
-}
-
-/* Styling for the Show Stations & Routes toggle */
-#toggleRoutes {
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-/* Optional additional styling for the Line Details Tab */
-#lineDetailsTab {
-    padding: 10px;
-}
-
-#lineContainer {
-    margin-top: 10px;
-}
-
-
-/* Title and subtitle styling */
 .toggle-title {
     font-weight: bold;
     font-size: 16px;
@@ -818,7 +453,7 @@ button#darkModeButton {
     color: #666;
 }
 
-/* Toggle Switch Styles */
+/* Switch styles */
 .switch {
     position: relative;
     display: inline-block;
@@ -856,50 +491,17 @@ button#darkModeButton {
     border-radius: 50%;
 }
 
-.switch input:checked+.slider {
+.switch input:checked + .slider {
     background-color: #007bff;
 }
 
-.switch input:checked+.slider:before {
+.switch input:checked + .slider:before {
     transform: translateX(16px);
 }
 
-/* CLa */
-
-/* Toggle option container */
-.toggle-option {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 0;
-    border-bottom: 1px solid #eee;
-}
-
-/* Icon styles */
-.toggle-option ion-icon {
-    font-size: 24px;
-    margin-right: 16px;
-    color: #555;
-}
-
-/* Toggle info section */
-.toggle-info {
-    flex-grow: 1;
-}
-
-.toggle-info h3 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.toggle-description {
-    margin: 4px 0 0;
-    font-size: 14px;
-    color: #777;
-}
-
-/* Select styling - hidden original select */
+/* ==========================================
+   CUSTOM SELECT DROPDOWNS
+   ========================================== */
 .toggle-option select {
     display: none;
 }
@@ -907,16 +509,13 @@ button#darkModeButton {
 .custom-select {
     position: relative;
     margin-left: auto;
-    /* Force a fixed width and prevent flex from expanding/shrinking */
-    flex: 0 0 150px;  
+    flex: 0 0 150px;
     display: flex;
     align-items: center;
 }
 
-
 .select-selected {
     width: 100%;
-    /* text-align: right; */
     background-color: #f0f0f0;
     border-radius: 20px;
     padding: 8px 16px;
@@ -929,11 +528,9 @@ button#darkModeButton {
 .select-selected:empty::before {
     content: "Select Time";
     display: block;
-    /* text-align: right; */
     width: 100%;
     color: #999;
 }
-
 
 .select-selected:after {
     content: "";
@@ -948,7 +545,6 @@ button#darkModeButton {
     border-top: 5px solid #333;
 }
 
-/* Style for the dropdown items */
 .select-items {
     position: absolute;
     background-color: white;
@@ -972,106 +568,89 @@ button#darkModeButton {
     background-color: #f0f0f0;
 }
 
-body.dark-mode .select-items {
-    position: absolute;
-    background-color: #222; /* Dark background */
-    color: #f8f8f8; /* Light text */
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 99;
-    margin-top: 5px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Stronger shadow */
-    display: none;
-    border: 1px solid #444; /* Subtle border */
-}
-
-body.dark-mode  .select-items div {
-    padding: 10px 16px;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.2s ease-in-out;
-}
-
-body.dark-mode .select-items div:hover {
-    background-color: #333; /* Slightly lighter hover */
-}
-body.dark-mode .select-selected {
+/* ==========================================
+   TABLE STYLES
+   ========================================== */
+#serviceLevelsTable {
     width: 100%;
-    /* text-align: right; */
-    background-color: #333; /* Darker background */
-    border-radius: 20px;
-    padding: 8px 16px;
-    font-size: 14px;
-    color: #f8f8f8; /* Light text for contrast */
-    min-height: 1em;
-    position: relative;
-    border: 1px solid #444; /* Subtle border */
-    transition: background 0.2s ease-in-out;
+    border-collapse: collapse;
 }
 
-body.dark-mode .select-selected:hover {
-    background-color: #444; /* Slightly lighter on hover */
+#serviceLevelsTable th,
+#serviceLevelsTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    vertical-align: middle;
+    
 }
 
-body.dark-mode .select-selected:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid #f8f8f8; /* Light arrow for contrast */
+#serviceLevelsTable th:first-child,
+#serviceLevelsTable td:first-child {
+    white-space: nowrap;
+}
+
+#serviceLevelsTable th {
+    background-color: #f2f2f2;
+}
+
+.time-cell {
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px; 
+}
+
+/* ==========================================
+   SIMULATION & SLIDER CONTROLS
+   ========================================== */
+.simulationSpeedContainer {
+    padding-bottom: 10px;
+}
+
+.simulation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+#simulationControls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.speed-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.routeBulletHolder {
+    padding: 0 10px;
+}
+
+input[type="range"] {
+    width: 60%;
+    margin-top: 10px;
 }
 
 
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: .4s;
-}
-
-
-input:checked+.slider {
-    background-color: #2196F3;
-}
-
-input:checked+.slider:before {
-    transform: translateX(26px);
-}
-
-.slider.round {
-    border-radius: 24px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
+#speedSlider {
+    width: 100%;
+    
 }
 
 .speed-slider {
     width: 100%;
     margin-top: 10px;
+    
+}
+
+html[dir="rtl"] .slider-container {
+    padding-left: 10px; 
+    overflow: visible;
 }
 
 .speed-slider input {
@@ -1091,4 +670,265 @@ input:checked+.slider:before {
     border-radius: 50%;
     background: #2196F3;
     cursor: pointer;
+}
+
+/* ==========================================
+   RADIO BUTTONS
+   ========================================== */
+.radio-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.radio-button {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #f7f7f7;
+    transition: background-color 0.3s;
+    user-select: none;
+}
+
+.radio-button span {
+    display: block;
+    padding: 8px 12px;
+}
+
+.radio-button:hover {
+    background-color: #e0e0e0;
+}
+
+.radio-button input {
+    display: none;
+}
+
+.radio-button:has(input:checked) {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+/* ==========================================
+   ANIMATIONS
+   ========================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 10px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* ==========================================
+   RTL SUPPORT
+   ========================================== */
+[dir="rtl"] .select-selected:after {
+    left: 10px;
+    right: auto;
+}
+
+[dir="rtl"] body.dark-mode .select-selected:after {
+    left: 10px;
+    right: auto;
+}
+
+html[dir="rtl"] #serviceLevelsTable {
+    direction: rtl;
+    text-align: right;
+}
+
+html[dir="rtl"] #serviceLevelsTable th,
+html[dir="rtl"] #serviceLevelsTable td {
+    text-align: right;
+}
+
+/* ==========================================
+   DARK MODE
+   ========================================== */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+body.dark-mode #pause,
+body.dark-mode #settings,
+body.dark-mode #darkModeButton,
+body.dark-mode .tab-link,
+body.dark-mode .toggle-info p,
+body.dark-mode .toggle-info h3,
+body.dark-mode .toggle-option ion-icon,
+body.dark-mode .close,
+body.dark-mode .language-select,
+body.dark-mode .modal-content {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-color: #333;
+}
+
+body.dark-mode .legend {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .lang-options {
+    background-color: #1e1e1e;
+    border-color: #333;
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .lang-option {
+    color: #ffffff;
+}
+
+body.dark-mode input[type="range"] {
+    background-color: #2c2c2c;
+}
+
+body.dark-mode .lang-btn {
+    color: #ffffff;
+}
+
+.dark-mode a {
+    color: #ffffff;
+}
+
+/* Leaflet Zoom Controls Dark Mode */
+body.dark-mode .leaflet-control-zoom {
+    border: 2px solid #333;
+    background-color: rgba(30, 30, 30, 0.8);
+    box-shadow: 0 1px 5px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .leaflet-control-zoom a {
+    background-color: rgba(50, 50, 50, 0.9);
+    color: #ffffff;
+    border-bottom: 1px solid #444;
+}
+
+body.dark-mode .leaflet-control-zoom a:hover {
+    background-color: rgba(70, 70, 70, 0.9);
+    color: #ffffff;
+}
+
+body.dark-mode .leaflet-control-zoom a:first-child {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+body.dark-mode .leaflet-control-zoom a:last-child {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+body.dark-mode .leaflet-control-zoom-in,
+body.dark-mode .leaflet-control-zoom-out {
+    color: #ffffff !important;
+}
+
+body.dark-mode .tab-link.active {
+    color: #007bff;
+    font-weight: bold;
+    border-bottom: 2px solid #007bff;
+}
+
+body.dark-mode .tab-link:hover {
+    color: #007bff;
+}
+
+body.dark-mode #darkModeButton {
+    background-color: #333333;
+    border: 1px solid #444;
+}
+
+body.dark-mode #darkModeButton ion-icon {
+    color: #ffffff;
+}
+
+body.dark-mode #serviceLevelsTable th {
+    background-color: #1f1f1f;
+}
+
+body.dark-mode .select-items {
+    background-color: #222;
+    color: #f8f8f8;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    border: 1px solid #444;
+}
+
+body.dark-mode .select-items div:hover {
+    background-color: #333;
+}
+
+body.dark-mode .select-selected {
+    background-color: #333;
+    color: #f8f8f8;
+    border: 1px solid #444;
+    transition: background 0.2s ease-in-out;
+}
+
+body.dark-mode .select-selected:hover {
+    background-color: #444;
+}
+
+body.dark-mode .select-selected:after {
+    border-top: 5px solid #f8f8f8;
+}
+
+/* ==========================================
+   MEDIA QUERIES
+   ========================================== */
+@media (min-width: 750px) {
+    #lineContainer {
+        display: grid;
+        grid-template-rows: repeat(3, auto);
+        grid-auto-flow: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 1115px) {
+    .modal-content {
+        height: 75vh;    
+    }
+}
+
+@media (max-width: 850px) {
+    .simulation-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tab-link {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #speedSlider {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    #serviceLevelsTable {
+        font-size: 14px;
+    }
+
+    #serviceLevelsTable th,
+    #serviceLevelsTable td {
+        padding: 6px;
+        word-break: break-word;
+    }
+
+    #simulationControls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .custom-select {
+        width: 100%;
+    }
 }

@@ -35,24 +35,6 @@
     </button>
 
 
-    <!-- <div id="simulationControls">
-        <label for="dayTypeSelect"><ion-icon name="calendar"></ion-icon></label>
-        <select id="dayTypeSelect">
-            <option data-i18n="weekday" value="weekday"></option>
-            <option data-i18n="weekend" value="weekend"></option>
-        </select>
-        <label for="timePeriodSelect"><ion-icon name="time-outline"></ion-icon></label>
-        <select id="timePeriodSelect"></select>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const dayTypeSelect = document.getElementById("dayTypeSelect");
-                const timePeriodSelect = document.getElementById("timePeriodSelect");
-
-                // Update options when selection changes
-                dayTypeSelect.addEventListener("change", updateTimePeriodOptions);
-            });
-        </script> -->
     <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
         <div class="modal-content">
@@ -159,47 +141,83 @@
                                 <tr>
                                     <td data-i18n="wkday">Weekday</td>
                                     <td data-i18n="early-morning">Early morning</td>
-                                    <td>05:30-06:00</td>
-                                </tr>
+                                    <td class="time-cell">
+                                        <span class="time-start">05:30</span>
+                                        <span class="time-separator">-</span>
+                                        <span class="time-end">06:00</span>
+                                    </td>
+                                    </tr>
                                 <tr>
                                     <td></td>
                                     <td data-i18n="morning">Morning</td>
-                                    <td>06:00-06:30</td>
+                                    <td class="time-cell">
+                                        <span class="time-start">06:30</span>
+                                        <span class="time-separator">-</span>
+                                        <span class="time-end">06:30</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td data-i18n="morning-peak">Morning peak</td>
-                                    <td>06:30-09:00</td>
+                                    <td class="time-cell">
+                                        <span class="time-start">06:30</span>
+                                        <span class="time-separator">-</span>
+                                        <span class="time-end">09:00</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td data-i18n="midday">Daytime</td>
-                                    <td>09:00-16:30</td>
+                                    <td class="time-cell">
+                                        <span class="time-start">09:00</span>
+                                        <span class="time-separator">-</span>
+                                        <span class="time-end">16:30</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td data-i18n="evening-peak">Evening peak</td>
-                                    <td>16:30-19:00</td>
+                                    <td class="time-cell">
+                                        <span class="time-start">16:30</span>
+                                        <span class="time-separator">-</span>
+                                        <span class="time-end">19:00</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td data-i18n="evening">Evening</td>
-                                    <td>19:00-22:00</td>
+                                    <td class="time-cell">
+                                        <span class="time-start">19:00</span>
+                                        <span class="time-separator">-</span>
+                                        <span class="time-end">22:00</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td data-i18n="late-night">Late Night</td>
-                                    <td>22:00-01:00</td>
+                                    <td class="time-cell">
+                                        <span class="time-start">22:00</span>
+                                        <span class="time-separator">-</span>
+                                        <span class="time-end">01:00</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td data-i18n="friday">Friday</td>
                                     <td data-i18n="early-morning">Early morning</td>
-                                    <td>05:30-07:00</td>
+                                    <td class="time-cell">
+                                        <span class="time-start">05:30</span>
+                                        <span class="time-separator">-</span>
+                                        <span class="time-end">07:00</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td data-i18n="morning-peak">Morning peak</td>
-                                    <td>07:00-09:00</td>
+                                    <td class="time-cell">
+                                        <span class="time-start">07:00</span>
+                                        <span class="time-separator">-</span>
+                                        <span class="time-end">09:00</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
@@ -214,7 +232,11 @@
                                 <tr>
                                     <td></td>
                                     <td data-i18n="late-night">Late night</td>
-                                    <td>22:00-01:00</td>
+                                    <td class="time-cell">
+                                        <span class="time-start">22:00</span>
+                                        <span class="time-separator">-</span>
+                                        <span class="time-end">01:00</span>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -273,6 +295,8 @@
 
 
                 <h3 data-i18n="more-info">More Information</h3>
+                <p><strong data-i18n="disclaimer">Disclaimer</strong></p>
+
                 <a id="readmelink" href="https://github.com/OmGaler/MadMetro/blob/master/README.md"
                     data-i18n="usage-disclaimer">Read the usage disclaimer</a>
                 <p data-i18n="copyright">© 2025 Omer Galer</p>
