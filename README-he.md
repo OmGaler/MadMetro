@@ -47,7 +47,7 @@ git clone https://github.com/OmGaler/MadMetro.git
 cd MadMetro
 ```
 
-הפעילו את מדמה:
+הפעילו את המדמה:
 
 - פתחו את ```index.html``` בדפדפן שלכם.
 - או לחלופין, הפעילו שרת מקומי (למשל, באמצעות Python):
