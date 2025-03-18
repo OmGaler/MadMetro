@@ -1,4 +1,4 @@
-# DanMetroSim Non‑Commercial Software License  
+# MadMetro Non‑Commercial Software License  
 Version 1.0  
 Copyright (c) 2025 Omer Galer
 
