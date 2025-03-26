@@ -321,6 +321,19 @@
             </div>
         </div>
     </div>
+    <!-- Station Info Pop-Up -->
+    <div id="stationPopup" class="station-popup">
+        <div class="station-popup-content">
+            <div class="routeBulletHolder">
+                <span class="bullet" id="stnPopupRouteBullet"></span>
+            </div>
+            <div>
+                <strong>
+                    <p id="popupStnName">*</p>
+                </strong>
+            </div>
+        </div>
+    </div>
     <div id="languageSelect" class="language-select">
         <button class="lang-btn">
             <ion-icon name="globe-outline"></ion-icon>
@@ -330,8 +343,11 @@
             <button class="lang-option" onclick="updateLanguage('he')">he</button>
         </div>
     </div>
+    <button id="wayfinder">
+        <ion-icon name="compass-outline"></ion-icon>
+    </button>
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
     <!-- for icons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

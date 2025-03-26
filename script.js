@@ -1,11 +1,6 @@
-//TODO: enforce headway separation -Before spawning a new train or allowing a train to depart from a station, check the distance to the train ahead.
-// // TODO: extreme bunching (irrespective of branching??)
-//TODO: headways still not being enforced
-//todo: perhaps, If bunching is detected, could gently adjust speeds or extend dwell times at the terminal to restore proper spacing.
+import { buildGraph, dijkstraWithTransfers, reconstructPathWithTransfers } from './wayfinder.js';
 
 
-//TODO: Some sort of bug where switching the service time will not update the trains or settings modal properly
-// TODO: on occasion frequencies will not load so default to rush hour
 /********************************************
  * Global Constants & Variables
  ********************************************/
@@ -76,6 +71,8 @@ let translations = {};
 let currentLang = localStorage.getItem("language") || "en";
 let scheduleData = null;
 let serviceRoutes = {}; // Loaded from preprocessed_station_distances.json
+let G = {}; // Network Graph
+let stationLookup;
 let trains = [];
 let showRoutes = document.getElementById("toggleRoutes").checked; //show lines and stations, default off
 // Simulation constants:
@@ -130,59 +127,57 @@ fetch("data/translations.json")
         translations = data;
         console.log("Loaded translations successfully");
         updateLanguage(currentLang);
-        // updateTimePeriodOptions();
-        // updateLineInfo();
-        // updateSpeed();
-
     })
     .catch(error => console.error("Error loading translations:", error));
-    function updateLanguage(lang) {
-        currentLang = lang;
-        
-        // Store the current selected values before updating
-        const dayTypeSelect = document.getElementById("dayTypeSelect");
-        const timePeriodSelect = document.getElementById("timePeriodSelect");
-        const selectedDayType = dayTypeSelect.value;
-        const selectedTimePeriod = timePeriodSelect.value;
-        
-        // Update all elements with the data-i18n attribute.
-        const elements = document.querySelectorAll("[data-i18n]");
-        elements.forEach(el => {
-            const key = el.getAttribute("data-i18n");
-            if (translations[lang] && translations[lang][key]) {
-                el.textContent = translations[lang][key];
-            }
-        });
-        document.getElementById("readmelink").href = translations[lang]["readme-link"];
-        document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
-        localStorage.setItem("language", lang);
-        
-        //repopulate day and time period options
-        updateCustomSelectOptions("dayTypeSelect");
-        
-        // Ensure dayTypeSelect keeps its value
-        dayTypeSelect.value = selectedDayType;
-        
-        // Update time period options based on the preserved day type
-        updateTimePeriodOptions();
-        
-        // Restore the previously selected time period if it exists in the new options
-        if (selectedTimePeriod) {
-            // Check if the option exists in the updated select
-            const optionExists = Array.from(timePeriodSelect.options).some(
-                option => option.value === selectedTimePeriod
-            );
-            
-            if (optionExists) {
-                timePeriodSelect.value = selectedTimePeriod;
-                // Update the custom select display to reflect this
-                updateCustomSelectOptions("timePeriodSelect");
-            }
+
+function updateLanguage(lang) {
+    currentLang = lang;        
+    // Store the current selected values before updating
+    const dayTypeSelect = document.getElementById("dayTypeSelect");
+    const timePeriodSelect = document.getElementById("timePeriodSelect");
+    const selectedDayType = dayTypeSelect.value;
+    const selectedTimePeriod = timePeriodSelect.value;
+    
+    // Update all elements with the data-i18n attribute.
+    const elements = document.querySelectorAll("[data-i18n]");
+    elements.forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang] && translations[lang][key]) {
+            el.textContent = translations[lang][key];
         }
+    });
+    document.getElementById("readmelink").href = translations[lang]["readme-link"];
+    document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
+    localStorage.setItem("language", lang);
+    
+    //repopulate day and time period options
+    updateCustomSelectOptions("dayTypeSelect");
+    
+    // Ensure dayTypeSelect keeps its value
+    dayTypeSelect.value = selectedDayType;
+    
+    // Update time period options based on the preserved day type
+    updateTimePeriodOptions();
+    
+    // Restore the previously selected time period if it exists in the new options
+    if (selectedTimePeriod) {
+        // Check if the option exists in the updated select
+        const optionExists = Array.from(timePeriodSelect.options).some(
+            option => option.value === selectedTimePeriod
+        );
         
-        updateLineInfo();
-        updateSpeed();
+        if (optionExists) {
+            timePeriodSelect.value = selectedTimePeriod;
+            // Update the custom select display to reflect this
+            updateCustomSelectOptions("timePeriodSelect");
+        }
     }
+    
+    updateLineInfo();
+    updateSpeed();
+}
+
+window.updateLanguage = updateLanguage;
 
 function toggleLanguage() {
     const newLang = currentLang === "en" ? "he" : "en";
@@ -359,8 +354,11 @@ document.addEventListener("keydown", function (event) {
         simPaused = !simPaused;
         document.getElementById("pause").innerHTML = simPaused ? "<ion-icon name='play'></ion-icon>" : "<ion-icon name='pause'></ion-icon>";
         event.preventDefault();
-    } else if (event.key.toLowerCase() === "f") {
-        
+    } else if (event.key.toLowerCase() === "w") { //wayfinder mode
+        simPaused = true;
+        document.getElementById("pause").innerHTML = simPaused ? "<ion-icon name='play'></ion-icon>" : "<ion-icon name='pause'></ion-icon>";
+        event.preventDefault();
+        wayfind();
     } else if (event.key.toLowerCase() === "s") { //toggle settings
         if (settingsModal.style.display === "block") { //if settings open, close it else open
             settingsModal.style.display = "none";
@@ -403,9 +401,25 @@ window.addEventListener("click", function (event) {
     }
 });
 
-// function wrapLtr(text) { // Wrap text in a span with LTR direction (for numbers in RTL text)
-//     return `<span dir="ltr">${text}</span>`;
-// }
+function wayfind() {
+    console.log("Entering wayfinder mode");
+    
+    // Toggle stations + routes on
+    showRoutes = true;
+    toggleDisplayRoutes();
+    let graph = buildGraph(G.edges);
+    let startNode = 105;//91;//62;
+    // let startNode = 45;
+    let endNode = 223;//192;//;
+    // let endNode = 67;
+    const { distances, previous } = dijkstraWithTransfers(graph, startNode, endNode);
+    const { path, transfers } = reconstructPathWithTransfers(previous, startNode, endNode);
+    // console.log(path);
+    
+    console.log("Route path:", path.map(p => `${stationLookup[p.station].name.en|| "Station not found"} (${p.line})`).join(" → "));
+    console.log("Transfers:", transfers.length > 0 ? transfers : "No transfers needed.");
+    console.log("Estimated travel time (minutes):", distances[endNode]);
+}
 
 function updateLineInfo() {
     const dayType = document.getElementById("dayTypeSelect").value;
@@ -469,6 +483,11 @@ document.addEventListener('click', function (event) {
 
 function hideTrainPopup() {
     const popup = document.getElementById("trainPopup");
+    popup.style.display = "none";
+    popup.dataset.manualOpen = "false"; // Reset manual open state
+}
+function hideStationPopup() {
+    const popup = document.getElementById("stationPopup");
     popup.style.display = "none";
     popup.dataset.manualOpen = "false"; // Reset manual open state
 }
@@ -549,14 +568,21 @@ Promise.all([
             if (!res.ok) throw new Error("Failed to load schedule data");
             return res.json();
         }),
-        fetch('data/preprocessed_station_distances.json').then(res => {
+        fetch('data/network/preprocessed_station_distances.json').then(res => {
             if (!res.ok) throw new Error("Failed to load preprocessed station distances");
+            return res.json();
+        }),
+        fetch('data/network/network_graph.json').then(res => {
+            if (!res.ok) throw new Error("Failed to load network graph");
             return res.json();
         })
     ])
-    .then(([schedule, routes]) => {
+    .then(([schedule, routes, graph]) => {
         scheduleData = schedule;
         serviceRoutes = routes;
+        // Initialise the network graph of edges and nodes, together with a lookup to get stations by id
+        G = graph;
+        stationLookup = Object.fromEntries(G.nodes.map(node => [node.id, node]));
         updateLineInfo(); // Update line info in settings with schedule 
         console.log("Loaded schedule data:", scheduleData);
         console.log("Loaded service routes:", serviceRoutes);
@@ -578,23 +604,66 @@ Promise.all([
                     });
                     if (snapped && snapped.geometry && snapped.geometry.coordinates) {
                         let coord = snapped.geometry.coordinates;
-                        L.circleMarker([coord[1], coord[0]], {
+                        const marker = L.circleMarker([coord[1], coord[0]], {
                             radius: 2,
                             color: "black",
                             fillOpacity: 0.6
-                        }).addTo(routeLayersGroup);
+                        });
+                        marker.on("click", event => {
+                            hideTrainPopup(); //hide any visible popup first
+                            event.originalEvent.stopPropagation();
+                            const popup = document.getElementById("stationPopup");
+                            const routeBullet = document.getElementById("stnPopupRouteBullet");
+                            const nameElem = document.getElementById("popupStnName");
+                
+                            routeBullet.textContent = stationLookup[dist.id].lines[0];
+                            routeBullet.style.backgroundColor = lineColours[routeBullet.textContent];
+                            routeBullet.style.color = "white";
+                            
+                            nameElem.textContent = dist.name[currentLang];
+                            popup.style.display = "flex";
+                            popup.dataset.manualOpen = "true"; // Mark as manually opened.
+                        });
+                
+                        // On hover, show popup with auto-close after 4 seconds.
+                        marker.on("mouseover", event => {
+                            hideTrainPopup(); //hide any visible popup first
+                            event.originalEvent.stopPropagation();
+                            const popup = document.getElementById("stationPopup");
+                            const routeBullet = document.getElementById("stnPopupRouteBullet");
+                            const nameElem = document.getElementById("popupStnName");
+                
+                            routeBullet.textContent = stationLookup[dist.id].lines[0];
+                            routeBullet.style.backgroundColor = lineColours[routeBullet.textContent];
+                            routeBullet.style.color = "white";
+                
+                            nameElem.textContent = dist.name[currentLang];
+                            
+                            popup.style.display = "flex";
+                            popup.dataset.manualOpen = "false";
+                
+                            clearTimeout(window.trainPopupTimeout);
+                            window.trainPopupTimeout = setTimeout(() => {
+                                if (popup.dataset.manualOpen !== "true") {
+                                    hideStationPopup();
+                                }
+                            }, 2500); //auto close after 2.5 seconds 
+                        });
+                        
+                        marker.addTo(routeLayersGroup);
+                        // bindPopup(`Station Name: ${dist.name.en}`)
                     }
                 });
             });
             if (!showRoutes) {
                 map.removeLayer(routeLayersGroup);
             }
-        // }
+        
         // Start the simulation 
         startSimulation();
     })
     .catch(error => console.error("Error loading data:", error));
-
+    
 /********************************************
  * Train Class
  ********************************************/
@@ -640,6 +709,7 @@ class Train {
 
         // When train marker is clicked, show pop-up with route bullet and station info.
         this.marker.on("click", event => {
+            hideStationPopup(); //hide any visible popup first
             event.originalEvent.stopPropagation();
             // Update station info before showing popup.
             this.updateStationInfo();
@@ -661,6 +731,7 @@ class Train {
 
         // On hover, show popup with auto-close after 4 seconds.
         this.marker.on("mouseover", event => {
+            hideStationPopup(); //hide any visible popup first
             event.originalEvent.stopPropagation();
             this.updateStationInfo();
             const popup = document.getElementById("trainPopup");

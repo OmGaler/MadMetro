@@ -1,0 +1,3829 @@
+{
+    "nodes": [{
+            "id": 0,
+            "name": {
+                "en": "Lod North",
+                "he": "לוד צפון"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 1,
+            "name": {
+                "en": "Hamehkar",
+                "he": "המחקר"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 2,
+            "name": {
+                "en": "Kikar HaPalmakh",
+                "he": "כיכר הפלמ\"ח"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 3,
+            "name": {
+                "en": "Lod Center",
+                "he": "לוד מרכז"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 4,
+            "name": {
+                "en": "Tel-Hai",
+                "he": "תל חי"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 5,
+            "name": {
+                "en": "Ramle Center",
+                "he": "רמלה מרכז"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 6,
+            "name": {
+                "en": "Weizman",
+                "he": "ויצמן"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 7,
+            "name": {
+                "en": "Moshe Sharet",
+                "he": "משה שרת"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 8,
+            "name": {
+                "en": "Be'er Ya'akov South",
+                "he": "באר יעקב דרום"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 9,
+            "name": {
+                "en": "Be'er Ya'akov",
+                "he": "באר יעקב"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 10,
+            "name": {
+                "en": "Tzrifin",
+                "he": "צריפין"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 11,
+            "name": {
+                "en": "Asaf HaRofe",
+                "he": "אסף הרופא"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 12,
+            "name": {
+                "en": "Herzog",
+                "he": "הרצוג"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 13,
+            "name": {
+                "en": "Yosef Burg",
+                "he": "יוסף בורג"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 14,
+            "name": {
+                "en": "HaTsiyonut Avenue",
+                "he": "שד' הציונות"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 15,
+            "name": {
+                "en": "Ramat Eliyahu",
+                "he": "רמת אליהו"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 16,
+            "name": {
+                "en": "Menachem Begin",
+                "he": "מנחם בגין"
+            },
+            "lines": ["M1", "G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 17,
+            "name": {
+                "en": {
+                    "M1": "Yoseftal",
+                    "M3": "Holon Yoseftal"
+                },
+                "he": {
+                    "M1": "יוספטל",
+                    "M3": "חולון יוספטל"
+                }
+            },
+            "lines": ["M1", "M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 18,
+            "name": {
+                "en": "Eilat/Dov Hoz",
+                "he": "אילת/דב הויז"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 19,
+            "name": {
+                "en": "Tel Giburim",
+                "he": "תל גיבורים"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 20,
+            "name": {
+                "en": "Holon Junction",
+                "he": "צומת חולון"
+            },
+            "lines": ["M1", "G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 21,
+            "name": {
+                "en": "Kiryat Shalom",
+                "he": "קריית שלום"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 22,
+            "name": {
+                "en": "HaHagana",
+                "he": "ההגנה"
+            },
+            "lines": ["M1", "P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 23,
+            "name": {
+                "en": "Yitzhak Sade",
+                "he": "יצחק שדה"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 24,
+            "name": {
+                "en": "HaShalom",
+                "he": "השלום"
+            },
+            "lines": ["M1", "M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 25,
+            "name": {
+                "en": {
+                    "M1": "Tel Aviv Center",
+                    "P": "Tel Aviv Center",
+                    "R": "Arlozorov"
+                },
+                "he": {
+                    "M1": "תל אביב מרכז",
+                    "P": "תל אביב מרכז",
+                    "R": "ארלוזורוב"
+                }
+            },
+            "lines": ["M1", "R", "P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 26,
+            "name": {
+                "en": "Namir - Pinkas",
+                "he": "נמיר - פנקס"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 61,
+            "name": {
+                "en": "HaYarkon",
+                "he": "הירקון"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 27,
+            "name": {
+                "en": {
+                    "M1": "Aviv Base",
+                    "G": "Rozenfeld"
+                },
+                "he": {
+                    "M1": "מחנה אביב",
+                    "G": "רוזנפלד"
+                }
+
+            },
+            "lines": ["M1", "G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 28,
+            "name": {
+                "en": "Tel Aviv University",
+                "he": "אוניברסיטת ת\"א"
+            },
+            "lines": ["M1", "G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 29,
+            "name": {
+                "en": "Ramat Aviv",
+                "he": "רמת אביב"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 100,
+            "name": {
+                "en": "Glilot Transportation Hub",
+                "he": "מרכז תחבורה גלילות"
+            },
+            "lines": ["M1", "M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 31,
+            "name": {
+                "en": "HaSaraf",
+                "he": "השרף"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 32,
+            "name": {
+                "en": "Sokolov",
+                "he": "סוקולוב"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 33,
+            "name": {
+                "en": "Ta'as West",
+                "he": "תע\"ש מערב"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 34,
+            "name": {
+                "en": "Ta'as East",
+                "he": "תע\"ש מזרח"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 35,
+            "name": {
+                "en": "Ramat Hadar",
+                "he": "רמת הדר"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 36,
+            "name": {
+                "en": "Jabotinsky",
+                "he": "ז'בוטינסקי"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 37,
+            "name": {
+                "en": "HaBanim",
+                "he": "הבנים"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 38,
+            "name": {
+                "en": "Tchernihovsky",
+                "he": "טשרניחובסקי"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 39,
+            "name": {
+                "en": "Weizman",
+                "he": "ויצמן"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 40,
+            "name": {
+                "en": "Kfar Saba Center",
+                "he": "כפר סבא מרכז"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 41,
+            "name": {
+                "en": "Elkalai",
+                "he": "אלקלעי"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 42,
+            "name": {
+                "en": "Kfar Saba East",
+                "he": "כפר סבא מזרח"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 43,
+            "name": {
+                "en": "Kaplan Hospital",
+                "he": "בית חולים קפלן"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 44,
+            "name": {
+                "en": "HaKibbutzim",
+                "he": "הקיבוצים"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 45,
+            "name": {
+                "en": "Rehovot Center",
+                "he": "רחובות מרכז"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 46,
+            "name": {
+                "en": "Weizman Institute",
+                "he": "מכון ויצמן"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 47,
+            "name": {
+                "en": "Science Employment Park",
+                "he": "פרק המדע"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 48,
+            "name": {
+                "en": "Nes Tziona Center",
+                "he": "נס ציונה מרכז"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 49,
+            "name": {
+                "en": "Givat HaTor",
+                "he": "גבעת התור"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 50,
+            "name": {
+                "en": "HaRishonim",
+                "he": "ראשונים"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 51,
+            "name": {
+                "en": "Rishon LeZion Center",
+                "he": "ראשון לציון מרכז"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 52,
+            "name": {
+                "en": "Bnot Khil",
+                "he": "בנות חיל"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 53,
+            "name": {
+                "en": "Ben Gurion",
+                "he": "בן גוריון"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 54,
+            "name": {
+                "en": "Hertzliya Center",
+                "he": "הרצליה מרכז"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 55,
+            "name": {
+                "en": "IDC",
+                "he": "הרצליה בינתחומי"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 56,
+            "name": {
+                "en": "Raanana West",
+                "he": "רעננה מערב"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 57,
+            "name": {
+                "en": "Raanana Center",
+                "he": "רעננה מרכז"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 58,
+            "name": {
+                "en": "Akiva",
+                "he": "עקיבא"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 59,
+            "name": {
+                "en": "HaTidhar",
+                "he": "התדהר"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 60,
+            "name": {
+                "en": "Raanana Depot",
+                "he": "דפו רעננה"
+            },
+            "lines": ["M1"],
+            "latlng": [0, 0]
+        },
+
+        {
+            "id": 62,
+            "name": {
+                "en": "Wolfson Hospital",
+                "he": "בית חולים וולפסון"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 63,
+            "name": {
+                "en": "Nes Lagoyim",
+                "he": "נס לגויים"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 64,
+            "name": {
+                "en": "Shlavim",
+                "he": "שלבים"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 65,
+            "name": {
+                "en": "Carmelit",
+                "he": "כרמלית"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 66,
+            "name": {
+                "en": {
+                    "M2": "Kikar Magen David",
+                    "P": "HaCarmel"
+                },
+                "he": {
+                    "M2": "כיכר מגן דוד",
+                    "P": "הכרמל"
+                }
+            },
+            "lines": ["M2", "P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 67,
+            "name": {
+
+                "en": {
+                    "M2": "HaBima",
+                    "G": "Kaplan"
+                },
+                "he": {
+                    "M2": "הבימה",
+                    "G": "קפלן"
+                }
+            },
+            "lines": ["M2", "G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 68,
+            "name": {
+                "en": {
+                    "M2": "HaHashmonaim",
+                    "R": "Yehudit"
+                },
+                "he": {
+                    "M2": "חשמונאים",
+                    "R": "יהודית"
+                }
+            },
+            "lines": ["M2", "R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 69,
+            "name": {
+                "en": "Kikar Noga",
+                "he": "כיכר נוגה"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 70,
+            "name": {
+                "en": "Katzenelson",
+                "he": "כצנלסון"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 71,
+            "name": {
+                "en": "HaRoe",
+                "he": "הרא\"ה"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 72,
+            "name": {
+                "en": "Hazon Ish",
+                "he": "חזון איש"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 73,
+            "name": {
+                "en": "Kahaneman",
+                "he": "כהנמן"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 74,
+            "name": {
+                "en": "Bar Ilan University-Givat Shmuel",
+                "he": "גבעת שמואל -אונ' בר אילן"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+
+        {
+            "id": 75,
+            "name": {
+                "en": "Kfar Ganim",
+                "he": "כפר גנים"
+            },
+            "lines": ["M2", "M3", "P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 76,
+            "name": {
+                "en": "Ben Gurion",
+                "he": "בן גוריון"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 77,
+            "name": {
+                "en": "Arlozorov",
+                "he": "ארלוזורוב"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 78,
+            "name": {
+                "en": "Petah Tikva City Hall",
+                "he": "עיריית פתח תקווה"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 79,
+            "name": {
+                "en": "Petah Tikva East",
+                "he": "פתח תקווה מזרח"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 80,
+            "name": {
+                "en": "South Sirkin",
+                "he": "סירקין דרום"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 81,
+            "name": {
+                "en": "North Sirkin",
+                "he": "סירקין צפון"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 82,
+            "name": {
+                "en": "Industrial Park Sgula",
+                "he": "אזור תעשיה סגולה"
+            },
+            "lines": ["M2"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 83,
+            "name": {
+                "en": "HaKomemiyut",
+                "he": "הקוממיות"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 84,
+            "name": {
+                "en": {
+                    "M3": "Bat Yam Yoseftal",
+                    "R": "Yoseftal"
+                },
+                "he": {
+                    "M3": "בת ים יוספטל",
+                    "R": "יוספטל"
+                }
+            },
+            "lines": ["M3", "R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 85,
+            "name": {
+                "en": {
+                    "M3": "Golda Meir",
+                    "G": "Holon Institute of Technology"
+                },
+                "he": {
+                    "M3": "גולדה מאיר",
+                    "G": "המכון הטכנולוגי חולון"
+                }
+            },
+            "lines": ["M3", "G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 86,
+            "name": {
+                "en": "Holon Center",
+                "he": "חולון מרכז"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 87,
+            "name": {
+                "en": "HaMelacha",
+                "he": "המלאכה"
+            },
+            "lines": ["M3", "G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 88,
+            "name": {
+                "en": "Holon Industrial Area",
+                "he": "א. תעשייה חולון"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 89,
+            "name": {
+                "en": "Ariel Sharon Park",
+                "he": "פארק אריאל שרון"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 90,
+            "name": {
+                "en": "Ono Valley",
+                "he": "בקעת אונו"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 91,
+            "name": {
+                "en": "Ben Gurion Airport",
+                "he": "נתב\"ג"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 92,
+            "name": {
+                "en": "Yigal Alon",
+                "he": "יגאל אלון"
+            },
+            "lines": ["M3", "P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 93,
+            "name": {
+                "en": "Tel HaShomer Hospital",
+                "he": "ביה\"ח תל השומר"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 94,
+            "name": {
+                "en": "Shlomo HaMelech",
+                "he": "שלמה המלך"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 95,
+            "name": {
+                "en": "Levi Eshkol",
+                "he": "לוי אשכול"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 96,
+            "name": {
+                "en": {
+                    "M3": "Soroka - Beilinson Hospital",
+                    "R": "Beilinson"
+                },
+                "he": {
+                    "M3": "סורוקה - ביה\"ח בילינסון",
+                    "R": "בילינסון"
+                }
+            },
+            "lines": ["M3", "R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 97,
+            "name": {
+                "en": "Kiryat Aryeh Employment Area",
+                "he": "א. תעסוקה קרית אריה"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 98,
+            "name": {
+                "en": "Kiryat Aryeh",
+                "he": "קרית אריה"
+            },
+            "lines": ["M3", "R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 99,
+            "name": {
+                "en": {
+                    "M3": "Ramat HaChayal - Ha'Arad",
+                    "G": "Dvora HaNeviah"
+                },
+                "he": {
+                    "M3": "רמת החייל - הארד",
+                    "G": "דבורה הנביאה"
+                }
+            },
+            "lines": ["M3", "G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 101,
+            "name": {
+                "en": "Pinchas Rosen",
+                "he": "פנחס רוזן"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 102,
+            "name": {
+                "en": "Kiryat Shaul",
+                "he": "קרית שאול"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 30,
+            "name": {
+                "en": "Glilot North",
+                "he": "גלילות צפון"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 103,
+            "name": {
+                "en": "Ramat HaSharon Employment Area",
+                "he": "א.תעסוקה רמה\"ש"
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 104,
+            "name": {
+                "en": {
+                    "M3": "Herzliya Employment Area",
+                    "G": "Abba Eban"
+                },
+                "he": {
+                    "M3": "א.תעסוקה הרצליה",
+                    "G": "אבא אבן"
+                }
+            },
+            "lines": ["M3"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 105,
+            "name": {
+                "en": "Petach Tikva CBS",
+                "he": "תחנה מרכזית פ\"ת"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 106,
+            "name": {
+                "en": "Pinsker",
+                "he": "פינסקר"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 107,
+            "name": {
+                "en": "Krol",
+                "he": "קרול"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 108,
+            "name": {
+                "en": "Dankner",
+                "he": "דנקנר"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 109,
+            "name": {
+                "en": "Shaham",
+                "he": "שחם"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 110,
+            "name": {
+                "en": "Shenkar",
+                "he": "שנקר"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 111,
+            "name": {
+                "en": "Aharonovitz",
+                "he": "אהרונוביץ"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 112,
+            "name": {
+                "en": "Ben Gurion",
+                "he": "בן גוריון"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 113,
+            "name": {
+                "en": "Bialik",
+                "he": "ביאליק"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 114,
+            "name": {
+                "en": "Abba Hillel",
+                "he": "אבא הלל"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 115,
+            "name": {
+                "en": "Shaul HaMelech",
+                "he": "שאול המלך"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 117,
+            "name": {
+                "en": "Karlebach",
+                "he": "קרליבך"
+            },
+            "lines": ["R", "G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 116,
+            "name": {
+                "en": {
+                    "R": "Allenby",
+                    "P": "Allenby - Lilienblum"
+                },
+                "he": {
+                    "R": "אלנבי",
+                    "P": "אלנבי - ליליינבלום"
+                }
+            },
+            "lines": ["R", "P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 120,
+            "name": {
+                "en": "Elifelet",
+                "he": "אליפלט"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 118,
+            "name": {
+                "en": "Salame",
+                "he": "סלמה"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 119,
+            "name": {
+                "en": "Bloomfield Stadium",
+                "he": "אצטדיון בלונפילד"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 121,
+            "name": {
+                "en": "Erlich",
+                "he": "ארליך"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 122,
+            "name": {
+                "en": "Isakov",
+                "he": "איסקוב"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 123,
+            "name": {
+                "en": "HaBesht",
+                "he": "הבעש\"ט"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 223,
+            "name": {
+                "en": "Machrozet",
+                "he": "מחרוזת"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 124,
+            "name": {
+                "en": "HaAtzmaut",
+                "he": "העצמאות"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 125,
+            "name": {
+                "en": "Rothschild",
+                "he": "רוטשילד"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 126,
+            "name": {
+                "en": "Jabotinsky",
+                "he": "זבוטנסקי"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 127,
+            "name": {
+                "en": "Balfour",
+                "he": "בלפור"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 128,
+            "name": {
+                "en": "Binyamin",
+                "he": "בנימין"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 129,
+            "name": {
+                "en": "Kaf Tet BeNovember",
+                "he": "כ\"ט בנובמבר"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 130,
+            "name": {
+                "en": "HaAmal",
+                "he": "העמל"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 131,
+            "name": {
+                "en": "HaKomemiyut",
+                "he": "הקוממיות"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 132,
+            "name": {
+                "en": "Menachem Begin",
+                "he": "מנחם בגין"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 133,
+            "name": {
+                "en": "Koresh",
+                "he": "כורש"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 134,
+            "name": {
+                "en": "Rehavam Ze'evi",
+                "he": "רחבעם זאבי"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 135,
+            "name": {
+                "en": {
+                    "R": "Israeli",
+                    "G": "Dayan Terminal"
+                },
+                "he": {
+                    "R": "ישראלי",
+                    "G": "מסוף דיין"
+                }
+            },
+            "lines": ["R", "G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 136,
+            "name": {
+                "en": "Em HaMoshavot Bridge",
+                "he": "גשר אם המושבות"
+            },
+            "lines": ["R"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 137,
+            "name": {
+                "en": "Neve Sharet",
+                "he": "נווה שרת"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 138,
+            "name": {
+                "en": "HaNechoshet",
+                "he": "הנחושת"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 139,
+            "name": {
+                "en": "HaBarzel",
+                "he": "הברזל"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 140,
+            "name": {
+                "en": "Pinchas Rozen Bridge",
+                "he": "גשר פנחס רוזן"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 141,
+            "name": {
+                "en": "Hadar Yosef",
+                "he": "הדר יוסף"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 142,
+            "name": {
+                "en": "Ganei Yehoshua",
+                "he": "גני יהושע"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 143,
+            "name": {
+                "en": "HaYeridim",
+                "he": "הירידים"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 144,
+            "name": {
+                "en": "Brodetsky",
+                "he": "בורודצקי"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 145,
+            "name": {
+                "en": "Namir",
+                "he": "נמיר"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 146,
+            "name": {
+                "en": "Levi Eshkol",
+                "he": "לוי אשכול"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 147,
+            "name": {
+                "en": "Einstein",
+                "he": "איינשטיין"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 148,
+            "name": {
+                "en": "Zaharah Levitov",
+                "he": "זהרה לביטוב"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 149,
+            "name": {
+                "en": "Reading",
+                "he": "רדינג"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 150,
+            "name": {
+                "en": "Nordau",
+                "he": "נורדאו"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 151,
+            "name": {
+                "en": "Ibn Gvirol - Arlozorov",
+                "he": "אבן גבירול - ארלוזורוב"
+            },
+            "lines": ["G", "P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 152,
+            "name": {
+                "en": "Rabin Square",
+                "he": "כיכר רבין"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 153,
+            "name": {
+                "en": "Levinsky Garden",
+                "he": "גינת לוינסקי"
+            },
+            "lines": ["G", "P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 154,
+            "name": {
+                "en": "Shapiro",
+                "he": "שפירא"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 155,
+            "name": {
+                "en": "Kibbutz Galuyot",
+                "he": "קיבוץ גלויות"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 156,
+            "name": {
+                "en": "HaHorshot Park",
+                "he": "פארק החורשות"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 157,
+            "name": {
+                "en": "Kiryat Shalom",
+                "he": "קריית שלום"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 158,
+            "name": {
+                "en": "Holon Theater",
+                "he": "תיאטרון חולון"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 159,
+            "name": {
+                "en": "Sokolov - West",
+                "he": "סוקולוב - מערב"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 160,
+            "name": {
+                "en": "HaHistadrut",
+                "he": "ההסתדרות"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 161,
+            "name": {
+                "en": "Lavon",
+                "he": "לבון"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 162,
+            "name": {
+                "en": "Bar-Lev",
+                "he": "בר-לב"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 222,
+            "name": {
+                "en": "Laskov",
+                "he": "לסקוב"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 163,
+            "name": {
+                "en": "HaHolot Park",
+                "he": "פארק החולות"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 164,
+            "name": {
+                "en": "Sacharov",
+                "he": "סחרוב"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 165,
+            "name": {
+                "en": "Yaldei Tehran",
+                "he": "ילדי טהרן"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 166,
+            "name": {
+                "en": "Lishanski",
+                "he": "לישנסקי"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 167,
+            "name": {
+                "en": "HaHoshlim",
+                "he": "החושלים"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 168,
+            "name": {
+                "en": "Alteneuland",
+                "he": "אלטנוילנד"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 169,
+            "name": {
+                "en": "Hof HaTechelet - North",
+                "he": "חוף תכלת - צפון"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 170,
+            "name": {
+                "en": "Hof HaTechelet - South",
+                "he": "חוף תכלת - דרום"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 171,
+            "name": {
+                "en": "Yunitsman",
+                "he": "יוניצמן"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 172,
+            "name": {
+                "en": "Miriam Yalan-Shteklis",
+                "he": "מרים ילין-שטקליס"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 173,
+            "name": {
+                "en": "Miriam Ben-Porat",
+                "he": "מרים בן-פורת"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 174,
+            "name": {
+                "en": "Shoshana Persitz",
+                "he": "שושנה פרסיץ"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 175,
+            "name": {
+                "en": "Azorei Hen",
+                "he": "אזורי חן"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 176,
+            "name": {
+                "en": "Propes",
+                "he": "פרופס"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 177,
+            "name": {
+                "en": "Nofei Yam",
+                "he": "נופי ים"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 178,
+            "name": {
+                "en": "Krauze",
+                "he": "קראוזה"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 179,
+            "name": {
+                "en": "Sokolov - East",
+                "he": "סוקולוב - מזרח"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 180,
+            "name": {
+                "en": "Geulim",
+                "he": "גאולים"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 181,
+            "name": {
+                "en": "Gan HaCactusim",
+                "he": "גן הקקטוסים"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 182,
+            "name": {
+                "en": "Peres Park",
+                "he": "פארק פרס"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 183,
+            "name": {
+                "en": "HaMerkava",
+                "he": "המרכבה"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 184,
+            "name": {
+                "en": "Holon - East",
+                "he": "חולון - מזרח"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 185,
+            "name": {
+                "en": "Nachlat Yehuda",
+                "he": "נחלת יהודה"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 186,
+            "name": {
+                "en": "Agricultural Center",
+                "he": "הקריה החקלאית"
+            },
+            "lines": ["G"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 187,
+            "name": {
+                "en": "Ichilov",
+                "he": "איכילוב"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 188,
+            "name": {
+                "en": "Dizengoff",
+                "he": "דיזנגוף"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 189,
+            "name": {
+                "en": "Gordon",
+                "he": "גורדון"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 190,
+            "name": {
+                "en": "Bugrashov",
+                "he": "בוגרשוב"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 191,
+            "name": {
+                "en": "Mugrabi",
+                "he": "מוגרבי"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 192,
+            "name": {
+                "en": "Montefiore",
+                "he": "מונטיפיורי"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 193,
+            "name": {
+                "en": "HaAliya",
+                "he": "העליה"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 194,
+            "name": {
+                "en": "Neve Sha'anan",
+                "he": "נוה שאנן"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 195,
+            "name": {
+                "en": "HaTikvah",
+                "he": "התקווה"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 196,
+            "name": {
+                "en": "Givati",
+                "he": "גבעתי"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 197,
+            "name": {
+                "en": "Moshe Dayan Way",
+                "he": "דרך משה דיין"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 198,
+            "name": {
+                "en": "Kfar Shalem",
+                "he": "כפר שלם"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 199,
+            "name": {
+                "en": "HaMaavak",
+                "he": "המאבק"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 200,
+            "name": {
+                "en": "Corazin",
+                "he": "כורזין"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 201,
+            "name": {
+                "en": "Raziel",
+                "he": "רזיאל"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 202,
+            "name": {
+                "en": "HaYarden",
+                "he": "הירדן"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 203,
+            "name": {
+                "en": "Aluf Sadeh",
+                "he": "אלוף שדה"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 204,
+            "name": {
+                "en": "Ramat Efal",
+                "he": "רמת אפעל"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 205,
+            "name": {
+                "en": "Kiryat Krinitsi",
+                "he": "קריית קריניצי"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 206,
+            "name": {
+                "en": "Ganei Ilan",
+                "he": "גני אילן"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 207,
+            "name": {
+                "en": "Bar Ilan University - Center",
+                "he": "אוניברסיטת בר-אילן - מרכז"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 208,
+            "name": {
+                "en": "Bar Ilan University - East",
+                "he": "אוניברסיטת בר-אילן - מזרח"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 209,
+            "name": {
+                "en": "Ramat Hadar - South",
+                "he": "רמת הדר - דרום"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 210,
+            "name": {
+                "en": "Ramon Park",
+                "he": "פארק רמון"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 211,
+            "name": {
+                "en": "Sheba - Center",
+                "he": "שיבא - מרכז"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 212,
+            "name": {
+                "en": "Sheba - South",
+                "he": "שיבא - דרום"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 213,
+            "name": {
+                "en": "Kazaz",
+                "he": "קזז"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 214,
+            "name": {
+                "en": "Shimon Peres",
+                "he": "שמעון פרס"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 215,
+            "name": {
+                "en": "Savyon Junction",
+                "he": "צומת סביון"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 216,
+            "name": {
+                "en": "Savyonim",
+                "he": "סביונים"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 217,
+            "name": {
+                "en": "Yehud Junction - West",
+                "he": "צומת יהוד - מערב"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 218,
+            "name": {
+                "en": "Yehud Center",
+                "he": "יהוד - מרכז"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 219,
+            "name": {
+                "en": "Weizman",
+                "he": "וייצמן"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 220,
+            "name": {
+                "en": "Ofek",
+                "he": "אופק"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        },
+        {
+            "id": 221,
+            "name": {
+                "en": "HaTayasim",
+                "he": "הטייסים"
+            },
+            "lines": ["P"],
+            "latlng": [0, 0]
+        }
+
+
+    ],
+    "edges": [{
+            "source": 0,
+            "destination": 1,
+            "line": "M1",
+            "type": "M",
+            "distance": 1183
+
+        },
+        {
+            "source": 1,
+            "destination": 2,
+            "line": "M1",
+            "type": "M",
+            "distance": 1288
+        },
+        {
+            "source": 2,
+            "destination": 3,
+            "line": "M1",
+            "type": "M",
+            "distance": 1425
+        },
+        {
+            "source": 3,
+            "destination": 4,
+            "line": "M1",
+            "type": "M",
+            "distance": 1032
+        },
+        {
+            "source": 4,
+            "destination": 5,
+            "line": "M1",
+            "type": "M",
+            "distance": 1453
+        },
+        {
+            "source": 5,
+            "destination": 6,
+            "line": "M1",
+            "type": "M",
+            "distance": 1290
+        },
+        {
+            "source": 6,
+            "destination": 7,
+            "line": "M1",
+            "type": "M",
+            "distance": 1123
+        },
+        {
+            "source": 7,
+            "destination": 8,
+            "line": "M1",
+            "type": "M",
+            "distance": 1526
+        },
+        {
+            "source": 8,
+            "destination": 9,
+            "line": "M1",
+            "type": "M",
+            "distance": 1375
+        },
+        {
+            "source": 9,
+            "destination": 10,
+            "line": "M1",
+            "type": "M",
+            "distance": 1229
+        },
+        {
+            "source": 10,
+            "destination": 11,
+            "line": "M1",
+            "type": "M",
+            "distance": 1132
+        },
+        {
+            "source": 11,
+            "destination": 12,
+            "line": "M1",
+            "type": "M",
+            "distance": 1208
+        },
+        {
+            "source": 12,
+            "destination": 13,
+            "line": "M1",
+            "type": "M",
+            "distance": 1029
+        },
+        {
+            "source": 13,
+            "destination": 14,
+            "line": "M1",
+            "type": "M",
+            "distance": 1781
+        },
+        {
+            "source": 14,
+            "destination": 15,
+            "line": "M1",
+            "type": "M",
+            "distance": 2172
+        },
+        {
+            "source": 15,
+            "destination": 16,
+            "line": "M1",
+            "type": "M",
+            "distance": 2735
+        },
+        {
+            "source": 16,
+            "destination": 17,
+            "line": "M1",
+            "type": "M",
+            "distance": 1822
+        },
+        {
+            "source": 17,
+            "destination": 18,
+            "line": "M1",
+            "type": "M",
+            "distance": 1238
+        },
+        {
+            "source": 18,
+            "destination": 19,
+            "line": "M1",
+            "type": "M",
+            "distance": 949
+        },
+        {
+            "source": 19,
+            "destination": 20,
+            "line": "M1",
+            "type": "M",
+            "distance": 933
+        },
+        {
+            "source": 20,
+            "destination": 21,
+            "line": "M1",
+            "type": "M",
+            "distance": 1193
+        },
+        {
+            "source": 21,
+            "destination": 22,
+            "line": "M1",
+            "type": "M",
+            "distance": 850
+        },
+        {
+            "source": 22,
+            "destination": 23,
+            "line": "M1",
+            "type": "M",
+            "distance": 1399
+        },
+        {
+            "source": 23,
+            "destination": 24,
+            "line": "M1",
+            "type": "M",
+            "distance": 1233
+        },
+        {
+            "source": 24,
+            "destination": 25,
+            "line": "M1",
+            "type": "M",
+            "distance": 1169
+        },
+        {
+            "source": 25,
+            "destination": 26,
+            "line": "M1",
+            "type": "M",
+            "distance": 751
+        },
+        {
+            "source": 26,
+            "destination": 61,
+            "line": "M1",
+            "type": "M",
+            "distance": 1029
+        },
+        {
+            "source": 61,
+            "destination": 27,
+            "line": "M1",
+            "type": "M",
+            "distance": 1106
+        },
+        {
+            "source": 27,
+            "destination": 28,
+            "line": "M1",
+            "type": "M",
+            "distance": 1004
+        },
+        {
+            "source": 28,
+            "destination": 29,
+            "line": "M1",
+            "type": "M",
+            "distance": 1057
+        },
+        {
+            "source": 29,
+            "destination": 100,
+            "line": "M1",
+            "type": "M",
+            "distance": 1164
+        },
+        {
+            "source": 100,
+            "destination": 31,
+            "line": "M1",
+            "type": "M",
+            "distance": 2427
+        },
+        {
+            "source": 31,
+            "destination": 32,
+            "line": "M1",
+            "type": "M",
+            "distance": 1169
+        },
+        {
+            "source": 32,
+            "destination": 33,
+            "line": "M1",
+            "type": "M",
+            "distance": 1891
+        },
+        {
+            "source": 33,
+            "destination": 34,
+            "line": "M1",
+            "type": "M",
+            "distance": 1028
+        },
+        {
+            "source": 34,
+            "destination": 35,
+            "line": "M1",
+            "type": "M",
+            "distance": 1380
+        },
+        {
+            "source": 35,
+            "destination": 36,
+            "line": "M1",
+            "type": "M",
+            "distance": 1198
+        },
+        {
+            "source": 36,
+            "destination": 37,
+            "line": "M1",
+            "type": "M",
+            "distance": 1697
+        },
+        {
+            "source": 37,
+            "destination": 38,
+            "line": "M1",
+            "type": "M",
+            "distance": 2315
+        },
+        {
+            "source": 38,
+            "destination": 39,
+            "line": "M1",
+            "type": "M",
+            "distance": 897
+        },
+        {
+            "source": 39,
+            "destination": 40,
+            "line": "M1",
+            "type": "M",
+            "distance": 1146
+        },
+        {
+            "source": 40,
+            "destination": 41,
+            "line": "M1",
+            "type": "M",
+            "distance": 1277
+        },
+        {
+            "source": 41,
+            "destination": 42,
+            "line": "M1",
+            "type": "M",
+            "distance": 1191
+        },
+        {
+            "source": 43,
+            "destination": 44,
+            "line": "M1",
+            "type": "M",
+            "distance": 1781
+        },
+        {
+            "source": 44,
+            "destination": 45,
+            "line": "M1",
+            "type": "M",
+            "distance": 1137
+        },
+        {
+            "source": 45,
+            "destination": 46,
+            "line": "M1",
+            "type": "M",
+            "distance": 1540
+        },
+        {
+            "source": 46,
+            "destination": 47,
+            "line": "M1",
+            "type": "M",
+            "distance": 1065
+        },
+        {
+            "source": 47,
+            "destination": 48,
+            "line": "M1",
+            "type": "M",
+            "distance": 1668
+        },
+        {
+            "source": 48,
+            "destination": 49,
+            "line": "M1",
+            "type": "M",
+            "distance": 926
+        },
+        {
+            "source": 49,
+            "destination": 50,
+            "line": "M1",
+            "type": "M",
+            "distance": 1458
+        },
+        {
+            "source": 50,
+            "destination": 51,
+            "line": "M1",
+            "type": "M",
+            "distance": 1629
+        },
+        {
+            "source": 51,
+            "destination": 52,
+            "line": "M1",
+            "type": "M",
+            "distance": 1198
+        },
+        {
+            "source": 52,
+            "destination": 15,
+            "line": "M1",
+            "type": "M",
+            "distance": 1800
+        },
+        {
+            "source": 32,
+            "destination": 53,
+            "line": "M1",
+            "type": "M",
+            "distance": 1206
+        },
+        {
+            "source": 53,
+            "destination": 54,
+            "line": "M1",
+            "type": "M",
+            "distance": 1244
+        },
+        {
+            "source": 54,
+            "destination": 55,
+            "line": "M1",
+            "type": "M",
+            "distance": 1562
+        },
+        {
+            "source": 55,
+            "destination": 56,
+            "line": "M1",
+            "type": "M",
+            "distance": 1286
+        },
+        {
+            "source": 56,
+            "destination": 57,
+            "line": "M1",
+            "type": "M",
+            "distance": 1975
+        },
+        {
+            "source": 57,
+            "destination": 58,
+            "line": "M1",
+            "type": "M",
+            "distance": 2112
+        },
+        {
+            "source": 58,
+            "destination": 59,
+            "line": "M1",
+            "type": "M",
+            "distance": 896
+        },
+        {
+            "source": 59,
+            "destination": 60,
+            "line": "M1",
+            "type": "M",
+            "distance": 995
+        },
+        {
+            "source": 62,
+            "destination": 63,
+            "line": "M2",
+            "type": "M",
+            "distance": 1049
+        },
+        {
+            "source": 63,
+            "destination": 64,
+            "line": "M2",
+            "type": "M",
+            "distance": 1101
+        },
+        {
+            "source": 64,
+            "destination": 65,
+            "line": "M2",
+            "type": "M",
+            "distance": 1242
+        },
+        {
+            "source": 65,
+            "destination": 66,
+            "line": "M2",
+            "type": "M",
+            "distance": 630
+        },
+        {
+            "source": 66,
+            "destination": 67,
+            "line": "M2",
+            "type": "M",
+            "distance": 882
+        },
+        {
+            "source": 67,
+            "destination": 68,
+            "line": "M2",
+            "type": "M",
+            "distance": 689
+        },
+        {
+            "source": 68,
+            "destination": 24,
+            "line": "M2",
+            "type": "M",
+            "distance": 1150
+        },
+        {
+            "source": 24,
+            "destination": 69,
+            "line": "M2",
+            "type": "M",
+            "distance": 1320
+        },
+        {
+            "source": 69,
+            "destination": 70,
+            "line": "M2",
+            "type": "M",
+            "distance": 919
+        },
+        {
+            "source": 70,
+            "destination": 71,
+            "line": "M2",
+            "type": "M",
+            "distance": 899
+        },
+        {
+            "source": 71,
+            "destination": 72,
+            "line": "M2",
+            "type": "M",
+            "distance": 811
+        },
+        {
+            "source": 72,
+            "destination": 73,
+            "line": "M2",
+            "type": "M",
+            "distance": 813
+        },
+        {
+            "source": 73,
+            "destination": 74,
+            "line": "M2",
+            "type": "M",
+            "distance": 681
+        },
+        {
+            "source": 74,
+            "destination": 75,
+            "line": "M2",
+            "type": "M",
+            "distance": 1125
+        },
+        {
+            "source": 75,
+            "destination": 76,
+            "line": "M2",
+            "type": "M",
+            "distance": 1144
+        },
+        {
+            "source": 76,
+            "destination": 77,
+            "line": "M2",
+            "type": "M",
+            "distance": 1237
+        },
+        {
+            "source": 77,
+            "destination": 78,
+            "line": "M2",
+            "type": "M",
+            "distance": 922
+        },
+        {
+            "source": 78,
+            "destination": 79,
+            "line": "M2",
+            "type": "M",
+            "distance": 1592
+        },
+        {
+            "source": 79,
+            "destination": 80,
+            "line": "M2",
+            "type": "M",
+            "distance": 900
+        },
+        {
+            "source": 80,
+            "destination": 81,
+            "line": "M2",
+            "type": "M",
+            "distance": 1098
+        },
+        {
+            "source": 81,
+            "destination": 82,
+            "line": "M2",
+            "type": "M",
+            "distance": 2364
+        },
+        {
+            "source": 83,
+            "destination": 84,
+            "line": "M3",
+            "type": "M",
+            "distance": 1484
+        },
+        {
+            "source": 84,
+            "destination": 17,
+            "line": "M3",
+            "type": "M",
+            "distance": 912
+        },
+        {
+            "source": 17,
+            "destination": 85,
+            "line": "M3",
+            "type": "M",
+            "distance": 961
+        },
+        {
+            "source": 85,
+            "destination": 86,
+            "line": "M3",
+            "type": "M",
+            "distance": 969
+        },
+        {
+            "source": 86,
+            "destination": 87,
+            "line": "M3",
+            "type": "M",
+            "distance": 1220
+        },
+        {
+            "source": 87,
+            "destination": 88,
+            "line": "M3",
+            "type": "M",
+            "distance": 1364
+        },
+        {
+            "source": 88,
+            "destination": 89,
+            "line": "M3",
+            "type": "M",
+            "distance": 1530
+        },
+        {
+            "source": 89,
+            "destination": 90,
+            "line": "M3",
+            "type": "M",
+            "distance": 2397
+        },
+        {
+            "source": 90,
+            "destination": 91,
+            "line": "M3S",
+            "type": "M",
+            "distance": 3868
+        },
+        {
+            "source": 90,
+            "destination": 92,
+            "line": "M3",
+            "type": "M",
+            "distance": 1495
+        },
+        {
+            "source": 92,
+            "destination": 93,
+            "line": "M3",
+            "type": "M",
+            "distance": 1642
+        },
+        {
+            "source": 93,
+            "destination": 94,
+            "line": "M3",
+            "type": "M",
+            "distance": 1434
+        },
+        {
+            "source": 94,
+            "destination": 95,
+            "line": "M3",
+            "type": "M",
+            "distance": 1170
+        },
+        {
+            "source": 95,
+            "destination": 75,
+            "line": "M3",
+            "type": "M",
+            "distance": 1445
+        },
+        {
+            "source": 75,
+            "destination": 96,
+            "line": "M3",
+            "type": "M",
+            "distance": 1952
+        },
+        {
+            "source": 96,
+            "destination": 97,
+            "line": "M3",
+            "type": "M",
+            "distance": 920
+        },
+        {
+            "source": 97,
+            "destination": 98,
+            "line": "M3",
+            "type": "M",
+            "distance": 1184
+        },
+        {
+            "source": 98,
+            "destination": 99,
+            "line": "M3",
+            "type": "M",
+            "distance": 2384
+        },
+        {
+            "source": 99,
+            "destination": 101,
+            "line": "M3",
+            "type": "M",
+            "distance": 1783
+        },
+        {
+            "source": 101,
+            "destination": 102,
+            "line": "M3",
+            "type": "M",
+            "distance": 855
+        },
+        {
+            "source": 102,
+            "destination": 100,
+            "line": "M3",
+            "type": "M",
+            "distance": 1786
+        },
+        {
+            "source": 100,
+            "destination": 30,
+            "line": "M3",
+            "type": "M",
+            "distance": 2115
+        },
+        {
+            "source": 30,
+            "destination": 103,
+            "line": "M3",
+            "type": "M",
+            "distance": 921
+        },
+        {
+            "source": 103,
+            "destination": 104,
+            "line": "M3",
+            "type": "M",
+            "distance": 1273
+        },
+        {
+            "source": 98,
+            "destination": 136,
+            "line": "R",
+            "type": "LRU",
+            "distance": 1758
+        },
+        {
+            "source": 136,
+            "destination": 111,
+            "line": "R",
+            "type": "LRU",
+            "distance": 1248
+        },
+        {
+            "source": 105,
+            "destination": 106,
+            "line": "R",
+            "type": "LRO",
+            "distance": 422
+        },
+        {
+            "source": 106,
+            "destination": 107,
+            "line": "R",
+            "type": "LRO",
+            "distance": 487
+        },
+        {
+            "source": 107,
+            "destination": 108,
+            "line": "R",
+            "type": "LRO",
+            "distance": 553
+        },
+        {
+            "source": 108,
+            "destination": 96,
+            "line": "R",
+            "type": "LRO",
+            "distance": 508
+        },
+        {
+            "source": 96,
+            "destination": 109,
+            "line": "R",
+            "type": "LRO",
+            "distance": 521
+        },
+        {
+            "source": 109,
+            "destination": 110,
+            "line": "R",
+            "type": "LRO",
+            "distance": 765
+        },
+        {
+            "source": 110,
+            "destination": 111,
+            "line": "R",
+            "type": "LRU",
+            "distance": 1355
+        },
+        {
+            "source": 111,
+            "destination": 112,
+            "line": "R",
+            "type": "LRU",
+            "distance": 1470
+        },
+        {
+            "source": 112,
+            "destination": 113,
+            "line": "R",
+            "type": "LRU",
+            "distance": 1106
+        },
+        {
+            "source": 113,
+            "destination": 114,
+            "line": "R",
+            "type": "LRU",
+            "distance": 1106
+        },
+        {
+            "source": 114,
+            "destination": 25,
+            "line": "R",
+            "type": "LRU",
+            "distance": 607
+        },
+        {
+            "source": 25,
+            "destination": 115,
+            "line": "R",
+            "type": "LRU",
+            "distance": 722
+        },
+        {
+            "source": 115,
+            "destination": 68,
+            "line": "R",
+            "type": "LRU",
+            "distance": 801
+        },
+        {
+            "source": 68,
+            "destination": 117,
+            "line": "R",
+            "type": "LRU",
+            "distance": 758
+        },
+        {
+            "source": 117,
+            "destination": 116,
+            "line": "R",
+            "type": "LRU",
+            "distance": 816
+        },
+        {
+            "source": 116,
+            "destination": 120,
+            "line": "R",
+            "type": "LRU",
+            "distance": 1263
+        },
+        {
+            "source": 120,
+            "destination": 118,
+            "line": "R",
+            "type": "LRO",
+            "distance": 672
+        },
+        {
+            "source": 118,
+            "destination": 119,
+            "line": "R",
+            "type": "LRO",
+            "distance": 453
+        },
+        {
+            "source": 119,
+            "destination": 121,
+            "line": "R",
+            "type": "LRO",
+            "distance": 474
+        },
+        {
+            "source": 121,
+            "destination": 122,
+            "line": "R",
+            "type": "LRO",
+            "distance": 448
+        },
+        {
+            "source": 122,
+            "destination": 123,
+            "line": "R",
+            "type": "LRO",
+            "distance": 400
+        },
+        {
+            "source": 123,
+            "destination": 223,
+            "line": "R",
+            "type": "LRO",
+            "distance": 763
+        },
+        {
+            "source": 223,
+            "destination": 124,
+            "line": "R",
+            "type": "LRO",
+            "distance": 631
+        },
+        {
+            "source": 124,
+            "destination": 125,
+            "line": "R",
+            "type": "LRO",
+            "distance": 488
+        },
+        {
+            "source": 125,
+            "destination": 126,
+            "line": "R",
+            "type": "LRO",
+            "distance": 654
+        },
+        {
+            "source": 126,
+            "destination": 127,
+            "line": "R",
+            "type": "LRO",
+            "distance": 527
+        },
+        {
+            "source": 127,
+            "destination": 128,
+            "line": "R",
+            "type": "LRO",
+            "distance": 371
+        },
+        {
+            "source": 128,
+            "destination": 84,
+            "line": "R",
+            "type": "LRO",
+            "distance": 386
+        },
+        {
+            "source": 84,
+            "destination": 129,
+            "line": "R",
+            "type": "LRO",
+            "distance": 586
+        },
+        {
+            "source": 129,
+            "destination": 130,
+            "line": "R",
+            "type": "LRO",
+            "distance": 600
+        },
+        {
+            "source": 130,
+            "destination": 131,
+            "line": "R",
+            "type": "LRO",
+            "distance": 446
+        },
+        {
+            "source": 131,
+            "destination": 132,
+            "line": "R",
+            "type": "LRO",
+            "distance": 573
+        },
+        {
+            "source": 132,
+            "destination": 133,
+            "line": "R",
+            "type": "LRO",
+            "distance": 448
+        },
+        {
+            "source": 133,
+            "destination": 134,
+            "line": "R",
+            "type": "LRO",
+            "distance": 950
+        },
+        {
+            "source": 134,
+            "destination": 135,
+            "line": "R",
+            "type": "LRO",
+            "distance": 585
+        },
+        {
+            "source": 137,
+            "destination": 99,
+            "line": "G",
+            "type": "LRO",
+            "distance": 434
+        },
+        {
+            "source": 99,
+            "destination": 138,
+            "line": "G",
+            "type": "LRO",
+            "distance": 524
+        },
+        {
+            "source": 138,
+            "destination": 139,
+            "line": "G",
+            "type": "LRO",
+            "distance": 465
+        },
+        {
+            "source": 139,
+            "destination": 140,
+            "line": "G",
+            "type": "LRO",
+            "distance": 528
+        },
+        {
+            "source": 140,
+            "destination": 141,
+            "line": "G",
+            "type": "LRO",
+            "distance": 800
+        },
+        {
+            "source": 141,
+            "destination": 142,
+            "line": "G",
+            "type": "LRO",
+            "distance": 1000
+        },
+        {
+            "source": 142,
+            "destination": 143,
+            "line": "G",
+            "type": "LRO",
+            "distance": 613
+        },
+        {
+            "source": 143,
+            "destination": 27,
+            "line": "G",
+            "type": "LRO",
+            "distance": 807
+        },
+        {
+            "source": 27,
+            "destination": 28,
+            "line": "G",
+            "type": "LRO",
+            "distance": 437
+        },
+        {
+            "source": 28,
+            "destination": 144,
+            "line": "G",
+            "type": "LRO",
+            "distance": 650
+        },
+        {
+            "source": 144,
+            "destination": 145,
+            "line": "G",
+            "type": "LRO",
+            "distance": 414
+        },
+        {
+            "source": 145,
+            "destination": 146,
+            "line": "G",
+            "type": "LRO",
+            "distance": 358
+        },
+        {
+            "source": 146,
+            "destination": 147,
+            "line": "G",
+            "type": "LRO",
+            "distance": 527
+        },
+        {
+            "source": 147,
+            "destination": 148,
+            "line": "G",
+            "type": "LRO",
+            "distance": 722
+        },
+        {
+            "source": 148,
+            "destination": 149,
+            "line": "G",
+            "type": "LRO",
+            "distance": 690
+        },
+        {
+            "source": 149,
+            "destination": 150,
+            "line": "G",
+            "type": "LRO",
+            "distance": 692
+        },
+        {
+            "source": 150,
+            "destination": 151,
+            "line": "G",
+            "type": "LRU",
+            "distance": 770
+        },
+        {
+            "source": 151,
+            "destination": 152,
+            "line": "G",
+            "type": "LRU",
+            "distance": 698
+        },
+        {
+            "source": 152,
+            "destination": 67,
+            "line": "G",
+            "type": "LRU",
+            "distance": 887
+        },
+        {
+            "source": 67,
+            "destination": 117,
+            "line": "G",
+            "type": "LRU",
+            "distance": 868
+        },
+        {
+            "source": 117,
+            "destination": 153,
+            "line": "G",
+            "type": "LRU",
+            "distance": 1014
+        },
+        {
+            "source": 153,
+            "destination": 154,
+            "line": "G",
+            "type": "LRO",
+            "distance": 612
+        },
+        {
+            "source": 154,
+            "destination": 155,
+            "line": "G",
+            "type": "LRO",
+            "distance": 549
+        },
+        {
+            "source": 155,
+            "destination": 156,
+            "line": "G",
+            "type": "LRO",
+            "distance": 603
+        },
+        {
+            "source": 156,
+            "destination": 157,
+            "line": "G",
+            "type": "LRO",
+            "distance": 393
+        },
+        {
+            "source": 157,
+            "destination": 20,
+            "line": "G",
+            "type": "LRO",
+            "distance": 665
+        },
+        {
+            "source": 20,
+            "destination": 158,
+            "line": "G",
+            "type": "LRO",
+            "distance": 1302
+        },
+        {
+            "source": 158,
+            "destination": 159,
+            "line": "G",
+            "type": "LRO",
+            "distance": 509
+        },
+        {
+            "source": 159,
+            "destination": 160,
+            "line": "G",
+            "type": "LRO",
+            "distance": 687
+        },
+        {
+            "source": 160,
+            "destination": 85,
+            "line": "G",
+            "type": "LRO",
+            "distance": 342
+        },
+        {
+            "source": 85,
+            "destination": 161,
+            "line": "G",
+            "type": "LRO",
+            "distance": 520
+        },
+        {
+            "source": 161,
+            "destination": 16,
+            "line": "G",
+            "type": "LRO",
+            "distance": 437
+        },
+        {
+            "source": 16,
+            "destination": 162,
+            "line": "G",
+            "type": "LRO",
+            "distance": 450
+        },
+        {
+            "source": 162,
+            "destination": 222,
+            "line": "G",
+            "type": "LRO",
+            "distance": 436
+        },
+        {
+            "source": 222,
+            "destination": 163,
+            "line": "G",
+            "type": "LRO",
+            "distance": 394
+        },
+        {
+            "source": 163,
+            "destination": 164,
+            "line": "G",
+            "type": "LRO",
+            "distance": 748
+        },
+        {
+            "source": 164,
+            "destination": 165,
+            "line": "G",
+            "type": "LRO",
+            "distance": 790
+        },
+        {
+            "source": 165,
+            "destination": 166,
+            "line": "G",
+            "type": "LRO",
+            "distance": 902
+        },
+        {
+            "source": 166,
+            "destination": 135,
+            "line": "G",
+            "type": "LRO",
+            "distance": 458
+        },
+        {
+            "source": 104,
+            "destination": 167,
+            "line": "G",
+            "type": "LRO",
+            "distance": 433
+        },
+        {
+            "source": 167,
+            "destination": 168,
+            "line": "G",
+            "type": "LRO",
+            "distance": 555
+        },
+        {
+            "source": 168,
+            "destination": 169,
+            "line": "G",
+            "type": "LRO",
+            "distance": 446
+        },
+        {
+            "source": 169,
+            "destination": 170,
+            "line": "G",
+            "type": "LRO",
+            "distance": 438
+        },
+        {
+            "source": 170,
+            "destination": 171,
+            "line": "G",
+            "type": "LRO",
+            "distance": 453
+        },
+        {
+            "source": 171,
+            "destination": 172,
+            "line": "G",
+            "type": "LRO",
+            "distance": 428
+        },
+        {
+            "source": 172,
+            "destination": 173,
+            "line": "G",
+            "type": "LRO",
+            "distance": 380
+        },
+        {
+            "source": 173,
+            "destination": 174,
+            "line": "G",
+            "type": "LRO",
+            "distance": 470
+        },
+        {
+            "source": 174,
+            "destination": 175,
+            "line": "G",
+            "type": "LRO",
+            "distance": 658
+        },
+        {
+            "source": 175,
+            "destination": 176,
+            "line": "G",
+            "type": "LRO",
+            "distance": 456
+        },
+        {
+            "source": 176,
+            "destination": 177,
+            "line": "G",
+            "type": "LRO",
+            "distance": 622
+        },
+        {
+            "source": 177,
+            "destination": 147,
+            "line": "G",
+            "type": "LRO",
+            "distance": 732
+        },
+        {
+            "source": 159,
+            "destination": 178,
+            "line": "G",
+            "type": "LRO",
+            "distance": 457
+        },
+        {
+            "source": 178,
+            "destination": 179,
+            "line": "G",
+            "type": "LRO",
+            "distance": 568
+        },
+        {
+            "source": 179,
+            "destination": 180,
+            "line": "G",
+            "type": "LRO",
+            "distance": 456
+        },
+        {
+            "source": 180,
+            "destination": 181,
+            "line": "G",
+            "type": "LRO",
+            "distance": 652
+        },
+        {
+            "source": 181,
+            "destination": 87,
+            "line": "G",
+            "type": "LRO",
+            "distance": 465
+        },
+        {
+            "source": 87,
+            "destination": 182,
+            "line": "G",
+            "type": "LRO",
+            "distance": 504
+        },
+        {
+            "source": 182,
+            "destination": 183,
+            "line": "G",
+            "type": "LRO",
+            "distance": 581
+        },
+        {
+            "source": 183,
+            "destination": 184,
+            "line": "G",
+            "type": "LRO",
+            "distance": 620
+        },
+        {
+            "source": 184,
+            "destination": 185,
+            "line": "G",
+            "type": "LRO",
+            "distance": 605
+        },
+        {
+            "source": 185,
+            "destination": 186,
+            "line": "G",
+            "type": "LRO",
+            "distance": 505
+        },
+        {
+            "source": 25,
+            "destination": 187,
+            "line": "P",
+            "type": "LRO",
+            "distance": 769
+        },
+        {
+            "source": 187,
+            "destination": 151,
+            "line": "P",
+            "type": "LRO",
+            "distance": 643
+        },
+        {
+            "source": 151,
+            "destination": 188,
+            "line": "P",
+            "type": "LRO",
+            "distance": 741
+        },
+        {
+            "source": 188,
+            "destination": 189,
+            "line": "P",
+            "type": "LRO",
+            "distance": 754
+        },
+        {
+            "source": 189,
+            "destination": 190,
+            "line": "P",
+            "type": "LRO",
+            "distance": 570
+        },
+        {
+            "source": 190,
+            "destination": 191,
+            "line": "P",
+            "type": "LRO",
+            "distance": 456
+        },
+        {
+            "source": 191,
+            "destination": 66,
+            "line": "P",
+            "type": "LRO",
+            "distance": 408
+        },
+        {
+            "source": 66,
+            "destination": 192,
+            "line": "P",
+            "type": "LRO",
+            "distance": 532
+        },
+        {
+            "source": 192,
+            "destination": 116,
+            "line": "P",
+            "type": "LRO",
+            "distance": 384
+        },
+        {
+            "source": 116,
+            "destination": 193,
+            "line": "P",
+            "type": "LRO",
+            "distance": 439
+        },
+        {
+            "source": 193,
+            "destination": 153,
+            "line": "P",
+            "type": "LRO",
+            "distance": 386
+        },
+        {
+            "source": 153,
+            "destination": 194,
+            "line": "P",
+            "type": "LRO",
+            "distance": 258
+        },
+        {
+            "source": 194,
+            "destination": 22,
+            "line": "P",
+            "type": "LRO",
+            "distance": 368
+        },
+        {
+            "source": 22,
+            "destination": 195,
+            "line": "P",
+            "type": "LRO",
+            "distance": 625
+        },
+        {
+            "source": 195,
+            "destination": 196,
+            "line": "P",
+            "type": "LRO",
+            "distance": 509
+        },
+        {
+            "source": 196,
+            "destination": 197,
+            "line": "P",
+            "type": "LRO",
+            "distance": 345
+        },
+        {
+            "source": 197,
+            "destination": 198,
+            "line": "P",
+            "type": "LRO",
+            "distance": 758
+        },
+        {
+            "source": 198,
+            "destination": 199,
+            "line": "P",
+            "type": "LRO",
+            "distance": 597
+        },
+        {
+            "source": 199,
+            "destination": 200,
+            "line": "P",
+            "type": "LRO",
+            "distance": 571
+        },
+        {
+            "source": 200,
+            "destination": 201,
+            "line": "P",
+            "type": "LRO",
+            "distance": 439
+        },
+        {
+            "source": 201,
+            "destination": 202,
+            "line": "P",
+            "type": "LRO",
+            "distance": 683
+        },
+        {
+            "source": 202,
+            "destination": 203,
+            "line": "P",
+            "type": "LRO",
+            "distance": 786
+        },
+        {
+            "source": 203,
+            "destination": 204,
+            "line": "P",
+            "type": "LRO",
+            "distance": 635
+        },
+        {
+            "source": 204,
+            "destination": 205,
+            "line": "P",
+            "type": "LRO",
+            "distance": 1179
+        },
+        {
+            "source": 205,
+            "destination": 206,
+            "line": "P",
+            "type": "LRO",
+            "distance": 501
+        },
+        {
+            "source": 206,
+            "destination": 207,
+            "line": "P",
+            "type": "LRO",
+            "distance": 645
+        },
+        {
+            "source": 207,
+            "destination": 208,
+            "line": "P",
+            "type": "LRO",
+            "distance": 673
+        },
+        {
+            "source": 208,
+            "destination": 209,
+            "line": "P",
+            "type": "LRO",
+            "distance": 430
+        },
+        {
+            "source": 209,
+            "destination": 210,
+            "line": "P",
+            "type": "LRO",
+            "distance": 400
+        },
+        {
+            "source": 210,
+            "destination": 75,
+            "line": "P",
+            "type": "LRO",
+            "distance": 718
+        },
+        {
+            "source": 204,
+            "destination": 211,
+            "line": "P",
+            "type": "LRO",
+            "distance": 722
+        },
+        {
+            "source": 211,
+            "destination": 212,
+            "line": "P",
+            "type": "LRO",
+            "distance": 556
+        },
+        {
+            "source": 212,
+            "destination": 213,
+            "line": "P",
+            "type": "LRO",
+            "distance": 1491
+        },
+        {
+            "source": 213,
+            "destination": 92,
+            "line": "P",
+            "type": "LRO",
+            "distance": 718
+        },
+        {
+            "source": 92,
+            "destination": 214,
+            "line": "P",
+            "type": "LRO",
+            "distance": 578
+        },
+        {
+            "source": 214,
+            "destination": 215,
+            "line": "P",
+            "type": "LRO",
+            "distance": 563
+        },
+        {
+            "source": 215,
+            "destination": 216,
+            "line": "P",
+            "type": "LRO",
+            "distance": 1216
+        },
+        {
+            "source": 216,
+            "destination": 217,
+            "line": "P",
+            "type": "LRO",
+            "distance": 576
+        },
+        {
+            "source": 217,
+            "destination": 218,
+            "line": "P",
+            "type": "LRO",
+            "distance": 644
+        },
+        {
+            "source": 218,
+            "destination": 219,
+            "line": "P",
+            "type": "LRO",
+            "distance": 476
+        },
+        {
+            "source": 219,
+            "destination": 220,
+            "line": "P",
+            "type": "LRO",
+            "distance": 699
+        },
+        {
+            "source": 220,
+            "destination": 221,
+            "line": "P",
+            "type": "LRO",
+            "distance": 1266
+        }
+    ]
+}

@@ -114,6 +114,30 @@ body {
     font-size: 1.2em; 
 }
 
+#wayfinder {
+    position: absolute;
+    bottom: 20px;
+    right: 10px;
+    z-index: 1000;
+    padding: 8px 12px;
+    font-size: 18px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px; 
+    height: 45px; 
+}
+
+#wayfinder ion-icon {
+    flex-shrink: 0;
+    font-size: 1.2em; 
+}
+
 .close {
     top: 20px;
     right: 20px;
@@ -342,7 +366,24 @@ button#darkModeButton {
     line-height: 24px;
 }
 
-.train-popup {
+.train-popup, .station-popup {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 16px;
+    font-size: 14px;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    font-family: Helvetica;
+    animation: fadeIn 0.2s ease-out;
+    z-index: 9999;
+}
+.station-popup {
     position: fixed;
     bottom: 80px;
     left: 50%;
@@ -360,7 +401,7 @@ button#darkModeButton {
     z-index: 9999;
 }
 
-.train-popup-content {
+.train-popup-content, .station-popup-content  {
     display: flex;
     align-items: center;
 }
@@ -756,6 +797,7 @@ body.dark-mode {
 
 body.dark-mode #pause,
 body.dark-mode #settings,
+body.dark-mode #wayfinder,
 body.dark-mode #darkModeButton,
 body.dark-mode .tab-link,
 body.dark-mode .toggle-info p,
