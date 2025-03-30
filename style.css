@@ -26,6 +26,20 @@ body {
     font-family: Helvetica;
 }
 
+.wayfinder-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    position: absolute;
+    left: 20px;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 4px;
+    overflow: auto;
+    width: 30vh;
+    height: 75%;
+    pointer-events: auto;
+}
+
 .modal-content {
     background-color: #fefefe;
     margin: 5% auto;
@@ -61,6 +75,20 @@ body {
     background-color: rgba(0, 0, 0, 0.4);
     align-items: center; 
     justify-content: center;
+}
+
+#wayfinderPane {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    align-items: center; 
+    justify-content: center;
+    pointer-events: none;
 }
 
 /* ==========================================
@@ -400,6 +428,12 @@ button#darkModeButton {
     animation: fadeIn 0.2s ease-out;
     z-index: 9999;
 }
+#stnPopupRouteBullet {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 5px; /* space between bullets */
+  }
 
 .train-popup-content, .station-popup-content  {
     display: flex;
@@ -545,6 +579,11 @@ button#darkModeButton {
    ========================================== */
 .toggle-option select {
     display: none;
+}
+
+.custom-select .select-items {
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .custom-select {
@@ -788,8 +827,59 @@ html[dir="rtl"] #serviceLevelsTable td {
 }
 
 /* ==========================================
-   DARK MODE
-   ========================================== */
+Wayfinder
+========================================== */
+
+.wayfinder-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.route-details-container {
+    margin-top: 20px;
+    border-radius: 8px;
+    padding: 15px;
+    min-height: 100px;
+}
+
+.route-summary {
+    margin-top: 20px;
+}
+
+.text-muted {
+    color: #6c757d !important;    
+}
+
+.line-segment {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 10px;
+}
+
+.vertical-line {
+border-left: 4px solid #777; /* Default color, overridden inline */
+margin-right: 10px;
+flex-shrink: 0;
+}
+
+.station-list {
+    flex: 1;
+}
+
+.station-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+
+
+
+/* ==========================================
+DARK MODE
+========================================== */
 body.dark-mode {
     background-color: #121212;
     color: #ffffff;

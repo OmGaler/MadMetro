@@ -33,8 +33,6 @@
     <button id="settings">
         <ion-icon name="settings-outline"></ion-icon>
     </button>
-
-
     <!-- Settings Modal -->
     <div id="settingsModal" class="modal">
         <div class="modal-content">
@@ -129,7 +127,6 @@
 
                     <div class="simulation-table-column">
                         <table id="serviceLevelsTable">
-                            <!-- TODO: make the table RTL -->
                             <thead>
                                 <tr>
                                     <th data-i18n="day">Day</th>
@@ -146,7 +143,7 @@
                                         <span class="time-separator">-</span>
                                         <span class="time-end">06:00</span>
                                     </td>
-                                    </tr>
+                                </tr>
                                 <tr>
                                     <td></td>
                                     <td data-i18n="morning">Morning</td>
@@ -261,7 +258,7 @@
 
                 <!-- Show Stations & Routes Toggle Section -->
                 <div class="toggle-option">
-                    <ion-icon name="git-merge-outline"></ion-icon>
+                    <ion-icon name="git-merge-outline"></ion-icon> <!--TODO: CHange to branch -->
                     <div class="toggle-info">
                         <h3 data-i18n="toggle-routes">Show Stations & Routes</h3>
                         <p class="toggle-description" data-i18n="toggle-routes-detail">Display stations and route
@@ -289,7 +286,9 @@
                     <li><strong>T:</strong> <span data-i18n="toggleRoutesShortcut">Show/hide stations and
                             lines</span></li>
                     <li><strong>S:</strong> <span data-i18n="settingsShortcut">Open settings</span></li>
-                    <li><strong data-i18n="changeSpeed">&gt; / &lt;:</strong> <span data-i18n="speedShortcut">Increase/Decrease
+                    <li><strong>W:</strong> <span data-i18n="wayfinderShortcut">Open wayfinder</span></li>
+                    <li><strong data-i18n="changeSpeed">&gt; / &lt;:</strong> <span
+                            data-i18n="speedShortcut">Increase/Decrease
                             simulation speed</span></li>
                 </ul>
 
@@ -300,6 +299,54 @@
                 <a id="readmelink" href="https://github.com/OmGaler/MadMetro/blob/master/README.md"
                     data-i18n="usage-disclaimer">Read the usage disclaimer</a>
                 <p data-i18n="copyright">© 2025 Omer Galer</p>
+            </div>
+        </div>
+    </div>
+    <!-- Wayfinder Pane -->
+    <div id="wayfinderPane">
+        <div class="wayfinder-content">
+        <div class="wayfinder-header">
+            <span class="modal-title">Wayfinder</span>
+            <span class="close">&times;</span>
+        </div>
+            <!-- <p>Wayfinder</p> -->
+            <div class="toggle-option">
+                <ion-icon name="navigate-outline"></ion-icon>
+                <div class="toggle-info">
+                    <h3>Start Station</h3>
+                    <p class="toggle-description">Select origin</p>
+                </div>
+                <div class="custom-select">
+                    <select id="startStationSelect">
+                        <option value="">Select station</option>
+                    </select>
+                    <div class="select-selected"></div>
+                    <div class="select-items">
+                        <!-- Dynamically populate station options -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Station -->
+            <div class="toggle-option">
+                <ion-icon name="flag-outline"></ion-icon>
+                <div class="toggle-info">
+                    <h3>End Station</h3>
+                    <p class="toggle-description">Select destination</p>
+                </div>
+                <div class="custom-select">
+                    <select id="endStationSelect">
+                        <option value="">Select station</option>
+                    </select>
+                    <div class="select-selected"></div>
+                    <div class="select-items">
+                        <!-- Dynamically populate station options -->
+                    </div>
+                </div>
+            </div>
+            <!-- Route Details Container -->
+            <div class="route-details-container">
+                <!-- Route details will be dynamically populated here -->
+                <p class="text-center text-muted">Select a start and end station from the list or by clicking on the map to view route details.</p>
             </div>
         </div>
     </div>

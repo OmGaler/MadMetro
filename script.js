@@ -14,6 +14,7 @@ const lineColours = {
     "M1": "#0971ce", // blue
     "M2": "#fd6b0d", // orange
     "M3": "#fec524", // yellow
+    "M3S": "#fec524", // yellow (BG shuttle)
     "R": "#ff0000", // red
     "P": "#800080", // purple
     "G": "#008000" // green
@@ -72,6 +73,10 @@ let currentLang = localStorage.getItem("language") || "en";
 let scheduleData = null;
 let serviceRoutes = {}; // Loaded from preprocessed_station_distances.json
 let G = {}; // Network Graph
+let gr;
+let wayfinderActive = false;
+let originStn = null;
+let destinationStn = null;
 let stationLookup;
 let trains = [];
 let showRoutes = document.getElementById("toggleRoutes").checked; //show lines and stations, default off
@@ -150,15 +155,12 @@ function updateLanguage(lang) {
     document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
     localStorage.setItem("language", lang);
     
-    //repopulate day and time period options
+    // Repopulate day and time period options
     updateCustomSelectOptions("dayTypeSelect");
-    
     // Ensure dayTypeSelect keeps its value
     dayTypeSelect.value = selectedDayType;
-    
     // Update time period options based on the preserved day type
     updateTimePeriodOptions();
-    
     // Restore the previously selected time period if it exists in the new options
     if (selectedTimePeriod) {
         // Check if the option exists in the updated select
@@ -172,7 +174,7 @@ function updateLanguage(lang) {
             updateCustomSelectOptions("timePeriodSelect");
         }
     }
-    
+    // Repopulate station selects
     updateLineInfo();
     updateSpeed();
 }
@@ -183,6 +185,7 @@ function toggleLanguage() {
     const newLang = currentLang === "en" ? "he" : "en";
     updateLanguage(newLang);
 }
+
 function updateTimePeriodOptions() {
     const dayTypeSelect = document.getElementById("dayTypeSelect");
     const timePeriodSelect = document.getElementById("timePeriodSelect");
@@ -212,6 +215,46 @@ function updateTimePeriodOptions() {
     }
     updateCustomSelectOptions("timePeriodSelect");
 }
+// Populate station names in the wayfinder selects
+// Helper function to merge multiline station names
+function getMergedStationName(station) {
+    const name = currentLang === "en" ? station.name.en : station.name.he; 
+    if (typeof name === "string") {
+        return name;
+    } else if (typeof name === "object") {
+      // Get all the names from the object values, then filter out duplicates
+        const names = Object.values(name);
+        const uniqueNames = [...new Set(names)];
+        return uniqueNames.join("/");
+    }
+    return station.id.toString();
+}
+
+
+function getRouteBullet(line) {
+    // TODO: reuse bullet logic
+    const bullet = document.createElement("span");
+    bullet.classList.add("bullet");
+    if (line.startsWith("M")) { // Use the number 
+        bullet.style.backgroundColor = lineColours[line] || "#777";
+        bullet.textContent = line.charAt(1);
+    } else { // Use the letter
+        bullet.style.backgroundColor = lineColours[line.charAt(0)] || "#777";
+        bullet.textContent = line.charAt(0);
+    }
+    return bullet;
+}
+
+// Helper to generate the inner HTML string for an option, including inline bullets.
+function getStationRouteBullets(station) {
+    const container = document.createElement("span");
+    container.style.display = "inline-flex";
+    container.style.gap = "5px"; // Space between bullets
+    station.lines.forEach(line => {
+        container.appendChild(getRouteBullet(line));
+    });
+    return container;
+}
 
 // Function to update custom select display after options change
 function updateCustomSelectOptions(selectId) {
@@ -222,24 +265,24 @@ function updateCustomSelectOptions(selectId) {
     const selectSelected = customSelectContainer.querySelector('.select-selected');
     // Set it to the currently selected option text
     if (select.selectedIndex >= 0) {
-        selectSelected.textContent = select.options[select.selectedIndex].textContent;
+        selectSelected.innerHTML = select.options[select.selectedIndex].innerHTML;
     }
     // Rebuild the dropdown items list
     const selectItems = customSelectContainer.querySelector('.select-items');
     selectItems.innerHTML = '';
     Array.from(select.options).forEach((option, index) => {
         const div = document.createElement('div');
-        div.textContent = option.textContent;
+        div.innerHTML = option.innerHTML;
+        // div.textContent = option.textContent;
         div.addEventListener('click', function() {
             select.selectedIndex = index;
-            selectSelected.textContent = this.textContent;
+            selectSelected.innerHTML = this.innerHTML;
             selectItems.style.display = "none";            
             const event = new Event('change', { bubbles: true });
             select.dispatchEvent(event);
         });
         selectItems.appendChild(div);
     });
-    
 }
 
 document.addEventListener("keydown", (event) => {
@@ -355,18 +398,32 @@ document.addEventListener("keydown", function (event) {
         document.getElementById("pause").innerHTML = simPaused ? "<ion-icon name='play'></ion-icon>" : "<ion-icon name='pause'></ion-icon>";
         event.preventDefault();
     } else if (event.key.toLowerCase() === "w") { //wayfinder mode
-        simPaused = true;
-        document.getElementById("pause").innerHTML = simPaused ? "<ion-icon name='play'></ion-icon>" : "<ion-icon name='pause'></ion-icon>";
-        event.preventDefault();
-        wayfind();
+        if (wayfinderPane.style.display === "flex") {//if wayfinder open, close it else open
+            wayfinderPane.style.display = "none";
+            wayfinderActive = false;
+            // Restart simultion respawn all trains 
+            simPaused = false;
+            startSimulation()
+            document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
+            event.preventDefault();
+        } else {
+            settingsModal.style.display = "none";
+            wayfinderPane.style.display = "flex";
+            simPaused = true;
+            document.getElementById("pause").innerHTML = "<ion-icon name='play'></ion-icon>";
+            event.preventDefault();
+            wayfind();
+        }
     } else if (event.key.toLowerCase() === "s") { //toggle settings
-        if (settingsModal.style.display === "block") { //if settings open, close it else open
+        if (settingsModal.style.display === "flex") { //if settings open, close it else open
             settingsModal.style.display = "none";
             simPaused = false;
             document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
             event.preventDefault();
         } else {
+            wayfinderPane.style.display = "none";
             settingsModal.style.display = "flex";
+            wayfinderActive = false;
             simPaused = true;
             document.getElementById("pause").innerHTML = "<ion-icon name='play'></ion-icon>";
             event.preventDefault();
@@ -381,16 +438,39 @@ document.getElementById("pause").addEventListener("click", function () {
 
 // Settings modal controls
 const settingsButton = document.getElementById("settings");
+const wayfinderButton = document.getElementById("wayfinder");
 const settingsModal = document.getElementById("settingsModal");
-const closeModal = document.getElementsByClassName("close")[0];
+const wayfinderPane = document.getElementById("wayfinderPane");
+
+const closeSettingsModal = document.getElementsByClassName("close")[0];
+const closeWayfinder = document.getElementsByClassName("close")[1];
 settingsButton.addEventListener("click", function () {
+    if (wayfinderActive) { //close wayfinder first
+        wayfinderPane.style.display = "none";
+        wayfinderActive = false;
+        startSimulation();
+    }
     settingsModal.style.display = "flex";
     simPaused = true;
     document.getElementById("pause").innerHTML = "<ion-icon name='play'></ion-icon>";
 });
-closeModal.addEventListener("click", function () {
+
+wayfinderButton.addEventListener("click", function () {
+    wayfinderPane.style.display = "flex";
+    simPaused = true;
+    wayfind();
+    document.getElementById("pause").innerHTML = "<ion-icon name='play'></ion-icon>";
+});
+closeSettingsModal.addEventListener("click", function () {
     settingsModal.style.display = "none";
     simPaused = false;
+    document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
+});
+closeWayfinder.addEventListener("click", function () {
+    wayfinderPane.style.display = "none";
+    simPaused = false;
+    // Restar simulation
+    startSimulation();
     document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
 });
 window.addEventListener("click", function (event) {
@@ -401,26 +481,248 @@ window.addEventListener("click", function (event) {
     }
 });
 
-function wayfind() {
-    console.log("Entering wayfinder mode");
+
+/********************************************
+ * Wayfinder
+ ********************************************/
+
+function populateWayfindingOptions() {
+    const stns = G.nodes;
+    stns.forEach(stn => {
+        stn.mergedName = getMergedStationName(stn);
+    });
+    const sortedStations = stns.sort((a, b) => 
+        a.mergedName.localeCompare(b.mergedName)
+    );
     
+    sortedStations.forEach(stn => {
+        // For start station option
+        const sopt = document.createElement("option");
+        sopt.value = stn.id;
+        
+        // Create a wrapper div for the entire option content
+        const soptContent = document.createElement("div");
+        
+        // Add station name on the first line
+        const sNameDiv = document.createElement("div");
+        sNameDiv.textContent = getMergedStationName(stn);
+        soptContent.appendChild(sNameDiv);
+        
+        // Create a container for the bullets on a second line
+        const sBulletContainer = document.createElement("div");
+        sBulletContainer.style.display = "flex"; // Keep bullets on the same line
+        sBulletContainer.style.alignItems = "center";
+        sBulletContainer.style.gap = "3px"; // Space between bullets
+        // Add each bullet
+        stn.lines.forEach(line => {
+            sBulletContainer.appendChild(getRouteBullet(line));
+        });
+        soptContent.appendChild(sBulletContainer);
+        // Set the option's HTML content
+        sopt.innerHTML = soptContent.innerHTML;
+        startStationSelect.appendChild(sopt);
+        // Repeat for end station option
+        const eopt = document.createElement("option");
+        eopt.value = stn.id;
+        const eoptContent = document.createElement("div");
+        const eNameDiv = document.createElement("div");
+        eNameDiv.textContent = getMergedStationName(stn);
+        eoptContent.appendChild(eNameDiv);
+        const eBulletContainer = document.createElement("div");
+        eBulletContainer.style.display = "flex";
+        eBulletContainer.style.alignItems = "center";
+        eBulletContainer.style.gap = "3px";
+        stn.lines.forEach(line => {
+            eBulletContainer.appendChild(getRouteBullet(line));
+        });
+        eoptContent.appendChild(eBulletContainer);
+        eopt.innerHTML = eoptContent.innerHTML;
+        endStationSelect.appendChild(eopt);
+    });
+    
+    updateCustomSelectOptions("startStationSelect");
+    updateCustomSelectOptions("endStationSelect");
+}
+
+// Builds and returns an HTML element with route details 
+function buildRouteDetails(route) {
+     // Create a container element for the route details
+    const container = document.createElement("div");
+    container.classList.add("route-details");
+     // --- 1. Journey Time ---
+    const journeyTimeDiv = document.createElement("div");
+    journeyTimeDiv.classList.add("journey-time");
+    journeyTimeDiv.textContent = `${Math.round(route.journeyTime)} mins`; 
+    container.appendChild(journeyTimeDiv);
+     // --- 2. Route Summary: route bullets ---
+      const routeSummaryDiv = document.createElement("div");
+      routeSummaryDiv.classList.add("route-summary");
+      routeSummaryDiv.style.display = "flex"; // Add flex display
+      routeSummaryDiv.style.alignItems = "center"; // Align items vertically
+      routeSummaryDiv.style.gap = "5px"; // Space between bullets and arrows
+      
+      // Add the first route bullet
+      routeSummaryDiv.appendChild(getRouteBullet(route.path[0].line));
+      
+      // Add transfers if they exist
+      if (route.transfers && route.transfers.length > 0) {
+          route.transfers.forEach((transfer) => {
+              // Create a span for the arrow
+              const arrow = document.createElement("span");
+              arrow.textContent = ">";
+              routeSummaryDiv.appendChild(arrow);
+              
+              // Add the transfer route bullet
+              routeSummaryDiv.appendChild(getRouteBullet(transfer.to));
+          });
+      }
+      
+      container.appendChild(routeSummaryDiv);
+    // 
+    // // --- 3. Transfer Details ---
+    // if (route.transfers && route.transfers.length > 0) {
+    //     const transferDiv = document.createElement("div");
+    //     transferDiv.classList.add("transfer-details");
+    //     route.transfers.forEach((transfer) => {
+    //         // Look up the station name via stationLookup:
+    //         const station = stationLookup[transfer.station];
+    //         const p = document.createElement("p");
+    //         // TODO: change -.- to commit icon
+    //         p.innerHTML = `-.- Change to ${getRouteBullet(transfer.to).outerHTML} at ${station ? station.mergedName : transfer.station}`;
+    //         transferDiv.appendChild(p);
+    //     });
+    // container.appendChild(transferDiv);
+    // }
+    // --- 4. Extended Route Details ---
+    const extendedDiv = document.createElement("div");
+    extendedDiv.classList.add("extended-route-details");
+    let currentLine = null;
+    let currentSegment = [];
+    route.path.forEach((item, index) => {
+        // For the first element, initialise
+        if (index === 0) {
+            currentLine = item.line;
+            currentSegment.push(item.station);
+        } else {
+            if (item.line === currentLine) {
+                currentSegment.push(item.station);
+            } else { 
+                // Transfer, so finish current segment and create a block for it
+                currentSegment.push(item.station);
+                extendedDiv.appendChild(createSegmentBlock(currentLine, currentSegment));
+                // Reset for the new segment
+                currentLine = item.line;
+                currentSegment = [item.station];
+            }
+        }
+    });
+    // Append the last segment if exists
+    if (currentSegment.length > 0) {
+        extendedDiv.appendChild(createSegmentBlock(currentLine, currentSegment));
+    }
+    container.appendChild(extendedDiv);
+    // Return the populated container to be displayed
+    return container;
+}
+
+/**
+ * Creates a segment block for a group of consecutive stations served by the same line.
+ * Returns an HTML element with:
+ * - A label showing the line bullet (e.g., "(1)" for Metro)
+ * - A list of station names in that segment.
+ */
+function createSegmentBlock(line, stationIds) {
+    // Create container for the segment (flex container)
+    const segmentDiv = document.createElement("div");
+    segmentDiv.classList.add("line-segment");
+    segmentDiv.style.display = "flex";
+    segmentDiv.style.alignItems = "stretch"; // Ensure children (like vertical line) stretch
+    segmentDiv.style.marginBottom = "10px";
+    
+    // Create the vertical line element.
+    const verticalLine = document.createElement("div");
+    verticalLine.classList.add("vertical-line");
+    // Determine the colour based on the line type.
+    let lineColor = "#777";
+    if (line) {
+        if (line.startsWith("M")) {
+            lineColor = lineColours[line] || "#777";
+        } else {
+            lineColor = lineColours[line.charAt(0)] || "#777";
+        }
+    }
+    verticalLine.style.borderLeft = `4px solid ${lineColor}`;
+    verticalLine.style.marginRight = "10px";
+    verticalLine.style.flexShrink = "0"; // prevent shrinking
+    // Create a container for station rows.
+    const stationListDiv = document.createElement("div");
+    stationListDiv.classList.add("station-list");
+    stationListDiv.style.flex = "1";
+
+    // For each station in the segment, create a row with the station name.
+    stationIds.forEach(stationId => {
+        const station = stationLookup[stationId];
+        const stationRow = document.createElement("div");
+        stationRow.classList.add("station-row");
+        stationRow.style.display = "flex";
+        stationRow.style.alignItems = "center";
+        stationRow.style.marginBottom = "4px";
+        // Create station name element
+        const nameSpan = document.createElement("span");
+        if (typeof station.name.en === "string") {
+            nameSpan.textContent = currentLang === "en" ? station.name.en : station.name.he;
+        } else { // Multi-line station with different names
+            nameSpan.textContent = currentLang === "en" ? station.name.en[line] : station.name.he[line];
+        }
+        // Append name to the station row
+        stationRow.appendChild(nameSpan);
+        stationListDiv.appendChild(stationRow);
+    });
+    
+    segmentDiv.appendChild(verticalLine);
+    segmentDiv.appendChild(stationListDiv);
+    return segmentDiv;
+}
+
+
+function displayRoute(route) { // Visualises the computed path on the map by only highlighting the segments traversed
+    //TODO: show line segments traversed
+    const detailsContainer = document.querySelector(".route-details-container");
+    detailsContainer.innerHTML = ""; 
+    const routeElement = buildRouteDetails(route);
+    detailsContainer.appendChild(routeElement);
+}
+
+function getRoute(startNode, endNode) {
+    const { distances, previous } = dijkstraWithTransfers(gr, startNode, endNode);
+    // const { path, transfers, journeyTime } = reconstructPathWithTransfers(previous, distances, startNode, endNode);
+    const route = reconstructPathWithTransfers(previous, distances, startNode, endNode);
+    console.log("Route path:", route.path.map(p => `${stationLookup[p.station].name.en|| "Station not found"} (${p.line})`).join(" → "));
+    console.log("Transfers:", route.transfers.length > 0 ? route.transfers : "No transfers needed.");
+    console.log("Estimated travel time (minutes):", route.journeyTime);
+    
+    displayRoute(route);
+}
+
+
+function wayfind() {
+    //TODO: despawn all trains first + make the stations easier to click
+    // Despawn all trains
+    trains.forEach(train => train.marker.remove());
+    trains = [];
+    // TODO: deactive wayfinder mode after pane is closed
+    gr = buildGraph(G.edges);
+    console.log("Entering wayfinder mode");
+    wayfinderActive = true;
     // Toggle stations + routes on
     showRoutes = true;
     toggleDisplayRoutes();
-    let graph = buildGraph(G.edges);
-    let startNode = 105;//91;//62;
-    // let startNode = 45;
-    let endNode = 223;//192;//;
-    // let endNode = 67;
-    const { distances, previous } = dijkstraWithTransfers(graph, startNode, endNode);
-    const { path, transfers } = reconstructPathWithTransfers(previous, startNode, endNode);
-    // console.log(path);
     
-    console.log("Route path:", path.map(p => `${stationLookup[p.station].name.en|| "Station not found"} (${p.line})`).join(" → "));
-    console.log("Transfers:", transfers.length > 0 ? transfers : "No transfers needed.");
-    console.log("Estimated travel time (minutes):", distances[endNode]);
 }
 
+/********************************************
+ * Line Info
+ ********************************************/
 function updateLineInfo() {
     const dayType = document.getElementById("dayTypeSelect").value;
     const timePeriod = document.getElementById("timePeriodSelect").value;
@@ -441,7 +743,7 @@ function updateLineInfo() {
             length: "N/A",
             stations: "N/A"
         };
-        // Create a container div for this line.
+        // Create a container div for this line
         const lineDiv = document.createElement("div");
         lineDiv.style.marginBottom = "10px";
         lineDiv.style.display = "inline-flex";
@@ -481,6 +783,10 @@ document.addEventListener('click', function (event) {
     hideTrainPopup();
 });
 
+/********************************************
+ * Train & Station Popups
+ ********************************************/
+
 function hideTrainPopup() {
     const popup = document.getElementById("trainPopup");
     popup.style.display = "none";
@@ -515,7 +821,7 @@ customSelects.forEach(select => {
             // Update the original select
             originalSelect.selectedIndex = index;
             // Update the selected text
-            selectSelected.textContent = this.textContent;
+            selectSelected.innerHTML = this.innerHTML;
             // Close the dropdown
             selectItems.style.display = "none"; 
             // Trigger the change event on the original select
@@ -540,6 +846,16 @@ function closeAllSelects(elmnt) {
     });
 }
 
+function stationSelection() {
+    const start = document.getElementById("startStationSelect").value;
+    const end = document.getElementById("endStationSelect").value;
+    // Check if both dropdowns have a valid selection and are not the same
+    if (start && end && start !== end) {
+        getRoute(start, end);
+    }
+
+}
+
 document.getElementById("dayTypeSelect").addEventListener("change", function () {
     updateTimePeriodOptions();
     updateOperationSettings();
@@ -549,6 +865,8 @@ document.getElementById("timePeriodSelect").addEventListener("change", function 
     updateOperationSettings();
     updateLineInfo();
 });
+document.getElementById("startStationSelect").addEventListener("change", stationSelection);
+document.getElementById("endStationSelect").addEventListener("change", stationSelection);
 
 
 
@@ -579,13 +897,14 @@ Promise.all([
     ])
     .then(([schedule, routes, graph]) => {
         scheduleData = schedule;
+        console.log("Loaded schedule data:", scheduleData);
         serviceRoutes = routes;
+        console.log("Loaded service routes:", serviceRoutes);
         // Initialise the network graph of edges and nodes, together with a lookup to get stations by id
         G = graph;
         stationLookup = Object.fromEntries(G.nodes.map(node => [node.id, node]));
+        populateWayfindingOptions(); // Add station names to the wayfinder selects
         updateLineInfo(); // Update line info in settings with schedule 
-        console.log("Loaded schedule data:", scheduleData);
-        console.log("Loaded service routes:", serviceRoutes);
         // Visualise service routes and station markers
             Object.keys(serviceRoutes).forEach(key => {
                 let routeObj = serviceRoutes[key];
@@ -606,50 +925,91 @@ Promise.all([
                         let coord = snapped.geometry.coordinates;
                         const marker = L.circleMarker([coord[1], coord[0]], {
                             radius: 2,
-                            color: "black",
+                            color: "black", //TODO: change  to line colour when in wayfinder showing route, remove lat, long from graph
                             fillOpacity: 0.6
                         });
                         marker.on("click", event => {
-                            hideTrainPopup(); //hide any visible popup first
-                            event.originalEvent.stopPropagation();
-                            const popup = document.getElementById("stationPopup");
-                            const routeBullet = document.getElementById("stnPopupRouteBullet");
-                            const nameElem = document.getElementById("popupStnName");
-                
-                            routeBullet.textContent = stationLookup[dist.id].lines[0];
-                            routeBullet.style.backgroundColor = lineColours[routeBullet.textContent];
-                            routeBullet.style.color = "white";
-                            
-                            nameElem.textContent = dist.name[currentLang];
-                            popup.style.display = "flex";
-                            popup.dataset.manualOpen = "true"; // Mark as manually opened.
+                            if (wayfinderActive) { // Clicking on a station with wayfinder active should set the station
+                                if (!originStn) { // First click sets the origin station
+                                    originStn = dist.id;
+                                    const startSelect = document.getElementById("startStationSelect");
+                                    if (startSelect) {
+                                        startSelect.value = originStn;
+                                        const customStartSelected = startSelect.parentElement.querySelector(".select-selected");
+                                        if (customStartSelected) {
+                                            customStartSelected.innerHTML = startSelect.options[startSelect.selectedIndex].innerHTML;
+                                        }
+                                    }
+
+                                } else { // Second click sets the destination station
+                                    destinationStn = dist.id;
+                                    // Update the end station select element
+                                    const endSelect = document.getElementById("endStationSelect");
+                                    if (endSelect) {
+                                        endSelect.value = destinationStn;
+                                        const customEndSelected = endSelect.parentElement.querySelector(".select-selected");
+                                        if (customEndSelected) {
+                                            customEndSelected.innerHTML = endSelect.options[endSelect.selectedIndex].innerHTML;
+                                        }
+                                    }
+                                    getRoute(originStn, destinationStn); 
+                                    // Reset stations
+                                    originStn = null;
+                                    destinationStn = null;
+                                }
+
+                            } else {
+                                hideTrainPopup(); // Hide any visible popup first
+                                event.originalEvent.stopPropagation();
+                                const popup = document.getElementById("stationPopup");
+                                popup.innerHTML = "";
+                                const container = document.createElement("div");
+                                container.style.textAlign = "center"; 
+                                // First line: station name
+                                const nameLine = document.createElement("div");
+                                nameLine.style.fontWeight = "bold"; 
+                                nameLine.style.marginBottom = "4px"; 
+                                nameLine.textContent = dist.name[currentLang];
+                                container.appendChild(nameLine);
+                                // Second line: route bullets 
+                                const bulletsLine = document.createElement("div");
+                                // Append the bullets container (returned by getStationRouteBullets)
+                                bulletsLine.appendChild(getStationRouteBullets(stationLookup[dist.id]));
+                                container.appendChild(bulletsLine);
+                                popup.appendChild(container);
+                                popup.style.display = "flex";
+                                popup.dataset.manualOpen = "true"; // Mark as manually opened.
+                            }
                         });
-                
-                        // On hover, show popup with auto-close after 4 seconds.
+                        
                         marker.on("mouseover", event => {
-                            hideTrainPopup(); //hide any visible popup first
+                            hideTrainPopup(); // Hide any visible popup first
                             event.originalEvent.stopPropagation();
                             const popup = document.getElementById("stationPopup");
-                            const routeBullet = document.getElementById("stnPopupRouteBullet");
-                            const nameElem = document.getElementById("popupStnName");
-                
-                            routeBullet.textContent = stationLookup[dist.id].lines[0];
-                            routeBullet.style.backgroundColor = lineColours[routeBullet.textContent];
-                            routeBullet.style.color = "white";
-                
-                            nameElem.textContent = dist.name[currentLang];
-                            
+                            popup.innerHTML = "";
+                            const container = document.createElement("div");
+                            container.style.textAlign = "center"; 
+                            // First line: station name
+                            const nameLine = document.createElement("div");
+                            nameLine.style.fontWeight = "bold"; 
+                            nameLine.style.marginBottom = "4px"; 
+                            nameLine.textContent = dist.name[currentLang];
+                            container.appendChild(nameLine);
+                            // Second line: route bullets 
+                            const bulletsLine = document.createElement("div");
+                            // Append the bullets container (returned by getStationRouteBullets)
+                            bulletsLine.appendChild(getStationRouteBullets(stationLookup[dist.id]));
+                            container.appendChild(bulletsLine);
+                            popup.appendChild(container);
                             popup.style.display = "flex";
                             popup.dataset.manualOpen = "false";
-                
                             clearTimeout(window.trainPopupTimeout);
                             window.trainPopupTimeout = setTimeout(() => {
                                 if (popup.dataset.manualOpen !== "true") {
                                     hideStationPopup();
                                 }
-                            }, 2500); //auto close after 2.5 seconds 
+                            }, 2500); // Auto close after 2.5 seconds
                         });
-                        
                         marker.addTo(routeLayersGroup);
                         // bindPopup(`Station Name: ${dist.name.en}`)
                     }

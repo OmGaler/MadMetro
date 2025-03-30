@@ -4,14 +4,14 @@
  * Constants
  ********************************************/
 export const SPEEDS = {
-    "METRO": 80 * 0.27778, // 80 km/h in m/s ≈ 22.22 m/s
-    "LRTU": 70 * 0.27778, // 70 km/h in m/s ≈ 19.44 m/s (LRT Underground)
-    "LRTO": 60 * 0.27778 // 60 km/h in m/s ≈ 16.67 m/s (LRT Overground)
+    "M": 80 * 0.27778, // 80 km/h in m/s ≈ 22.22 m/s
+    "LRU": 70 * 0.27778, // 70 km/h in m/s ≈ 19.44 m/s (LRT Underground)
+    "LRO": 60 * 0.27778 // 60 km/h in m/s ≈ 16.67 m/s (LRT Overground)
 };
 
 export const ACCEL = 0.8; // Acceleration (and deceleration) in m/s²
 // Heuristic constants to adjust calculated journey times
-const SCALAR = {"METRO": 1.33, "LRU": 1.35, "LRO": 1.5};
+const SCALAR = {"M": 1.1, "LRU": 1.35, "LRO": 1.5};
 const DWELL_BUFFER = 0.5; //30 seconds dwell time per station
 /********************************************
  * Convert edge weights to times using mechanics
@@ -167,7 +167,7 @@ export function dijkstraWithTransfers(graph, start, end) {
  * Path Reconstruction with Transfers
  * Reconstructs the route and detects transfer points based on line changes.
  ********************************************/
-export function reconstructPathWithTransfers(previous, start, end) {
+export function reconstructPathWithTransfers(previous, distances, start, end) {
     let path = [];
     let transfers = [];
     let current = end;
@@ -201,6 +201,7 @@ export function reconstructPathWithTransfers(previous, start, end) {
     });
     return {
         path,
-        transfers
+        transfers,
+        journeyTime: distances[end]
     };
 }

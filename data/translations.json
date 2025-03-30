@@ -105,6 +105,7 @@
         "tph": "tph",
         "tphLegend": "Trains per Hour (tph)",
         "usage-disclaimer": "For usage instructions, disclaimers and more information, see the README",
+        "wayfinderShortcut": "Open wayfinder",
         "weekday": "Weekday",
         "weekend": "Weekend",
         "wkday": "Weekday"
@@ -213,6 +214,7 @@
         "tph": "ר\\ש",
         "tphLegend": "(רל\"/ש) רכבות לשעה",
         "usage-disclaimer": "להוראות שימוש, הערה למשתמש ועוד מידע, ראה פה",
+        "wayfinderShortcut": "מצב נוות",
         "weekday": "ימי חול",
         "weekend": "סופי שבוע",
         "wkday": "ימי חול (א'-ה')"
