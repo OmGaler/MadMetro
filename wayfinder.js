@@ -179,10 +179,14 @@ export function reconstructPathWithTransfers(previous, distances, start, end) {
             station: current,
             line: lastLine
         });
-
         // Check for a transfer: if the line used to arrive at the current station differs
         // from the line used at the previous station, record a transfer.
         if (previous[current].line !== lastLine) {
+            // Add the station again
+            path.unshift({
+                station: current,
+                line: previous[current].line
+            });
             transfers.unshift({
                 station: current,
                 from: previous[current].line,

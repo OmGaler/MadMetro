@@ -9,7 +9,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 let routeLayersGroup = L.layerGroup().addTo(map);
-
+let wayfindLayersGroup = L.layerGroup().addTo(map);
 const lineColours = {
     "M1": "#0971ce", // blue
     "M2": "#fd6b0d", // orange
@@ -80,6 +80,7 @@ let destinationStn = null;
 let stationLookup;
 let trains = [];
 let showRoutes = document.getElementById("toggleRoutes").checked; //show lines and stations, default off
+let routesPreWF = showRoutes;
 // Simulation constants:
 const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
 let timeScale = 300; // 1 real sec = 5 simulated minutes
@@ -401,10 +402,7 @@ document.addEventListener("keydown", function (event) {
         if (wayfinderPane.style.display === "flex") {//if wayfinder open, close it else open
             wayfinderPane.style.display = "none";
             wayfinderActive = false;
-            // Restart simultion respawn all trains 
-            simPaused = false;
-            startSimulation()
-            document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
+            exitWayfinder();
             event.preventDefault();
         } else {
             settingsModal.style.display = "none";
@@ -423,7 +421,11 @@ document.addEventListener("keydown", function (event) {
         } else {
             wayfinderPane.style.display = "none";
             settingsModal.style.display = "flex";
-            wayfinderActive = false;
+            if (wayfinderActive) {
+                wayfinderActive = false;
+                exitWayfinder();
+            } 
+            // Reset show routes if necessary
             simPaused = true;
             document.getElementById("pause").innerHTML = "<ion-icon name='play'></ion-icon>";
             event.preventDefault();
@@ -441,9 +443,9 @@ const settingsButton = document.getElementById("settings");
 const wayfinderButton = document.getElementById("wayfinder");
 const settingsModal = document.getElementById("settingsModal");
 const wayfinderPane = document.getElementById("wayfinderPane");
-
 const closeSettingsModal = document.getElementsByClassName("close")[0];
 const closeWayfinder = document.getElementsByClassName("close")[1];
+
 settingsButton.addEventListener("click", function () {
     if (wayfinderActive) { //close wayfinder first
         wayfinderPane.style.display = "none";
@@ -468,10 +470,7 @@ closeSettingsModal.addEventListener("click", function () {
 });
 closeWayfinder.addEventListener("click", function () {
     wayfinderPane.style.display = "none";
-    simPaused = false;
-    // Restar simulation
-    startSimulation();
-    document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
+    exitWayfinder();
 });
 window.addEventListener("click", function (event) {
     if (event.target === settingsModal) {
@@ -608,7 +607,6 @@ function buildRouteDetails(route) {
                 currentSegment.push(item.station);
             } else { 
                 // Transfer, so finish current segment and create a block for it
-                currentSegment.push(item.station);
                 extendedDiv.appendChild(createSegmentBlock(currentLine, currentSegment));
                 // Reset for the new segment
                 currentLine = item.line;
@@ -684,9 +682,93 @@ function createSegmentBlock(line, stationIds) {
     return segmentDiv;
 }
 
+/**
+ * Highlights each computed segment of the route on the map.
+ *
+ * @param {Array} path - Array of objects representing the computed route.
+ *        Each element should be of the form: { station: <stationID>, line: <lineCode> }
+ */
+function highlightWayfoundRoute(path) {
+    // Clear any previous highlighted route segments
+    wayfindLayersGroup.clearLayers();
+    // Iterate over consecutive pairs in the computed path
+    for (let i = 0; i < path.length - 1; i++) {
+        const stationAId = path[i].station;
+        const stationBId = path[i + 1].station;
+        // Use the line value from the segment (assuming the second station carries the active line)
+        const computedLine = path[i + 1].line;
+        if (!computedLine) continue;
+
+        // Determine which line to use for highlighting this segment.
+        // If a transfer occurs (i.e. the line changes), we use the previous line,
+        // so that the segment from the last station on that line to the transfer station is highlighted.
+        let segmentLine;
+        if (path[i].line === path[i + 1].line) {
+            segmentLine = path[i].line;
+        } else {
+            segmentLine = path[i].line;
+        }
+        const highlightColour = lineColours[segmentLine] || "yellow";
+
+
+        // Find candidate service routes that belong to the computed line.
+        // For example, if computedLine is "M1", candidates might be "M1_NESE", "M1_NWSE", etc.
+        const candidateRouteKeys = Object.keys(serviceRoutes).filter(key =>
+            key.startsWith(computedLine.toUpperCase())
+        );
+
+        let routeObj = null;
+        let stationAObj = null;
+        let stationBObj = null;
+
+        // Look for a service route that contains both station IDs.
+        for (const key of candidateRouteKeys) {
+            const route = serviceRoutes[key];
+            stationAObj = route.stations.find(s => s.id === stationAId);
+            stationBObj = route.stations.find(s => s.id === stationBId);
+            if (stationAObj && stationBObj) {
+                routeObj = route;
+                break;
+            }
+        }
+
+        // If no matching service route is found, skip this segment.
+        if (!routeObj || !stationAObj || !stationBObj) continue;
+
+        // Create a Turf lineString from the route's coordinates.
+        const lineStr = turf.lineString(routeObj.coords);
+
+        // Turf's along expects distances in kilometers.
+        const fromDistance = stationAObj.distance / 1000;
+        const toDistance = stationBObj.distance / 1000;
+
+        // Get the points on the line corresponding to the station distances.
+        const fromPoint = turf.along(lineStr, fromDistance, { units: "kilometers" });
+        const toPoint = turf.along(lineStr, toDistance, { units: "kilometers" });
+
+        // Extract the sub-line (i.e. the portion between these two points).
+        const subLine = turf.lineSlice(fromPoint, toPoint, lineStr);
+        if (!subLine || !subLine.geometry || !subLine.geometry.coordinates.length) continue;
+
+        // Convert Turf coordinates ([lng, lat]) to Leaflet latlngs ([lat, lng])
+        const latlngs = subLine.geometry.coordinates.map(coord => [coord[1], coord[0]]);
+
+        // Create and add the highlighted polyline segment to the map.
+        L.polyline(latlngs, {
+            color: highlightColour,
+            weight: 6,
+            opacity: 0.9
+        }).addTo(wayfindLayersGroup);
+    }
+}
+
 
 function displayRoute(route) { // Visualises the computed path on the map by only highlighting the segments traversed
-    //TODO: show line segments traversed
+    showRoutes = false;
+    toggleDisplayRoutes();
+    highlightWayfoundRoute(route.path);
+
+    
     const detailsContainer = document.querySelector(".route-details-container");
     detailsContainer.innerHTML = ""; 
     const routeElement = buildRouteDetails(route);
@@ -704,17 +786,28 @@ function getRoute(startNode, endNode) {
     displayRoute(route);
 }
 
+// Restore various states upon leaving wayfinder 
+function exitWayfinder() {
+    // Clear route visual
+    wayfindLayersGroup.clearLayers();
+    // Restart simulation respawn all trains 
+    simPaused = false;
+    showRoutes = routesPreWF;
+    toggleDisplayRoutes();
+    startSimulation()
+    document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
+}
 
 function wayfind() {
     //TODO: despawn all trains first + make the stations easier to click
     // Despawn all trains
     trains.forEach(train => train.marker.remove());
     trains = [];
-    // TODO: deactive wayfinder mode after pane is closed
     gr = buildGraph(G.edges);
     console.log("Entering wayfinder mode");
     wayfinderActive = true;
     // Toggle stations + routes on
+    routesPreWF = showRoutes;
     showRoutes = true;
     toggleDisplayRoutes();
     
@@ -914,7 +1007,6 @@ Promise.all([
                     color: c,
                     weight: 4,
                     opacity: 0.75,
-                    // dashArray: "5,5"
                 }).addTo(routeLayersGroup);
                 let lineStr = turf.lineString(routeObj.coords);
                 routeObj.stations.forEach(dist => {
