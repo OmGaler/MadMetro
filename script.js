@@ -216,14 +216,13 @@ function updateTimePeriodOptions() {
     }
     updateCustomSelectOptions("timePeriodSelect");
 }
-// Populate station names in the wayfinder selects
 // Helper function to merge multiline station names
 function getMergedStationName(station) {
     const name = currentLang === "en" ? station.name.en : station.name.he; 
     if (typeof name === "string") {
         return name;
     } else if (typeof name === "object") {
-      // Get all the names from the object values, then filter out duplicates
+        // Get all the names from the object values, then filter out duplicates
         const names = Object.values(name);
         const uniqueNames = [...new Set(names)];
         return uniqueNames.join("/");
@@ -234,6 +233,7 @@ function getMergedStationName(station) {
 
 function getRouteBullet(line) {
     // TODO: reuse bullet logic
+    //TODO; fix new lines on custom drop downs
     const bullet = document.createElement("span");
     bullet.classList.add("bullet");
     if (line.startsWith("M")) { // Use the number 
@@ -286,13 +286,7 @@ function updateCustomSelectOptions(selectId) {
     });
 }
 
-document.addEventListener("keydown", (event) => {
-    if (event.key.toLowerCase() === "t") {
-        event.preventDefault(); // Prevent unintended browser actions
-        showRoutes = !showRoutes;
-        toggleDisplayRoutes();
-    }
-});
+
 
 
 const toggleRoutesCheckbox = document.getElementById("toggleRoutes");
@@ -433,10 +427,19 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
+document.addEventListener("keydown", (event) => {
+    if (event.key.toLowerCase() === "t") {
+        event.preventDefault(); // Prevent unintended browser actions
+        showRoutes = !showRoutes;
+        toggleDisplayRoutes();
+    }
+});
+
 document.getElementById("pause").addEventListener("click", function () {
     simPaused = !simPaused;
     this.innerHTML = simPaused ? "<ion-icon name='play'></ion-icon>" : "<ion-icon name='pause'></ion-icon>";
 });
+
 
 // Settings modal controls
 const settingsButton = document.getElementById("settings");
@@ -450,6 +453,7 @@ settingsButton.addEventListener("click", function () {
     if (wayfinderActive) { //close wayfinder first
         wayfinderPane.style.display = "none";
         wayfinderActive = false;
+        exitWayfinder();
         startSimulation();
     }
     settingsModal.style.display = "flex";
@@ -493,58 +497,41 @@ function populateWayfindingOptions() {
     const sortedStations = stns.sort((a, b) => 
         a.mergedName.localeCompare(b.mergedName)
     );
-    
     sortedStations.forEach(stn => {
         // For start station option
         const sopt = document.createElement("option");
         sopt.value = stn.id;
-        
-        // Create a wrapper div for the entire option content
-        const soptContent = document.createElement("div");
-        
-        // Add station name on the first line
-        const sNameDiv = document.createElement("div");
-        sNameDiv.textContent = getMergedStationName(stn);
-        soptContent.appendChild(sNameDiv);
-        
-        // Create a container for the bullets on a second line
-        const sBulletContainer = document.createElement("div");
-        sBulletContainer.style.display = "flex"; // Keep bullets on the same line
-        sBulletContainer.style.alignItems = "center";
-        sBulletContainer.style.gap = "3px"; // Space between bullets
-        // Add each bullet
+        // Create the HTML content directly
+        let optionHTML = `
+            <span style="display: inline-block; margin-right: 4px;">${getMergedStationName(stn)}</span>
+            <span style="display: inline-flex; align-items: center; gap: 2px;">
+        `;
+        // Add bullet HTML for each line
         stn.lines.forEach(line => {
-            sBulletContainer.appendChild(getRouteBullet(line));
+            const bullet = getRouteBullet(line);
+            // Configure bullet to be smaller before getting HTML
+            bullet.style.width = "20px";
+            bullet.style.height = "20px";
+            optionHTML += bullet.outerHTML;
         });
-        soptContent.appendChild(sBulletContainer);
+        optionHTML += '</span>';
         // Set the option's HTML content
-        sopt.innerHTML = soptContent.innerHTML;
+        sopt.innerHTML = optionHTML;
         startStationSelect.appendChild(sopt);
         // Repeat for end station option
         const eopt = document.createElement("option");
         eopt.value = stn.id;
-        const eoptContent = document.createElement("div");
-        const eNameDiv = document.createElement("div");
-        eNameDiv.textContent = getMergedStationName(stn);
-        eoptContent.appendChild(eNameDiv);
-        const eBulletContainer = document.createElement("div");
-        eBulletContainer.style.display = "flex";
-        eBulletContainer.style.alignItems = "center";
-        eBulletContainer.style.gap = "3px";
-        stn.lines.forEach(line => {
-            eBulletContainer.appendChild(getRouteBullet(line));
-        });
-        eoptContent.appendChild(eBulletContainer);
-        eopt.innerHTML = eoptContent.innerHTML;
+        eopt.innerHTML = optionHTML;
         endStationSelect.appendChild(eopt);
     });
-    
     updateCustomSelectOptions("startStationSelect");
     updateCustomSelectOptions("endStationSelect");
 }
 
 // Builds and returns an HTML element with route details 
 function buildRouteDetails(route) {
+    //TODO: add a disclaimer at the bottom of wayfinder pane in dim style. something along the lines of 
+    // journey times are estimations only and accuracy is not guaranteed 
      // Create a container element for the route details
     const container = document.createElement("div");
     container.classList.add("route-details");
@@ -689,33 +676,30 @@ function createSegmentBlock(line, stationIds) {
  *        Each element should be of the form: { station: <stationID>, line: <lineCode> }
  */
 function highlightWayfoundRoute(path) {
+    //TODO: add a dot at beginning and end of route to indicate start/end point 
     // Clear any previous highlighted route segments
     wayfindLayersGroup.clearLayers();
+    
     // Iterate over consecutive pairs in the computed path
     for (let i = 0; i < path.length - 1; i++) {
         const stationAId = path[i].station;
         const stationBId = path[i + 1].station;
-        // Use the line value from the segment (assuming the second station carries the active line)
+        // Use computed line from the second station for candidate filtering…
         const computedLine = path[i + 1].line;
         if (!computedLine) continue;
 
-        // Determine which line to use for highlighting this segment.
-        // If a transfer occurs (i.e. the line changes), we use the previous line,
-        // so that the segment from the last station on that line to the transfer station is highlighted.
-        let segmentLine;
-        if (path[i].line === path[i + 1].line) {
-            segmentLine = path[i].line;
-        } else {
-            segmentLine = path[i].line;
-        }
+        // Fallback: use from-station line if available, otherwise computedLine.
+        const segmentLine = path[i].line || computedLine;
         const highlightColour = lineColours[segmentLine] || "yellow";
 
-
-        // Find candidate service routes that belong to the computed line.
-        // For example, if computedLine is "M1", candidates might be "M1_NESE", "M1_NWSE", etc.
-        const candidateRouteKeys = Object.keys(serviceRoutes).filter(key =>
+        // Filter candidate service routes by computedLine.
+        let candidateRouteKeys = Object.keys(serviceRoutes).filter(key =>
             key.startsWith(computedLine.toUpperCase())
         );
+        // Fallback to all service routes if no candidate keys were found.
+        if (!candidateRouteKeys.length) {
+            candidateRouteKeys = Object.keys(serviceRoutes);
+        }
 
         let routeObj = null;
         let stationAObj = null;
@@ -724,34 +708,44 @@ function highlightWayfoundRoute(path) {
         // Look for a service route that contains both station IDs.
         for (const key of candidateRouteKeys) {
             const route = serviceRoutes[key];
-            stationAObj = route.stations.find(s => s.id === stationAId);
-            stationBObj = route.stations.find(s => s.id === stationBId);
+            stationAObj = route.stations.find(s => s.id == stationAId);
+            stationBObj = route.stations.find(s => s.id == stationBId);
             if (stationAObj && stationBObj) {
                 routeObj = route;
                 break;
             }
         }
-
-        // If no matching service route is found, skip this segment.
         if (!routeObj || !stationAObj || !stationBObj) continue;
 
         // Create a Turf lineString from the route's coordinates.
         const lineStr = turf.lineString(routeObj.coords);
 
         // Turf's along expects distances in kilometers.
-        const fromDistance = stationAObj.distance / 1000;
-        const toDistance = stationBObj.distance / 1000;
+        let fromDistance = stationAObj.distance / 1000;
+        let toDistance = stationBObj.distance / 1000;
+
+        // If the distances are in reverse order, swap them.
+        if (fromDistance > toDistance) {
+            [fromDistance, toDistance] = [toDistance, fromDistance];
+        }
 
         // Get the points on the line corresponding to the station distances.
         const fromPoint = turf.along(lineStr, fromDistance, { units: "kilometers" });
         const toPoint = turf.along(lineStr, toDistance, { units: "kilometers" });
 
-        // Extract the sub-line (i.e. the portion between these two points).
-        const subLine = turf.lineSlice(fromPoint, toPoint, lineStr);
-        if (!subLine || !subLine.geometry || !subLine.geometry.coordinates.length) continue;
-
-        // Convert Turf coordinates ([lng, lat]) to Leaflet latlngs ([lat, lng])
-        const latlngs = subLine.geometry.coordinates.map(coord => [coord[1], coord[0]]);
+        // Extract the sub-line between these two points.
+        let subLine = turf.lineSlice(fromPoint, toPoint, lineStr);
+        let latlngs = [];
+        if (!subLine || !subLine.geometry || !subLine.geometry.coordinates.length) {
+            // Fallback: if lineSlice fails, use the two points.
+            latlngs = [
+                [fromPoint.geometry.coordinates[1], fromPoint.geometry.coordinates[0]],
+                [toPoint.geometry.coordinates[1], toPoint.geometry.coordinates[0]]
+            ];
+        } else {
+            // Convert Turf coordinates ([lng, lat]) to Leaflet latlngs ([lat, lng])
+            latlngs = subLine.geometry.coordinates.map(coord => [coord[1], coord[0]]);
+        }
 
         // Create and add the highlighted polyline segment to the map.
         L.polyline(latlngs, {
@@ -766,9 +760,7 @@ function highlightWayfoundRoute(path) {
 function displayRoute(route) { // Visualises the computed path on the map by only highlighting the segments traversed
     showRoutes = false;
     toggleDisplayRoutes();
-    highlightWayfoundRoute(route.path);
-
-    
+    highlightWayfoundRoute(route.path);   
     const detailsContainer = document.querySelector(".route-details-container");
     detailsContainer.innerHTML = ""; 
     const routeElement = buildRouteDetails(route);
@@ -776,13 +768,15 @@ function displayRoute(route) { // Visualises the computed path on the map by onl
 }
 
 function getRoute(startNode, endNode) {
+    if (startNode === endNode) {
+        return;
+    }
     const { distances, previous } = dijkstraWithTransfers(gr, startNode, endNode);
     // const { path, transfers, journeyTime } = reconstructPathWithTransfers(previous, distances, startNode, endNode);
     const route = reconstructPathWithTransfers(previous, distances, startNode, endNode);
     console.log("Route path:", route.path.map(p => `${stationLookup[p.station].name.en|| "Station not found"} (${p.line})`).join(" → "));
     console.log("Transfers:", route.transfers.length > 0 ? route.transfers : "No transfers needed.");
     console.log("Estimated travel time (minutes):", route.journeyTime);
-    
     displayRoute(route);
 }
 
@@ -799,18 +793,17 @@ function exitWayfinder() {
 }
 
 function wayfind() {
-    //TODO: despawn all trains first + make the stations easier to click
+    //TODO: make the stations easier to click
     // Despawn all trains
     trains.forEach(train => train.marker.remove());
     trains = [];
-    gr = buildGraph(G.edges);
     console.log("Entering wayfinder mode");
+    gr = buildGraph(G.edges);
     wayfinderActive = true;
     // Toggle stations + routes on
     routesPreWF = showRoutes;
     showRoutes = true;
     toggleDisplayRoutes();
-    
 }
 
 /********************************************
@@ -1032,7 +1025,6 @@ Promise.all([
                                             customStartSelected.innerHTML = startSelect.options[startSelect.selectedIndex].innerHTML;
                                         }
                                     }
-
                                 } else { // Second click sets the destination station
                                     destinationStn = dist.id;
                                     // Update the end station select element
@@ -1270,13 +1262,9 @@ class Train {
             }
         }
     }
-
-
     checkHeadway() {
         if (!this.ahead) return true;
-        
         // Debug logging to ensure both trains have the same direction:
-        
         let separation;
         if (this.direction === 1) {
             separation = this.ahead.distance - this.distance;
