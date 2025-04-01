@@ -175,6 +175,20 @@ function updateLanguage(lang) {
             updateCustomSelectOptions("timePeriodSelect");
         }
     }
+    // Update station drop downs
+    // populateWayfindingOptions();
+    // updateCustomSelectOptions("startStationSelect");
+    // updateCustomSelectOptions("endStationSelect");
+    // Update route icons
+    const sicon = document.getElementById("start-icon");
+    const eicon = document.getElementById("end-icon");
+    if (lang === "he") {
+        sicon.classList.add("flipped-icon");
+        eicon.classList.add("flipped-icon");
+    } else {
+        sicon.classList.remove("flipped-icon");
+        eicon.classList.remove("flipped-icon");
+    }
     // Repopulate station selects
     updateLineInfo();
     updateSpeed();
@@ -538,34 +552,32 @@ function buildRouteDetails(route) {
      // --- 1. Journey Time ---
     const journeyTimeDiv = document.createElement("div");
     journeyTimeDiv.classList.add("journey-time");
-    journeyTimeDiv.textContent = `${Math.round(route.journeyTime)} mins`; 
+    journeyTimeDiv.textContent = `${Math.round(route.journeyTime)} ${translations[currentLang]["mins"]}`; 
     container.appendChild(journeyTimeDiv);
      // --- 2. Route Summary: route bullets ---
-      const routeSummaryDiv = document.createElement("div");
-      routeSummaryDiv.classList.add("route-summary");
-      routeSummaryDiv.style.display = "flex"; // Add flex display
-      routeSummaryDiv.style.alignItems = "center"; // Align items vertically
-      routeSummaryDiv.style.gap = "5px"; // Space between bullets and arrows
-      
-      // Add the first route bullet
-      routeSummaryDiv.appendChild(getRouteBullet(route.path[0].line));
-      
-      // Add transfers if they exist
-      if (route.transfers && route.transfers.length > 0) {
-          route.transfers.forEach((transfer) => {
-              // Create a span for the arrow
-              const arrow = document.createElement("span");
-              arrow.textContent = ">";
-              routeSummaryDiv.appendChild(arrow);
-              
-              // Add the transfer route bullet
-              routeSummaryDiv.appendChild(getRouteBullet(transfer.to));
-          });
-      }
-      
-      container.appendChild(routeSummaryDiv);
-    // 
-    // // --- 3. Transfer Details ---
+    const routeSummaryDiv = document.createElement("div");
+    routeSummaryDiv.classList.add("route-summary");
+    routeSummaryDiv.style.display = "flex"; // Add flex display
+    routeSummaryDiv.style.alignItems = "center"; // Align items vertically
+    routeSummaryDiv.style.gap = "5px"; // Space between bullets and arrows
+    
+    // Add the first route bullet
+    routeSummaryDiv.appendChild(getRouteBullet(route.path[0].line));
+    
+    // Add transfers if they exist
+    if (route.transfers && route.transfers.length > 0) {
+        route.transfers.forEach((transfer) => {
+            // Create a span for the arrow
+            const arrow = document.createElement("span");
+            arrow.textContent = currentLang === "en" ? "▶" : "◀";
+            routeSummaryDiv.appendChild(arrow);
+            
+            // Add the transfer route bullet
+            routeSummaryDiv.appendChild(getRouteBullet(transfer.to));
+        });
+    }
+    container.appendChild(routeSummaryDiv);
+    // --- 3. Transfer Details ---
     // if (route.transfers && route.transfers.length > 0) {
     //     const transferDiv = document.createElement("div");
     //     transferDiv.classList.add("transfer-details");

@@ -517,6 +517,30 @@ button#darkModeButton {
     margin-top: 2px;
 }
 
+.toggle-option.description-top {
+    align-items: flex-start;
+}
+
+.toggle-option.description-top .toggle-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.toggle-option.description-top .toggle-info {
+    margin-bottom: 2px;
+    width: 100%;
+    margin-right: 0;
+}
+
+.toggle-option.description-top .toggle-description {
+    margin: 0;
+}
+
+.toggle-option.description-top .custom-select {
+    width: 100%;
+}
+
 .toggle-title {
     font-weight: bold;
     font-size: 16px;
@@ -592,6 +616,10 @@ button#darkModeButton {
     flex: 0 0 150px;
     display: flex;
     align-items: center;
+}
+
+.custom-select.description-top {
+    flex: 0 0 50px;
 }
 
 .select-selected {
@@ -846,10 +874,15 @@ Wayfinder
 
 .route-summary {
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .text-muted {
     color: #6c757d !important;    
+}
+
+body.dark-mode .text-muted {
+    color: #adb5bd  !important;    
 }
 
 
@@ -860,9 +893,10 @@ Wayfinder
 }
 
 .vertical-line {
-border-left: 4px solid #777; /* Default color, overridden inline */
-margin-right: 10px;
-flex-shrink: 0;
+    border-left: 4px solid #777; /* Default color, overridden inline */
+    margin-right: 10px;
+    margin-left: 10px;
+    flex-shrink: 0;
 }
 
 .station-list {
@@ -875,6 +909,9 @@ flex-shrink: 0;
     margin-bottom: 4px;
 }
 
+.flipped-icon {
+    transform: scaleX(-1);
+}
 
 
 
@@ -890,6 +927,7 @@ body.dark-mode #pause,
 body.dark-mode #settings,
 body.dark-mode #wayfinder,
 body.dark-mode #darkModeButton,
+body.dark-mode .wayfinder-content,
 body.dark-mode .tab-link,
 body.dark-mode .toggle-info p,
 body.dark-mode .toggle-info h3,
