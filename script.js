@@ -319,6 +319,55 @@ function toggleDisplayRoutes() {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const wayfinderContent = document.querySelector(".wayfinder-content");
+    const dragHandle = document.createElement("div");
+    dragHandle.classList.add("drag-handle");
+    wayfinderContent.prepend(dragHandle);
+
+    let startY = 0;
+    let currentHeight = 30; // Default height in vh
+
+    dragHandle.addEventListener("mousedown", startDrag);
+    dragHandle.addEventListener("touchstart", startDrag);
+
+    function startDrag(e) {
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
+        document.addEventListener("mousemove", onDrag);
+        document.addEventListener("mouseup", stopDrag);
+        document.addEventListener("touchmove", onDrag);
+        document.addEventListener("touchend", stopDrag);
+    }
+
+    function onDrag(e) {
+        const moveY = e.touches ? e.touches[0].clientY : e.clientY;
+        let delta = (startY - moveY) / window.innerHeight * 100; // Convert to vh
+        let newHeight = Math.min(85, Math.max(30, currentHeight + delta)); // Limit between 30vh and 85vh
+        wayfinderContent.style.height = newHeight + "vh";
+    }
+
+    function stopDrag() {
+        currentHeight = parseFloat(wayfinderContent.style.height);
+        document.removeEventListener("mousemove", onDrag);
+        document.removeEventListener("mouseup", stopDrag);
+        document.removeEventListener("touchmove", onDrag);
+        document.removeEventListener("touchend", stopDrag);
+    }
+
+    // Click to toggle between states
+    dragHandle.addEventListener("click", () => {
+        if (wayfinderContent.classList.contains("expanded")) {
+            wayfinderContent.classList.remove("expanded");
+            wayfinderContent.style.height = "30vh";
+            currentHeight = 30;
+        } else {
+            wayfinderContent.classList.add("expanded");
+            wayfinderContent.style.height = "80vh";
+            currentHeight = 80;
+        }
+    });
+});
+
 // Tab Switching Logic
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.tab-link').forEach(link => {

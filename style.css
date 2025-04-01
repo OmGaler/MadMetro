@@ -1083,6 +1083,36 @@ body.dark-mode .select-selected:after {
     }
 }
 
+@media (max-width: 768px) {
+    #wayfinderPane {
+        align-items: flex-end; 
+    }
+
+    .wayfinder-content {
+        left: auto;
+        width: 90vw;
+        height: 50vh;
+        border-radius: 10px 10px 0 0; 
+        border-left: none;
+        border-right: none;
+        margin: 0;
+    }
+
+    .wayfinder-content.expanded {
+        height: 85vh; 
+    }
+
+    .drag-handle {
+        width: 50px;
+        height: 5px;
+        background: #ccc;
+        border-radius: 3px;
+        margin: auto;
+        cursor: grab;
+    }
+
+}
+
 @media (max-width: 480px) {
     #serviceLevelsTable {
         font-size: 14px;
