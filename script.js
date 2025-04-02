@@ -260,8 +260,6 @@ function getMergedStationName(station) {
 
 
 function getRouteBullet(line) {
-    // TODO: reuse bullet logic
-    //TODO; fix new lines on custom drop downs
     const bullet = document.createElement("span");
     bullet.classList.add("bullet");
     if (line.startsWith("M")) { // Use the number 
@@ -336,15 +334,31 @@ function toggleDisplayRoutes() {
 // Drag the wayfinder panel up and down (mobile mode only)
 document.addEventListener("DOMContentLoaded", function () {
     const wayfinderContent = document.querySelector(".wayfinder-content");
+
+    // Create a larger drag region
+    const dragRegion = document.createElement("div");
+    dragRegion.classList.add("drag-region");
+
+    // Optional: Keep the small handle inside the drag region
     const dragHandle = document.createElement("div");
     dragHandle.classList.add("drag-handle");
-    wayfinderContent.prepend(dragHandle);
+    dragRegion.appendChild(dragHandle);
+
+    // Add route content div
+    const routeContent = document.createElement("div");
+    routeContent.classList.add("route-content");
+    while (wayfinderContent.firstChild) {
+        routeContent.appendChild(wayfinderContent.firstChild);
+    }
+
+    wayfinderContent.appendChild(dragRegion);
+    wayfinderContent.appendChild(routeContent);
 
     let startY = 0;
     let currentHeight = 30; // Default height in vh
 
-    dragHandle.addEventListener("mousedown", startDrag);
-    dragHandle.addEventListener("touchstart", startDrag);
+    dragRegion.addEventListener("mousedown", startDrag);
+    dragRegion.addEventListener("touchstart", startDrag);
 
     function startDrag(e) {
         startY = e.touches ? e.touches[0].clientY : e.clientY;
@@ -369,8 +383,8 @@ document.addEventListener("DOMContentLoaded", function () {
         document.removeEventListener("touchend", stopDrag);
     }
 
-    // Click to toggle between states
-    dragHandle.addEventListener("click", () => {
+    // Click anywhere in the drag region to toggle expand/collapse
+    dragRegion.addEventListener("click", () => {
         if (wayfinderContent.classList.contains("expanded")) {
             wayfinderContent.classList.remove("expanded");
             wayfinderContent.style.height = "30vh";
@@ -382,6 +396,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
 
 // Tab Switching Logic
 document.addEventListener("DOMContentLoaded", function() {
@@ -635,9 +650,7 @@ function populateWayfindingOptions() {
 
 // Builds and returns an HTML element with route details 
 function buildRouteDetails(route) {
-    //TODO: add a disclaimer at the bottom of wayfinder pane in dim style. something along the lines of 
-    // journey times are estimations only and accuracy is not guaranteed 
-     // Create a container element for the route details
+    // Create a container element for the route details
     const container = document.createElement("div");
     container.classList.add("route-details");
      // --- 1. Journey Time ---
@@ -668,20 +681,6 @@ function buildRouteDetails(route) {
         });
     }
     container.appendChild(routeSummaryDiv);
-    // --- 3. Transfer Details ---
-    // if (route.transfers && route.transfers.length > 0) {
-    //     const transferDiv = document.createElement("div");
-    //     transferDiv.classList.add("transfer-details");
-    //     route.transfers.forEach((transfer) => {
-    //         // Look up the station name via stationLookup:
-    //         const station = stationLookup[transfer.station];
-    //         const p = document.createElement("p");
-    //         // TODO: change -.- to commit icon
-    //         p.innerHTML = `-.- Change to ${getRouteBullet(transfer.to).outerHTML} at ${station ? station.mergedName : transfer.station}`;
-    //         transferDiv.appendChild(p);
-    //     });
-    // container.appendChild(transferDiv);
-    // }
     // --- 4. Extended Route Details ---
     const extendedDiv = document.createElement("div");
     extendedDiv.classList.add("extended-route-details");
@@ -709,6 +708,12 @@ function buildRouteDetails(route) {
         extendedDiv.appendChild(createSegmentBlock(currentLine, currentSegment));
     }
     container.appendChild(extendedDiv);
+    // --- 5. Disclaimer ---
+    const disclaimerDiv = document.createElement("div");
+    disclaimerDiv.classList.add("text-muted");
+    disclaimerDiv.textContent = translations[currentLang]["route-disclaimer"] || 
+        "Journey times are theoretical estimations only and accuracy is not guaranteed";
+    container.appendChild(disclaimerDiv);
     // Return the populated container to be displayed
     return container;
 }
