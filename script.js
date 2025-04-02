@@ -136,70 +136,84 @@ fetch("data/translations.json")
     })
     .catch(error => console.error("Error loading translations:", error));
 
-function updateLanguage(lang) {
-    currentLang = lang;        
-    // Store the current selected values before updating
-    const dayTypeSelect = document.getElementById("dayTypeSelect");
-    const timePeriodSelect = document.getElementById("timePeriodSelect");
-    const selectedDayType = dayTypeSelect.value;
-    const selectedTimePeriod = timePeriodSelect.value;
-    
-    // Update all elements with the data-i18n attribute.
-    const elements = document.querySelectorAll("[data-i18n]");
-    elements.forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (translations[lang] && translations[lang][key]) {
-            el.textContent = translations[lang][key];
-        }
-    });
-    document.getElementById("readmelink").href = translations[lang]["readme-link"];
-    document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
-    localStorage.setItem("language", lang);
-    
-    // Repopulate day and time period options
-    updateCustomSelectOptions("dayTypeSelect");
-    // Ensure dayTypeSelect keeps its value
-    dayTypeSelect.value = selectedDayType;
-    // Update time period options based on the preserved day type
-    updateTimePeriodOptions();
-    // Restore the previously selected time period if it exists in the new options
-    if (selectedTimePeriod) {
-        // Check if the option exists in the updated select
-        const optionExists = Array.from(timePeriodSelect.options).some(
-            option => option.value === selectedTimePeriod
-        );
+    function updateLanguage(lang) {
+        currentLang = lang;        
+        // Store the current selected values before updating
+        const dayTypeSelect = document.getElementById("dayTypeSelect");
+        const timePeriodSelect = document.getElementById("timePeriodSelect");
+        const startStationSelect = document.getElementById("startStationSelect");
+        const endStationSelect = document.getElementById("endStationSelect");
+        const selectedDayType = dayTypeSelect.value;
+        const selectedTimePeriod = timePeriodSelect.value;
+        const selectedStartStation = startStationSelect.value;
+        const selectedEndStation = endStationSelect.value;
         
-        if (optionExists) {
-            timePeriodSelect.value = selectedTimePeriod;
-            // Update the custom select display to reflect this
-            updateCustomSelectOptions("timePeriodSelect");
+        // Update all elements with the data-i18n attribute
+        const elements = document.querySelectorAll("[data-i18n]");
+        elements.forEach(el => {
+            const key = el.getAttribute("data-i18n");
+            if (translations[lang] && translations[lang][key]) {
+                el.textContent = translations[lang][key];
+            }
+        });
+        
+        document.getElementById("readmelink").href = translations[lang]["readme-link"];
+        document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
+        localStorage.setItem("language", lang);
+        
+        // Repopulate day and time period options
+        updateCustomSelectOptions("dayTypeSelect");
+        dayTypeSelect.value = selectedDayType;
+        updateTimePeriodOptions();
+        
+        // Restore time period if exists in new options
+        if (selectedTimePeriod) {
+            const optionExists = Array.from(timePeriodSelect.options).some(
+                option => option.value === selectedTimePeriod
+            );
+            if (optionExists) {
+                timePeriodSelect.value = selectedTimePeriod;
+                updateCustomSelectOptions("timePeriodSelect");
+            }
         }
+        
+        // Update route icons direction
+        const sicon = document.getElementById("start-icon");
+        const eicon = document.getElementById("end-icon");
+        if (lang === "he") {
+            sicon.classList.add("flipped-icon");
+            eicon.classList.add("flipped-icon");
+        } else {
+            sicon.classList.remove("flipped-icon");
+            eicon.classList.remove("flipped-icon");
+        }
+        updateSpeed();
+        // Repopulate station selects with the updated language
+        populateWayfindingOptions();
+        
+        // Update any active route details
+        const detailsContainer = document.querySelector(".route-details-container");
+        if (detailsContainer && detailsContainer.firstChild) {
+            // If there's an active route, recalculate and display it
+            const start = startStationSelect.value;
+            const end = endStationSelect.value;
+            if (start && end && start !== end) {
+                getRoute(start, end);
+            }
+        }
+    
+        // Update line info and speed display
+        updateLineInfo();
+        
     }
-    // Update station drop downs
-    // populateWayfindingOptions();
-    // updateCustomSelectOptions("startStationSelect");
-    // updateCustomSelectOptions("endStationSelect");
-    // Update route icons
-    const sicon = document.getElementById("start-icon");
-    const eicon = document.getElementById("end-icon");
-    if (lang === "he") {
-        sicon.classList.add("flipped-icon");
-        eicon.classList.add("flipped-icon");
-    } else {
-        sicon.classList.remove("flipped-icon");
-        eicon.classList.remove("flipped-icon");
-    }
-    // Repopulate station selects
-    updateLineInfo();
-    updateSpeed();
-}
+    
 
 window.updateLanguage = updateLanguage;
 
-function toggleLanguage() {
-    const newLang = currentLang === "en" ? "he" : "en";
-    updateLanguage(newLang);
-}
+// function toggleLanguage() {
+//     const newLang = currentLang === "en" ? "he" : "en";
+//     updateLanguage(newLang);
+// }
 
 function updateTimePeriodOptions() {
     const dayTypeSelect = document.getElementById("dayTypeSelect");
@@ -319,6 +333,7 @@ function toggleDisplayRoutes() {
     }
 }
 
+// Drag the wayfinder panel up and down (mobile mode only)
 document.addEventListener("DOMContentLoaded", function () {
     const wayfinderContent = document.querySelector(".wayfinder-content");
     const dragHandle = document.createElement("div");
@@ -391,16 +406,13 @@ document.addEventListener("DOMContentLoaded", function() {
 // Define allowed simulation speeds
 const speedValues = [30, 60, 180, 300, 420];
 const speedSlider = document.getElementById("speedSlider"); 
-// const speedValue = document.getElementById("speedValue");
 const realTimeInfo = document.getElementById("realTimeInfo");
 
-let speedIndex = parseInt(speedSlider.value); //track current speed index
+let speedIndex = parseInt(speedSlider.value); // Track current speed index
 
 // Function to update speed display
 function updateSpeed() {
-    // let index = parseInt(speedSlider.value);
     let simSpeed = speedValues[speedIndex];
-    // speedValue.textContent = `${simSpeed}x`;
     realTimeInfo.textContent = `${translations[currentLang]["seconds"]} = ${simSpeed / 60} ${translations[currentLang]["minutes"]}`;
     timeScale = simSpeed; 
     if (timeScale > 100) {
@@ -547,11 +559,9 @@ window.addEventListener("click", function (event) {
     }
 });
 
-
 /********************************************
  * Wayfinder
  ********************************************/
-
 function populateWayfindingOptions() {
     const stns = G.nodes;
     stns.forEach(stn => {
@@ -560,6 +570,29 @@ function populateWayfindingOptions() {
     const sortedStations = stns.sort((a, b) => 
         a.mergedName.localeCompare(b.mergedName)
     );
+    
+    // Store the current selected values before updating
+    const startStationSelect = document.getElementById("startStationSelect");
+    const endStationSelect = document.getElementById("endStationSelect");
+    const selectedStartStation = startStationSelect.value;
+    const selectedEndStation = endStationSelect.value;
+    
+    // Clear existing options
+    startStationSelect.innerHTML = "";
+    endStationSelect.innerHTML = "";
+    
+    // First add the "Select station" option with proper translation
+    const startDefaultOpt = document.createElement("option");
+    startDefaultOpt.value = "";  // Empty value for validation purposes
+    startDefaultOpt.text = translations[currentLang]["select-station"] || "Select station";
+    startStationSelect.appendChild(startDefaultOpt);
+    
+    const endDefaultOpt = document.createElement("option");
+    endDefaultOpt.value = "";
+    endDefaultOpt.text = translations[currentLang]["select-station"] || "Select station";
+    endStationSelect.appendChild(endDefaultOpt);
+    
+    // Then add all station options
     sortedStations.forEach(stn => {
         // For start station option
         const sopt = document.createElement("option");
@@ -581,12 +614,21 @@ function populateWayfindingOptions() {
         // Set the option's HTML content
         sopt.innerHTML = optionHTML;
         startStationSelect.appendChild(sopt);
+        
         // Repeat for end station option
         const eopt = document.createElement("option");
         eopt.value = stn.id;
         eopt.innerHTML = optionHTML;
         endStationSelect.appendChild(eopt);
     });
+    
+    // Restore previously selected values if they exist
+    if (selectedStartStation) {
+        startStationSelect.value = selectedStartStation;
+    }
+    if (selectedEndStation) {
+        endStationSelect.value = selectedEndStation;
+    }
     updateCustomSelectOptions("startStationSelect");
     updateCustomSelectOptions("endStationSelect");
 }
