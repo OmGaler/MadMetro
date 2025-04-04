@@ -9,6 +9,46 @@ export const SPEEDS = {
     "LRO": 60 * 0.27778 // 60 km/h in m/s ≈ 16.67 m/s (LRT Overground)
 };
 
+// Where branches diverge: R. Eliyahu, Sokolov, Aharonovitz, Ramat Efal, Einstein, Sokolov - West
+// Keep track of continuous paths through them, if a path is not in these, it must involve a change+backtrack
+const junctions = {
+    15: [ // Ramat Eliyahu
+        [14, 15, 16], // Northbound
+        [52, 15, 16], // Northbound
+        [16, 15, 14], // Southbound
+        [16, 15, 52] // Southbound
+    ],
+    32: [ // Sokolov
+        [31, 32, 33], // Northbound
+        [31, 32, 53], // Northbound
+        [33, 32, 31], // Southbound
+        [53, 32, 31] // Southbound
+    ],
+    111: [ // Aharonovitz
+        [110, 111, 112], // Westbound
+        [136, 111, 112], // Westbound
+        [112, 111, 110], // Eastbound
+        [112, 111, 136] // Eastbound
+    ],
+    204: [ // Ramat Efal
+        [203, 204, 205], // Eastbound
+        [203, 204, 211], // Eastbound
+        [205, 204, 203], // Westbound
+        [211, 204, 203] // Westbound
+    ],
+    147: [ // Einstein
+        [148, 147, 146], // Northbound
+        [148, 147, 177], // Northbound
+        [146, 147, 148], // Southbound
+        [177, 147, 148] // Southbound
+    ],
+    159: [ // Sokolov - West
+        [158, 159, 160], // Southbound
+        [158, 159, 178], // Southbound
+        [160, 159, 158], // Northbound
+        [178, 159, 158] // Northbound
+    ]
+};
 export const ACCEL = 0.8; // Acceleration (and deceleration) in m/s²
 // Heuristic constants to adjust calculated journey times
 const SCALAR = {"M": 1.1, "LRU": 1.35, "LRO": 1.5};
@@ -172,13 +212,14 @@ export function reconstructPathWithTransfers(previous, distances, start, end) {
     let transfers = [];
     let current = end;
     let lastLine = previous[current] ? previous[current].line : null;
-
+    let lastStation = null;
     while (current !== null && previous[current] !== null) {
         // Insert current station with the associated line
         path.unshift({
             station: current,
             line: lastLine
         });
+        
         // Check for a transfer: if the line used to arrive at the current station differs
         // from the line used at the previous station, record a transfer.
         if (previous[current].line !== lastLine) {
@@ -193,6 +234,38 @@ export function reconstructPathWithTransfers(previous, distances, start, end) {
                 to: lastLine
             });
         }
+
+        // If we have a valid "three-station" sequence (previous station, current, and lastStation)
+        if (lastStation !== null && junctions.hasOwnProperty(current.toString())) {
+            // Build the sequence: previous station -> current -> lastStation.
+            const seq = [
+                previous[current].station.toString(), 
+                current.toString(), 
+                lastStation.toString()
+            ];
+            
+            // Check if the sequence is one of the valid segments.
+            const validSequences = junctions[current.toString()];
+            const sequenceMatches = validSequences.some(validSeq =>
+                validSeq[0] === seq[0] && validSeq[1] === seq[1] && validSeq[2] === seq[2]
+            );
+
+            if (!sequenceMatches) {
+                // Record a transfer if the sequence does not match a valid segment - it means we've backtracked at a junction
+                transfers.unshift({
+                    station: current,
+                    from: lastLine,
+                    to: previous[current].line
+                });
+                path.unshift({
+                    station: current,
+                    line: previous[current].line
+                });
+            }
+        }
+        
+        lastStation = current;
+    
 
         lastLine = previous[current].line;
         current = previous[current].station;

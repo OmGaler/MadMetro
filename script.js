@@ -666,18 +666,15 @@ function buildRouteDetails(route) {
     routeSummaryDiv.style.display = "flex"; // Add flex display
     routeSummaryDiv.style.alignItems = "center"; // Align items vertically
     routeSummaryDiv.style.gap = "5px"; // Space between bullets and arrows
-    
     // Add the first route bullet
     routeSummaryDiv.appendChild(getRouteBullet(route.path[0].line));
-    
     // Add transfers if they exist
     if (route.transfers && route.transfers.length > 0) {
         route.transfers.forEach((transfer) => {
             // Create a span for the arrow
             const arrow = document.createElement("span");
             arrow.textContent = currentLang === "en" ? "▶" : "◀";
-            routeSummaryDiv.appendChild(arrow);
-            
+            routeSummaryDiv.appendChild(arrow);        
             // Add the transfer route bullet
             routeSummaryDiv.appendChild(getRouteBullet(transfer.to));
         });
@@ -694,7 +691,7 @@ function buildRouteDetails(route) {
             currentLine = item.line;
             currentSegment.push(item.station);
         } else {
-            if (item.line === currentLine) {
+            if (item.line === currentLine && (item.station !== route.path[index-1].station)) {
                 currentSegment.push(item.station);
             } else { 
                 // Transfer, so finish current segment and create a block for it
