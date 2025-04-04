@@ -10,6 +10,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 let routeLayersGroup = L.layerGroup().addTo(map);
 let wayfindLayersGroup = L.layerGroup().addTo(map);
+let stationDotsLayerGroup = L.layerGroup().addTo(map);
+
 const lineColours = {
     "M1": "#0971ce", // blue
     "M2": "#fd6b0d", // orange
@@ -784,27 +786,23 @@ function createSegmentBlock(line, stationIds) {
  *        Each element should be of the form: { station: <stationID>, line: <lineCode> }
  */
 function highlightWayfoundRoute(path) {
-    //TODO: add a dot at beginning and end of route to indicate start/end point 
-    // Clear any previous highlighted route segments
+    // Clear previous route and station dot layers
     wayfindLayersGroup.clearLayers();
-    
+    stationDotsLayerGroup.clearLayers(); 
     // Iterate over consecutive pairs in the computed path
     for (let i = 0; i < path.length - 1; i++) {
         const stationAId = path[i].station;
         const stationBId = path[i + 1].station;
-        // Use computed line from the second station for candidate filtering…
         const computedLine = path[i + 1].line;
         if (!computedLine) continue;
-
-        // Fallback: use from-station line if available, otherwise computedLine.
+        // Fallback: use from-station line if available
         const segmentLine = path[i].line || computedLine;
         const highlightColour = lineColours[segmentLine] || "yellow";
 
-        // Filter candidate service routes by computedLine.
+        // Filter candidate service routes by computedLine
         let candidateRouteKeys = Object.keys(serviceRoutes).filter(key =>
             key.startsWith(computedLine.toUpperCase())
         );
-        // Fallback to all service routes if no candidate keys were found.
         if (!candidateRouteKeys.length) {
             candidateRouteKeys = Object.keys(serviceRoutes);
         }
@@ -812,8 +810,6 @@ function highlightWayfoundRoute(path) {
         let routeObj = null;
         let stationAObj = null;
         let stationBObj = null;
-
-        // Look for a service route that contains both station IDs.
         for (const key of candidateRouteKeys) {
             const route = serviceRoutes[key];
             stationAObj = route.stations.find(s => s.id == stationAId);
@@ -825,44 +821,54 @@ function highlightWayfoundRoute(path) {
         }
         if (!routeObj || !stationAObj || !stationBObj) continue;
 
-        // Create a Turf lineString from the route's coordinates.
         const lineStr = turf.lineString(routeObj.coords);
-
-        // Turf's along expects distances in kilometers.
         let fromDistance = stationAObj.distance / 1000;
         let toDistance = stationBObj.distance / 1000;
+        if (fromDistance > toDistance) [fromDistance, toDistance] = [toDistance, fromDistance];
 
-        // If the distances are in reverse order, swap them.
-        if (fromDistance > toDistance) {
-            [fromDistance, toDistance] = [toDistance, fromDistance];
-        }
-
-        // Get the points on the line corresponding to the station distances.
         const fromPoint = turf.along(lineStr, fromDistance, { units: "kilometers" });
         const toPoint = turf.along(lineStr, toDistance, { units: "kilometers" });
-
-        // Extract the sub-line between these two points.
         let subLine = turf.lineSlice(fromPoint, toPoint, lineStr);
         let latlngs = [];
         if (!subLine || !subLine.geometry || !subLine.geometry.coordinates.length) {
-            // Fallback: if lineSlice fails, use the two points.
             latlngs = [
                 [fromPoint.geometry.coordinates[1], fromPoint.geometry.coordinates[0]],
                 [toPoint.geometry.coordinates[1], toPoint.geometry.coordinates[0]]
             ];
         } else {
-            // Convert Turf coordinates ([lng, lat]) to Leaflet latlngs ([lat, lng])
             latlngs = subLine.geometry.coordinates.map(coord => [coord[1], coord[0]]);
         }
 
-        // Create and add the highlighted polyline segment to the map.
+        // Draw the polyline for this segment
         L.polyline(latlngs, {
             color: highlightColour,
             weight: 6,
             opacity: 0.9
         }).addTo(wayfindLayersGroup);
+
+        // Compute coordinates for the station dots
+        const fromCoords = [fromPoint.geometry.coordinates[1], fromPoint.geometry.coordinates[0]];
+        const toCoords = [toPoint.geometry.coordinates[1], toPoint.geometry.coordinates[0]];
+
+        // Create and add small circle markers at the endpoints
+        L.circleMarker(fromCoords, {
+            radius: 6,
+            color: highlightColour,
+            weight: 1,
+            fillColor: highlightColour,
+            fillOpacity: 0.9
+        }).addTo(stationDotsLayerGroup);
+
+        L.circleMarker(toCoords, {
+            radius: 6,
+            color: highlightColour,
+            weight: 1,
+            fillColor: highlightColour,
+            fillOpacity: 0.9
+        }).addTo(stationDotsLayerGroup);
     }
 }
+
 
 
 function displayRoute(route) { // Visualises the computed path on the map by only highlighting the segments traversed
@@ -890,8 +896,9 @@ function getRoute(startNode, endNode) {
 
 // Restore various states upon leaving wayfinder 
 function exitWayfinder() {
-    // Clear route visual
+    // Clear route visualw
     wayfindLayersGroup.clearLayers();
+    stationDotsLayerGroup.clearLayers(); 
     // Restart simulation respawn all trains 
     simPaused = false;
     showRoutes = routesPreWF;
@@ -1117,8 +1124,8 @@ Promise.all([
                     if (snapped && snapped.geometry && snapped.geometry.coordinates) {
                         let coord = snapped.geometry.coordinates;
                         const marker = L.circleMarker([coord[1], coord[0]], {
-                            radius: 2,
-                            color: "black", //TODO: change  to line colour when in wayfinder showing route, remove lat, long from graph
+                            radius: 3,
+                            color: "black", //TODO: remove lat, long from graph
                             fillOpacity: 0.6
                         });
                         marker.on("click", event => {

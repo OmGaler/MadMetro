@@ -489,6 +489,7 @@ button#darkModeButton {
 .toggle-option ion-icon {
     font-size: 24px;
     margin-right: 16px;
+    margin-left: 16px;
     color: #555;
 }
 

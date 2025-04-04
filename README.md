@@ -80,12 +80,45 @@ MadMetro is compatible with most major browsers, on both desktop and mobile, inc
 - **Base Map:** Map tiles and data provided by [OpenStreetMap.org](https://www.openstreetmap.org/).
 - **Data Processing:** All data has been preprocessed and optimised for simulation purposes.
 
+## Transport Physics & Routing Logic
+
+#### Train Allocation & Frequency
+The number of trains per line is calculated based on:
+
+- Average line speed estimated across the entire route
+- Required service headways (time interval between consecutive trains)
+- Total route length and expected round-trip times
+
+#### Journey Time Estimations
+Each segment's travel time incorporates (up to) three phases:
+- Acceleration phase: Time (and distance) required for a train to reach top speed using specified acceleration rates
+- Cruising phase: Time (and distance) spent traveling at maximum velocity when segment length permits
+- Deceleration phase: Time (and distance) needed for the train to slow down and stop at the next station
+
+The kinematics-based travel times are augmented with heuristic multiplier adjustments and dwell time buffers to account for operational delays, passenger boarding/alighting, and other real-world factors that affect service reliability. Despite this, all journey times should be treated as indicative estimations only.
+
+> [!WARNING]
+> Due to the complexity of real-world transport systems and unpredictable factors, these calculated times are likely to diverge from actual operational performance.
+
+#### Network Pathfinding
+
+The network is modeled as a weighted graph where:
+
+- **Nodes** represent stations
+- **Edges** represent the connection segments between adjacent stations, weighted by distance
+- **Edge properties** include type (underground/above-ground light rail or  metro) which determines applicable speed profiles and consequently affects calculated travel times
+
+##### Routing Algorithm
+Journey times and shortest routes between any two stations is computed by Dijkstra's algorithm, which is simple, effective and efficient. The algorithm returns the optimal route to take as well as the estimated journey time.
+This method efficiently handling complex network topologies including transfers between lines while balancing computational efficiency with route optimisation accuracy.
+
 ## Disclaimers
 
 > [!WARNING]
 > Schedules, frequencies, and routes are indicative only for demonstration purposes and may not match real-world services. The simulation is an approximation and does not reflect real-time or official transit operations in the Gush Dan region.
 
 - **Accuracy:** Schedules, frequencies, and routes are approximations and may not match planned or actual services.
+- **Journey Time Estimation:** Calculated travel times incorporate theoretical physics models with approximate adjustments for real-world factors. These times should be considered indicative only and may significantly differ from actual journey durations due to operational variability, service disruptions, passenger volumes, and other external factors beyond the scope of this simulation.
 - **Not Official:** This project is not affiliated with or endorsed by NTA, MOT, or any other governmental or transit authority.
 - **Performance Limitations:** While every effort has been made to optimise performance, the tool is designed for educational purposes and may not handle very high numbers of simulated vehicles without performance impacts.
 - **Naming and Service Patterns:** Station names and service patterns are subject to change and may differ from final implementations. Certain service patterns may be subject to abstraction for simulation purposes.
@@ -95,7 +128,6 @@ MadMetro is compatible with most major browsers, on both desktop and mobile, inc
 
 If you have any questions, encounter a bug, or would like to request a new feature, please open an issue on GitHub:  
 [GitHub Issues](https://github.com/OmGaler/MadMetro/issues)
-
 
 ## License
 
