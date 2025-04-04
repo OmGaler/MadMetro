@@ -905,7 +905,6 @@ function exitWayfinder() {
 }
 
 function wayfind() {
-    //TODO: make the stations easier to click
     // Despawn all trains
     trains.forEach(train => train.marker.remove());
     trains = [];
@@ -1122,7 +1121,7 @@ Promise.all([
                         let coord = snapped.geometry.coordinates;
                         const marker = L.circleMarker([coord[1], coord[0]], {
                             radius: 3,
-                            color: "black", //TODO: remove lat, long from graph
+                            color: "black", 
                             fillOpacity: 0.6
                         });
                         marker.on("click", event => {

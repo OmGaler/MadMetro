@@ -247,10 +247,12 @@ export function reconstructPathWithTransfers(previous, distances, start, end) {
             // Check if the sequence is one of the valid segments.
             const validSequences = junctions[current.toString()];
             const sequenceMatches = validSequences.some(validSeq =>
-                validSeq[0] === seq[0] && validSeq[1] === seq[1] && validSeq[2] === seq[2]
+                validSeq[0].toString() === seq[0].toString() && validSeq[1].toString() === seq[1].toString() && validSeq[2].toString() === seq[2].toString()
             );
 
+            console.log(validSequences, seq, sequenceMatches);  
             if (!sequenceMatches) {
+                console.log("Backtrack detected at junction: ", current, lastStation, previous[current].station);
                 // Record a transfer if the sequence does not match a valid segment - it means we've backtracked at a junction
                 transfers.unshift({
                     station: current,
