@@ -16,6 +16,7 @@ The Tel Aviv-Gush Dan Metropolitan Area is the densest and most populous in Isra
 - **Real-time Transit Simulation:** Dynamic visualisation of metro and light rail vehicles moving along their routes, adhering to realistic schedules and stopping patterns.
 - **Interactive Map Interface:** Easy navigation with pan and zoom capabilities using mouse or touch gestures.
 - **Detailed Train Information:** Access route details, next stop, and destination by clicking on any train.
+- **Wayfinder**:Provides estimated journey times and optimal route details, including transfer information, between any two stations on the network.
 - **Customisable Simulation Settings:** Adjust simulation speed, scheduling parameters, and view options.
 - **Multilingual Support:** Toggle between English and Hebrew interfaces.
 
@@ -66,12 +67,13 @@ MadMetro is compatible with most major browsers, on both desktop and mobile, inc
 
 ### Interacting with the Simulator
 
-- **Map Navigation:** Pan by clicking and dragging. Zoom with the scroll wheel or pinch gestures.
-- **Simulation Controls:** 
+- **Map Navigation:** Pan by clicking and dragging. Zoom with the scroll wheel, pinch gestures or with the +/- buttons.
+- **Simulation Controls:**
   - Pause/Play: Use the button in the top right, or press 'p' or 'space'.
   - Speed Control: Adjust simulation speed and other options in settings.
 - **Train Information:** Click any train to view its route, next stop, and destination.
 - **Schedule Configuration:** Change service day (weekday/weekend) and time period in the settings to view real service levels.
+- **Wayfinder**: Activate Wayfinder mode by clicking the compass button or pressing 'w'. Click on any two stations on the map, or use the dropdowns to give the estimated journey time between them, as well as detailed route information, including any necessary changes.
 - **Language:** Switch between English and Hebrew using the globe icon.
 
 ## Data Sources
@@ -83,6 +85,7 @@ MadMetro is compatible with most major browsers, on both desktop and mobile, inc
 ## Transport Physics & Routing Logic
 
 #### Train Allocation & Frequency
+
 The number of trains per line is calculated based on:
 
 - Average line speed estimated across the entire route
@@ -90,7 +93,9 @@ The number of trains per line is calculated based on:
 - Total route length and expected round-trip times
 
 #### Journey Time Estimations
+
 Each segment's travel time incorporates (up to) three phases:
+
 - Acceleration phase: Time (and distance) required for a train to reach top speed using specified acceleration rates
 - Cruising phase: Time (and distance) spent traveling at maximum velocity when segment length permits
 - Deceleration phase: Time (and distance) needed for the train to slow down and stop at the next station
