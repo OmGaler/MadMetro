@@ -874,6 +874,7 @@ Wayfinder
 }
 
 .route-summary {
+    font-family: Helvetica, Arial, sans-serif !important;
     margin-top: 20px;
     margin-bottom: 20px;
 }

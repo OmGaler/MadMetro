@@ -341,7 +341,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const dragRegion = document.createElement("div");
     dragRegion.classList.add("drag-region");
 
-    // Optional: Keep the small handle inside the drag region
     const dragHandle = document.createElement("div");
     dragHandle.classList.add("drag-handle");
     dragRegion.appendChild(dragHandle);
@@ -363,6 +362,9 @@ document.addEventListener("DOMContentLoaded", function () {
     dragRegion.addEventListener("touchstart", startDrag);
 
     function startDrag(e) {
+        e.preventDefault(); // Prevent default touch scrolling
+        // Disable scrolling on the wayfinder pane during drag
+        wayfinderContent.style.overflow = "hidden";
         startY = e.touches ? e.touches[0].clientY : e.clientY;
         document.addEventListener("mousemove", onDrag);
         document.addEventListener("mouseup", stopDrag);
@@ -379,6 +381,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function stopDrag() {
         currentHeight = parseFloat(wayfinderContent.style.height);
+        // Restore scrolling after drag
+        wayfinderContent.style.overflow = "auto";
         document.removeEventListener("mousemove", onDrag);
         document.removeEventListener("mouseup", stopDrag);
         document.removeEventListener("touchmove", onDrag);
@@ -1119,10 +1123,16 @@ Promise.all([
                     });
                     if (snapped && snapped.geometry && snapped.geometry.coordinates) {
                         let coord = snapped.geometry.coordinates;
-                        const marker = L.circleMarker([coord[1], coord[0]], {
+                        const visibleMarker = L.circleMarker([coord[1], coord[0]], {
                             radius: 3,
                             color: "black", 
                             fillOpacity: 0.6
+                        });
+                        // Create an invisible larger hit area
+                        const marker = L.circleMarker([coord[1], coord[0]], {
+                            radius: 12.5, // larger clickable area
+                            opacity: 0, // fully transparent outline
+                            fillOpacity: 0  // fully transparent fill
                         });
                         marker.on("click", event => {
                             if (wayfinderActive) { // Clicking on a station with wayfinder active should set the station
@@ -1206,6 +1216,7 @@ Promise.all([
                             }, 2500); // Auto close after 2.5 seconds
                         });
                         marker.addTo(routeLayersGroup);
+                        visibleMarker.addTo(routeLayersGroup); 
                         // bindPopup(`Station Name: ${dist.name.en}`)
                     }
                 });
