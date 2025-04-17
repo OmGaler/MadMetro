@@ -25,6 +25,7 @@ The Tel Aviv-Gush Dan Metropolitan Area is the densest and most populous in Isra
 <img src="./screenshots/MadMetro-1.png" alt="screenshot-1" width="750">
 <img src="./screenshots/MadMetro-2.png" alt="screenshot-2" width="750">
 <img src="./screenshots/MadMetro-3.png" alt="screenshot-3" width="750">
+<img src="./screenshots/MadMetro-4.png" alt="screenshot-3" width="750">
 
 ![animated-gif](screenshots/MadMetro.gif)
 
