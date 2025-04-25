@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="title"></title>
     <link rel="stylesheet" href="style.css" />
-    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" /> -->
-    <!-- <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script> -->
-    <!-- <script src="https://unpkg.com/@turf/turf/turf.min.js"></script> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.css"/>
     <script src="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf/turf.min.js"></script>
@@ -270,6 +267,19 @@
                     </div>
                     <label class="switch">
                         <input type="checkbox" id="toggleRoutes">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <!-- Show Heavy Rail -->
+                <div class="toggle-option">
+                    <ion-icon name="swap-horizontal"></ion-icon> 
+                    <!-- <ion-icon name="train-sharp"></ion-icon>  -->
+                    <div class="toggle-info">
+                        <h3 data-i18n="toggle-heavy">Show Heavy Rail</h3>
+                        <p class="toggle-description" data-i18n="toggle-heavy-detail">Display intercity heavy rail stations and lines</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="toggleRail" checked>
                         <span class="slider round"></span>
                     </label>
                 </div>

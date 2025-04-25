@@ -9,6 +9,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 let routeLayersGroup = L.layerGroup().addTo(map);
+let railLayersGroup = L.layerGroup().addTo(map);
 let wayfindLayersGroup = L.layerGroup().addTo(map);
 let stationDotsLayerGroup = L.layerGroup().addTo(map);
 
@@ -82,7 +83,9 @@ let destinationStn = null;
 let stationLookup;
 let trains = [];
 let showRoutes = document.getElementById("toggleRoutes").checked; //show lines and stations, default off
+let showRail = document.getElementById("toggleRail").checked; //show lines and stations, default off
 let routesPreWF = showRoutes;
+let railPreWF = showRail;
 // Simulation constants:
 const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
 let timeScale = 300; // 1 real sec = 5 simulated minutes
@@ -241,6 +244,7 @@ function updateTimePeriodOptions() {
             
             if (optionExists) {
                 timePeriodSelect.value = previouslySelectedValue;
+                updateCustomSelectOptions("timePeriodSelect");
             }
         }
     }
@@ -264,7 +268,14 @@ function getMergedStationName(station) {
 function getRouteBullet(line) {
     const bullet = document.createElement("span");
     bullet.classList.add("bullet");
-    if (line.startsWith("M")) { // Use the number 
+    if (line==="IR") { // Israel Railways
+        bullet.style.backgroundColor = "#777";
+        bullet.innerHTML = '<ion-icon name="train-sharp"></ion-icon>';
+    } else if (line.startsWith("B")) { // Bus
+        bullet.style.backgroundColor = "#777";
+        bullet.innerHTML = '<ion-icon name="bus"></ion-icon>';
+        
+    } else if (line.startsWith("M")) { // Use the number 
         bullet.style.backgroundColor = lineColours[line] || "#777";
         bullet.textContent = line.charAt(1);
     } else { // Use the letter
@@ -290,19 +301,76 @@ function updateCustomSelectOptions(selectId) {
     const select = document.getElementById(selectId);
     const customSelectContainer = select.closest('.custom-select');
     if (!customSelectContainer) return;
-    // Update the selected text display based on the actual select value
+
     const selectSelected = customSelectContainer.querySelector('.select-selected');
-    // Set it to the currently selected option text
+    const selectItems = customSelectContainer.querySelector('.select-items');
+
+    // Only add keyboard navigation for station selects
+    if (selectId === "startStationSelect" || selectId === "endStationSelect") {
+        // Clear existing keyboard listeners
+        if (customSelectContainer.keyListener) {
+            selectSelected.removeEventListener('keydown', customSelectContainer.keyListener);
+            selectItems.removeEventListener('keydown', customSelectContainer.keyListener);
+        }
+
+        // Add keyboard navigation
+        customSelectContainer.keyListener = function(e) {
+            // Only process if dropdown is open
+            if (selectItems.style.display !== "block") return;
+
+            // Prevent event propagation for any keypress while dropdown is open
+            e.stopPropagation();
+            e.preventDefault();
+
+            if (e.key.length === 1 && e.key.match(/[a-zA-Z]/)) {
+                const searchChar = e.key.toLowerCase();
+                const items = Array.from(selectItems.children);
+                
+                // Find first item that starts with the pressed key
+                const foundItem = items.find(item => {
+                    // Get only the station name text, ignoring the route bullets
+                    const stationNameSpan = item.querySelector('span');
+                    if (!stationNameSpan) return false;
+                    return stationNameSpan.textContent.trim().toLowerCase().startsWith(searchChar);
+                });
+
+                if (foundItem) {
+                    // Remove previous selection
+                    items.forEach(item => {
+                        item.classList.remove('same-as-selected', 'selected');
+                    });
+                    
+                    // Update selection
+                    const index = items.indexOf(foundItem);
+                    foundItem.classList.add('selected');
+                    select.selectedIndex = index + 1; // +1 because of default option
+                    selectSelected.innerHTML = foundItem.innerHTML;
+                    
+                    // Scroll item into view
+                    foundItem.scrollIntoView({ block: 'nearest' });
+                    
+                    // Trigger change event
+                    const event = new Event('change', { bubbles: true });
+                    select.dispatchEvent(event);
+                }
+            }
+        };
+
+        // Add the listener to both elements
+        selectSelected.addEventListener('keydown', customSelectContainer.keyListener);
+        selectItems.addEventListener('keydown', customSelectContainer.keyListener);
+    }
+
+    // Update the selected text display
     if (select.selectedIndex >= 0) {
         selectSelected.innerHTML = select.options[select.selectedIndex].innerHTML;
     }
+
     // Rebuild the dropdown items list
-    const selectItems = customSelectContainer.querySelector('.select-items');
     selectItems.innerHTML = '';
     Array.from(select.options).forEach((option, index) => {
         const div = document.createElement('div');
         div.innerHTML = option.innerHTML;
-        // div.textContent = option.textContent;
         div.addEventListener('click', function() {
             select.selectedIndex = index;
             selectSelected.innerHTML = this.innerHTML;
@@ -312,6 +380,10 @@ function updateCustomSelectOptions(selectId) {
         });
         selectItems.appendChild(div);
     });
+
+    // Make sure both elements are focusable
+    selectSelected.setAttribute('tabindex', '0');
+    selectItems.setAttribute('tabindex', '0');
 }
 
 
@@ -323,6 +395,12 @@ toggleRoutesCheckbox.addEventListener("change", function() {
     toggleDisplayRoutes();
 });
 
+const toggleRailCheckbox = document.getElementById("toggleRail");
+toggleRailCheckbox.addEventListener("change", function() {
+    showRail = this.checked;
+    toggleDisplayRail();
+});
+
 function toggleDisplayRoutes() {
     if (showRoutes) {
         toggleRoutesCheckbox.checked = true;
@@ -330,6 +408,17 @@ function toggleDisplayRoutes() {
     } else {
         toggleRoutesCheckbox.checked = false;
         map.removeLayer(routeLayersGroup);
+    }
+}
+
+function toggleDisplayRail() {
+    if (showRail) {
+        toggleRailCheckbox.checked = true;
+        map.addLayer(railLayersGroup);
+    } else {
+        toggleRailCheckbox.checked = false;
+        map.removeLayer(railLayersGroup);
+
     }
 }
 
@@ -874,7 +963,9 @@ function highlightWayfoundRoute(path) {
 
 function displayRoute(route) { // Visualises the computed path on the map by only highlighting the segments traversed
     showRoutes = false;
+    showRail = false;
     toggleDisplayRoutes();
+    toggleDisplayRail();
     highlightWayfoundRoute(route.path);   
     const detailsContainer = document.querySelector(".route-details-container");
     detailsContainer.innerHTML = ""; 
@@ -903,7 +994,9 @@ function exitWayfinder() {
     // Restart simulation respawn all trains 
     simPaused = false;
     showRoutes = routesPreWF;
+    showRail = railPreWF;
     toggleDisplayRoutes();
+    toggleDisplayRail();
     startSimulation()
     document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
 }
@@ -917,8 +1010,11 @@ function wayfind() {
     wayfinderActive = true;
     // Toggle stations + routes on
     routesPreWF = showRoutes;
+    railPreWF = showRail;
+    showRail = false;
     showRoutes = true;
     toggleDisplayRoutes();
+    toggleDisplayRail();
 }
 
 /********************************************
@@ -1091,12 +1187,16 @@ Promise.all([
             if (!res.ok) throw new Error("Failed to load preprocessed station distances");
             return res.json();
         }),
+        fetch('data/RAIL/rail.geojson').then(res => {
+            if (!res.ok) throw new Error("Failed to load rail routes data");
+            return res.json();
+        }),
         fetch('data/network/network_graph.json').then(res => {
             if (!res.ok) throw new Error("Failed to load network graph");
             return res.json();
         })
     ])
-    .then(([schedule, routes, graph]) => {
+    .then(([schedule, routes, railroutes, graph]) => {
         scheduleData = schedule;
         console.log("Loaded schedule data:", scheduleData);
         serviceRoutes = routes;
@@ -1190,24 +1290,21 @@ Promise.all([
                         marker.on("mouseover", event => {
                             hideTrainPopup(); // Hide any visible popup first
                             event.originalEvent.stopPropagation();
-                            const popup = document.getElementById("stationPopup");
-                            popup.innerHTML = "";
-                            const container = document.createElement("div");
-                            container.style.textAlign = "center"; 
-                            // First line: station name
-                            const nameLine = document.createElement("div");
-                            nameLine.style.fontWeight = "bold"; 
-                            nameLine.style.marginBottom = "4px"; 
-                            nameLine.textContent = dist.name[currentLang];
-                            container.appendChild(nameLine);
-                            // Second line: route bullets 
-                            const bulletsLine = document.createElement("div");
-                            // Append the bullets container (returned by getStationRouteBullets)
-                            bulletsLine.appendChild(getStationRouteBullets(stationLookup[dist.id]));
-                            container.appendChild(bulletsLine);
-                            popup.appendChild(container);
+                            const popup = document.getElementById("trainPopup");
+                            const routeBullet = document.getElementById("popupRouteBullet");
+                            const destElem = document.getElementById("popupDestination");
+                            const nsElem = document.getElementById("popupNextStop");
+
+                            routeBullet.textContent = this.label;
+                            routeBullet.style.backgroundColor = this.color;
+                            routeBullet.style.color = "white";
+
+                            destElem.textContent = `${translations[currentLang]["destination"]}: ${this.getCurrentDestination()}`;
+                            nsElem.textContent = `${translations[currentLang]["next-stop"]}: ${this.getNextStation()}`;
+
                             popup.style.display = "flex";
-                            popup.dataset.manualOpen = "false";
+                            popup.dataset.manualOpen = "true"; // Mark as manually opened.
+
                             clearTimeout(window.trainPopupTimeout);
                             window.trainPopupTimeout = setTimeout(() => {
                                 if (popup.dataset.manualOpen !== "true") {
@@ -1221,8 +1318,19 @@ Promise.all([
                     }
                 });
             });
+            // Visualise rail routes
+            L.geoJSON(railroutes, {
+                style: {
+                    color: "#777",
+                    weight: 7,
+                    opacity: 1,
+                }
+            }).addTo(railLayersGroup);
             if (!showRoutes) {
                 map.removeLayer(routeLayersGroup);
+            }
+            if (!showRail) {
+                map.removeLayer(railLayersGroup);
             }
         
         // Start the simulation 
@@ -1297,7 +1405,7 @@ class Train {
 
         // On hover, show popup with auto-close after 4 seconds.
         this.marker.on("mouseover", event => {
-            hideStationPopup(); //hide any visible popup first
+            hideTrainPopup(); //hide any visible popup first
             event.originalEvent.stopPropagation();
             this.updateStationInfo();
             const popup = document.getElementById("trainPopup");
@@ -1313,7 +1421,7 @@ class Train {
             nsElem.textContent = `${translations[currentLang]["next-stop"]}: ${this.getNextStation()}`;
 
             popup.style.display = "flex";
-            popup.dataset.manualOpen = "false";
+            popup.dataset.manualOpen = "false"; // Mark as manually opened.
 
             clearTimeout(window.trainPopupTimeout);
             window.trainPopupTimeout = setTimeout(() => {
@@ -1546,6 +1654,7 @@ function startSimulation() {
                 
                 let trainLabel = lineId.startsWith('M') ? lineId.charAt(1) : lineId.charAt(0);
                 let train = new Train(route, trainLabel, lineColours[lineId.split('_')[0]], offset);
+                // let train = new Train(route, "ר", "#00458a", offset);
                 // Short turn southbound R3 trains at Elifelet outside of weekday peaks
                 if (
                     branchId === 'R23' &&    // For the R23 branch
