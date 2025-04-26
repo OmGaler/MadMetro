@@ -265,20 +265,27 @@ function getMergedStationName(station) {
 }
 
 
-function getRouteBullet(line) {
+function getRouteBullet(line, showConnectionBullet = false) {
     const bullet = document.createElement("span");
-    bullet.classList.add("bullet");
-    if (line==="IR") { // Israel Railways
-        bullet.style.backgroundColor = "#777";
+    if (line === "IR") { // Israel Railways
+        if (showConnectionBullet) {
+            bullet.classList.add("bullet");
+            bullet.style.backgroundColor = "#777";
+        }
         bullet.innerHTML = '<ion-icon name="train-sharp"></ion-icon>';
     } else if (line.startsWith("B")) { // Bus
-        bullet.style.backgroundColor = "#777";
+        if (showConnectionBullet) {
+            bullet.classList.add("bullet");
+            bullet.style.backgroundColor = "#777";
+        }
         bullet.innerHTML = '<ion-icon name="bus"></ion-icon>';
         
     } else if (line.startsWith("M")) { // Use the number 
+        bullet.classList.add("bullet");
         bullet.style.backgroundColor = lineColours[line] || "#777";
         bullet.textContent = line.charAt(1);
     } else { // Use the letter
+        bullet.classList.add("bullet");
         bullet.style.backgroundColor = lineColours[line.charAt(0)] || "#777";
         bullet.textContent = line.charAt(0);
     }
@@ -286,12 +293,12 @@ function getRouteBullet(line) {
 }
 
 // Helper to generate the inner HTML string for an option, including inline bullets.
-function getStationRouteBullets(station) {
+function getStationRouteBullets(station, showConnectionBullet = false) {
     const container = document.createElement("span");
     container.style.display = "inline-flex";
     container.style.gap = "5px"; // Space between bullets
     station.lines.forEach(line => {
-        container.appendChild(getRouteBullet(line));
+        container.appendChild(getRouteBullet(line, showConnectionBullet));
     });
     return container;
 }
@@ -1279,32 +1286,35 @@ Promise.all([
                                 // Second line: route bullets 
                                 const bulletsLine = document.createElement("div");
                                 // Append the bullets container (returned by getStationRouteBullets)
-                                bulletsLine.appendChild(getStationRouteBullets(stationLookup[dist.id]));
+                                bulletsLine.appendChild(getStationRouteBullets(stationLookup[dist.id], true));
                                 container.appendChild(bulletsLine);
                                 popup.appendChild(container);
                                 popup.style.display = "flex";
-                                popup.dataset.manualOpen = "true"; // Mark as manually opened.
+                                popup.dataset.manualOpen = "true"; // Mark as manually opened
                             }
                         });
                         
                         marker.on("mouseover", event => {
                             hideTrainPopup(); // Hide any visible popup first
                             event.originalEvent.stopPropagation();
-                            const popup = document.getElementById("trainPopup");
-                            const routeBullet = document.getElementById("popupRouteBullet");
-                            const destElem = document.getElementById("popupDestination");
-                            const nsElem = document.getElementById("popupNextStop");
-
-                            routeBullet.textContent = this.label;
-                            routeBullet.style.backgroundColor = this.color;
-                            routeBullet.style.color = "white";
-
-                            destElem.textContent = `${translations[currentLang]["destination"]}: ${this.getCurrentDestination()}`;
-                            nsElem.textContent = `${translations[currentLang]["next-stop"]}: ${this.getNextStation()}`;
-
+                            const popup = document.getElementById("stationPopup");
+                            popup.innerHTML = "";
+                            const container = document.createElement("div");
+                            container.style.textAlign = "center"; 
+                            // First line: station name
+                            const nameLine = document.createElement("div");
+                            nameLine.style.fontWeight = "bold"; 
+                            nameLine.style.marginBottom = "4px"; 
+                            nameLine.textContent = dist.name[currentLang];
+                            container.appendChild(nameLine);
+                            // Second line: route bullets 
+                            const bulletsLine = document.createElement("div");
+                            // Append the bullets container (returned by getStationRouteBullets)
+                            bulletsLine.appendChild(getStationRouteBullets(stationLookup[dist.id], true));
+                            container.appendChild(bulletsLine);
+                            popup.appendChild(container);
                             popup.style.display = "flex";
-                            popup.dataset.manualOpen = "true"; // Mark as manually opened.
-
+                            popup.dataset.manualOpen = "false";
                             clearTimeout(window.trainPopupTimeout);
                             window.trainPopupTimeout = setTimeout(() => {
                                 if (popup.dataset.manualOpen !== "true") {
@@ -1314,7 +1324,33 @@ Promise.all([
                         });
                         marker.addTo(routeLayersGroup);
                         visibleMarker.addTo(routeLayersGroup); 
-                        // bindPopup(`Station Name: ${dist.name.en}`)
+
+                            //     hideTrainPopup(); // Hide any visible popup first
+                        //     event.originalEvent.stopPropagation();
+                        //     const popup = document.getElementById("trainPopup");
+                        //     const routeBullet = document.getElementById("popupRouteBullet");
+                        //     const destElem = document.getElementById("popupDestination");
+                        //     const nsElem = document.getElementById("popupNextStop");
+
+                        //     routeBullet.textContent = this.label;
+                        //     routeBullet.style.backgroundColor = this.color;
+                        //     routeBullet.style.color = "white";
+
+                        //     destElem.textContent = `${translations[currentLang]["destination"]}: ${this.getCurrentDestination()}`;
+                        //     nsElem.textContent = `${translations[currentLang]["next-stop"]}: ${this.getNextStation()}`;
+
+                        //     popup.style.display = "flex";
+                        //     popup.dataset.manualOpen = "true"; // Mark as manually opened.
+
+                        //     clearTimeout(window.trainPopupTimeout);
+                        //     window.trainPopupTimeout = setTimeout(() => {
+                        //         if (popup.dataset.manualOpen !== "true") {
+                        //             hideStationPopup();
+                        //         }
+                        //     }, 2500); // Auto close after 2.5 seconds
+                        // });
+                        // marker.addTo(routeLayersGroup);
+                        // visibleMarker.addTo(routeLayersGroup); 
                     }
                 });
             });
@@ -1322,7 +1358,7 @@ Promise.all([
             L.geoJSON(railroutes, {
                 style: {
                     color: "#777",
-                    weight: 7,
+                    weight: 6,
                     opacity: 1,
                 }
             }).addTo(railLayersGroup);
