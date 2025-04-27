@@ -611,6 +611,11 @@ button#darkModeButton {
     overflow-y: auto;
 }
 
+.select-items div span:empty {
+    display: none;
+  }
+  
+
 .custom-select {
     position: relative;
     margin-left: auto;

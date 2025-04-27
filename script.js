@@ -723,8 +723,18 @@ function populateWayfindingOptions() {
         stn.lines.forEach(line => {
             const bullet = getRouteBullet(line);
             // Configure bullet to be smaller before getting HTML
-            bullet.style.width = "20px";
-            bullet.style.height = "20px";
+            if (bullet.classList.contains("bullet")) {
+                bullet.style.width = "20px";
+                bullet.style.height = "20px";
+            } else { // Rail or bus icon, style differently
+                bullet.style.fontSize = "12px";
+                bullet.style.width = "22px";
+                bullet.style.height = "22px";
+                bullet.style.display = "inline-flex";
+                bullet.style.alignItems = "center";
+                bullet.style.justifyContent = "space-evenly";
+                bullet.style.flexDirection= "column-reverse";
+            }
             optionHTML += bullet.outerHTML;
         });
         optionHTML += '</span>';
