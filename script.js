@@ -1208,12 +1208,24 @@ Promise.all([
             if (!res.ok) throw new Error("Failed to load rail routes data");
             return res.json();
         }),
+        fetch('data/RAIL/rail_stations.geojson').then(res => {
+            if (!res.ok) throw new Error("Failed to load rail stations data");
+            return res.json();
+        }),
+        fetch('data/RAIL/mainline_services.json').then(res => {
+            if (!res.ok) throw new Error("Failed to load rail service data");
+            return res.json();
+        }),
         fetch('data/network/network_graph.json').then(res => {
+            if (!res.ok) throw new Error("Failed to load network graph");
+            return res.json();
+        }),
+        fetch('data/network/mainline_network_graph.json').then(res => {
             if (!res.ok) throw new Error("Failed to load network graph");
             return res.json();
         })
     ])
-    .then(([schedule, routes, railroutes, graph]) => {
+    .then(([schedule, routes, railroutes, railStations, railServices, graph, railGraph]) => {
         scheduleData = schedule;
         console.log("Loaded schedule data:", scheduleData);
         serviceRoutes = routes;
@@ -1279,7 +1291,6 @@ Promise.all([
                                     originStn = null;
                                     destinationStn = null;
                                 }
-
                             } else {
                                 hideTrainPopup(); // Hide any visible popup first
                                 event.originalEvent.stopPropagation();
@@ -1334,33 +1345,6 @@ Promise.all([
                         });
                         marker.addTo(routeLayersGroup);
                         visibleMarker.addTo(routeLayersGroup); 
-
-                            //     hideTrainPopup(); // Hide any visible popup first
-                        //     event.originalEvent.stopPropagation();
-                        //     const popup = document.getElementById("trainPopup");
-                        //     const routeBullet = document.getElementById("popupRouteBullet");
-                        //     const destElem = document.getElementById("popupDestination");
-                        //     const nsElem = document.getElementById("popupNextStop");
-
-                        //     routeBullet.textContent = this.label;
-                        //     routeBullet.style.backgroundColor = this.color;
-                        //     routeBullet.style.color = "white";
-
-                        //     destElem.textContent = `${translations[currentLang]["destination"]}: ${this.getCurrentDestination()}`;
-                        //     nsElem.textContent = `${translations[currentLang]["next-stop"]}: ${this.getNextStation()}`;
-
-                        //     popup.style.display = "flex";
-                        //     popup.dataset.manualOpen = "true"; // Mark as manually opened.
-
-                        //     clearTimeout(window.trainPopupTimeout);
-                        //     window.trainPopupTimeout = setTimeout(() => {
-                        //         if (popup.dataset.manualOpen !== "true") {
-                        //             hideStationPopup();
-                        //         }
-                        //     }, 2500); // Auto close after 2.5 seconds
-                        // });
-                        // marker.addTo(routeLayersGroup);
-                        // visibleMarker.addTo(routeLayersGroup); 
                     }
                 });
             });
@@ -1372,6 +1356,88 @@ Promise.all([
                     opacity: 1,
                 }
             }).addTo(railLayersGroup);
+            // and rail stations
+            L.geoJSON(railStations, {
+                pointToLayer: function (feature, latlng) {
+                    const visibleMarker = L.circleMarker(latlng, {
+                        radius: 8,
+                        color: "#777",
+                        fillOpacity: 1
+                    });
+
+                    const marker = L.circleMarker(latlng, {
+                        radius: 12.5,
+                        opacity: 0,
+                        fillOpacity: 0
+                    });
+
+                    marker.on("click", event => {
+                        hideTrainPopup();
+                        event.originalEvent.stopPropagation();
+                        const popup = document.getElementById("stationPopup");
+                        popup.innerHTML = "";
+                        const container = document.createElement("div");
+                        container.style.textAlign = "center";
+
+                        const nameLine = document.createElement("div");
+                        nameLine.style.fontWeight = "bold";
+                        nameLine.style.marginBottom = "4px";
+                        nameLine.textContent = feature.properties.name[currentLang];
+                        container.appendChild(nameLine);
+
+                        const bulletsLine = document.createElement("div");
+                        const bullet = document.createElement("span");
+                        bullet.classList.add("bullet");
+                        bullet.style.backgroundColor = "#777";
+                        bullet.innerHTML = '<ion-icon name="train-sharp"></ion-icon>';
+                        bulletsLine.appendChild(bullet);
+                        container.appendChild(bulletsLine);
+
+                        popup.appendChild(container);
+                        popup.style.display = "flex";
+                        popup.dataset.manualOpen = "true";
+                    });
+
+                    marker.on("mouseover", event => {
+                        hideTrainPopup();
+                        event.originalEvent.stopPropagation();
+                        const popup = document.getElementById("stationPopup");
+                        popup.innerHTML = "";
+                        const container = document.createElement("div");
+                        container.style.textAlign = "center";
+                        // First line: station name
+                        const nameLine = document.createElement("div");
+                        nameLine.style.fontWeight = "bold";
+                        nameLine.style.marginBottom = "4px";
+                        nameLine.textContent = feature.properties.name.find(n => n[currentLang])[currentLang];
+                        container.appendChild(nameLine);
+                        // Second line: route bullets
+                        const bulletsLine = document.createElement("div");
+                        const bullet = document.createElement("span");
+                        bullet.classList.add("bullet");
+                        bullet.style.backgroundColor = "#777";
+                        bullet.innerHTML = '<ion-icon name="train-sharp"></ion-icon>';
+                        bulletsLine.appendChild(bullet);
+                        container.appendChild(bulletsLine);
+
+                        popup.appendChild(container);
+                        popup.style.display = "flex";
+                        popup.dataset.manualOpen = "false";
+
+                        clearTimeout(window.trainPopupTimeout);
+                        window.trainPopupTimeout = setTimeout(() => {
+                            if (popup.dataset.manualOpen !== "true") {
+                                hideStationPopup();
+                            }
+                        }, 2500);
+                    });
+
+                    marker.addTo(railLayersGroup);
+                    visibleMarker.addTo(railLayersGroup);
+                    return null;
+                }
+            });
+
             if (!showRoutes) {
                 map.removeLayer(routeLayersGroup);
             }

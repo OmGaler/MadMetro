@@ -1,0 +1,8 @@
+{
+    "lines": [{
+        "JLM-MOD": ["JerusalemC", "JerusalemN", "ModiinP", "ModiinC"]
+    },
+    {
+        "JLM-Q8": ["JerusalemC", "JerusalemN", "NTBG", "TAHaHagana", "TAHaShalom", "TAC", "TAU", "GlilotN", "Herzliya", "HaderaW", "HaifaHHC", "HaifaBG", "HaifaC", "HaMifratzC", "KMotzkin", "Karmiel", "Kiryat8"]
+    }]
+}
