@@ -1074,6 +1074,7 @@ function updateLineInfo() {
         if (lineId.startsWith("M")) {
             bullet.style.backgroundColor = lineColours[lineId] || "#777";
             bullet.textContent = lineId.charAt(1);
+        
         } else {
             bullet.style.backgroundColor = lineColours[lineId.charAt(0)] || "#777";
             bullet.textContent = lineId.charAt(0);
@@ -1374,7 +1375,6 @@ Promise.all([
                         color: "#777",
                         fillOpacity: 1
                     });
-
                     const marker = L.circleMarker(latlng, {
                         radius: 12.5,
                         opacity: 0,
@@ -1393,7 +1393,7 @@ Promise.all([
                         const nameLine = document.createElement("div");
                         nameLine.style.fontWeight = "bold";
                         nameLine.style.marginBottom = "4px";
-                        nameLine.textContent = feature.properties.name[currentLang];
+                        nameLine.textContent = feature.properties.name.find(n => n[currentLang])[currentLang];
                         container.appendChild(nameLine);
 
                         const bulletsLine = document.createElement("div");
@@ -1496,8 +1496,9 @@ class Train {
         // For next station lookup based on stationData.
         this.nextStationIndex = 1;
         this.updateNextStationIndex();
+        this.lineString = turf.lineString(this.route); // <-- cache it here!
 
-        let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
+        let posFeature = turf.along(this.lineString, this.distance / 1000, {
             units: "kilometers"
         });
         let startCoord = posFeature.geometry.coordinates;
@@ -1522,7 +1523,7 @@ class Train {
             const destElem = document.getElementById("popupDestination");
             const nsElem = document.getElementById("popupNextStop");
 
-            routeBullet.textContent = this.label;
+            routeBullet.innerHTML = this.label;
             routeBullet.style.backgroundColor = this.color;
             routeBullet.style.color = "white";
 
@@ -1535,7 +1536,7 @@ class Train {
 
         // On hover, show popup with auto-close after 4 seconds.
         this.marker.on("mouseover", event => {
-            hideTrainPopup(); //hide any visible popup first
+            hideStationPopup(); //hide any visible popup first
             event.originalEvent.stopPropagation();
             this.updateStationInfo();
             const popup = document.getElementById("trainPopup");
@@ -1543,7 +1544,7 @@ class Train {
             const destElem = document.getElementById("popupDestination");
             const nsElem = document.getElementById("popupNextStop");
 
-            routeBullet.textContent = this.label;
+            routeBullet.innerHTML = this.label;
             routeBullet.style.backgroundColor = this.color;
             routeBullet.style.color = "white";
 
@@ -1590,21 +1591,21 @@ class Train {
     }
 
     getCurrentDestination() {
-        // Assume destination is the terminal station.
         // For forward direction, use the last station's name; for reverse, the first.
         if (this.stationData.length === 0) return "";
-        if (this.direction === 1) {
-            return this.stationData[this.stationData.length - 1].name[currentLang];
-        } else {
-            return this.stationData[0].name[currentLang];
-        }
+        const dest = this.direction === 1
+            ? this.stationData[this.stationData.length - 1]
+            : this.stationData[0];
+        console.log("Destination station:", dest);       
+        return (dest.name && dest.name[currentLang]) || dest.id || dest.properties.station_name;
     }
-
+    
     getNextStation() {
         if (this.nextStationIndex >= 0 && this.nextStationIndex < this.stationData.length) {
-            return this.stationData[this.nextStationIndex].name[currentLang];
+            const next = this.stationData[this.nextStationIndex];
+            return (next.name && next.name[currentLang]) || next.id || "Unknown";
         }
-        return translations[currentLang]["terminus"];
+        return translations[currentLang]["terminus"] || "Terminus";
     }
 
     updateStationInfo() {
@@ -1691,7 +1692,7 @@ class Train {
                 }
 
             }
-            let posFeature = turf.along(turf.lineString(this.route), this.distance / 1000, {
+            let posFeature = turf.along(this.lineString, this.distance / 1000, {
                 units: "kilometers"
             });
             if (posFeature && posFeature.geometry && posFeature.geometry.coordinates) {
@@ -1851,81 +1852,161 @@ function startSimulation() {
         frameId = requestAnimationFrame(animate);
     }
     animate();
+    //Spawn heavy rail trains
+    spawnHeavyRailTrains();
 
-    // --- Heavy Rail Simulation: JLM-MOD Line ---
-// 1. Get all legs for JLM-MOD
-const jlmModLegs = railServiceLegs.features.filter(
-    f => f.properties.service_id === "JLM-MOD"
-);
+}
+// // --- Heavy Rail Simulation: JLM-MOD Line ---
+// // 1. Get all legs for JLM-MOD
+// const jlmModLegs = railServiceLegs.features.filter(
+//     f => f.properties.service_id === "JLM-MOD"
+// );
 
-// 2. Sort legs in correct order (if needed)
-// If your legs are already in order, you can skip this step. 
-// Otherwise, you may need to sort by a property like 'leg_sequence' or reconstruct the order by matching endpoints.
-// For now, we'll assume they're in order as in the file.
+// // 2. Sort legs in correct order (if needed)
+// // If your legs are already in order, you can skip this step. 
+// // Otherwise, you may need to sort by a property like 'leg_sequence' or reconstruct the order by matching endpoints.
+// // For now, we'll assume they're in order as in the file.
 
-if (jlmModLegs.length > 0) {
-    // 3. Concatenate all coordinates, making sure not to duplicate endpoints
-    let jlmModCoords = [];
-    jlmModLegs.forEach((leg, idx) => {
-        const coords = leg.geometry.coordinates;
-        if (idx === 0) {
-            jlmModCoords.push(...coords);
-        } else {
-            // Avoid duplicating the first coordinate of each subsequent leg
-            jlmModCoords.push(...coords.slice(1));
-        }
-    });
+// if (jlmModLegs.length > 0) {
+//     // 3. Concatenate all coordinates, making sure not to duplicate endpoints
+//     let jlmModCoords = [];
+//     jlmModLegs.forEach((leg, idx) => {
+//         const coords = leg.geometry.coordinates;
+//         if (idx === 0) {
+//             jlmModCoords.push(...coords);
+//         } else {
+//             // Avoid duplicating the first coordinate of each subsequent leg
+//             jlmModCoords.push(...coords.slice(1));
+//         }
+//     });
 
-    // 4. Find all stops for this line, sorted by their sequence/order
-    const jlmModStops = railServiceStops.features
-        .filter(f => f.properties.service_id === "JLM-MOD")
-        .sort((a, b) => a.properties.stop_sequence - b.properties.stop_sequence);
+//     // 4. Find all stops for this line, sorted by their sequence/order
+//     const jlmModStops = railServiceStops.features
+//         .filter(f => f.properties.service_id === "JLM-MOD")
+//         .sort((a, b) => a.properties.stop_sequence - b.properties.stop_sequence);
 
-    // 5. Build station objects with distance along the line
-    const lineString = turf.lineString(jlmModCoords);
-    const stations = jlmModStops.map(stop => {
-        const pt = turf.point(stop.geometry.coordinates);
-        return {
+//     // 5. Build station objects with distance along the line
+//     const lineString = turf.lineString(jlmModCoords);
+//     const stations = jlmModStops.map(stop => {
+//         const pt = turf.point(stop.geometry.coordinates);
+//         return {
+//             id: stop.properties.stop_id,
+//             name: { en: stop.properties.name_en, he: stop.properties.name_he },
+//             distance: turf.length(turf.lineSlice(jlmModCoords[0], stop.geometry.coordinates, lineString)) * 1000
+//         };
+//     });
+
+//     stations.sort((a, b) => a.distance - b.distance);
+
+//     // Heavy rail parameters
+//     const heavyRailColor = "#444";
+//     // const heavyRailLabel = "RWY";
+//     const heavyRailLabel = '<ion-icon name="train-sharp"></ion-icon>';
+//     const heavyRailSpeed = 120 * 1000 / 3600;
+//     const heavyRailFrequency = 2;
+//     const headway = 60 / heavyRailFrequency;
+
+//     const routeLength = turf.length(lineString) * 1000;
+//     const avgSpeed = heavyRailSpeed * 0.5;
+//     const roundTripTime = (2 * routeLength) / avgSpeed;
+//     const trainsPerDirection = Math.ceil((roundTripTime / 60) / headway / 2);
+//     const totalTrains = 2 * trainsPerDirection;
+
+//     let oppositeDirOffset = (routeLength / totalTrains) / 2;
+//     for (let i = 0; i < totalTrains; i++) {
+//         const direction = i % 2 === 0 ? 1 : -1;
+//         const index = Math.floor(i / 2);
+//         const spacing = routeLength / trainsPerDirection;
+//         let offset;
+//         if (direction === 1) {
+//             offset = index * spacing;
+//         } else {
+//             offset = routeLength - (index * spacing) - oppositeDirOffset;
+//         }
+//         const routeObj = {
+//             coords: jlmModCoords,
+//             stations: stations
+//         };
+//         let train = new Train(routeObj, heavyRailLabel, heavyRailColor, offset);
+//         train.direction = direction;
+//         train.vehicleType = "HEAVYRAIL";
+//         trains.push(train);
+//     }
+// }
+// }
+
+function spawnHeavyRailTrains() {
+    if (!railServiceLegs?.features || !railServiceStops?.features) return;
+
+    // Get all unique heavy rail service_ids
+    const heavyRailLines = [
+        ...new Set(railServiceLegs.features.map(f => f.properties.service_id))
+    ];
+
+    heavyRailLines.forEach(serviceId => {
+        // 1. Get all legs for this line
+        const legs = railServiceLegs.features.filter(
+            f => f.properties.service_id === serviceId
+        );
+        if (legs.length === 0) return;
+
+        // 2. Concatenate all coordinates, making sure not to duplicate endpoints
+        let coords = [];
+        legs.forEach((leg, idx) => {
+            const legCoords = leg.geometry.coordinates;
+            if (idx === 0) {
+                coords.push(...legCoords);
+            } else {
+                coords.push(...legCoords.slice(1));
+            }
+        });
+
+        // 3. Find all stops for this line, sorted by their sequence/order
+        const stops = railServiceStops.features
+            .filter(f => f.properties.service_id === serviceId)
+            .sort((a, b) => a.properties.stop_sequence - b.properties.stop_sequence);
+
+        // 4. Build station objects with distance along the line
+        const lineString = turf.lineString(coords);
+        const stations = stops.map(stop => ({
             id: stop.properties.stop_id,
             name: { en: stop.properties.name_en, he: stop.properties.name_he },
-            distance: turf.length(turf.lineSlice(jlmModCoords[0], stop.geometry.coordinates, lineString)) * 1000
-        };
-    });
+            distance: turf.length(turf.lineSlice(coords[0], stop.geometry.coordinates, lineString)) * 1000
+        })).sort((a, b) => a.distance - b.distance);
 
-    stations.sort((a, b) => a.distance - b.distance);
+        // 5. Heavy rail parameters
+        const heavyRailColor = "#444";
+        const heavyRailLabel = "<ion-icon name='train-sharp'></ion-icon>";
+        // const heavyRailLabel = "RWY";
+        const heavyRailSpeed = 120 * 1000 / 3600; //TODO 160 or 250
+        const heavyRailFrequency = 1;
+        const headway = 60 / heavyRailFrequency;
 
-    // Heavy rail parameters
-    const heavyRailColor = "#444";
-    const heavyRailLabel = "IR";
-    const heavyRailSpeed = 120 * 1000 / 3600;
-    const heavyRailFrequency = 2;
-    const headway = 60 / heavyRailFrequency;
+        const routeLength = turf.length(lineString) * 1000;
+        const avgSpeed = heavyRailSpeed * 0.5;
+        const roundTripTime = (2 * routeLength) / avgSpeed;
+        const trainsPerDirection = Math.ceil((roundTripTime / 60) / headway / 2);
+        const totalTrains = 2 * trainsPerDirection;
 
-    const routeLength = turf.length(lineString) * 1000;
-    const avgSpeed = heavyRailSpeed * 0.5;
-    const roundTripTime = (2 * routeLength) / avgSpeed;
-    const trainsPerDirection = Math.ceil((roundTripTime / 60) / headway / 2);
-    const totalTrains = 2 * trainsPerDirection;
-
-    let oppositeDirOffset = (routeLength / totalTrains) / 2;
-    for (let i = 0; i < totalTrains; i++) {
-        const direction = i % 2 === 0 ? 1 : -1;
-        const index = Math.floor(i / 2);
-        const spacing = routeLength / trainsPerDirection;
-        let offset;
-        if (direction === 1) {
-            offset = index * spacing;
-        } else {
-            offset = routeLength - (index * spacing) - oppositeDirOffset;
+        let oppositeDirOffset = (routeLength / totalTrains) / 2;
+        for (let i = 0; i < totalTrains; i++) {
+            const direction = i % 2 === 0 ? 1 : -1;
+            const index = Math.floor(i / 2);
+            const spacing = routeLength / trainsPerDirection;
+            let offset;
+            if (direction === 1) {
+                offset = index * spacing;
+            } else {
+                offset = routeLength - (index * spacing) - oppositeDirOffset;
+            }
+            const routeObj = {
+                coords: coords,
+                stations: stops
+            };
+            let train = new Train(routeObj, heavyRailLabel, heavyRailColor, offset);
+            train.direction = direction;
+            train.vehicleType = "HEAVYRAIL";
+            trains.push(train);
         }
-        const routeObj = {
-            coords: jlmModCoords,
-            stations: stations
-        };
-        let train = new Train(routeObj, heavyRailLabel, heavyRailColor, offset);
-        train.direction = direction;
-        train.vehicleType = "HEAVYRAIL";
-        trains.push(train);
-    }
-}
+    });
 }
