@@ -74,6 +74,8 @@ let translations = {};
 let currentLang = localStorage.getItem("language") || "en";
 let scheduleData = null;
 let serviceRoutes = {}; // Loaded from preprocessed_station_distances.json
+let railServiceLegs = {}; // Loaded from service_legs.geojson
+let railServiceStops = {}; // Loaded from service_stops.geojson
 let G = {}; // Network Graph
 let gr;
 let wayfinderActive = false;
@@ -92,7 +94,8 @@ let DEFAULT_DWELL_TIME = 1; // seconds dwell at each station
 const STATION_TOLERANCE = 30; // meters tolerance
 const VEHICLE_SPEEDS = {
     METRO: 80 * 1000 / 3600, //80kmh
-    LRT: 60 * 1000 / 3600 //60kmh
+    LRT: 60 * 1000 / 3600, //60kmh
+    HEAVYRAIL: 120 * 1000 / 3600 //120kmh
 };
 const SERVICE_PATTERNS = {
     M1: {
@@ -935,7 +938,7 @@ function highlightWayfoundRoute(path) {
         const lineStr = turf.lineString(routeObj.coords);
         let fromDistance = stationAObj.distance / 1000;
         let toDistance = stationBObj.distance / 1000;
-        if (fromDistance > toDistance) [fromDistance, toDistance] = [toDistance, fromDistance];
+        if (fromDistance > toDistance) [fromDistance, toDistance] = [fromDistance, toDistance];
 
         const fromPoint = turf.along(lineStr, fromDistance, { units: "kilometers" });
         const toPoint = turf.along(lineStr, toDistance, { units: "kilometers" });
@@ -1229,11 +1232,14 @@ Promise.all([
             return res.json();
         })
     ])
-    .then(([schedule, routes, railroutes, railStations, railServiceLegs, railServiceStops, graph]) => {
+    .then(([schedule, routes, railroutes, railStations, legs, stops, graph]) => {
         scheduleData = schedule;
         console.log("Loaded schedule data:", scheduleData);
         serviceRoutes = routes;
         console.log("Loaded service routes:", serviceRoutes);
+        railServiceLegs = legs;
+        railServiceStops = stops;
+        console.log("Loaded rail data");
         // Initialise the network graph of edges and nodes, together with a lookup to get stations by id
         G = graph;
         stationLookup = Object.fromEntries(G.nodes.map(node => [node.id, node]));
@@ -1651,9 +1657,9 @@ class Train {
             return;
         }
         // if (this.checkHeadway()) {
-            const currentSpeed = (this.vehicleType === 'METRO') ?
-                VEHICLE_SPEEDS.METRO :
-                VEHICLE_SPEEDS.LRT;
+            const currentSpeed = (this.vehicleType === 'METRO') ? VEHICLE_SPEEDS.METRO
+                : (this.vehicleType === 'LRT') ? VEHICLE_SPEEDS.LRT
+                : VEHICLE_SPEEDS.HEAVYRAIL;
 
             this.distance += currentSpeed * deltaTime * timeScale * this.direction;
 
@@ -1845,4 +1851,81 @@ function startSimulation() {
         frameId = requestAnimationFrame(animate);
     }
     animate();
+
+    // --- Heavy Rail Simulation: JLM-MOD Line ---
+// 1. Get all legs for JLM-MOD
+const jlmModLegs = railServiceLegs.features.filter(
+    f => f.properties.service_id === "JLM-MOD"
+);
+
+// 2. Sort legs in correct order (if needed)
+// If your legs are already in order, you can skip this step. 
+// Otherwise, you may need to sort by a property like 'leg_sequence' or reconstruct the order by matching endpoints.
+// For now, we'll assume they're in order as in the file.
+
+if (jlmModLegs.length > 0) {
+    // 3. Concatenate all coordinates, making sure not to duplicate endpoints
+    let jlmModCoords = [];
+    jlmModLegs.forEach((leg, idx) => {
+        const coords = leg.geometry.coordinates;
+        if (idx === 0) {
+            jlmModCoords.push(...coords);
+        } else {
+            // Avoid duplicating the first coordinate of each subsequent leg
+            jlmModCoords.push(...coords.slice(1));
+        }
+    });
+
+    // 4. Find all stops for this line, sorted by their sequence/order
+    const jlmModStops = railServiceStops.features
+        .filter(f => f.properties.service_id === "JLM-MOD")
+        .sort((a, b) => a.properties.stop_sequence - b.properties.stop_sequence);
+
+    // 5. Build station objects with distance along the line
+    const lineString = turf.lineString(jlmModCoords);
+    const stations = jlmModStops.map(stop => {
+        const pt = turf.point(stop.geometry.coordinates);
+        return {
+            id: stop.properties.stop_id,
+            name: { en: stop.properties.name_en, he: stop.properties.name_he },
+            distance: turf.length(turf.lineSlice(jlmModCoords[0], stop.geometry.coordinates, lineString)) * 1000
+        };
+    });
+
+    stations.sort((a, b) => a.distance - b.distance);
+
+    // Heavy rail parameters
+    const heavyRailColor = "#444";
+    const heavyRailLabel = "IR";
+    const heavyRailSpeed = 120 * 1000 / 3600;
+    const heavyRailFrequency = 2;
+    const headway = 60 / heavyRailFrequency;
+
+    const routeLength = turf.length(lineString) * 1000;
+    const avgSpeed = heavyRailSpeed * 0.5;
+    const roundTripTime = (2 * routeLength) / avgSpeed;
+    const trainsPerDirection = Math.ceil((roundTripTime / 60) / headway / 2);
+    const totalTrains = 2 * trainsPerDirection;
+
+    let oppositeDirOffset = (routeLength / totalTrains) / 2;
+    for (let i = 0; i < totalTrains; i++) {
+        const direction = i % 2 === 0 ? 1 : -1;
+        const index = Math.floor(i / 2);
+        const spacing = routeLength / trainsPerDirection;
+        let offset;
+        if (direction === 1) {
+            offset = index * spacing;
+        } else {
+            offset = routeLength - (index * spacing) - oppositeDirOffset;
+        }
+        const routeObj = {
+            coords: jlmModCoords,
+            stations: stations
+        };
+        let train = new Train(routeObj, heavyRailLabel, heavyRailColor, offset);
+        train.direction = direction;
+        train.vehicleType = "HEAVYRAIL";
+        trains.push(train);
+    }
+}
 }
