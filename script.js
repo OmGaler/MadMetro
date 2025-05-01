@@ -1,6 +1,5 @@
 import { buildGraph, dijkstraWithTransfers, reconstructPathWithTransfers } from './wayfinder.js';
 
-
 /********************************************
  * Global Constants & Variables
  ********************************************/
@@ -625,6 +624,11 @@ document.addEventListener("keydown", (event) => {
         showRoutes = !showRoutes;
         toggleDisplayRoutes();
     }
+    if (event.key.toLowerCase() === "r") {
+        // event.preventDefault(); 
+        showRail = !showRail;
+        toggleDisplayRail();
+    }
 });
 
 document.getElementById("pause").addEventListener("click", function () {
@@ -1212,20 +1216,20 @@ Promise.all([
             if (!res.ok) throw new Error("Failed to load rail stations data");
             return res.json();
         }),
-        fetch('data/RAIL/mainline_services.json').then(res => {
+        fetch('data/RAIL/service_legs.geojson').then(res => {
+            if (!res.ok) throw new Error("Failed to load rail service data");
+            return res.json();
+        }),
+        fetch('data/RAIL/service_stops.geojson').then(res => {
             if (!res.ok) throw new Error("Failed to load rail service data");
             return res.json();
         }),
         fetch('data/network/network_graph.json').then(res => {
             if (!res.ok) throw new Error("Failed to load network graph");
             return res.json();
-        }),
-        fetch('data/network/mainline_network_graph.json').then(res => {
-            if (!res.ok) throw new Error("Failed to load network graph");
-            return res.json();
         })
     ])
-    .then(([schedule, routes, railroutes, railStations, railServices, graph, railGraph]) => {
+    .then(([schedule, routes, railroutes, railStations, railServiceLegs, railServiceStops, graph]) => {
         scheduleData = schedule;
         console.log("Loaded schedule data:", scheduleData);
         serviceRoutes = routes;
@@ -1373,6 +1377,7 @@ Promise.all([
 
                     marker.on("click", event => {
                         hideTrainPopup();
+                        hideStationPopup();
                         event.originalEvent.stopPropagation();
                         const popup = document.getElementById("stationPopup");
                         popup.innerHTML = "";
@@ -1386,6 +1391,8 @@ Promise.all([
                         container.appendChild(nameLine);
 
                         const bulletsLine = document.createElement("div");
+                        bulletsLine.style.display = "flex";
+                        bulletsLine.style.justifyContent = "center";
                         const bullet = document.createElement("span");
                         bullet.classList.add("bullet");
                         bullet.style.backgroundColor = "#777";
@@ -1400,6 +1407,7 @@ Promise.all([
 
                     marker.on("mouseover", event => {
                         hideTrainPopup();
+                        hideStationPopup();
                         event.originalEvent.stopPropagation();
                         const popup = document.getElementById("stationPopup");
                         popup.innerHTML = "";
@@ -1413,6 +1421,9 @@ Promise.all([
                         container.appendChild(nameLine);
                         // Second line: route bullets
                         const bulletsLine = document.createElement("div");
+                        bulletsLine.style.display = "flex";
+                        bulletsLine.style.justifyContent = "center";
+
                         const bullet = document.createElement("span");
                         bullet.classList.add("bullet");
                         bullet.style.backgroundColor = "#777";
@@ -1438,6 +1449,7 @@ Promise.all([
                 }
             });
 
+            
             if (!showRoutes) {
                 map.removeLayer(routeLayersGroup);
             }

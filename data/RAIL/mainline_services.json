@@ -1,8 +1,60 @@
 {
     "lines": [{
-        "JLM-MOD": ["JerusalemC", "JerusalemN", "ModiinP", "ModiinC"]
-    },
-    {
-        "JLM-Q8": ["JerusalemC", "JerusalemN", "NTBG", "TAHaHagana", "TAHaShalom", "TAC", "TAU", "GlilotN", "Herzliya", "HaderaW", "HaifaHHC", "HaifaBG", "HaifaC", "HaMifratzC", "KMotzkin", "Karmiel", "Kiryat8"]
-    }]
+            "JLM-MOD": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Paatei Modiin", "Modiin Center"]
+        },
+        {
+            "JLM-Q8": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Ben Gurion Airport", "Tel Aviv Savidor Center", "Glilot South", "Herzliya", "Hadera West", "Or Akiva", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "HaMifratz Central (Coastal Line)", "Kiryat Motzkin", "Karmiel", "Kiryat Shmona"]
+        },
+        {
+            "JLM-RZL": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Ramle South", "Rishon LeZion HaRishonim", "Rishon LeZion Meuyan Sorek", "Rishon LeZion Moshe Dayan", "Bat Yam Komemiyut", "Bat Yam Yoseftal", "Holon Wolfson", "Holon Junction", "Tel Aviv HaHagana", "Tel Aviv Yitzchak Sadeh", "Tel Aviv HaShalom", "Tel Aviv Savidor Center", "Tel Aviv University", "Glilot South", "Glilot North", "Herzliya"]
+        },
+        {
+            "MOD-RZL": ["Modiin Center", "Paatei Modiin", "Ramle South", "Rishon LeZion HaRishonim", "Rishon LeZion Meuyan Sorek", "Rishon LeZion Moshe Dayan"]
+        },
+        {
+            "LOD-HRS": ["Lod", "Lod North", "Teufa", "Elad", "Rosh HaAyin South", "Rosh HaAyin North", "Kfar Saba North", "Tira", "Taybe (Shaar Efrayim)", "Ahitov", "Harish"]
+        },
+        {
+            "LOD-TBR": ["Lod", "Teufa", "Elad", "Rosh HaAyin North", "Kfar Saba North", "Tira", "Taybe (Shaar Efrayim)", "Ahitov", "Hadera East", "Caesarea Pardes Hanna", "Binyamina", "Zichron Yaakov", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "Haifa Beit HaMeches", "HaMifratz Central (Valley Line)", "Nesher", "Yokneam Kfar Yehoshua", "Migdal HaEmek Kfar Baruch", "Nazareth South", "Kfar Tavor", "Golani Junction", "Tiberias"]
+        },
+        {
+            "BSV-NHR": ["Be'er Sheva Center", "Be'er Sheva University", "Be'er Sheva North", "Lehavim Rahat", "Kiryat Gat", "Kfar Menachem", "Kiryat Malachi Yoav", "Mazkeret Batya", "Ramle East", "Ramle", "Lod", "Teufa", "Elad", "Rosh HaAyin North", "Kfar Saba North", "Taybe (Shaar Efrayim)", "Hadera East", "Caesarea Pardes Hanna", "Binyamina", "Zichron Yaakov", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "Haifa Beit HaMeches", "HaMifratz Central (Coastal Line)", "Hutzot HaMifratz", "Kiryat Haim", "Kiryat Motzkin", "Savyonei Yam", "Akko", "Nahariya"]
+        },
+        {
+            "MOD-NHR": ["Modiin Center", "Paatei Modiin", "Ben Gurion Airport", "Tel Aviv Savidor Center", "Glilot South", "Hadera West", "Or Akiva", "Atlit", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "Haifa Beit HaMeches", "HaMifratz Central (Coastal Line)", "Hutzot HaMifratz", "Kiryat Haim", "Kiryat Motzkin", "Savyonei Yam", "Akko", "Nahariya"]
+        },
+        {
+            "BSV-Q8": ["Be'er Sheva Center", "Be'er Sheva University", "Be'er Sheva North", "Kiryat Gat", "Ben Gurion Airport", "Tel Aviv Savidor Center", "Glilot South", "Hadera West", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "Haifa Beit HaMeches", "HaMifratz Central (Valley Line)", "Nesher", "Kiryat Ata", "Shfaram", "Tamra", "Ahihud", "Karmiel", "Amiad", "Rosh Pina", "Gonen", "Kiryat Shmona"]
+        },
+        {
+            "BSN-ATL": ["Beit Shean", "Tel Yosef", "Afula North", "Migdal HaEmek Kfar Baruch", "Yokneam Kfar Yehoshua", "Nesher", "Haifa Beit HaMeches", "Haifa Center HaShmona", "Haifa Bat Galim", "Haifa Hof HaCarmel", "Atlit"] 
+        },
+        {
+            "BSS-NTN": ["Beit Shemesh", "Ramle East", "Ramle", "Lod", "Lod Ganei Aviv", "Kfar Habad", "Tel Aviv HaHagana", "Tel Aviv Yitzchak Sadeh", "Tel Aviv HaShalom", "Tel Aviv Savidor Center", "Tel Aviv University", "Glilot South", "Glilot North", "Herzliya", "Shfayim", "Beit Yehoshua", "Netanya Sapir", "Netanya Michlala", "Netanya"]
+        },
+        {
+            "BSV-ELT": ["Be'er Sheva Center", "Dimona", "Hatzeva", "Ein Yahav", "Sapir", "Paran", "Yahal", "Yotvata", "Ramon Airport", "Eilat"]
+        },
+        {
+            "TA-ELT": ["Glilot South", "Tel Aviv Savidor Center", "Ben Gurion Airport", "Be'er Sheva University", "Dimona", "Ramon Airport", "Eilat"]
+        },
+        {
+            "BSV-YRH": ["Be'er Sheva Center", "Dimona", "Yeruham"]
+        }, 
+        {
+            "ASD-ARD": ["Ashdod Ad Halom", "Ashkelon", "Yad Mordechai", "Sderot", "Netivot", "Ofakim", "Be'er Sheva North", "Be'er Sheva University", "Kuseife", "Arad"]
+        },
+        {
+            "ASK-ZYV": ["Ashkelon", "Ashdod Ad Halom", "Bnei Darom", "Yavne East", "Rehovot Gvirol", "Rehovot", "Beer Yaakov", "Ramle West", "Lod", "Lod Ganei Aviv", "Kfar Habad", "Tel Aviv HaHagana", "Tel Aviv Yitzchak Sadeh", "Tel Aviv HaShalom", "Tel Aviv Savidor Center", "Tel Aviv University", "Glilot South", "Glilot North", "Herzliya", "Shfayim", "Beit Yehoshua", "Netanya Sapir", "Netanya Michlala", "Netanya", "Hadera West", "Hadera North", "Caesarea Pardes Hanna", "Binyamina", "Zichron Yaakov"]
+        }, 
+        {
+            "BSV-HZY": ["Be'er Sheva Center", "Be'er Sheva University", "Be'er Sheva North", "Ofakim", "Netivot", "Sderot", "Yad Mordechai", "Ashkelon", "Ashdod Ad Halom", "Yavne West", "Rishon LeZion Moshe Dayan", "Bat Yam Komemiyut", "Bat Yam Yoseftal", "Holon Wolfson", "Holon Junction", "Tel Aviv HaHagana", "Tel Aviv Yitzchak Sadeh", "Tel Aviv HaShalom", "Tel Aviv Savidor Center", "Tel Aviv University", "Bnei Brak", "Petach Tikva Kiryat Aryeh", "Petach Tikva Sgula", "Rosh HaAyin North", "Kfar Saba Nordau", "Hod HaSharon Sokolov", "Raanana South", "Raanana West", "Herzliya"]
+        },
+        {
+            "JLM-BSV": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Kiryat Gat", "Be'er Sheva North", "Be'er Sheva University", "Be'er Sheva Center"]
+        },
+        {
+            "JLM-ASK": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Rehovot", "Bnei Darom", "Ashdod Ad Halom", "Ashkelon"]
+        }
+    ]
 }
