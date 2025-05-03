@@ -1,60 +1,155 @@
 {
     "lines": [{
-            "JLM-MOD": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Paatei Modiin", "Modiin Center"]
+            "JLM-MOD": {
+                "stops": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Paatei Modiin", "Modiin Center"],
+                "peakFreq": 2,
+                "offPeakFreq": 2,
+                "speed": 160
+            }
         },
         {
-            "JLM-Q8": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Ben Gurion Airport", "Tel Aviv Savidor Center", "Glilot South", "Herzliya", "Hadera West", "Or Akiva", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "HaMifratz Central (Coastal Line)", "Kiryat Motzkin", "Karmiel", "Kiryat Shmona"]
+            "JLM-Q8": {
+                "stops": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Ben Gurion Airport", "Tel Aviv Savidor Center", "Glilot South", "Herzliya", "Hadera West", "Or Akiva", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "HaMifratz Central (Coastal Line)", "Kiryat Motzkin", "Karmiel", "Kiryat Shmona"],
+                "peakFreq": 4,
+                "offPeakFreq": 3,
+                "speed": 250
+            }
         },
         {
-            "JLM-RZL": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Ramle South", "Rishon LeZion HaRishonim", "Rishon LeZion Meuyan Sorek", "Rishon LeZion Moshe Dayan", "Bat Yam Komemiyut", "Bat Yam Yoseftal", "Holon Wolfson", "Holon Junction", "Tel Aviv HaHagana", "Tel Aviv Yitzchak Sadeh", "Tel Aviv HaShalom", "Tel Aviv Savidor Center", "Tel Aviv University", "Glilot South", "Glilot North", "Herzliya"]
+            "JLM-RZL": {
+                "stops": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Ramle South", "Rishon LeZion HaRishonim", "Rishon LeZion Meuyan Sorek", "Rishon LeZion Moshe Dayan", "Bat Yam Komemiyut", "Bat Yam Yoseftal", "Holon Wolfson", "Holon Junction", "Tel Aviv HaHagana", "Tel Aviv Yitzchak Sadeh", "Tel Aviv HaShalom", "Tel Aviv Savidor Center", "Tel Aviv University", "Glilot South", "Glilot North", "Herzliya"],
+                "peakFreq": 3,
+                "offPeakFreq": 2,
+                "speed": 160
+            }
         },
         {
-            "MOD-RZL": ["Modiin Center", "Paatei Modiin", "Ramle South", "Rishon LeZion HaRishonim", "Rishon LeZion Meuyan Sorek", "Rishon LeZion Moshe Dayan"]
+            "MOD-RZL": {
+                "stops": ["Modiin Center", "Paatei Modiin", "Ramle South", "Rishon LeZion HaRishonim", "Rishon LeZion Meuyan Sorek", "Rishon LeZion Moshe Dayan"],
+                "peakFreq": 3,
+                "offPeakFreq": 2,
+                "speed": 160
+            }
         },
         {
-            "LOD-HRS": ["Lod", "Lod North", "Teufa", "Elad", "Rosh HaAyin South", "Rosh HaAyin North", "Kfar Saba North", "Tira", "Taybe (Shaar Efrayim)", "Ahitov", "Harish"]
+            "LOD-HRS": {
+                "stops": ["Lod", "Lod North", "Teufa", "Elad", "Rosh HaAyin South", "Rosh HaAyin North", "Kfar Saba North", "Tira", "Taybe (Shaar Efrayim)", "Ahitov", "Harish"],
+                "peakFreq": 3,
+                "offPeakFreq": 2,
+                "speed": 160
+            }
         },
         {
-            "LOD-TBR": ["Lod", "Teufa", "Elad", "Rosh HaAyin North", "Kfar Saba North", "Tira", "Taybe (Shaar Efrayim)", "Ahitov", "Hadera East", "Caesarea Pardes Hanna", "Binyamina", "Zichron Yaakov", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "Haifa Beit HaMeches", "HaMifratz Central (Valley Line)", "Nesher", "Yokneam Kfar Yehoshua", "Migdal HaEmek Kfar Baruch", "Nazareth South", "Kfar Tavor", "Golani Junction", "Tiberias"]
+            "LOD-TBR": {
+                "stops": ["Lod", "Teufa", "Elad", "Rosh HaAyin North", "Kfar Saba North", "Tira", "Taybe (Shaar Efrayim)", "Ahitov", "Hadera East", "Caesarea Pardes Hanna", "Binyamina", "Zichron Yaakov", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "Haifa Beit HaMeches", "HaMifratz Central (Valley Line)", "Nesher", "Yokneam Kfar Yehoshua", "Migdal HaEmek Kfar Baruch", "Nazareth South", "Kfar Tavor", "Golani Junction", "Tiberias"],
+                "peakFreq": 1,
+                "offPeakFreq": 1,
+                "speed": 160
+            }
         },
         {
-            "BSV-NHR": ["Be'er Sheva Center", "Be'er Sheva University", "Be'er Sheva North", "Lehavim Rahat", "Kiryat Gat", "Kfar Menachem", "Kiryat Malachi Yoav", "Mazkeret Batya", "Ramle East", "Ramle", "Lod", "Teufa", "Elad", "Rosh HaAyin North", "Kfar Saba North", "Taybe (Shaar Efrayim)", "Hadera East", "Caesarea Pardes Hanna", "Binyamina", "Zichron Yaakov", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "Haifa Beit HaMeches", "HaMifratz Central (Coastal Line)", "Hutzot HaMifratz", "Kiryat Haim", "Kiryat Motzkin", "Savyonei Yam", "Akko", "Nahariya"]
+            "BSV-NHR": {
+                "stops": ["Be'er Sheva Center", "Be'er Sheva University", "Be'er Sheva North", "Lehavim Rahat", "Kiryat Gat", "Kfar Menachem", "Kiryat Malachi Yoav", "Mazkeret Batya", "Ramle East", "Ramle", "Lod", "Teufa", "Elad", "Rosh HaAyin North", "Kfar Saba North", "Taybe (Shaar Efrayim)", "Hadera East", "Caesarea Pardes Hanna", "Binyamina", "Zichron Yaakov", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "Haifa Beit HaMeches", "HaMifratz Central (Coastal Line)", "Hutzot HaMifratz", "Kiryat Haim", "Kiryat Motzkin", "Savyonei Yam", "Akko", "Nahariya"],
+                "peakFreq": 2,
+                "offPeakFreq": 2,
+                "speed": 160
+            }
         },
         {
-            "MOD-NHR": ["Modiin Center", "Paatei Modiin", "Ben Gurion Airport", "Tel Aviv Savidor Center", "Glilot South", "Hadera West", "Or Akiva", "Atlit", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "Haifa Beit HaMeches", "HaMifratz Central (Coastal Line)", "Hutzot HaMifratz", "Kiryat Haim", "Kiryat Motzkin", "Savyonei Yam", "Akko", "Nahariya"]
+            "MOD-NHR": {
+                "stops": ["Modiin Center", "Paatei Modiin", "Ben Gurion Airport", "Tel Aviv Savidor Center", "Glilot South", "Hadera West", "Or Akiva", "Atlit", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "Haifa Beit HaMeches", "HaMifratz Central (Coastal Line)", "Hutzot HaMifratz", "Kiryat Haim", "Kiryat Motzkin", "Savyonei Yam", "Akko", "Nahariya"],
+                "peakFreq": 3,
+                "offPeakFreq": 3,
+                "speed": 250
+            }
         },
         {
-            "BSV-Q8": ["Be'er Sheva Center", "Be'er Sheva University", "Be'er Sheva North", "Kiryat Gat", "Ben Gurion Airport", "Tel Aviv Savidor Center", "Glilot South", "Hadera West", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "Haifa Beit HaMeches", "HaMifratz Central (Valley Line)", "Nesher", "Kiryat Ata", "Shfaram", "Tamra", "Ahihud", "Karmiel", "Amiad", "Rosh Pina", "Gonen", "Kiryat Shmona"]
+            "BSV-Q8": {
+                "stops": ["Be'er Sheva Center", "Be'er Sheva University", "Be'er Sheva North", "Kiryat Gat", "Ben Gurion Airport", "Tel Aviv Savidor Center", "Glilot South", "Hadera West", "Haifa Hof HaCarmel", "Haifa Bat Galim", "Haifa Center HaShmona", "Haifa Beit HaMeches", "HaMifratz Central (Valley Line)", "Nesher", "Kiryat Ata", "Shfaram", "Tamra", "Ahihud", "Karmiel", "Amiad", "Rosh Pina", "Gonen", "Kiryat Shmona"],
+                "peakFreq": 3,
+                "offPeakFreq": 3,
+                "speed": 250
+            }
         },
         {
-            "BSN-ATL": ["Beit Shean", "Tel Yosef", "Afula North", "Migdal HaEmek Kfar Baruch", "Yokneam Kfar Yehoshua", "Nesher", "Haifa Beit HaMeches", "Haifa Center HaShmona", "Haifa Bat Galim", "Haifa Hof HaCarmel", "Atlit"] 
+            "BSN-ATL": {
+                "stops": ["Beit Shean", "Tel Yosef", "Afula North", "Migdal HaEmek Kfar Baruch", "Yokneam Kfar Yehoshua", "Nesher", "Haifa Beit HaMeches", "Haifa Center HaShmona", "Haifa Bat Galim", "Haifa Hof HaCarmel", "Atlit"],
+                "peakFreq": 2,
+                "offPeakFreq": 1,
+                "speed": 160
+            }
         },
         {
-            "BSS-NTN": ["Beit Shemesh", "Ramle East", "Ramle", "Lod", "Lod Ganei Aviv", "Kfar Habad", "Tel Aviv HaHagana", "Tel Aviv Yitzchak Sadeh", "Tel Aviv HaShalom", "Tel Aviv Savidor Center", "Tel Aviv University", "Glilot South", "Glilot North", "Herzliya", "Shfayim", "Beit Yehoshua", "Netanya Sapir", "Netanya Michlala", "Netanya"]
+            "BSS-NTN": {
+                "stops": ["Beit Shemesh", "Ramle East", "Ramle", "Lod", "Lod Ganei Aviv", "Kfar Habad", "Tel Aviv HaHagana", "Tel Aviv Yitzchak Sadeh", "Tel Aviv HaShalom", "Tel Aviv Savidor Center", "Tel Aviv University", "Glilot South", "Glilot North", "Herzliya", "Shfayim", "Beit Yehoshua", "Netanya Sapir", "Netanya Michlala", "Netanya"],
+                "peakFreq": 4,
+                "offPeakFreq": 2,
+                "speed": 160
+            }
         },
         {
-            "BSV-ELT": ["Be'er Sheva Center", "Dimona", "Hatzeva", "Ein Yahav", "Sapir", "Paran", "Yahal", "Yotvata", "Ramon Airport", "Eilat"]
+            "BSV-ELT": {
+                "stops": ["Be'er Sheva Center", "Dimona", "Hatzeva", "Ein Yahav", "Sapir", "Paran", "Yahal", "Yotvata", "Ramon Airport", "Eilat"],
+                "peakFreq": 1,
+                "offPeakFreq": 1,
+                "speed": 250
+            }
         },
         {
-            "TA-ELT": ["Glilot South", "Tel Aviv Savidor Center", "Ben Gurion Airport", "Be'er Sheva University", "Dimona", "Ramon Airport", "Eilat"]
+            "TA-ELT": {
+                "stops": ["Glilot South", "Tel Aviv Savidor Center", "Ben Gurion Airport", "Be'er Sheva University", "Dimona", "Ramon Airport", "Eilat"],
+                "peakFreq": 1,
+                "offPeakFreq": 1,
+                "speed": 250
+            }
         },
         {
-            "BSV-YRH": ["Be'er Sheva Center", "Dimona", "Yeruham"]
-        }, 
-        {
-            "ASD-ARD": ["Ashdod Ad Halom", "Ashkelon", "Yad Mordechai", "Sderot", "Netivot", "Ofakim", "Be'er Sheva North", "Be'er Sheva University", "Kuseife", "Arad"]
+            "BSV-YRH": {
+                "stops": ["Be'er Sheva Center", "Dimona", "Yeruham"],
+                "peakFreq": 1,
+                "offPeakFreq": 1,
+                "speed": 160
+            }
         },
         {
-            "ASK-ZYV": ["Ashkelon", "Ashdod Ad Halom", "Bnei Darom", "Yavne East", "Rehovot Gvirol", "Rehovot", "Beer Yaakov", "Ramle West", "Lod", "Lod Ganei Aviv", "Kfar Habad", "Tel Aviv HaHagana", "Tel Aviv Yitzchak Sadeh", "Tel Aviv HaShalom", "Tel Aviv Savidor Center", "Tel Aviv University", "Glilot South", "Glilot North", "Herzliya", "Shfayim", "Beit Yehoshua", "Netanya Sapir", "Netanya Michlala", "Netanya", "Hadera West", "Hadera North", "Caesarea Pardes Hanna", "Binyamina", "Zichron Yaakov"]
-        }, 
-        {
-            "BSV-HZY": ["Be'er Sheva Center", "Be'er Sheva University", "Be'er Sheva North", "Ofakim", "Netivot", "Sderot", "Yad Mordechai", "Ashkelon", "Ashdod Ad Halom", "Yavne West", "Rishon LeZion Moshe Dayan", "Bat Yam Komemiyut", "Bat Yam Yoseftal", "Holon Wolfson", "Holon Junction", "Tel Aviv HaHagana", "Tel Aviv Yitzchak Sadeh", "Tel Aviv HaShalom", "Tel Aviv Savidor Center", "Tel Aviv University", "Bnei Brak", "Petach Tikva Kiryat Aryeh", "Petach Tikva Sgula", "Rosh HaAyin North", "Kfar Saba Nordau", "Hod HaSharon Sokolov", "Raanana South", "Raanana West", "Herzliya"]
+            "ASD-ARD": {
+                "stops": ["Ashdod Ad Halom", "Ashkelon", "Yad Mordechai", "Sderot", "Netivot", "Ofakim", "Be'er Sheva North", "Be'er Sheva University", "Kuseife", "Arad"],
+                "peakFreq": 2,
+                "offPeakFreq": 2,
+                "speed": 160
+            }
         },
         {
-            "JLM-BSV": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Kiryat Gat", "Be'er Sheva North", "Be'er Sheva University", "Be'er Sheva Center"]
+            "ASK-ZYV": {
+                "stops": ["Ashkelon", "Ashdod Ad Halom", "Bnei Darom", "Yavne East", "Rehovot Gvirol", "Rehovot", "Beer Yaakov", "Ramle West", "Lod", "Lod Ganei Aviv", "Kfar Habad", "Tel Aviv HaHagana", "Tel Aviv Yitzchak Sadeh", "Tel Aviv HaShalom", "Tel Aviv Savidor Center", "Tel Aviv University", "Glilot South", "Glilot North", "Herzliya", "Shfayim", "Beit Yehoshua", "Netanya Sapir", "Netanya Michlala", "Netanya", "Hadera West", "Hadera North", "Caesarea Pardes Hanna", "Binyamina", "Zichron Yaakov"],
+                "peakFreq": 6,
+                "offPeakFreq": 4,
+                "speed": 160
+            }
         },
         {
-            "JLM-ASK": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Rehovot", "Bnei Darom", "Ashdod Ad Halom", "Ashkelon"]
+            "BSV-HZY": {
+                "stops": ["Be'er Sheva Center", "Be'er Sheva University", "Be'er Sheva North", "Ofakim", "Netivot", "Sderot", "Yad Mordechai", "Ashkelon", "Ashdod Ad Halom", "Yavne West", "Rishon LeZion Moshe Dayan", "Bat Yam Komemiyut", "Bat Yam Yoseftal", "Holon Wolfson", "Holon Junction", "Tel Aviv HaHagana", "Tel Aviv Yitzchak Sadeh", "Tel Aviv HaShalom", "Tel Aviv Savidor Center", "Tel Aviv University", "Bnei Brak", "Petach Tikva Kiryat Aryeh", "Petach Tikva Sgula", "Rosh HaAyin North", "Kfar Saba Nordau", "Hod HaSharon Sokolov", "Raanana South", "Raanana West", "Herzliya"],
+                "peakFreq": 6,
+                "offPeakFreq": 4,
+                "speed": 160
+            }
+        },
+        {
+            "JLM-BSV": {
+                "stops": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Kiryat Gat", "Be'er Sheva North", "Be'er Sheva University", "Be'er Sheva Center"],
+                "peakFreq": 2,
+                "offPeakFreq": 2,
+                "speed": 250
+            }
+        },
+        {
+            "JLM-ASK": {
+                "stops": ["Jerusalem Center", "Jerusalem Yitzchak Navon", "Rehovot", "Bnei Darom", "Ashdod Ad Halom", "Ashkelon"],
+                "peakFreq": 2,
+                "offPeakFreq": 2,
+                "speed": 160
+            }
         }
     ]
 }

@@ -76,6 +76,7 @@ let scheduleData = null;
 let serviceRoutes = {}; // Loaded from preprocessed_station_distances.json
 let railServiceLegs = {}; // Loaded from service_legs.geojson
 let railServiceStops = {}; // Loaded from service_stops.geojson
+let mainlineOps = {};
 let G = {}; // Network Graph
 let gr;
 let wayfinderActive = false;
@@ -95,7 +96,7 @@ const STATION_TOLERANCE = 30; // meters tolerance
 const VEHICLE_SPEEDS = {
     METRO: 80 * 1000 / 3600, //80kmh
     LRT: 60 * 1000 / 3600, //60kmh
-    HEAVYRAIL: 120 * 1000 / 3600 //120kmh
+    MAINLINE: 120 * 1000 / 3600 //120kmh
 };
 const SERVICE_PATTERNS = {
     M1: {
@@ -1228,18 +1229,23 @@ Promise.all([
             if (!res.ok) throw new Error("Failed to load rail service data");
             return res.json();
         }),
+        fetch('data/RAIL/mainline_services.json').then(res => {
+            if (!res.ok) throw new Error("Failed to load rail service data");
+            return res.json();              
+        }),
         fetch('data/network/network_graph.json').then(res => {
             if (!res.ok) throw new Error("Failed to load network graph");
             return res.json();
         })
     ])
-    .then(([schedule, routes, railroutes, railStations, legs, stops, graph]) => {
+    .then(([schedule, routes, railroutes, railStations, legs, stops, heavyRailOps, graph]) => {
         scheduleData = schedule;
         console.log("Loaded schedule data:", scheduleData);
         serviceRoutes = routes;
         console.log("Loaded service routes:", serviceRoutes);
         railServiceLegs = legs;
         railServiceStops = stops;
+        mainlineOps = heavyRailOps;
         console.log("Loaded rail data");
         // Initialise the network graph of edges and nodes, together with a lookup to get stations by id
         G = graph;
@@ -1496,7 +1502,7 @@ class Train {
         // For next station lookup based on stationData.
         this.nextStationIndex = 1;
         this.updateNextStationIndex();
-        this.lineString = turf.lineString(this.route); // <-- cache it here!
+        this.lineString = turf.lineString(this.route); // TODO: cache it
 
         let posFeature = turf.along(this.lineString, this.distance / 1000, {
             units: "kilometers"
@@ -1596,7 +1602,9 @@ class Train {
         const dest = this.direction === 1
             ? this.stationData[this.stationData.length - 1]
             : this.stationData[0];
-        console.log("Destination station:", dest);       
+        try {
+            console.log("Service:", dest.properties.service_id);       
+        } catch (error) {}
         return (dest.name && dest.name[currentLang]) || dest.id || dest.properties.station_name;
     }
     
@@ -1660,7 +1668,7 @@ class Train {
         // if (this.checkHeadway()) {
             const currentSpeed = (this.vehicleType === 'METRO') ? VEHICLE_SPEEDS.METRO
                 : (this.vehicleType === 'LRT') ? VEHICLE_SPEEDS.LRT
-                : VEHICLE_SPEEDS.HEAVYRAIL;
+                : VEHICLE_SPEEDS.MAINLINE;
 
             this.distance += currentSpeed * deltaTime * timeScale * this.direction;
 
@@ -1736,8 +1744,6 @@ function startSimulation() {
                 console.error(`Route data not found for branch: ${branchId}`);
                 return;
             }
-            
-    
             const routeLength = turf.length(turf.lineString(route.coords)) * 1000;
             let vtype; // Vehicle type
             // Use a heuristic average speed to account for stopping, accelerating and decelerating.
@@ -1814,28 +1820,6 @@ function startSimulation() {
                 trains.push(...trainsInDir);
             });
 
-            // [-1, 1].forEach(direction => {
-            //     const directionTrains = [];
-            //     for (let i = 0; i < trainsPerDirection; i++) {
-            //         const spacing = routeLength / trainsPerDirection;
-            //         const offset = direction === 1 ? i * spacing : routeLength - (i * spacing);
-            //         let trainLabel;
-            //         if (lineId.startsWith('M')) {
-            //             trainLabel = lineId.charAt(1);
-            //         } else {
-            //             trainLabel = lineId.charAt(0);
-            //         }
-            //         let train = new Train(route, trainLabel, lineColours[lineId.split('_')[0]], offset);
-            //         train.direction = direction;
-            //         train.branchId = branchId;
-            //         directionTrains.push(train);
-            //     }
-            //     directionTrains.forEach((train, i) => {
-            //         train.ahead = directionTrains[(i + 1) % directionTrains.length];
-            //         train.behind = directionTrains[(i - 1 + directionTrains.length) % directionTrains.length];
-            //     });
-            //     trains.push(...directionTrains);
-            // });
         });
     });
     if (frameId) cancelAnimationFrame(frameId); // Stop previous animation loop to prevent multiple loops and sim slowing down
@@ -1851,105 +1835,26 @@ function startSimulation() {
         }
         frameId = requestAnimationFrame(animate);
     }
+
     animate();
     //Spawn heavy rail trains
-    spawnHeavyRailTrains();
-
+    spawnHeavyRailTrains(mainlineOps);
 }
-// // --- Heavy Rail Simulation: JLM-MOD Line ---
-// // 1. Get all legs for JLM-MOD
-// const jlmModLegs = railServiceLegs.features.filter(
-//     f => f.properties.service_id === "JLM-MOD"
-// );
 
-// // 2. Sort legs in correct order (if needed)
-// // If your legs are already in order, you can skip this step. 
-// // Otherwise, you may need to sort by a property like 'leg_sequence' or reconstruct the order by matching endpoints.
-// // For now, we'll assume they're in order as in the file.
+mainlinePolys = {};
 
-// if (jlmModLegs.length > 0) {
-//     // 3. Concatenate all coordinates, making sure not to duplicate endpoints
-//     let jlmModCoords = [];
-//     jlmModLegs.forEach((leg, idx) => {
-//         const coords = leg.geometry.coordinates;
-//         if (idx === 0) {
-//             jlmModCoords.push(...coords);
-//         } else {
-//             // Avoid duplicating the first coordinate of each subsequent leg
-//             jlmModCoords.push(...coords.slice(1));
-//         }
-//     });
-
-//     // 4. Find all stops for this line, sorted by their sequence/order
-//     const jlmModStops = railServiceStops.features
-//         .filter(f => f.properties.service_id === "JLM-MOD")
-//         .sort((a, b) => a.properties.stop_sequence - b.properties.stop_sequence);
-
-//     // 5. Build station objects with distance along the line
-//     const lineString = turf.lineString(jlmModCoords);
-//     const stations = jlmModStops.map(stop => {
-//         const pt = turf.point(stop.geometry.coordinates);
-//         return {
-//             id: stop.properties.stop_id,
-//             name: { en: stop.properties.name_en, he: stop.properties.name_he },
-//             distance: turf.length(turf.lineSlice(jlmModCoords[0], stop.geometry.coordinates, lineString)) * 1000
-//         };
-//     });
-
-//     stations.sort((a, b) => a.distance - b.distance);
-
-//     // Heavy rail parameters
-//     const heavyRailColor = "#444";
-//     // const heavyRailLabel = "RWY";
-//     const heavyRailLabel = '<ion-icon name="train-sharp"></ion-icon>';
-//     const heavyRailSpeed = 120 * 1000 / 3600;
-//     const heavyRailFrequency = 2;
-//     const headway = 60 / heavyRailFrequency;
-
-//     const routeLength = turf.length(lineString) * 1000;
-//     const avgSpeed = heavyRailSpeed * 0.5;
-//     const roundTripTime = (2 * routeLength) / avgSpeed;
-//     const trainsPerDirection = Math.ceil((roundTripTime / 60) / headway / 2);
-//     const totalTrains = 2 * trainsPerDirection;
-
-//     let oppositeDirOffset = (routeLength / totalTrains) / 2;
-//     for (let i = 0; i < totalTrains; i++) {
-//         const direction = i % 2 === 0 ? 1 : -1;
-//         const index = Math.floor(i / 2);
-//         const spacing = routeLength / trainsPerDirection;
-//         let offset;
-//         if (direction === 1) {
-//             offset = index * spacing;
-//         } else {
-//             offset = routeLength - (index * spacing) - oppositeDirOffset;
-//         }
-//         const routeObj = {
-//             coords: jlmModCoords,
-//             stations: stations
-//         };
-//         let train = new Train(routeObj, heavyRailLabel, heavyRailColor, offset);
-//         train.direction = direction;
-//         train.vehicleType = "HEAVYRAIL";
-//         trains.push(train);
-//     }
-// }
-// }
-
-function spawnHeavyRailTrains() {
+function spawnHeavyRailTrains(operatingDetails) {
     if (!railServiceLegs?.features || !railServiceStops?.features) return;
-
     // Get all unique heavy rail service_ids
     const heavyRailLines = [
         ...new Set(railServiceLegs.features.map(f => f.properties.service_id))
     ];
-
     heavyRailLines.forEach(serviceId => {
         // 1. Get all legs for this line
         const legs = railServiceLegs.features.filter(
             f => f.properties.service_id === serviceId
         );
         if (legs.length === 0) return;
-
         // 2. Concatenate all coordinates, making sure not to duplicate endpoints
         let coords = [];
         legs.forEach((leg, idx) => {
@@ -1977,9 +1882,13 @@ function spawnHeavyRailTrains() {
         // 5. Heavy rail parameters
         const heavyRailColor = "#444";
         const heavyRailLabel = "<ion-icon name='train-sharp'></ion-icon>";
-        // const heavyRailLabel = "RWY";
-        const heavyRailSpeed = 120 * 1000 / 3600; //TODO 160 or 250
-        const heavyRailFrequency = 1;
+        // Set the appropriate speed and frequency for heavy rail trains;
+        // Intercity trains between BSV, Q8, TA, JLM and HFA run at 250km/h
+        // all the rest at 160km/h (in theory)
+        let l = operatingDetails.lines.find(obj => obj.hasOwnProperty(serviceId))
+        const heavyRailSpeed = l[serviceId].speed * 1000 / 3600; // Convert km/h to m/s 
+        const timePeriod = document.getElementById("timePeriodSelect").value
+        const heavyRailFrequency = timePeriod === "peaks" ? l[serviceId].peakFreq : l[serviceId].offPeakFreq; // Frequency in tph
         const headway = 60 / heavyRailFrequency;
 
         const routeLength = turf.length(lineString) * 1000;
@@ -1987,7 +1896,7 @@ function spawnHeavyRailTrains() {
         const roundTripTime = (2 * routeLength) / avgSpeed;
         const trainsPerDirection = Math.ceil((roundTripTime / 60) / headway / 2);
         const totalTrains = 2 * trainsPerDirection;
-
+        console.log("Trains per direction for line", serviceId, " ", trainsPerDirection);
         let oppositeDirOffset = (routeLength / totalTrains) / 2;
         for (let i = 0; i < totalTrains; i++) {
             const direction = i % 2 === 0 ? 1 : -1;
@@ -2001,11 +1910,11 @@ function spawnHeavyRailTrains() {
             }
             const routeObj = {
                 coords: coords,
-                stations: stops
+                stations: stations
             };
             let train = new Train(routeObj, heavyRailLabel, heavyRailColor, offset);
             train.direction = direction;
-            train.vehicleType = "HEAVYRAIL";
+            train.vehicleType = "MAINLINE";
             trains.push(train);
         }
     });
