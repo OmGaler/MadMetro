@@ -145,64 +145,93 @@ export class PriorityQueue {
  * This algorithm tracks the current line along each path.
  * When a transfer occurs (i.e. the line changes), it adds a transfer penalty (in minutes).
  ********************************************/
-export function dijkstraWithTransfers(graph, start, end) {
-    const distances = {};
+export function dijkstraWithTransfers(graph, start, end, pref = 'quickest') {
+    const distances = {}; // Travel time
+    const transfers = {}; // Number of transfers
     const previous = {};
     const queue = new PriorityQueue();
 
-    // Initialize distances and previous mapping
+    // Initialize distances, transfers and previous mapping
     for (let node in graph) {
         distances[node] = Infinity;
+        transfers[node] = Infinity;
         previous[node] = null;
     }
 
     // Start at the starting node with no assigned line
     distances[start] = 0;
+    transfers[start] = 0;
     queue.enqueue({
         node: start,
-        line: null
+        line: null,
+        transferCount: 0
     }, 0);
 
     while (!queue.isEmpty()) {
         const currentObj = queue.dequeue().element;
         const current = currentObj.node;
         const currentLine = currentObj.line;
+        const currentTransfers = currentObj.transferCount;
 
         if (current == end) break;
 
         for (const neighbor of graph[current]) {
-            const {
+            const { 
                 node: nextNode,
-                weight,
-                line
+                weight, 
+                line 
             } = neighbor;
 
-            // Apply a transfer penalty if switching lines
+            let newTransfers = currentTransfers;
+            // Add a transfer penalty if switching lines
             let transferPenalty = 0;
             if (currentLine && currentLine !== line) {
-                transferPenalty = 2; // 2 minute transfer penalty
+                newTransfers += 1;
+                transferPenalty = 2; // 2 minutes for a transfer
+            }
+            const newDistance = distances[current] + weight + transferPenalty;
+            // Set priority based on user preference
+            let priority;
+            if (pref === 'fewest_changes') {
+                // For fewest changes: primary sort by transfers, secondary by time
+                priority = (newTransfers * 1e5) + newDistance;
+            } else {
+                // For quickest: sort only by time 
+                priority = newDistance + newTransfers;
             }
 
-            const newTime = distances[current] + weight + transferPenalty;
-            if (newTime < distances[nextNode]) {
-                distances[nextNode] = newTime;
+            // Check if this path is better than what we have
+            const isBetterPath = 
+                (pref === 'fewest_changes' && 
+                    (newTransfers < transfers[nextNode] || 
+                     (newTransfers === transfers[nextNode] && newDistance < distances[nextNode]))) ||
+                (pref === 'quickest' && 
+                    newDistance + transferPenalty < distances[nextNode]);
+
+            if (isBetterPath) {
+                // Update with the better path
+                distances[nextNode] = newDistance;
+                transfers[nextNode] = newTransfers;
                 previous[nextNode] = {
                     station: current,
                     line: line
                 };
                 queue.enqueue({
                     node: nextNode,
-                    line: line
-                }, newTime);
+                    line: line,
+                    transferCount: newTransfers
+                }, priority);
             }
         }
     }
 
     return {
         distances,
+        transfers,
         previous
     };
 }
+
 /********************************************
  * Path Reconstruction with Transfers
  * Reconstructs the route and detects transfer points based on line changes.

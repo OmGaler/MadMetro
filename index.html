@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-i18n="title"></title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@turf/turf/turf.min.js"></script>
-    
+
 </head>
 
 <body>
@@ -260,7 +260,7 @@
                 <!-- Show Stations & Routes Toggle Section -->
                 <div class="toggle-option">
                     <!--TODO: Align middle icons and text -->
-                    <ion-icon name="git-branch-outline"></ion-icon> 
+                    <ion-icon name="git-branch-outline"></ion-icon>
                     <div class="toggle-info">
                         <h3 data-i18n="toggle-routes">Show Stations & Routes</h3>
                         <p class="toggle-description" data-i18n="toggle-routes-detail">Display stations and route
@@ -273,11 +273,12 @@
                 </div>
                 <!-- Show Heavy Rail -->
                 <div class="toggle-option">
-                    <ion-icon name="swap-horizontal"></ion-icon> 
+                    <ion-icon name="swap-horizontal"></ion-icon>
                     <!-- <ion-icon name="train-sharp"></ion-icon>  -->
                     <div class="toggle-info">
                         <h3 data-i18n="toggle-heavy">Show Heavy Rail</h3>
-                        <p class="toggle-description" data-i18n="toggle-heavy-detail">Display intercity heavy rail stations and lines</p>
+                        <p class="toggle-description" data-i18n="toggle-heavy-detail">Display intercity heavy rail
+                            stations and lines</p>
                     </div>
                     <label class="switch">
                         <input type="checkbox" id="toggleRail" checked>
@@ -320,10 +321,10 @@
     <!-- Wayfinder Pane -->
     <div id="wayfinderPane">
         <div class="wayfinder-content">
-        <div class="wayfinder-header">
-            <span class="modal-title" data-i18n="wayfinder">Wayfinder</span>
-            <span class="close">&times;</span>
-        </div>
+            <div class="wayfinder-header">
+                <span class="modal-title" data-i18n="wayfinder">Wayfinder</span>
+                <span class="close">&times;</span>
+            </div>
             <div class="toggle-option description-top">
                 <ion-icon name="enter-outline" id="start-icon"></ion-icon>
                 <div class="toggle-container">
@@ -358,12 +359,22 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+                <div id="routePreferenceContainer" style="margin: 10px 0; display: flex; gap: 10px;">
+                    <label>
+                        <input type="radio" name="routingPref" value="quickest" checked>
+                        Quickest
+                    </label>
+                    <label>
+                        <input type="radio" name="routingPref" value="fewest_changes">
+                        Fewest Changes
+                    </label>
+                </div>
             <!-- Route Details Container -->
             <div class="route-details-container">
                 <!-- Route details will be dynamically populated here -->
-                <p class="text-center text-muted" data-i18n="find-route">Select a start and end station from the list or by clicking on the map to view route details.</p>
+                <p class="text-center text-muted" data-i18n="find-route">Select a start and end station from the list or
+                    by clicking on the map to view route details.</p>
             </div>
         </div>
     </div>

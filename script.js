@@ -1002,8 +1002,9 @@ function getRoute(startNode, endNode) {
     if (startNode === endNode) {
         return;
     }
-    const { distances, previous } = dijkstraWithTransfers(gr, startNode, endNode);
-    // const { path, transfers, journeyTime } = reconstructPathWithTransfers(previous, distances, startNode, endNode);
+    // Get the routing preference
+    const routingPref = document.querySelector('input[name="routingPref"]:checked')?.value || "quickest";
+    const { distances, previous } = dijkstraWithTransfers(gr, startNode, endNode, routingPref);
     const route = reconstructPathWithTransfers(previous, distances, startNode, endNode);
     console.log("Route path:", route.path.map(p => `${stationLookup[p.station].name.en|| "Station not found"} (${p.line})`).join(" → "));
     console.log("Transfers:", route.transfers.length > 0 ? route.transfers : "No transfers needed.");
@@ -1190,8 +1191,9 @@ document.getElementById("timePeriodSelect").addEventListener("change", function 
 });
 document.getElementById("startStationSelect").addEventListener("change", stationSelection);
 document.getElementById("endStationSelect").addEventListener("change", stationSelection);
-
-
+document.querySelectorAll('input[name="routingPref"]').forEach(radio => {
+    radio.addEventListener("change", stationSelection);
+});
 
 function updateOperationSettings() {
     const dayType = document.getElementById("dayTypeSelect").value;
