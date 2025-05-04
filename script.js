@@ -1206,6 +1206,7 @@ function updateOperationSettings() {
 /********************************************
  * Load Service Data & Start Simulation
  ********************************************/
+let heavyRailRoutes = {}; // Loaded from preprocessed_heavyrail_distances.json
 Promise.all([
         fetch('data/schedule.json').then(res => {
             if (!res.ok) throw new Error("Failed to load schedule data");
@@ -1238,9 +1239,13 @@ Promise.all([
         fetch('data/network/network_graph.json').then(res => {
             if (!res.ok) throw new Error("Failed to load network graph");
             return res.json();
+        }),
+        fetch('data/network/preprocessed_mainline_distances.json').then(res => {
+            if (!res.ok) throw new Error("Failed to load preprocessed mainline distances");
+            return res.json();
         })
     ])
-    .then(([schedule, routes, railroutes, railStations, legs, stops, heavyRailOps, graph]) => {
+    .then(([schedule, routes, railroutes, railStations, legs, stops, heavyRailOps, graph, heavyRailPreproc]) => {
         scheduleData = schedule;
         console.log("Loaded schedule data:", scheduleData);
         serviceRoutes = routes;
@@ -1248,6 +1253,7 @@ Promise.all([
         railServiceLegs = legs;
         railServiceStops = stops;
         mainlineOps = heavyRailOps;
+        heavyRailRoutes = heavyRailPreproc;
         console.log("Loaded rail data");
         // Initialise the network graph of edges and nodes, together with a lookup to get stations by id
         G = graph;
@@ -1843,9 +1849,52 @@ function startSimulation() {
     spawnHeavyRailTrains(mainlineOps);
 }
 
-mainlinePolys = {};
-
 function spawnHeavyRailTrains(operatingDetails) {
+    // Use preprocessed heavyRailRoutes if available
+    if (Object.keys(heavyRailRoutes).length > 0) {
+        Object.keys(heavyRailRoutes).forEach(serviceId => {
+            const routeObj = heavyRailRoutes[serviceId];
+            if (!routeObj) return;
+            const coords = routeObj.coords;
+            const stations = routeObj.stations;
+            // 5. Heavy rail parameters
+            const heavyRailColor = "#444";
+            const heavyRailLabel = "<ion-icon name='train-sharp'></ion-icon>";
+            // Set the appropriate speed and frequency for heavy rail trains;
+            let l = operatingDetails.lines.find(obj => obj.hasOwnProperty(serviceId))
+            if (!l) return;
+            const heavyRailSpeed = l[serviceId].speed * 1000 / 3600; // Convert km/h to m/s 
+            const timePeriod = document.getElementById("timePeriodSelect").value
+            const heavyRailFrequency = timePeriod === "peaks" ? l[serviceId].peakFreq : l[serviceId].offPeakFreq; // Frequency in tph
+            const headway = 60 / heavyRailFrequency;
+
+            const lineString = turf.lineString(coords);
+            const routeLength = turf.length(lineString) * 1000;
+            const avgSpeed = heavyRailSpeed * 0.5;
+            const roundTripTime = (2 * routeLength) / avgSpeed;
+            const trainsPerDirection = Math.ceil((roundTripTime / 60) / headway / 2);
+            const totalTrains = 2 * trainsPerDirection;
+            console.log("Trains per direction for line", serviceId, " ", trainsPerDirection);
+            let oppositeDirOffset = (routeLength / totalTrains) / 2;
+            for (let i = 0; i < totalTrains; i++) {
+                const direction = i % 2 === 0 ? 1 : -1;
+                const index = Math.floor(i / 2);
+                const spacing = routeLength / trainsPerDirection;
+                let offset;
+                if (direction === 1) {
+                    offset = index * spacing;
+                } else {
+                    offset = routeLength - (index * spacing) - oppositeDirOffset;
+                }
+                let train = new Train({ coords, stations }, heavyRailLabel, heavyRailColor, offset);
+                train.direction = direction;
+                train.vehicleType = "MAINLINE";
+                trains.push(train);
+            }
+        });
+        return;
+    }
+    // ...existing code for fallback (old method)...
     if (!railServiceLegs?.features || !railServiceStops?.features) return;
     // Get all unique heavy rail service_ids
     const heavyRailLines = [

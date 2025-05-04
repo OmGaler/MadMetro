@@ -204,7 +204,7 @@ export function dijkstraWithTransfers(graph, start, end, pref = 'quickest') {
             const isBetterPath = 
                 (pref === 'fewest_changes' && 
                     (newTransfers < transfers[nextNode] || 
-                     (newTransfers === transfers[nextNode] && newDistance < distances[nextNode]))) ||
+                    (newTransfers === transfers[nextNode] && newDistance < distances[nextNode]))) ||
                 (pref === 'quickest' && 
                     newDistance + transferPenalty < distances[nextNode]);
 

@@ -1,288 +1,6475 @@
 {
-"type": "FeatureCollection",
-"name": "service_stops",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "service_id": "JLM-MOD", "stop_order": 1, "station_name": "Jerusalem Center" }, "geometry": { "type": "Point", "coordinates": [ 35.217722965025629, 31.783127227091732 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-MOD", "stop_order": 2, "station_name": "Jerusalem Yitzchak Navon" }, "geometry": { "type": "Point", "coordinates": [ 35.202359126632786, 31.788306257327001 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-MOD", "stop_order": 3, "station_name": "Paatei Modiin" }, "geometry": { "type": "Point", "coordinates": [ 34.959969860361994, 31.893089479839389 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-MOD", "stop_order": 4, "station_name": "Modiin Center" }, "geometry": { "type": "Point", "coordinates": [ 35.006112544101796, 31.89947315204423 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 1, "station_name": "Jerusalem Center" }, "geometry": { "type": "Point", "coordinates": [ 35.217722965025629, 31.783127227091732 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 2, "station_name": "Jerusalem Yitzchak Navon" }, "geometry": { "type": "Point", "coordinates": [ 35.202359126632786, 31.788306257327001 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 3, "station_name": "Ben Gurion Airport" }, "geometry": { "type": "Point", "coordinates": [ 34.870474723610542, 32.00036669486142 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 4, "station_name": "Tel Aviv Savidor Center" }, "geometry": { "type": "Point", "coordinates": [ 34.798171617291132, 32.083681331148007 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 5, "station_name": "Glilot South" }, "geometry": { "type": "Point", "coordinates": [ 34.81015689854744, 32.131835743107295 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 6, "station_name": "Herzliya" }, "geometry": { "type": "Point", "coordinates": [ 34.817507091872663, 32.163924354723491 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 7, "station_name": "Hadera West" }, "geometry": { "type": "Point", "coordinates": [ 34.899279604934158, 32.438179926491003 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 8, "station_name": "Or Akiva" }, "geometry": { "type": "Point", "coordinates": [ 34.91673023264768, 32.534624783180419 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 9, "station_name": "Haifa Hof HaCarmel" }, "geometry": { "type": "Point", "coordinates": [ 34.95735898617292, 32.793520749906961 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 10, "station_name": "Haifa Bat Galim" }, "geometry": { "type": "Point", "coordinates": [ 34.982410082428949, 32.830034210063609 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 11, "station_name": "Haifa Center HaShmona" }, "geometry": { "type": "Point", "coordinates": [ 34.997148902140339, 32.822266209296146 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 12, "station_name": "HaMifratz Central (Coastal Line)" }, "geometry": { "type": "Point", "coordinates": [ 35.037088355922421, 32.793818287348145 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 13, "station_name": "Kiryat Motzkin" }, "geometry": { "type": "Point", "coordinates": [ 35.069747408659559, 32.832493680323452 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 14, "station_name": "Karmiel" }, "geometry": { "type": "Point", "coordinates": [ 35.294995355278786, 32.924361384747456 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-Q8", "stop_order": 15, "station_name": "Kiryat Shmona" }, "geometry": { "type": "Point", "coordinates": [ 35.583244377561385, 33.21041059842959 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 1, "station_name": "Jerusalem Center" }, "geometry": { "type": "Point", "coordinates": [ 35.217722965025629, 31.783127227091732 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 2, "station_name": "Jerusalem Yitzchak Navon" }, "geometry": { "type": "Point", "coordinates": [ 35.202359126632786, 31.788306257327001 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 3, "station_name": "Ramle South" }, "geometry": { "type": "Point", "coordinates": [ 34.859652844840113, 31.917763777256184 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 4, "station_name": "Rishon LeZion HaRishonim" }, "geometry": { "type": "Point", "coordinates": [ 34.802702998179733, 31.948868893773206 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 5, "station_name": "Rishon LeZion Meuyan Sorek" }, "geometry": { "type": "Point", "coordinates": [ 34.777727502520257, 31.956896134143125 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 6, "station_name": "Rishon LeZion Moshe Dayan" }, "geometry": { "type": "Point", "coordinates": [ 34.757222195692556, 31.987760597134567 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 7, "station_name": "Bat Yam Komemiyut" }, "geometry": { "type": "Point", "coordinates": [ 34.75940928061133, 32.000949442134825 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 8, "station_name": "Bat Yam Yoseftal" }, "geometry": { "type": "Point", "coordinates": [ 34.762054363483031, 32.014332282979403 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 9, "station_name": "Holon Wolfson" }, "geometry": { "type": "Point", "coordinates": [ 34.759713545380734, 32.035416068748006 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 10, "station_name": "Holon Junction" }, "geometry": { "type": "Point", "coordinates": [ 34.7765644248257, 32.03704695583302 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 11, "station_name": "Tel Aviv HaHagana" }, "geometry": { "type": "Point", "coordinates": [ 34.784852494483701, 32.054313722760632 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 12, "station_name": "Tel Aviv Yitzchak Sadeh" }, "geometry": { "type": "Point", "coordinates": [ 34.789377534721581, 32.064073592173145 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 13, "station_name": "Tel Aviv HaShalom" }, "geometry": { "type": "Point", "coordinates": [ 34.793306574067586, 32.073200470941742 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 14, "station_name": "Tel Aviv Savidor Center" }, "geometry": { "type": "Point", "coordinates": [ 34.798171617291132, 32.083681331148007 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 15, "station_name": "Tel Aviv University" }, "geometry": { "type": "Point", "coordinates": [ 34.804659722648246, 32.103666078345398 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 16, "station_name": "Glilot South" }, "geometry": { "type": "Point", "coordinates": [ 34.81015689854744, 32.131835743107295 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 17, "station_name": "Glilot North" }, "geometry": { "type": "Point", "coordinates": [ 34.81006698621956, 32.142965623308505 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-RZL", "stop_order": 18, "station_name": "Herzliya" }, "geometry": { "type": "Point", "coordinates": [ 34.817507091872663, 32.163924354723491 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-RZL", "stop_order": 1, "station_name": "Modiin Center" }, "geometry": { "type": "Point", "coordinates": [ 35.006112544101796, 31.89947315204423 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-RZL", "stop_order": 2, "station_name": "Paatei Modiin" }, "geometry": { "type": "Point", "coordinates": [ 34.959969860361994, 31.893089479839389 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-RZL", "stop_order": 3, "station_name": "Ramle South" }, "geometry": { "type": "Point", "coordinates": [ 34.859652844840113, 31.917763777256184 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-RZL", "stop_order": 4, "station_name": "Rishon LeZion HaRishonim" }, "geometry": { "type": "Point", "coordinates": [ 34.802702998179733, 31.948868893773206 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-RZL", "stop_order": 5, "station_name": "Rishon LeZion Meuyan Sorek" }, "geometry": { "type": "Point", "coordinates": [ 34.777727502520257, 31.956896134143125 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-RZL", "stop_order": 6, "station_name": "Rishon LeZion Moshe Dayan" }, "geometry": { "type": "Point", "coordinates": [ 34.757222195692556, 31.987760597134567 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-HRS", "stop_order": 1, "station_name": "Lod" }, "geometry": { "type": "Point", "coordinates": [ 34.873433942009484, 31.944377411468196 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-HRS", "stop_order": 2, "station_name": "Lod North" }, "geometry": { "type": "Point", "coordinates": [ 34.897572215190408, 31.962011586276756 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-HRS", "stop_order": 3, "station_name": "Teufa" }, "geometry": { "type": "Point", "coordinates": [ 34.908246803453807, 31.996285609066902 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-HRS", "stop_order": 4, "station_name": "Elad" }, "geometry": { "type": "Point", "coordinates": [ 34.933659386022299, 32.063047789380697 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-HRS", "stop_order": 5, "station_name": "Rosh HaAyin South" }, "geometry": { "type": "Point", "coordinates": [ 34.934994703298933, 32.105094326817166 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-HRS", "stop_order": 6, "station_name": "Rosh HaAyin North" }, "geometry": { "type": "Point", "coordinates": [ 34.934529827826864, 32.120564161822031 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-HRS", "stop_order": 7, "station_name": "Kfar Saba North" }, "geometry": { "type": "Point", "coordinates": [ 34.955313229068132, 32.192998260646199 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-HRS", "stop_order": 8, "station_name": "Tira" }, "geometry": { "type": "Point", "coordinates": [ 34.97758434930379, 32.230903723333121 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-HRS", "stop_order": 9, "station_name": "Taybe (Shaar Efrayim)" }, "geometry": { "type": "Point", "coordinates": [ 34.997141560333752, 32.277492108024717 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-HRS", "stop_order": 10, "station_name": "Ahitov" }, "geometry": { "type": "Point", "coordinates": [ 35.002678335179127, 32.381393951666645 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-HRS", "stop_order": 11, "station_name": "Harish" }, "geometry": { "type": "Point", "coordinates": [ 35.034136805401559, 32.47221578875768 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 1, "station_name": "Lod" }, "geometry": { "type": "Point", "coordinates": [ 34.873433942009484, 31.944377411468196 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 2, "station_name": "Teufa" }, "geometry": { "type": "Point", "coordinates": [ 34.908246803453807, 31.996285609066902 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 3, "station_name": "Elad" }, "geometry": { "type": "Point", "coordinates": [ 34.933659386022299, 32.063047789380697 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 4, "station_name": "Rosh HaAyin North" }, "geometry": { "type": "Point", "coordinates": [ 34.934529827826864, 32.120564161822031 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 5, "station_name": "Kfar Saba North" }, "geometry": { "type": "Point", "coordinates": [ 34.955313229068132, 32.192998260646199 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 6, "station_name": "Tira" }, "geometry": { "type": "Point", "coordinates": [ 34.97758434930379, 32.230903723333121 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 7, "station_name": "Taybe (Shaar Efrayim)" }, "geometry": { "type": "Point", "coordinates": [ 34.997141560333752, 32.277492108024717 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 8, "station_name": "Ahitov" }, "geometry": { "type": "Point", "coordinates": [ 35.002678335179127, 32.381393951666645 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 9, "station_name": "Hadera East" }, "geometry": { "type": "Point", "coordinates": [ 34.951095238156952, 32.443668571126352 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 10, "station_name": "Caesarea Pardes Hanna" }, "geometry": { "type": "Point", "coordinates": [ 34.954163545499036, 32.485453101435041 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 11, "station_name": "Binyamina" }, "geometry": { "type": "Point", "coordinates": [ 34.949361470605567, 32.514739040036069 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 12, "station_name": "Zichron Yaakov" }, "geometry": { "type": "Point", "coordinates": [ 34.930227340535033, 32.576690622403682 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 13, "station_name": "Haifa Hof HaCarmel" }, "geometry": { "type": "Point", "coordinates": [ 34.95735898617292, 32.793520749906961 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 14, "station_name": "Haifa Bat Galim" }, "geometry": { "type": "Point", "coordinates": [ 34.982410082428949, 32.830034210063609 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 15, "station_name": "Haifa Center HaShmona" }, "geometry": { "type": "Point", "coordinates": [ 34.997148902140339, 32.822266209296146 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 16, "station_name": "Haifa Beit HaMeches" }, "geometry": { "type": "Point", "coordinates": [ 35.006036736007339, 32.810436286524144 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 17, "station_name": "HaMifratz Central (Valley Line)" }, "geometry": { "type": "Point", "coordinates": [ 35.033436691064487, 32.792544999313414 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 18, "station_name": "Nesher" }, "geometry": { "type": "Point", "coordinates": [ 35.04527715293635, 32.776255133481783 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 19, "station_name": "Yokneam Kfar Yehoshua" }, "geometry": { "type": "Point", "coordinates": [ 35.125638536928044, 32.680684196912921 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 20, "station_name": "Migdal HaEmek Kfar Baruch" }, "geometry": { "type": "Point", "coordinates": [ 35.208291815511387, 32.647467891732646 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 21, "station_name": "Nazareth South" }, "geometry": { "type": "Point", "coordinates": [ 35.322153073529563, 32.668407011561165 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 22, "station_name": "Kfar Tavor" }, "geometry": { "type": "Point", "coordinates": [ 35.412050563034967, 32.694611210869404 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 23, "station_name": "Golani Junction" }, "geometry": { "type": "Point", "coordinates": [ 35.412578171077833, 32.77072637868018 ] } },
-{ "type": "Feature", "properties": { "service_id": "LOD-TBR", "stop_order": 24, "station_name": "Tiberias" }, "geometry": { "type": "Point", "coordinates": [ 35.501740578857429, 32.786242696662207 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 1, "station_name": "Be'er Sheva Center" }, "geometry": { "type": "Point", "coordinates": [ 34.79845520080881, 31.242934409578794 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 2, "station_name": "Be'er Sheva University" }, "geometry": { "type": "Point", "coordinates": [ 34.809296257505927, 31.261997143939091 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 3, "station_name": "Be'er Sheva North" }, "geometry": { "type": "Point", "coordinates": [ 34.793045662976553, 31.298959834459982 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 4, "station_name": "Lehavim Rahat" }, "geometry": { "type": "Point", "coordinates": [ 34.797982157530754, 31.370155037954294 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 5, "station_name": "Kiryat Gat" }, "geometry": { "type": "Point", "coordinates": [ 34.778141074762416, 31.602935634257332 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 6, "station_name": "Kfar Menachem" }, "geometry": { "type": "Point", "coordinates": [ 34.821395722343922, 31.732445994301905 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 7, "station_name": "Kiryat Malachi Yoav" }, "geometry": { "type": "Point", "coordinates": [ 34.82258982948094, 31.747649822784339 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 8, "station_name": "Mazkeret Batya" }, "geometry": { "type": "Point", "coordinates": [ 34.856271286589873, 31.841926615790033 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 9, "station_name": "Ramle East" }, "geometry": { "type": "Point", "coordinates": [ 34.885239639963494, 31.917471636102213 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 10, "station_name": "Ramle" }, "geometry": { "type": "Point", "coordinates": [ 34.877323789788193, 31.928679560071494 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 11, "station_name": "Lod" }, "geometry": { "type": "Point", "coordinates": [ 34.873433942009484, 31.944377411468196 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 12, "station_name": "Teufa" }, "geometry": { "type": "Point", "coordinates": [ 34.908246803453807, 31.996285609066902 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 13, "station_name": "Elad" }, "geometry": { "type": "Point", "coordinates": [ 34.933659386022299, 32.063047789380697 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 14, "station_name": "Rosh HaAyin North" }, "geometry": { "type": "Point", "coordinates": [ 34.934529827826864, 32.120564161822031 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 15, "station_name": "Kfar Saba North" }, "geometry": { "type": "Point", "coordinates": [ 34.955313229068132, 32.192998260646199 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 16, "station_name": "Taybe (Shaar Efrayim)" }, "geometry": { "type": "Point", "coordinates": [ 34.997141560333752, 32.277492108024717 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 17, "station_name": "Hadera East" }, "geometry": { "type": "Point", "coordinates": [ 34.951095238156952, 32.443668571126352 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 18, "station_name": "Caesarea Pardes Hanna" }, "geometry": { "type": "Point", "coordinates": [ 34.954163545499036, 32.485453101435041 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 19, "station_name": "Binyamina" }, "geometry": { "type": "Point", "coordinates": [ 34.949361470605567, 32.514739040036069 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 20, "station_name": "Zichron Yaakov" }, "geometry": { "type": "Point", "coordinates": [ 34.930227340535033, 32.576690622403682 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 21, "station_name": "Haifa Hof HaCarmel" }, "geometry": { "type": "Point", "coordinates": [ 34.95735898617292, 32.793520749906961 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 22, "station_name": "Haifa Bat Galim" }, "geometry": { "type": "Point", "coordinates": [ 34.982410082428949, 32.830034210063609 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 23, "station_name": "Haifa Center HaShmona" }, "geometry": { "type": "Point", "coordinates": [ 34.997148902140339, 32.822266209296146 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 24, "station_name": "Haifa Beit HaMeches" }, "geometry": { "type": "Point", "coordinates": [ 35.006036736007339, 32.810436286524144 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 25, "station_name": "HaMifratz Central (Coastal Line)" }, "geometry": { "type": "Point", "coordinates": [ 35.037088355922421, 32.793818287348145 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 26, "station_name": "Hutzot HaMifratz" }, "geometry": { "type": "Point", "coordinates": [ 35.054447343162281, 32.80939601866087 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 27, "station_name": "Kiryat Haim" }, "geometry": { "type": "Point", "coordinates": [ 35.064255390269381, 32.824783795757035 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 28, "station_name": "Kiryat Motzkin" }, "geometry": { "type": "Point", "coordinates": [ 35.069747408659559, 32.832493680323452 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 29, "station_name": "Savyonei Yam" }, "geometry": { "type": "Point", "coordinates": [ 35.089447474563492, 32.860095268287189 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 30, "station_name": "Akko" }, "geometry": { "type": "Point", "coordinates": [ 35.083017079257615, 32.928278566105583 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-NHR", "stop_order": 31, "station_name": "Nahariya" }, "geometry": { "type": "Point", "coordinates": [ 35.098652569659421, 33.003907656059205 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 1, "station_name": "Modiin Center" }, "geometry": { "type": "Point", "coordinates": [ 35.006112544101796, 31.89947315204423 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 2, "station_name": "Paatei Modiin" }, "geometry": { "type": "Point", "coordinates": [ 34.959969860361994, 31.893089479839389 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 3, "station_name": "Ben Gurion Airport" }, "geometry": { "type": "Point", "coordinates": [ 34.870474723610542, 32.00036669486142 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 4, "station_name": "Tel Aviv Savidor Center" }, "geometry": { "type": "Point", "coordinates": [ 34.798171617291132, 32.083681331148007 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 5, "station_name": "Glilot South" }, "geometry": { "type": "Point", "coordinates": [ 34.81015689854744, 32.131835743107295 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 6, "station_name": "Hadera West" }, "geometry": { "type": "Point", "coordinates": [ 34.899279604934158, 32.438179926491003 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 7, "station_name": "Or Akiva" }, "geometry": { "type": "Point", "coordinates": [ 34.91673023264768, 32.534624783180419 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 8, "station_name": "Atlit" }, "geometry": { "type": "Point", "coordinates": [ 34.94033231179872, 32.692928936117198 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 9, "station_name": "Haifa Hof HaCarmel" }, "geometry": { "type": "Point", "coordinates": [ 34.95735898617292, 32.793520749906961 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 10, "station_name": "Haifa Bat Galim" }, "geometry": { "type": "Point", "coordinates": [ 34.982410082428949, 32.830034210063609 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 11, "station_name": "Haifa Center HaShmona" }, "geometry": { "type": "Point", "coordinates": [ 34.997148902140339, 32.822266209296146 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 12, "station_name": "Haifa Beit HaMeches" }, "geometry": { "type": "Point", "coordinates": [ 35.006036736007339, 32.810436286524144 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 13, "station_name": "HaMifratz Central (Coastal Line)" }, "geometry": { "type": "Point", "coordinates": [ 35.037088355922421, 32.793818287348145 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 14, "station_name": "Hutzot HaMifratz" }, "geometry": { "type": "Point", "coordinates": [ 35.054447343162281, 32.80939601866087 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 15, "station_name": "Kiryat Haim" }, "geometry": { "type": "Point", "coordinates": [ 35.064255390269381, 32.824783795757035 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 16, "station_name": "Kiryat Motzkin" }, "geometry": { "type": "Point", "coordinates": [ 35.069747408659559, 32.832493680323452 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 17, "station_name": "Savyonei Yam" }, "geometry": { "type": "Point", "coordinates": [ 35.089447474563492, 32.860095268287189 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 18, "station_name": "Akko" }, "geometry": { "type": "Point", "coordinates": [ 35.083017079257615, 32.928278566105583 ] } },
-{ "type": "Feature", "properties": { "service_id": "MOD-NHR", "stop_order": 19, "station_name": "Nahariya" }, "geometry": { "type": "Point", "coordinates": [ 35.098652569659421, 33.003907656059205 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 1, "station_name": "Be'er Sheva Center" }, "geometry": { "type": "Point", "coordinates": [ 34.79845520080881, 31.242934409578794 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 2, "station_name": "Be'er Sheva University" }, "geometry": { "type": "Point", "coordinates": [ 34.809296257505927, 31.261997143939091 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 3, "station_name": "Be'er Sheva North" }, "geometry": { "type": "Point", "coordinates": [ 34.793045662976553, 31.298959834459982 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 4, "station_name": "Kiryat Gat" }, "geometry": { "type": "Point", "coordinates": [ 34.778141074762416, 31.602935634257332 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 5, "station_name": "Ben Gurion Airport" }, "geometry": { "type": "Point", "coordinates": [ 34.870474723610542, 32.00036669486142 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 6, "station_name": "Tel Aviv Savidor Center" }, "geometry": { "type": "Point", "coordinates": [ 34.798171617291132, 32.083681331148007 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 7, "station_name": "Glilot South" }, "geometry": { "type": "Point", "coordinates": [ 34.81015689854744, 32.131835743107295 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 8, "station_name": "Hadera West" }, "geometry": { "type": "Point", "coordinates": [ 34.899279604934158, 32.438179926491003 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 9, "station_name": "Haifa Hof HaCarmel" }, "geometry": { "type": "Point", "coordinates": [ 34.95735898617292, 32.793520749906961 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 10, "station_name": "Haifa Bat Galim" }, "geometry": { "type": "Point", "coordinates": [ 34.982410082428949, 32.830034210063609 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 11, "station_name": "Haifa Center HaShmona" }, "geometry": { "type": "Point", "coordinates": [ 34.997148902140339, 32.822266209296146 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 12, "station_name": "Haifa Beit HaMeches" }, "geometry": { "type": "Point", "coordinates": [ 35.006036736007339, 32.810436286524144 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 13, "station_name": "HaMifratz Central (Valley Line)" }, "geometry": { "type": "Point", "coordinates": [ 35.033436691064487, 32.792544999313414 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 14, "station_name": "Nesher" }, "geometry": { "type": "Point", "coordinates": [ 35.04527715293635, 32.776255133481783 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 15, "station_name": "Kiryat Ata" }, "geometry": { "type": "Point", "coordinates": [ 35.106145996226552, 32.817278636013803 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 16, "station_name": "Shfaram" }, "geometry": { "type": "Point", "coordinates": [ 35.149260750571621, 32.829475255534966 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 17, "station_name": "Tamra" }, "geometry": { "type": "Point", "coordinates": [ 35.15488607943211, 32.875594722337894 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 18, "station_name": "Ahihud" }, "geometry": { "type": "Point", "coordinates": [ 35.173626218653062, 32.911265227851203 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 19, "station_name": "Karmiel" }, "geometry": { "type": "Point", "coordinates": [ 35.294995355278786, 32.924361384747456 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 20, "station_name": "Amiad" }, "geometry": { "type": "Point", "coordinates": [ 35.55395132913511, 32.930957817551324 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 21, "station_name": "Rosh Pina" }, "geometry": { "type": "Point", "coordinates": [ 35.559325608529072, 32.970724352599944 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 22, "station_name": "Gonen" }, "geometry": { "type": "Point", "coordinates": [ 35.572631746585969, 33.123139612344374 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-Q8", "stop_order": 23, "station_name": "Kiryat Shmona" }, "geometry": { "type": "Point", "coordinates": [ 35.583244377561385, 33.21041059842959 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSN-ATL", "stop_order": 1, "station_name": "Beit Shean" }, "geometry": { "type": "Point", "coordinates": [ 35.493062460899083, 32.513032725645154 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSN-ATL", "stop_order": 2, "station_name": "Tel Yosef" }, "geometry": { "type": "Point", "coordinates": [ 35.38639362152697, 32.551092919923121 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSN-ATL", "stop_order": 3, "station_name": "Afula North" }, "geometry": { "type": "Point", "coordinates": [ 35.295464914042412, 32.621797671374445 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSN-ATL", "stop_order": 4, "station_name": "Migdal HaEmek Kfar Baruch" }, "geometry": { "type": "Point", "coordinates": [ 35.208291815511387, 32.647467891732646 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSN-ATL", "stop_order": 5, "station_name": "Yokneam Kfar Yehoshua" }, "geometry": { "type": "Point", "coordinates": [ 35.125638536928044, 32.680684196912921 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSN-ATL", "stop_order": 6, "station_name": "Nesher" }, "geometry": { "type": "Point", "coordinates": [ 35.04527715293635, 32.776255133481783 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSN-ATL", "stop_order": 7, "station_name": "Haifa Beit HaMeches" }, "geometry": { "type": "Point", "coordinates": [ 35.006036736007339, 32.810436286524144 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSN-ATL", "stop_order": 8, "station_name": "Haifa Center HaShmona" }, "geometry": { "type": "Point", "coordinates": [ 34.997148902140339, 32.822266209296146 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSN-ATL", "stop_order": 9, "station_name": "Haifa Bat Galim" }, "geometry": { "type": "Point", "coordinates": [ 34.982410082428949, 32.830034210063609 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSN-ATL", "stop_order": 10, "station_name": "Haifa Hof HaCarmel" }, "geometry": { "type": "Point", "coordinates": [ 34.95735898617292, 32.793520749906961 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSN-ATL", "stop_order": 11, "station_name": "Atlit" }, "geometry": { "type": "Point", "coordinates": [ 34.94033231179872, 32.692928936117198 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 1, "station_name": "Beit Shemesh" }, "geometry": { "type": "Point", "coordinates": [ 34.98880459137132, 31.757707784651707 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 2, "station_name": "Ramle East" }, "geometry": { "type": "Point", "coordinates": [ 34.885239639963494, 31.917471636102213 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 3, "station_name": "Ramle" }, "geometry": { "type": "Point", "coordinates": [ 34.877323789788193, 31.928679560071494 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 4, "station_name": "Lod" }, "geometry": { "type": "Point", "coordinates": [ 34.873433942009484, 31.944377411468196 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 5, "station_name": "Lod Ganei Aviv" }, "geometry": { "type": "Point", "coordinates": [ 34.879054069721448, 31.966649139514931 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 6, "station_name": "Kfar Habad" }, "geometry": { "type": "Point", "coordinates": [ 34.853021342012582, 31.99308597719963 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 7, "station_name": "Tel Aviv HaHagana" }, "geometry": { "type": "Point", "coordinates": [ 34.784852494483701, 32.054313722760632 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 8, "station_name": "Tel Aviv Yitzchak Sadeh" }, "geometry": { "type": "Point", "coordinates": [ 34.789377534721581, 32.064073592173145 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 9, "station_name": "Tel Aviv HaShalom" }, "geometry": { "type": "Point", "coordinates": [ 34.793306574067586, 32.073200470941742 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 10, "station_name": "Tel Aviv Savidor Center" }, "geometry": { "type": "Point", "coordinates": [ 34.798171617291132, 32.083681331148007 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 11, "station_name": "Tel Aviv University" }, "geometry": { "type": "Point", "coordinates": [ 34.804659722648246, 32.103666078345398 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 12, "station_name": "Glilot South" }, "geometry": { "type": "Point", "coordinates": [ 34.81015689854744, 32.131835743107295 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 13, "station_name": "Glilot North" }, "geometry": { "type": "Point", "coordinates": [ 34.81006698621956, 32.142965623308505 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 14, "station_name": "Herzliya" }, "geometry": { "type": "Point", "coordinates": [ 34.817507091872663, 32.163924354723491 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 15, "station_name": "Shfayim" }, "geometry": { "type": "Point", "coordinates": [ 34.839946319344307, 32.215674668646059 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 16, "station_name": "Beit Yehoshua" }, "geometry": { "type": "Point", "coordinates": [ 34.860336527963426, 32.262793043584331 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 17, "station_name": "Netanya Sapir" }, "geometry": { "type": "Point", "coordinates": [ 34.866115629071324, 32.281442809265016 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 18, "station_name": "Netanya Michlala" }, "geometry": { "type": "Point", "coordinates": [ 34.867559701038417, 32.292072685841902 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSS-NTN", "stop_order": 19, "station_name": "Netanya" }, "geometry": { "type": "Point", "coordinates": [ 34.869749904123438, 32.319947372938046 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-ELT", "stop_order": 1, "station_name": "Be'er Sheva Center" }, "geometry": { "type": "Point", "coordinates": [ 34.79845520080881, 31.242934409578794 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-ELT", "stop_order": 2, "station_name": "Dimona" }, "geometry": { "type": "Point", "coordinates": [ 35.010343229384986, 31.068901126431655 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-ELT", "stop_order": 3, "station_name": "Hatzeva" }, "geometry": { "type": "Point", "coordinates": [ 35.226286509007771, 30.796751898769909 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-ELT", "stop_order": 4, "station_name": "Ein Yahav" }, "geometry": { "type": "Point", "coordinates": [ 35.212729510685605, 30.644832624216271 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-ELT", "stop_order": 5, "station_name": "Sapir" }, "geometry": { "type": "Point", "coordinates": [ 35.198794164984733, 30.581735385080631 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-ELT", "stop_order": 6, "station_name": "Paran" }, "geometry": { "type": "Point", "coordinates": [ 35.182219731040796, 30.363939839853202 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-ELT", "stop_order": 7, "station_name": "Yahal" }, "geometry": { "type": "Point", "coordinates": [ 35.137927059217184, 30.078774173260211 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-ELT", "stop_order": 8, "station_name": "Yotvata" }, "geometry": { "type": "Point", "coordinates": [ 35.065674338109467, 29.894209560202629 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-ELT", "stop_order": 9, "station_name": "Ramon Airport" }, "geometry": { "type": "Point", "coordinates": [ 35.013618809513936, 29.758781303351093 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-ELT", "stop_order": 10, "station_name": "Eilat" }, "geometry": { "type": "Point", "coordinates": [ 34.956751870672875, 29.557509782246491 ] } },
-{ "type": "Feature", "properties": { "service_id": "TA-ELT", "stop_order": 1, "station_name": "Glilot South" }, "geometry": { "type": "Point", "coordinates": [ 34.81015689854744, 32.131835743107295 ] } },
-{ "type": "Feature", "properties": { "service_id": "TA-ELT", "stop_order": 2, "station_name": "Tel Aviv Savidor Center" }, "geometry": { "type": "Point", "coordinates": [ 34.798171617291132, 32.083681331148007 ] } },
-{ "type": "Feature", "properties": { "service_id": "TA-ELT", "stop_order": 3, "station_name": "Ben Gurion Airport" }, "geometry": { "type": "Point", "coordinates": [ 34.870474723610542, 32.00036669486142 ] } },
-{ "type": "Feature", "properties": { "service_id": "TA-ELT", "stop_order": 4, "station_name": "Be'er Sheva University" }, "geometry": { "type": "Point", "coordinates": [ 34.809296257505927, 31.261997143939091 ] } },
-{ "type": "Feature", "properties": { "service_id": "TA-ELT", "stop_order": 5, "station_name": "Dimona" }, "geometry": { "type": "Point", "coordinates": [ 35.010343229384986, 31.068901126431655 ] } },
-{ "type": "Feature", "properties": { "service_id": "TA-ELT", "stop_order": 6, "station_name": "Ramon Airport" }, "geometry": { "type": "Point", "coordinates": [ 35.013618809513936, 29.758781303351093 ] } },
-{ "type": "Feature", "properties": { "service_id": "TA-ELT", "stop_order": 7, "station_name": "Eilat" }, "geometry": { "type": "Point", "coordinates": [ 34.956751870672875, 29.557509782246491 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-YRH", "stop_order": 1, "station_name": "Be'er Sheva Center" }, "geometry": { "type": "Point", "coordinates": [ 34.79845520080881, 31.242934409578794 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-YRH", "stop_order": 2, "station_name": "Dimona" }, "geometry": { "type": "Point", "coordinates": [ 35.010343229384986, 31.068901126431655 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-YRH", "stop_order": 3, "station_name": "Yeruham" }, "geometry": { "type": "Point", "coordinates": [ 34.941792193082613, 30.990421352413374 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASD-ARD", "stop_order": 1, "station_name": "Ashdod Ad Halom" }, "geometry": { "type": "Point", "coordinates": [ 34.666159260538606, 31.77362441808144 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASD-ARD", "stop_order": 2, "station_name": "Ashkelon" }, "geometry": { "type": "Point", "coordinates": [ 34.604302002609856, 31.676416811643811 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASD-ARD", "stop_order": 3, "station_name": "Yad Mordechai" }, "geometry": { "type": "Point", "coordinates": [ 34.572733648591644, 31.597443838008036 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASD-ARD", "stop_order": 4, "station_name": "Sderot" }, "geometry": { "type": "Point", "coordinates": [ 34.585420927126307, 31.515582648998624 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASD-ARD", "stop_order": 5, "station_name": "Netivot" }, "geometry": { "type": "Point", "coordinates": [ 34.571430247124788, 31.410995852601982 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASD-ARD", "stop_order": 6, "station_name": "Ofakim" }, "geometry": { "type": "Point", "coordinates": [ 34.634139667248093, 31.321673669017869 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASD-ARD", "stop_order": 7, "station_name": "Be'er Sheva North" }, "geometry": { "type": "Point", "coordinates": [ 34.793045662976553, 31.298959834459982 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASD-ARD", "stop_order": 8, "station_name": "Be'er Sheva University" }, "geometry": { "type": "Point", "coordinates": [ 34.809296257505927, 31.261997143939091 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASD-ARD", "stop_order": 9, "station_name": "Kuseife" }, "geometry": { "type": "Point", "coordinates": [ 35.111969731821929, 31.244960658155538 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASD-ARD", "stop_order": 10, "station_name": "Arad" }, "geometry": { "type": "Point", "coordinates": [ 35.207390028455492, 31.252481050296531 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 1, "station_name": "Ashkelon" }, "geometry": { "type": "Point", "coordinates": [ 34.604302002609856, 31.676416811643811 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 2, "station_name": "Ashdod Ad Halom" }, "geometry": { "type": "Point", "coordinates": [ 34.666159260538606, 31.77362441808144 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 3, "station_name": "Bnei Darom" }, "geometry": { "type": "Point", "coordinates": [ 34.701234335428353, 31.819357728719371 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 4, "station_name": "Yavne East" }, "geometry": { "type": "Point", "coordinates": [ 34.743895320562629, 31.861019039742047 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 5, "station_name": "Rehovot Gvirol" }, "geometry": { "type": "Point", "coordinates": [ 34.795161209638451, 31.898975342481066 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 6, "station_name": "Rehovot" }, "geometry": { "type": "Point", "coordinates": [ 34.805984197022539, 31.908436179249343 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 7, "station_name": "Beer Yaakov" }, "geometry": { "type": "Point", "coordinates": [ 34.828435882600296, 31.932737015568541 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 8, "station_name": "Ramle West" }, "geometry": { "type": "Point", "coordinates": [ 34.854729860898281, 31.940020961142487 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 9, "station_name": "Lod" }, "geometry": { "type": "Point", "coordinates": [ 34.873433942009484, 31.944377411468196 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 10, "station_name": "Lod Ganei Aviv" }, "geometry": { "type": "Point", "coordinates": [ 34.879054069721448, 31.966649139514931 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 11, "station_name": "Kfar Habad" }, "geometry": { "type": "Point", "coordinates": [ 34.853021342012582, 31.99308597719963 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 12, "station_name": "Tel Aviv HaHagana" }, "geometry": { "type": "Point", "coordinates": [ 34.784852494483701, 32.054313722760632 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 13, "station_name": "Tel Aviv Yitzchak Sadeh" }, "geometry": { "type": "Point", "coordinates": [ 34.789377534721581, 32.064073592173145 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 14, "station_name": "Tel Aviv HaShalom" }, "geometry": { "type": "Point", "coordinates": [ 34.793306574067586, 32.073200470941742 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 15, "station_name": "Tel Aviv Savidor Center" }, "geometry": { "type": "Point", "coordinates": [ 34.798171617291132, 32.083681331148007 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 16, "station_name": "Tel Aviv University" }, "geometry": { "type": "Point", "coordinates": [ 34.804659722648246, 32.103666078345398 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 17, "station_name": "Glilot South" }, "geometry": { "type": "Point", "coordinates": [ 34.81015689854744, 32.131835743107295 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 18, "station_name": "Glilot North" }, "geometry": { "type": "Point", "coordinates": [ 34.81006698621956, 32.142965623308505 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 19, "station_name": "Herzliya" }, "geometry": { "type": "Point", "coordinates": [ 34.817507091872663, 32.163924354723491 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 20, "station_name": "Shfayim" }, "geometry": { "type": "Point", "coordinates": [ 34.839946319344307, 32.215674668646059 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 21, "station_name": "Beit Yehoshua" }, "geometry": { "type": "Point", "coordinates": [ 34.860336527963426, 32.262793043584331 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 22, "station_name": "Netanya Sapir" }, "geometry": { "type": "Point", "coordinates": [ 34.866115629071324, 32.281442809265016 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 23, "station_name": "Netanya Michlala" }, "geometry": { "type": "Point", "coordinates": [ 34.867559701038417, 32.292072685841902 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 24, "station_name": "Netanya" }, "geometry": { "type": "Point", "coordinates": [ 34.869749904123438, 32.319947372938046 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 25, "station_name": "Hadera West" }, "geometry": { "type": "Point", "coordinates": [ 34.899279604934158, 32.438179926491003 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 26, "station_name": "Hadera North" }, "geometry": { "type": "Point", "coordinates": [ 34.921894500181494, 32.447583695299393 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 27, "station_name": "Caesarea Pardes Hanna" }, "geometry": { "type": "Point", "coordinates": [ 34.954163545499036, 32.485453101435041 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 28, "station_name": "Binyamina" }, "geometry": { "type": "Point", "coordinates": [ 34.949361470605567, 32.514739040036069 ] } },
-{ "type": "Feature", "properties": { "service_id": "ASK-ZYV", "stop_order": 29, "station_name": "Zichron Yaakov" }, "geometry": { "type": "Point", "coordinates": [ 34.930227340535033, 32.576690622403682 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 1, "station_name": "Be'er Sheva Center" }, "geometry": { "type": "Point", "coordinates": [ 34.79845520080881, 31.242934409578794 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 2, "station_name": "Be'er Sheva University" }, "geometry": { "type": "Point", "coordinates": [ 34.809296257505927, 31.261997143939091 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 3, "station_name": "Be'er Sheva North" }, "geometry": { "type": "Point", "coordinates": [ 34.793045662976553, 31.298959834459982 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 4, "station_name": "Ofakim" }, "geometry": { "type": "Point", "coordinates": [ 34.634139667248093, 31.321673669017869 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 5, "station_name": "Netivot" }, "geometry": { "type": "Point", "coordinates": [ 34.571430247124788, 31.410995852601982 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 6, "station_name": "Sderot" }, "geometry": { "type": "Point", "coordinates": [ 34.585420927126307, 31.515582648998624 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 7, "station_name": "Yad Mordechai" }, "geometry": { "type": "Point", "coordinates": [ 34.572733648591644, 31.597443838008036 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 8, "station_name": "Ashkelon" }, "geometry": { "type": "Point", "coordinates": [ 34.604302002609856, 31.676416811643811 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 9, "station_name": "Ashdod Ad Halom" }, "geometry": { "type": "Point", "coordinates": [ 34.666159260538606, 31.77362441808144 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 10, "station_name": "Yavne West" }, "geometry": { "type": "Point", "coordinates": [ 34.731349655400223, 31.891583780392686 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 11, "station_name": "Rishon LeZion Moshe Dayan" }, "geometry": { "type": "Point", "coordinates": [ 34.757222195692556, 31.987760597134567 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 12, "station_name": "Bat Yam Komemiyut" }, "geometry": { "type": "Point", "coordinates": [ 34.75940928061133, 32.000949442134825 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 13, "station_name": "Bat Yam Yoseftal" }, "geometry": { "type": "Point", "coordinates": [ 34.762054363483031, 32.014332282979403 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 14, "station_name": "Holon Wolfson" }, "geometry": { "type": "Point", "coordinates": [ 34.759713545380734, 32.035416068748006 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 15, "station_name": "Holon Junction" }, "geometry": { "type": "Point", "coordinates": [ 34.7765644248257, 32.03704695583302 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 16, "station_name": "Tel Aviv HaHagana" }, "geometry": { "type": "Point", "coordinates": [ 34.784852494483701, 32.054313722760632 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 17, "station_name": "Tel Aviv Yitzchak Sadeh" }, "geometry": { "type": "Point", "coordinates": [ 34.789377534721581, 32.064073592173145 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 18, "station_name": "Tel Aviv HaShalom" }, "geometry": { "type": "Point", "coordinates": [ 34.793306574067586, 32.073200470941742 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 19, "station_name": "Tel Aviv Savidor Center" }, "geometry": { "type": "Point", "coordinates": [ 34.798171617291132, 32.083681331148007 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 20, "station_name": "Tel Aviv University" }, "geometry": { "type": "Point", "coordinates": [ 34.804659722648246, 32.103666078345398 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 21, "station_name": "Bnei Brak" }, "geometry": { "type": "Point", "coordinates": [ 34.830218513523292, 32.102824943164272 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 22, "station_name": "Petach Tikva Kiryat Aryeh" }, "geometry": { "type": "Point", "coordinates": [ 34.863083280443036, 32.106222720577293 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 23, "station_name": "Petach Tikva Sgula" }, "geometry": { "type": "Point", "coordinates": [ 34.901601019598395, 32.111747442795945 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 24, "station_name": "Rosh HaAyin North" }, "geometry": { "type": "Point", "coordinates": [ 34.934529827826864, 32.120564161822031 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 25, "station_name": "Kfar Saba Nordau" }, "geometry": { "type": "Point", "coordinates": [ 34.91785332276708, 32.167135752171994 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 26, "station_name": "Hod HaSharon Sokolov" }, "geometry": { "type": "Point", "coordinates": [ 34.901544475533029, 32.17010581235273 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 27, "station_name": "Raanana South" }, "geometry": { "type": "Point", "coordinates": [ 34.887989602324616, 32.172602862445736 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 28, "station_name": "Raanana West" }, "geometry": { "type": "Point", "coordinates": [ 34.851694943932031, 32.179583992089128 ] } },
-{ "type": "Feature", "properties": { "service_id": "BSV-HZY", "stop_order": 29, "station_name": "Herzliya" }, "geometry": { "type": "Point", "coordinates": [ 34.817507091872663, 32.163924354723491 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-BSV", "stop_order": 1, "station_name": "Jerusalem Center" }, "geometry": { "type": "Point", "coordinates": [ 35.217722965025629, 31.783127227091732 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-BSV", "stop_order": 2, "station_name": "Jerusalem Yitzchak Navon" }, "geometry": { "type": "Point", "coordinates": [ 35.202359126632786, 31.788306257327001 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-BSV", "stop_order": 3, "station_name": "Kiryat Gat" }, "geometry": { "type": "Point", "coordinates": [ 34.778141074762416, 31.602935634257332 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-BSV", "stop_order": 4, "station_name": "Be'er Sheva North" }, "geometry": { "type": "Point", "coordinates": [ 34.793045662976553, 31.298959834459982 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-BSV", "stop_order": 5, "station_name": "Be'er Sheva University" }, "geometry": { "type": "Point", "coordinates": [ 34.809296257505927, 31.261997143939091 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-BSV", "stop_order": 6, "station_name": "Be'er Sheva Center" }, "geometry": { "type": "Point", "coordinates": [ 34.79845520080881, 31.242934409578794 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-ASK", "stop_order": 1, "station_name": "Jerusalem Center" }, "geometry": { "type": "Point", "coordinates": [ 35.217722965025629, 31.783127227091732 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-ASK", "stop_order": 2, "station_name": "Jerusalem Yitzchak Navon" }, "geometry": { "type": "Point", "coordinates": [ 35.202359126632786, 31.788306257327001 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-ASK", "stop_order": 3, "station_name": "Rehovot" }, "geometry": { "type": "Point", "coordinates": [ 34.805984197022539, 31.908436179249343 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-ASK", "stop_order": 4, "station_name": "Bnei Darom" }, "geometry": { "type": "Point", "coordinates": [ 34.701234335428353, 31.819357728719371 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-ASK", "stop_order": 5, "station_name": "Ashdod Ad Halom" }, "geometry": { "type": "Point", "coordinates": [ 34.666159260538606, 31.77362441808144 ] } },
-{ "type": "Feature", "properties": { "service_id": "JLM-ASK", "stop_order": 6, "station_name": "Ashkelon" }, "geometry": { "type": "Point", "coordinates": [ 34.604302002609856, 31.676416811643811 ] } }
-]
+  "type": "FeatureCollection",
+  "name": "service_stops",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-MOD",
+        "stop_order": 1,
+        "station_name": "Jerusalem Center",
+        "name": [
+          {
+            "en": "Jerusalem Center"
+          },
+          {
+            "he": "ירושלים מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.21772296502563,
+          31.783127227091732
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-MOD",
+        "stop_order": 2,
+        "station_name": "Jerusalem Yitzchak Navon",
+        "name": [
+          {
+            "en": "Jerusalem Yitzchak Navon"
+          },
+          {
+            "he": "ירושלים יצחק נבון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.202359126632786,
+          31.788306257327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-MOD",
+        "stop_order": 3,
+        "station_name": "Paatei Modiin",
+        "name": [
+          {
+            "en": "Paatei Modiin"
+          },
+          {
+            "he": "פעתי מודיעין"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.959969860361994,
+          31.89308947983939
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-MOD",
+        "stop_order": 4,
+        "station_name": "Modiin Center",
+        "name": [
+          {
+            "en": "Modiin Center"
+          },
+          {
+            "he": "מודיעין מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.006112544101796,
+          31.89947315204423
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 1,
+        "station_name": "Jerusalem Center",
+        "name": [
+          {
+            "en": "Jerusalem Center"
+          },
+          {
+            "he": "ירושלים מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.21772296502563,
+          31.783127227091732
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 2,
+        "station_name": "Jerusalem Yitzchak Navon",
+        "name": [
+          {
+            "en": "Jerusalem Yitzchak Navon"
+          },
+          {
+            "he": "ירושלים יצחק נבון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.202359126632786,
+          31.788306257327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 3,
+        "station_name": "Ben Gurion Airport",
+        "name": [
+          {
+            "en": "Ben Gurion Airport"
+          },
+          {
+            "he": "נתב\"ג"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.87047472361054,
+          32.00036669486142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 4,
+        "station_name": "Tel Aviv Savidor Center",
+        "name": [
+          {
+            "en": "Tel Aviv Savidor Center"
+          },
+          {
+            "he": "תל אביב סבידור מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79817161729113,
+          32.08368133114801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 5,
+        "station_name": "Glilot South",
+        "name": [
+          {
+            "en": "Glilot South"
+          },
+          {
+            "he": "גלילות דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81015689854744,
+          32.131835743107295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 6,
+        "station_name": "Herzliya",
+        "name": [
+          {
+            "en": "Herzliya"
+          },
+          {
+            "he": "הרצליה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81750709187266,
+          32.16392435472349
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 7,
+        "station_name": "Hadera West",
+        "name": [
+          {
+            "en": "Hadera West"
+          },
+          {
+            "he": "חדרה מערב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.89927960493416,
+          32.438179926491
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 8,
+        "station_name": "Or Akiva",
+        "name": [
+          {
+            "en": "Or Akiva"
+          },
+          {
+            "he": "אור עקיבא"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.91673023264768,
+          32.53462478318042
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 9,
+        "station_name": "Haifa Hof HaCarmel",
+        "name": [
+          {
+            "en": "Haifa Hof HaCarmel"
+          },
+          {
+            "he": "חיפה חוף הכרמל"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.95735898617292,
+          32.79352074990696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 10,
+        "station_name": "Haifa Bat Galim",
+        "name": [
+          {
+            "en": "Haifa Bat Galim"
+          },
+          {
+            "he": "חיפה בת גלים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.98241008242895,
+          32.83003421006361
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 11,
+        "station_name": "Haifa Center HaShmona",
+        "name": [
+          {
+            "en": "Haifa Center HaShmona"
+          },
+          {
+            "he": "חיפה מרכז השמונה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.99714890214034,
+          32.822266209296146
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 12,
+        "station_name": "HaMifratz Central (Coastal Line)",
+        "name": [
+          {
+            "en": "HaMifratz Central (Coastal Line)"
+          },
+          {
+            "he": "מרכזית המפרץ (קו החוף)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.03708835592242,
+          32.793818287348145
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 13,
+        "station_name": "Kiryat Motzkin",
+        "name": [
+          {
+            "en": "Kiryat Motzkin"
+          },
+          {
+            "he": "קרית מוצקין"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.06974740865956,
+          32.83249368032345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 14,
+        "station_name": "Karmiel",
+        "name": [
+          {
+            "en": "Karmiel"
+          },
+          {
+            "he": "כרמיאל"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.294995355278786,
+          32.924361384747456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-Q8",
+        "stop_order": 15,
+        "station_name": "Kiryat Shmona",
+        "name": [
+          {
+            "en": "Kiryat Shmona"
+          },
+          {
+            "he": "קרית שמונה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.583244377561385,
+          33.21041059842959
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 1,
+        "station_name": "Jerusalem Center",
+        "name": [
+          {
+            "en": "Jerusalem Center"
+          },
+          {
+            "he": "ירושלים מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.21772296502563,
+          31.783127227091732
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 2,
+        "station_name": "Jerusalem Yitzchak Navon",
+        "name": [
+          {
+            "en": "Jerusalem Yitzchak Navon"
+          },
+          {
+            "he": "ירושלים יצחק נבון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.202359126632786,
+          31.788306257327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 3,
+        "station_name": "Ramle South",
+        "name": [
+          {
+            "en": "Ramle South"
+          },
+          {
+            "he": "רמלה דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.85965284484011,
+          31.917763777256184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 4,
+        "station_name": "Rishon LeZion HaRishonim",
+        "name": [
+          {
+            "en": "Rishon LeZion HaRishonim"
+          },
+          {
+            "he": "ראשון לציון הראשונים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80270299817973,
+          31.948868893773206
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 5,
+        "station_name": "Rishon LeZion Meuyan Sorek",
+        "name": [
+          {
+            "en": "Rishon LeZion Meuyan Sorek"
+          },
+          {
+            "he": "ראשוןלציון מעיין שורק"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77772750252026,
+          31.956896134143125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 6,
+        "station_name": "Rishon LeZion Moshe Dayan",
+        "name": [
+          {
+            "en": "Rishon LeZion Moshe Dayan"
+          },
+          {
+            "he": "ראשון לציון משה דיין"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.757222195692556,
+          31.987760597134567
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 7,
+        "station_name": "Bat Yam Komemiyut",
+        "name": [
+          {
+            "en": "Bat Yam Komemiyut"
+          },
+          {
+            "he": "בת ים קוממיות"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.75940928061133,
+          32.000949442134825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 8,
+        "station_name": "Bat Yam Yoseftal",
+        "name": [
+          {
+            "en": "Bat Yam Yoseftal"
+          },
+          {
+            "he": "בת ים יוספטל"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76205436348303,
+          32.0143322829794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 9,
+        "station_name": "Holon Wolfson",
+        "name": [
+          {
+            "en": "Holon Wolfson"
+          },
+          {
+            "he": "חולון ןןלפסון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.759713545380734,
+          32.035416068748006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 10,
+        "station_name": "Holon Junction",
+        "name": [
+          {
+            "en": "Holon Junction"
+          },
+          {
+            "he": "צומת חולון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7765644248257,
+          32.03704695583302
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 11,
+        "station_name": "Tel Aviv HaHagana",
+        "name": [
+          {
+            "en": "Tel Aviv HaHagana"
+          },
+          {
+            "he": "תל אביב ההגנה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7848524944837,
+          32.05431372276063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 12,
+        "station_name": "Tel Aviv Yitzchak Sadeh",
+        "name": [
+          {
+            "en": "Tel Aviv Yitzchak Sadeh"
+          },
+          {
+            "he": "תל אביב יצחק שדה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78937753472158,
+          32.064073592173145
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 13,
+        "station_name": "Tel Aviv HaShalom",
+        "name": [
+          {
+            "en": "Tel Aviv HaShalom"
+          },
+          {
+            "he": "תל אביב השלום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.793306574067586,
+          32.07320047094174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 14,
+        "station_name": "Tel Aviv Savidor Center",
+        "name": [
+          {
+            "en": "Tel Aviv Savidor Center"
+          },
+          {
+            "he": "תל אביב סבידור מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79817161729113,
+          32.08368133114801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 15,
+        "station_name": "Tel Aviv University",
+        "name": [
+          {
+            "en": "Tel Aviv University"
+          },
+          {
+            "he": "תל אביב אוניברסיטה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.804659722648246,
+          32.1036660783454
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 16,
+        "station_name": "Glilot South",
+        "name": [
+          {
+            "en": "Glilot South"
+          },
+          {
+            "he": "גלילות דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81015689854744,
+          32.131835743107295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 17,
+        "station_name": "Glilot North",
+        "name": [
+          {
+            "en": "Glilot North"
+          },
+          {
+            "he": "גלילות צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81006698621956,
+          32.142965623308505
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-RZL",
+        "stop_order": 18,
+        "station_name": "Herzliya",
+        "name": [
+          {
+            "en": "Herzliya"
+          },
+          {
+            "he": "הרצליה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81750709187266,
+          32.16392435472349
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-RZL",
+        "stop_order": 1,
+        "station_name": "Modiin Center",
+        "name": [
+          {
+            "en": "Modiin Center"
+          },
+          {
+            "he": "מודיעין מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.006112544101796,
+          31.89947315204423
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-RZL",
+        "stop_order": 2,
+        "station_name": "Paatei Modiin",
+        "name": [
+          {
+            "en": "Paatei Modiin"
+          },
+          {
+            "he": "פעתי מודיעין"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.959969860361994,
+          31.89308947983939
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-RZL",
+        "stop_order": 3,
+        "station_name": "Ramle South",
+        "name": [
+          {
+            "en": "Ramle South"
+          },
+          {
+            "he": "רמלה דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.85965284484011,
+          31.917763777256184
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-RZL",
+        "stop_order": 4,
+        "station_name": "Rishon LeZion HaRishonim",
+        "name": [
+          {
+            "en": "Rishon LeZion HaRishonim"
+          },
+          {
+            "he": "ראשון לציון הראשונים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80270299817973,
+          31.948868893773206
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-RZL",
+        "stop_order": 5,
+        "station_name": "Rishon LeZion Meuyan Sorek",
+        "name": [
+          {
+            "en": "Rishon LeZion Meuyan Sorek"
+          },
+          {
+            "he": "ראשוןלציון מעיין שורק"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77772750252026,
+          31.956896134143125
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-RZL",
+        "stop_order": 6,
+        "station_name": "Rishon LeZion Moshe Dayan",
+        "name": [
+          {
+            "en": "Rishon LeZion Moshe Dayan"
+          },
+          {
+            "he": "ראשון לציון משה דיין"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.757222195692556,
+          31.987760597134567
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-HRS",
+        "stop_order": 1,
+        "station_name": "Lod",
+        "name": [
+          {
+            "en": "Lod"
+          },
+          {
+            "he": "לוד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.873433942009484,
+          31.944377411468196
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-HRS",
+        "stop_order": 2,
+        "station_name": "Lod North",
+        "name": [
+          {
+            "en": "Lod North"
+          },
+          {
+            "he": "לוד צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.89757221519041,
+          31.962011586276756
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-HRS",
+        "stop_order": 3,
+        "station_name": "Teufa",
+        "name": [
+          {
+            "en": "Teufa"
+          },
+          {
+            "he": "תעופה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.90824680345381,
+          31.996285609066902
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-HRS",
+        "stop_order": 4,
+        "station_name": "Elad",
+        "name": [
+          {
+            "en": "Elad"
+          },
+          {
+            "he": "אלעד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9336593860223,
+          32.0630477893807
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-HRS",
+        "stop_order": 5,
+        "station_name": "Rosh HaAyin South",
+        "name": [
+          {
+            "en": "Rosh HaAyin South"
+          },
+          {
+            "he": "ראש העין דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.93499470329893,
+          32.10509432681717
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-HRS",
+        "stop_order": 6,
+        "station_name": "Rosh HaAyin North",
+        "name": [
+          {
+            "en": "Rosh HaAyin North"
+          },
+          {
+            "he": "ראש העין צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.934529827826864,
+          32.12056416182203
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-HRS",
+        "stop_order": 7,
+        "station_name": "Kfar Saba North",
+        "name": [
+          {
+            "en": "Kfar Saba North"
+          },
+          {
+            "he": "כפר סבא צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.95531322906813,
+          32.1929982606462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-HRS",
+        "stop_order": 8,
+        "station_name": "Tira",
+        "name": [
+          {
+            "en": "Tira"
+          },
+          {
+            "he": "טירה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.97758434930379,
+          32.23090372333312
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-HRS",
+        "stop_order": 9,
+        "station_name": "Taybe (Shaar Efrayim)",
+        "name": [
+          {
+            "en": "Taybe (Shaar Efrayim)"
+          },
+          {
+            "he": "טייבה (שער אפריים)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.99714156033375,
+          32.27749210802472
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-HRS",
+        "stop_order": 10,
+        "station_name": "Ahitov",
+        "name": [
+          {
+            "en": "Ahitov"
+          },
+          {
+            "he": "אחיטוב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.00267833517913,
+          32.381393951666645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-HRS",
+        "stop_order": 11,
+        "station_name": "Harish",
+        "name": [
+          {
+            "en": "Harish"
+          },
+          {
+            "he": "חריש"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.03413680540156,
+          32.47221578875768
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 1,
+        "station_name": "Lod",
+        "name": [
+          {
+            "en": "Lod"
+          },
+          {
+            "he": "לוד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.873433942009484,
+          31.944377411468196
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 2,
+        "station_name": "Teufa",
+        "name": [
+          {
+            "en": "Teufa"
+          },
+          {
+            "he": "תעופה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.90824680345381,
+          31.996285609066902
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 3,
+        "station_name": "Elad",
+        "name": [
+          {
+            "en": "Elad"
+          },
+          {
+            "he": "אלעד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9336593860223,
+          32.0630477893807
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 4,
+        "station_name": "Rosh HaAyin North",
+        "name": [
+          {
+            "en": "Rosh HaAyin North"
+          },
+          {
+            "he": "ראש העין צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.934529827826864,
+          32.12056416182203
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 5,
+        "station_name": "Kfar Saba North",
+        "name": [
+          {
+            "en": "Kfar Saba North"
+          },
+          {
+            "he": "כפר סבא צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.95531322906813,
+          32.1929982606462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 6,
+        "station_name": "Tira",
+        "name": [
+          {
+            "en": "Tira"
+          },
+          {
+            "he": "טירה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.97758434930379,
+          32.23090372333312
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 7,
+        "station_name": "Taybe (Shaar Efrayim)",
+        "name": [
+          {
+            "en": "Taybe (Shaar Efrayim)"
+          },
+          {
+            "he": "טייבה (שער אפריים)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.99714156033375,
+          32.27749210802472
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 8,
+        "station_name": "Ahitov",
+        "name": [
+          {
+            "en": "Ahitov"
+          },
+          {
+            "he": "אחיטוב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.00267833517913,
+          32.381393951666645
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 9,
+        "station_name": "Hadera East",
+        "name": [
+          {
+            "en": "Hadera East"
+          },
+          {
+            "he": "חדרה מזרח"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.95109523815695,
+          32.44366857112635
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 10,
+        "station_name": "Caesarea Pardes Hanna",
+        "name": [
+          {
+            "en": "Caesarea Pardes Hanna"
+          },
+          {
+            "he": "קיסריה פרדס חנה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.954163545499036,
+          32.48545310143504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 11,
+        "station_name": "Binyamina",
+        "name": [
+          {
+            "en": "Binyamina"
+          },
+          {
+            "he": "בנימינה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.94936147060557,
+          32.51473904003607
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 12,
+        "station_name": "Zichron Yaakov",
+        "name": [
+          {
+            "en": "Zichron Yaakov"
+          },
+          {
+            "he": "זכרון יעקב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.93022734053503,
+          32.57669062240368
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 13,
+        "station_name": "Haifa Hof HaCarmel",
+        "name": [
+          {
+            "en": "Haifa Hof HaCarmel"
+          },
+          {
+            "he": "חיפה חוף הכרמל"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.95735898617292,
+          32.79352074990696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 14,
+        "station_name": "Haifa Bat Galim",
+        "name": [
+          {
+            "en": "Haifa Bat Galim"
+          },
+          {
+            "he": "חיפה בת גלים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.98241008242895,
+          32.83003421006361
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 15,
+        "station_name": "Haifa Center HaShmona",
+        "name": [
+          {
+            "en": "Haifa Center HaShmona"
+          },
+          {
+            "he": "חיפה מרכז השמונה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.99714890214034,
+          32.822266209296146
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 16,
+        "station_name": "Haifa Beit HaMeches",
+        "name": [
+          {
+            "en": "Haifa Beit HaMeches"
+          },
+          {
+            "he": "חיפה בית המכס"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.00603673600734,
+          32.810436286524144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 17,
+        "station_name": "HaMifratz Central (Valley Line)",
+        "name": [
+          {
+            "en": "HaMifratz Central (Valley Line)"
+          },
+          {
+            "he": "מרכזית המפרץ (קו העמק)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.03343669106449,
+          32.792544999313414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 18,
+        "station_name": "Nesher",
+        "name": [
+          {
+            "en": "Nesher"
+          },
+          {
+            "he": "נשר"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.04527715293635,
+          32.77625513348178
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 19,
+        "station_name": "Yokneam Kfar Yehoshua",
+        "name": [
+          {
+            "en": "Yokneam Kfar Yehoshua"
+          },
+          {
+            "he": "יקנעם כפר יהושוע"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.125638536928044,
+          32.68068419691292
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 20,
+        "station_name": "Migdal HaEmek Kfar Baruch",
+        "name": [
+          {
+            "en": "Migdal HaEmek Kfar Baruch"
+          },
+          {
+            "he": "מגדל העמק כפר ברוך"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.20829181551139,
+          32.647467891732646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 21,
+        "station_name": "Nazareth South",
+        "name": [
+          {
+            "en": "Nazareth South"
+          },
+          {
+            "he": "נצרת דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.32215307352956,
+          32.668407011561165
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 22,
+        "station_name": "Kfar Tavor",
+        "name": [
+          {
+            "en": "Kfar Tavor"
+          },
+          {
+            "he": "כפר תבור"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.41205056303497,
+          32.694611210869404
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 23,
+        "station_name": "Golani Junction",
+        "name": [
+          {
+            "en": "Golani Junction"
+          },
+          {
+            "he": "צומת גולני"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.41257817107783,
+          32.77072637868018
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "LOD-TBR",
+        "stop_order": 24,
+        "station_name": "Tiberias",
+        "name": [
+          {
+            "en": "Tiberias"
+          },
+          {
+            "he": "טבריה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.50174057885743,
+          32.78624269666221
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 1,
+        "station_name": "Be'er Sheva Center",
+        "name": [
+          {
+            "en": "Be'er Sheva Center"
+          },
+          {
+            "he": "באר שבע מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79845520080881,
+          31.242934409578794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 2,
+        "station_name": "Be'er Sheva University",
+        "name": [
+          {
+            "en": "Be'er Sheva University"
+          },
+          {
+            "he": "באר שבע אוניברסיטה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80929625750593,
+          31.26199714393909
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 3,
+        "station_name": "Be'er Sheva North",
+        "name": [
+          {
+            "en": "Be'er Sheva North"
+          },
+          {
+            "he": "באר שבע צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79304566297655,
+          31.298959834459982
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 4,
+        "station_name": "Lehavim Rahat",
+        "name": [
+          {
+            "en": "Lehavim Rahat"
+          },
+          {
+            "he": "להבים רהט"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.797982157530754,
+          31.370155037954294
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 5,
+        "station_name": "Kiryat Gat",
+        "name": [
+          {
+            "en": "Kiryat Gat"
+          },
+          {
+            "he": "קרית גת"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77814107476242,
+          31.60293563425733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 6,
+        "station_name": "Kfar Menachem",
+        "name": [
+          {
+            "en": "Kfar Menachem"
+          },
+          {
+            "he": "כפר מנחם"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.82139572234392,
+          31.732445994301905
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 7,
+        "station_name": "Kiryat Malachi Yoav",
+        "name": [
+          {
+            "en": "Kiryat Malachi Yoav"
+          },
+          {
+            "he": "קרית מלאכי יואב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.82258982948094,
+          31.74764982278434
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 8,
+        "station_name": "Mazkeret Batya",
+        "name": [
+          {
+            "en": "Mazkeret Batya"
+          },
+          {
+            "he": "מזכרת בתיה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.85627128658987,
+          31.841926615790033
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 9,
+        "station_name": "Ramle East",
+        "name": [
+          {
+            "en": "Ramle East"
+          },
+          {
+            "he": "רמלה מזרח"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.885239639963494,
+          31.917471636102213
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 10,
+        "station_name": "Ramle",
+        "name": [
+          {
+            "en": "Ramle"
+          },
+          {
+            "he": "רמלה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.87732378978819,
+          31.928679560071494
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 11,
+        "station_name": "Lod",
+        "name": [
+          {
+            "en": "Lod"
+          },
+          {
+            "he": "לוד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.873433942009484,
+          31.944377411468196
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 12,
+        "station_name": "Teufa",
+        "name": [
+          {
+            "en": "Teufa"
+          },
+          {
+            "he": "תעופה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.90824680345381,
+          31.996285609066902
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 13,
+        "station_name": "Elad",
+        "name": [
+          {
+            "en": "Elad"
+          },
+          {
+            "he": "אלעד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.9336593860223,
+          32.0630477893807
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 14,
+        "station_name": "Rosh HaAyin North",
+        "name": [
+          {
+            "en": "Rosh HaAyin North"
+          },
+          {
+            "he": "ראש העין צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.934529827826864,
+          32.12056416182203
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 15,
+        "station_name": "Kfar Saba North",
+        "name": [
+          {
+            "en": "Kfar Saba North"
+          },
+          {
+            "he": "כפר סבא צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.95531322906813,
+          32.1929982606462
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 16,
+        "station_name": "Taybe (Shaar Efrayim)",
+        "name": [
+          {
+            "en": "Taybe (Shaar Efrayim)"
+          },
+          {
+            "he": "טייבה (שער אפריים)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.99714156033375,
+          32.27749210802472
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 17,
+        "station_name": "Hadera East",
+        "name": [
+          {
+            "en": "Hadera East"
+          },
+          {
+            "he": "חדרה מזרח"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.95109523815695,
+          32.44366857112635
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 18,
+        "station_name": "Caesarea Pardes Hanna",
+        "name": [
+          {
+            "en": "Caesarea Pardes Hanna"
+          },
+          {
+            "he": "קיסריה פרדס חנה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.954163545499036,
+          32.48545310143504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 19,
+        "station_name": "Binyamina",
+        "name": [
+          {
+            "en": "Binyamina"
+          },
+          {
+            "he": "בנימינה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.94936147060557,
+          32.51473904003607
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 20,
+        "station_name": "Zichron Yaakov",
+        "name": [
+          {
+            "en": "Zichron Yaakov"
+          },
+          {
+            "he": "זכרון יעקב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.93022734053503,
+          32.57669062240368
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 21,
+        "station_name": "Haifa Hof HaCarmel",
+        "name": [
+          {
+            "en": "Haifa Hof HaCarmel"
+          },
+          {
+            "he": "חיפה חוף הכרמל"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.95735898617292,
+          32.79352074990696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 22,
+        "station_name": "Haifa Bat Galim",
+        "name": [
+          {
+            "en": "Haifa Bat Galim"
+          },
+          {
+            "he": "חיפה בת גלים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.98241008242895,
+          32.83003421006361
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 23,
+        "station_name": "Haifa Center HaShmona",
+        "name": [
+          {
+            "en": "Haifa Center HaShmona"
+          },
+          {
+            "he": "חיפה מרכז השמונה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.99714890214034,
+          32.822266209296146
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 24,
+        "station_name": "Haifa Beit HaMeches",
+        "name": [
+          {
+            "en": "Haifa Beit HaMeches"
+          },
+          {
+            "he": "חיפה בית המכס"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.00603673600734,
+          32.810436286524144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 25,
+        "station_name": "HaMifratz Central (Coastal Line)",
+        "name": [
+          {
+            "en": "HaMifratz Central (Coastal Line)"
+          },
+          {
+            "he": "מרכזית המפרץ (קו החוף)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.03708835592242,
+          32.793818287348145
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 26,
+        "station_name": "Hutzot HaMifratz",
+        "name": [
+          {
+            "en": "Hutzot HaMifratz"
+          },
+          {
+            "he": "חוצות המפרץ"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.05444734316228,
+          32.80939601866087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 27,
+        "station_name": "Kiryat Haim",
+        "name": [
+          {
+            "en": "Kiryat Haim"
+          },
+          {
+            "he": "קרית חיים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.06425539026938,
+          32.824783795757035
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 28,
+        "station_name": "Kiryat Motzkin",
+        "name": [
+          {
+            "en": "Kiryat Motzkin"
+          },
+          {
+            "he": "קרית מוצקין"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.06974740865956,
+          32.83249368032345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 29,
+        "station_name": "Savyonei Yam",
+        "name": [
+          {
+            "en": "Savyonei Yam"
+          },
+          {
+            "he": "סביוני ים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.08944747456349,
+          32.86009526828719
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 30,
+        "station_name": "Akko",
+        "name": [
+          {
+            "en": "Akko"
+          },
+          {
+            "he": "עכו"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.083017079257615,
+          32.92827856610558
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-NHR",
+        "stop_order": 31,
+        "station_name": "Nahariya",
+        "name": [
+          {
+            "en": "Nahariya"
+          },
+          {
+            "he": "נהריה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.09865256965942,
+          33.003907656059205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 1,
+        "station_name": "Modiin Center",
+        "name": [
+          {
+            "en": "Modiin Center"
+          },
+          {
+            "he": "מודיעין מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.006112544101796,
+          31.89947315204423
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 2,
+        "station_name": "Paatei Modiin",
+        "name": [
+          {
+            "en": "Paatei Modiin"
+          },
+          {
+            "he": "פעתי מודיעין"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.959969860361994,
+          31.89308947983939
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 3,
+        "station_name": "Ben Gurion Airport",
+        "name": [
+          {
+            "en": "Ben Gurion Airport"
+          },
+          {
+            "he": "נתב\"ג"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.87047472361054,
+          32.00036669486142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 4,
+        "station_name": "Tel Aviv Savidor Center",
+        "name": [
+          {
+            "en": "Tel Aviv Savidor Center"
+          },
+          {
+            "he": "תל אביב סבידור מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79817161729113,
+          32.08368133114801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 5,
+        "station_name": "Glilot South",
+        "name": [
+          {
+            "en": "Glilot South"
+          },
+          {
+            "he": "גלילות דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81015689854744,
+          32.131835743107295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 6,
+        "station_name": "Hadera West",
+        "name": [
+          {
+            "en": "Hadera West"
+          },
+          {
+            "he": "חדרה מערב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.89927960493416,
+          32.438179926491
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 7,
+        "station_name": "Or Akiva",
+        "name": [
+          {
+            "en": "Or Akiva"
+          },
+          {
+            "he": "אור עקיבא"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.91673023264768,
+          32.53462478318042
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 8,
+        "station_name": "Atlit",
+        "name": [
+          {
+            "en": "Atlit"
+          },
+          {
+            "he": "עתלית"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.94033231179872,
+          32.6929289361172
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 9,
+        "station_name": "Haifa Hof HaCarmel",
+        "name": [
+          {
+            "en": "Haifa Hof HaCarmel"
+          },
+          {
+            "he": "חיפה חוף הכרמל"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.95735898617292,
+          32.79352074990696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 10,
+        "station_name": "Haifa Bat Galim",
+        "name": [
+          {
+            "en": "Haifa Bat Galim"
+          },
+          {
+            "he": "חיפה בת גלים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.98241008242895,
+          32.83003421006361
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 11,
+        "station_name": "Haifa Center HaShmona",
+        "name": [
+          {
+            "en": "Haifa Center HaShmona"
+          },
+          {
+            "he": "חיפה מרכז השמונה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.99714890214034,
+          32.822266209296146
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 12,
+        "station_name": "Haifa Beit HaMeches",
+        "name": [
+          {
+            "en": "Haifa Beit HaMeches"
+          },
+          {
+            "he": "חיפה בית המכס"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.00603673600734,
+          32.810436286524144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 13,
+        "station_name": "HaMifratz Central (Coastal Line)",
+        "name": [
+          {
+            "en": "HaMifratz Central (Coastal Line)"
+          },
+          {
+            "he": "מרכזית המפרץ (קו החוף)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.03708835592242,
+          32.793818287348145
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 14,
+        "station_name": "Hutzot HaMifratz",
+        "name": [
+          {
+            "en": "Hutzot HaMifratz"
+          },
+          {
+            "he": "חוצות המפרץ"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.05444734316228,
+          32.80939601866087
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 15,
+        "station_name": "Kiryat Haim",
+        "name": [
+          {
+            "en": "Kiryat Haim"
+          },
+          {
+            "he": "קרית חיים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.06425539026938,
+          32.824783795757035
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 16,
+        "station_name": "Kiryat Motzkin",
+        "name": [
+          {
+            "en": "Kiryat Motzkin"
+          },
+          {
+            "he": "קרית מוצקין"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.06974740865956,
+          32.83249368032345
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 17,
+        "station_name": "Savyonei Yam",
+        "name": [
+          {
+            "en": "Savyonei Yam"
+          },
+          {
+            "he": "סביוני ים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.08944747456349,
+          32.86009526828719
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 18,
+        "station_name": "Akko",
+        "name": [
+          {
+            "en": "Akko"
+          },
+          {
+            "he": "עכו"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.083017079257615,
+          32.92827856610558
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "MOD-NHR",
+        "stop_order": 19,
+        "station_name": "Nahariya",
+        "name": [
+          {
+            "en": "Nahariya"
+          },
+          {
+            "he": "נהריה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.09865256965942,
+          33.003907656059205
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 1,
+        "station_name": "Be'er Sheva Center",
+        "name": [
+          {
+            "en": "Be'er Sheva Center"
+          },
+          {
+            "he": "באר שבע מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79845520080881,
+          31.242934409578794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 2,
+        "station_name": "Be'er Sheva University",
+        "name": [
+          {
+            "en": "Be'er Sheva University"
+          },
+          {
+            "he": "באר שבע אוניברסיטה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80929625750593,
+          31.26199714393909
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 3,
+        "station_name": "Be'er Sheva North",
+        "name": [
+          {
+            "en": "Be'er Sheva North"
+          },
+          {
+            "he": "באר שבע צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79304566297655,
+          31.298959834459982
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 4,
+        "station_name": "Kiryat Gat",
+        "name": [
+          {
+            "en": "Kiryat Gat"
+          },
+          {
+            "he": "קרית גת"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77814107476242,
+          31.60293563425733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 5,
+        "station_name": "Ben Gurion Airport",
+        "name": [
+          {
+            "en": "Ben Gurion Airport"
+          },
+          {
+            "he": "נתב\"ג"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.87047472361054,
+          32.00036669486142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 6,
+        "station_name": "Tel Aviv Savidor Center",
+        "name": [
+          {
+            "en": "Tel Aviv Savidor Center"
+          },
+          {
+            "he": "תל אביב סבידור מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79817161729113,
+          32.08368133114801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 7,
+        "station_name": "Glilot South",
+        "name": [
+          {
+            "en": "Glilot South"
+          },
+          {
+            "he": "גלילות דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81015689854744,
+          32.131835743107295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 8,
+        "station_name": "Hadera West",
+        "name": [
+          {
+            "en": "Hadera West"
+          },
+          {
+            "he": "חדרה מערב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.89927960493416,
+          32.438179926491
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 9,
+        "station_name": "Haifa Hof HaCarmel",
+        "name": [
+          {
+            "en": "Haifa Hof HaCarmel"
+          },
+          {
+            "he": "חיפה חוף הכרמל"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.95735898617292,
+          32.79352074990696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 10,
+        "station_name": "Haifa Bat Galim",
+        "name": [
+          {
+            "en": "Haifa Bat Galim"
+          },
+          {
+            "he": "חיפה בת גלים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.98241008242895,
+          32.83003421006361
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 11,
+        "station_name": "Haifa Center HaShmona",
+        "name": [
+          {
+            "en": "Haifa Center HaShmona"
+          },
+          {
+            "he": "חיפה מרכז השמונה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.99714890214034,
+          32.822266209296146
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 12,
+        "station_name": "Haifa Beit HaMeches",
+        "name": [
+          {
+            "en": "Haifa Beit HaMeches"
+          },
+          {
+            "he": "חיפה בית המכס"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.00603673600734,
+          32.810436286524144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 13,
+        "station_name": "HaMifratz Central (Valley Line)",
+        "name": [
+          {
+            "en": "HaMifratz Central (Valley Line)"
+          },
+          {
+            "he": "מרכזית המפרץ (קו העמק)"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.03343669106449,
+          32.792544999313414
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 14,
+        "station_name": "Nesher",
+        "name": [
+          {
+            "en": "Nesher"
+          },
+          {
+            "he": "נשר"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.04527715293635,
+          32.77625513348178
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 15,
+        "station_name": "Kiryat Ata",
+        "name": [
+          {
+            "en": "Kiryat Ata"
+          },
+          {
+            "he": "קרית אתא"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.10614599622655,
+          32.8172786360138
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 16,
+        "station_name": "Shfaram",
+        "name": [
+          {
+            "en": "Shfaram"
+          },
+          {
+            "he": "שפרעם"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.14926075057162,
+          32.829475255534966
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 17,
+        "station_name": "Tamra",
+        "name": [
+          {
+            "en": "Tamra"
+          },
+          {
+            "he": "טמרה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.15488607943211,
+          32.875594722337894
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 18,
+        "station_name": "Ahihud",
+        "name": [
+          {
+            "en": "Ahihud"
+          },
+          {
+            "he": "אחיהוד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.17362621865306,
+          32.9112652278512
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 19,
+        "station_name": "Karmiel",
+        "name": [
+          {
+            "en": "Karmiel"
+          },
+          {
+            "he": "כרמיאל"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.294995355278786,
+          32.924361384747456
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 20,
+        "station_name": "Amiad",
+        "name": [
+          {
+            "en": "Amiad"
+          },
+          {
+            "he": "עמיעד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.55395132913511,
+          32.930957817551324
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 21,
+        "station_name": "Rosh Pina",
+        "name": [
+          {
+            "en": "Rosh Pina"
+          },
+          {
+            "he": "ראש פינה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.55932560852907,
+          32.970724352599944
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 22,
+        "station_name": "Gonen",
+        "name": [
+          {
+            "en": "Gonen"
+          },
+          {
+            "he": "גונן"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.57263174658597,
+          33.123139612344374
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-Q8",
+        "stop_order": 23,
+        "station_name": "Kiryat Shmona",
+        "name": [
+          {
+            "en": "Kiryat Shmona"
+          },
+          {
+            "he": "קרית שמונה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.583244377561385,
+          33.21041059842959
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSN-ATL",
+        "stop_order": 1,
+        "station_name": "Beit Shean",
+        "name": [
+          {
+            "en": "Beit Shean"
+          },
+          {
+            "he": "בית שאן"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.49306246089908,
+          32.513032725645154
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSN-ATL",
+        "stop_order": 2,
+        "station_name": "Tel Yosef",
+        "name": [
+          {
+            "en": "Tel Yosef"
+          },
+          {
+            "he": "תל יוסף"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.38639362152697,
+          32.55109291992312
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSN-ATL",
+        "stop_order": 3,
+        "station_name": "Afula North",
+        "name": [
+          {
+            "en": "Afula North"
+          },
+          {
+            "he": "עפולה צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.29546491404241,
+          32.621797671374445
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSN-ATL",
+        "stop_order": 4,
+        "station_name": "Migdal HaEmek Kfar Baruch",
+        "name": [
+          {
+            "en": "Migdal HaEmek Kfar Baruch"
+          },
+          {
+            "he": "מגדל העמק כפר ברוך"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.20829181551139,
+          32.647467891732646
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSN-ATL",
+        "stop_order": 5,
+        "station_name": "Yokneam Kfar Yehoshua",
+        "name": [
+          {
+            "en": "Yokneam Kfar Yehoshua"
+          },
+          {
+            "he": "יקנעם כפר יהושוע"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.125638536928044,
+          32.68068419691292
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSN-ATL",
+        "stop_order": 6,
+        "station_name": "Nesher",
+        "name": [
+          {
+            "en": "Nesher"
+          },
+          {
+            "he": "נשר"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.04527715293635,
+          32.77625513348178
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSN-ATL",
+        "stop_order": 7,
+        "station_name": "Haifa Beit HaMeches",
+        "name": [
+          {
+            "en": "Haifa Beit HaMeches"
+          },
+          {
+            "he": "חיפה בית המכס"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.00603673600734,
+          32.810436286524144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSN-ATL",
+        "stop_order": 8,
+        "station_name": "Haifa Center HaShmona",
+        "name": [
+          {
+            "en": "Haifa Center HaShmona"
+          },
+          {
+            "he": "חיפה מרכז השמונה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.99714890214034,
+          32.822266209296146
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSN-ATL",
+        "stop_order": 9,
+        "station_name": "Haifa Bat Galim",
+        "name": [
+          {
+            "en": "Haifa Bat Galim"
+          },
+          {
+            "he": "חיפה בת גלים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.98241008242895,
+          32.83003421006361
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSN-ATL",
+        "stop_order": 10,
+        "station_name": "Haifa Hof HaCarmel",
+        "name": [
+          {
+            "en": "Haifa Hof HaCarmel"
+          },
+          {
+            "he": "חיפה חוף הכרמל"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.95735898617292,
+          32.79352074990696
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSN-ATL",
+        "stop_order": 11,
+        "station_name": "Atlit",
+        "name": [
+          {
+            "en": "Atlit"
+          },
+          {
+            "he": "עתלית"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.94033231179872,
+          32.6929289361172
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 1,
+        "station_name": "Beit Shemesh",
+        "name": [
+          {
+            "en": "Beit Shemesh"
+          },
+          {
+            "he": "בית שמש"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.98880459137132,
+          31.757707784651707
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 2,
+        "station_name": "Ramle East",
+        "name": [
+          {
+            "en": "Ramle East"
+          },
+          {
+            "he": "רמלה מזרח"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.885239639963494,
+          31.917471636102213
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 3,
+        "station_name": "Ramle",
+        "name": [
+          {
+            "en": "Ramle"
+          },
+          {
+            "he": "רמלה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.87732378978819,
+          31.928679560071494
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 4,
+        "station_name": "Lod",
+        "name": [
+          {
+            "en": "Lod"
+          },
+          {
+            "he": "לוד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.873433942009484,
+          31.944377411468196
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 5,
+        "station_name": "Lod Ganei Aviv",
+        "name": [
+          {
+            "en": "Lod Ganei Aviv"
+          },
+          {
+            "he": "לוד גני אביב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.87905406972145,
+          31.96664913951493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 6,
+        "station_name": "Kfar Habad",
+        "name": [
+          {
+            "en": "Kfar Habad"
+          },
+          {
+            "he": "כפר חב\"ד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.85302134201258,
+          31.99308597719963
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 7,
+        "station_name": "Tel Aviv HaHagana",
+        "name": [
+          {
+            "en": "Tel Aviv HaHagana"
+          },
+          {
+            "he": "תל אביב ההגנה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7848524944837,
+          32.05431372276063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 8,
+        "station_name": "Tel Aviv Yitzchak Sadeh",
+        "name": [
+          {
+            "en": "Tel Aviv Yitzchak Sadeh"
+          },
+          {
+            "he": "תל אביב יצחק שדה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78937753472158,
+          32.064073592173145
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 9,
+        "station_name": "Tel Aviv HaShalom",
+        "name": [
+          {
+            "en": "Tel Aviv HaShalom"
+          },
+          {
+            "he": "תל אביב השלום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.793306574067586,
+          32.07320047094174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 10,
+        "station_name": "Tel Aviv Savidor Center",
+        "name": [
+          {
+            "en": "Tel Aviv Savidor Center"
+          },
+          {
+            "he": "תל אביב סבידור מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79817161729113,
+          32.08368133114801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 11,
+        "station_name": "Tel Aviv University",
+        "name": [
+          {
+            "en": "Tel Aviv University"
+          },
+          {
+            "he": "תל אביב אוניברסיטה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.804659722648246,
+          32.1036660783454
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 12,
+        "station_name": "Glilot South",
+        "name": [
+          {
+            "en": "Glilot South"
+          },
+          {
+            "he": "גלילות דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81015689854744,
+          32.131835743107295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 13,
+        "station_name": "Glilot North",
+        "name": [
+          {
+            "en": "Glilot North"
+          },
+          {
+            "he": "גלילות צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81006698621956,
+          32.142965623308505
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 14,
+        "station_name": "Herzliya",
+        "name": [
+          {
+            "en": "Herzliya"
+          },
+          {
+            "he": "הרצליה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81750709187266,
+          32.16392435472349
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 15,
+        "station_name": "Shfayim",
+        "name": [
+          {
+            "en": "Shfayim"
+          },
+          {
+            "he": "שפיים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.83994631934431,
+          32.21567466864606
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 16,
+        "station_name": "Beit Yehoshua",
+        "name": [
+          {
+            "en": "Beit Yehoshua"
+          },
+          {
+            "he": "בית יהושוע"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.860336527963426,
+          32.26279304358433
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 17,
+        "station_name": "Netanya Sapir",
+        "name": [
+          {
+            "en": "Netanya Sapir"
+          },
+          {
+            "he": "נתניה ספיר"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.866115629071324,
+          32.281442809265016
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 18,
+        "station_name": "Netanya Michlala",
+        "name": [
+          {
+            "en": "Netanya Michlala"
+          },
+          {
+            "he": "נתניה מכללה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.86755970103842,
+          32.2920726858419
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSS-NTN",
+        "stop_order": 19,
+        "station_name": "Netanya",
+        "name": [
+          {
+            "en": "Netanya"
+          },
+          {
+            "he": "נתניה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.86974990412344,
+          32.319947372938046
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-ELT",
+        "stop_order": 1,
+        "station_name": "Be'er Sheva Center",
+        "name": [
+          {
+            "en": "Be'er Sheva Center"
+          },
+          {
+            "he": "באר שבע מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79845520080881,
+          31.242934409578794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-ELT",
+        "stop_order": 2,
+        "station_name": "Dimona",
+        "name": [
+          {
+            "en": "Dimona"
+          },
+          {
+            "he": "דימונה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.010343229384986,
+          31.068901126431655
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-ELT",
+        "stop_order": 3,
+        "station_name": "Hatzeva",
+        "name": [
+          {
+            "en": "Hatzeva"
+          },
+          {
+            "he": "חצבה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.22628650900777,
+          30.79675189876991
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-ELT",
+        "stop_order": 4,
+        "station_name": "Ein Yahav",
+        "name": [
+          {
+            "en": "Ein Yahav"
+          },
+          {
+            "he": "עין יהב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.212729510685605,
+          30.64483262421627
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-ELT",
+        "stop_order": 5,
+        "station_name": "Sapir",
+        "name": [
+          {
+            "en": "Sapir"
+          },
+          {
+            "he": "ספיר"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.19879416498473,
+          30.58173538508063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-ELT",
+        "stop_order": 6,
+        "station_name": "Paran",
+        "name": [
+          {
+            "en": "Paran"
+          },
+          {
+            "he": "פארן"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.182219731040796,
+          30.363939839853202
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-ELT",
+        "stop_order": 7,
+        "station_name": "Yahal",
+        "name": [
+          {
+            "en": "Yahal"
+          },
+          {
+            "he": "יהל"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.13792705921718,
+          30.07877417326021
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-ELT",
+        "stop_order": 8,
+        "station_name": "Yotvata",
+        "name": [
+          {
+            "en": "Yotvata"
+          },
+          {
+            "he": "יטבתה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.06567433810947,
+          29.89420956020263
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-ELT",
+        "stop_order": 9,
+        "station_name": "Ramon Airport",
+        "name": [
+          {
+            "en": "Ramon Airport"
+          },
+          {
+            "he": "נמל תעופה רמון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.013618809513936,
+          29.758781303351093
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-ELT",
+        "stop_order": 10,
+        "station_name": "Eilat",
+        "name": [
+          {
+            "en": "Eilat"
+          },
+          {
+            "he": "אילת"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.956751870672875,
+          29.55750978224649
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "TA-ELT",
+        "stop_order": 1,
+        "station_name": "Glilot South",
+        "name": [
+          {
+            "en": "Glilot South"
+          },
+          {
+            "he": "גלילות דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81015689854744,
+          32.131835743107295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "TA-ELT",
+        "stop_order": 2,
+        "station_name": "Tel Aviv Savidor Center",
+        "name": [
+          {
+            "en": "Tel Aviv Savidor Center"
+          },
+          {
+            "he": "תל אביב סבידור מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79817161729113,
+          32.08368133114801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "TA-ELT",
+        "stop_order": 3,
+        "station_name": "Ben Gurion Airport",
+        "name": [
+          {
+            "en": "Ben Gurion Airport"
+          },
+          {
+            "he": "נתב\"ג"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.87047472361054,
+          32.00036669486142
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "TA-ELT",
+        "stop_order": 4,
+        "station_name": "Be'er Sheva University",
+        "name": [
+          {
+            "en": "Be'er Sheva University"
+          },
+          {
+            "he": "באר שבע אוניברסיטה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80929625750593,
+          31.26199714393909
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "TA-ELT",
+        "stop_order": 5,
+        "station_name": "Dimona",
+        "name": [
+          {
+            "en": "Dimona"
+          },
+          {
+            "he": "דימונה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.010343229384986,
+          31.068901126431655
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "TA-ELT",
+        "stop_order": 6,
+        "station_name": "Ramon Airport",
+        "name": [
+          {
+            "en": "Ramon Airport"
+          },
+          {
+            "he": "נמל תעופה רמון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.013618809513936,
+          29.758781303351093
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "TA-ELT",
+        "stop_order": 7,
+        "station_name": "Eilat",
+        "name": [
+          {
+            "en": "Eilat"
+          },
+          {
+            "he": "אילת"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.956751870672875,
+          29.55750978224649
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-YRH",
+        "stop_order": 1,
+        "station_name": "Be'er Sheva Center",
+        "name": [
+          {
+            "en": "Be'er Sheva Center"
+          },
+          {
+            "he": "באר שבע מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79845520080881,
+          31.242934409578794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-YRH",
+        "stop_order": 2,
+        "station_name": "Dimona",
+        "name": [
+          {
+            "en": "Dimona"
+          },
+          {
+            "he": "דימונה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.010343229384986,
+          31.068901126431655
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-YRH",
+        "stop_order": 3,
+        "station_name": "Yeruham",
+        "name": [
+          {
+            "en": "Yeruham"
+          },
+          {
+            "he": "ירוחם"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.94179219308261,
+          30.990421352413374
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASD-ARD",
+        "stop_order": 1,
+        "station_name": "Ashdod Ad Halom",
+        "name": [
+          {
+            "en": "Ashdod Ad Halom"
+          },
+          {
+            "he": "אשדוד עד הלום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.666159260538606,
+          31.77362441808144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASD-ARD",
+        "stop_order": 2,
+        "station_name": "Ashkelon",
+        "name": [
+          {
+            "en": "Ashkelon"
+          },
+          {
+            "he": "אשקלון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.604302002609856,
+          31.67641681164381
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASD-ARD",
+        "stop_order": 3,
+        "station_name": "Yad Mordechai",
+        "name": [
+          {
+            "en": "Yad Mordechai"
+          },
+          {
+            "he": "יד מרדכי"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.572733648591644,
+          31.597443838008036
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASD-ARD",
+        "stop_order": 4,
+        "station_name": "Sderot",
+        "name": [
+          {
+            "en": "Sderot"
+          },
+          {
+            "he": "שדרות"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.58542092712631,
+          31.515582648998624
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASD-ARD",
+        "stop_order": 5,
+        "station_name": "Netivot",
+        "name": [
+          {
+            "en": "Netivot"
+          },
+          {
+            "he": "נתיבות"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.57143024712479,
+          31.41099585260198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASD-ARD",
+        "stop_order": 6,
+        "station_name": "Ofakim",
+        "name": [
+          {
+            "en": "Ofakim"
+          },
+          {
+            "he": "אופקים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.63413966724809,
+          31.32167366901787
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASD-ARD",
+        "stop_order": 7,
+        "station_name": "Be'er Sheva North",
+        "name": [
+          {
+            "en": "Be'er Sheva North"
+          },
+          {
+            "he": "באר שבע צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79304566297655,
+          31.298959834459982
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASD-ARD",
+        "stop_order": 8,
+        "station_name": "Be'er Sheva University",
+        "name": [
+          {
+            "en": "Be'er Sheva University"
+          },
+          {
+            "he": "באר שבע אוניברסיטה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80929625750593,
+          31.26199714393909
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASD-ARD",
+        "stop_order": 9,
+        "station_name": "Kuseife",
+        "name": [
+          {
+            "en": "Kuseife"
+          },
+          {
+            "he": "כספיה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.11196973182193,
+          31.244960658155538
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASD-ARD",
+        "stop_order": 10,
+        "station_name": "Arad",
+        "name": [
+          {
+            "en": "Arad"
+          },
+          {
+            "he": "ערד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.20739002845549,
+          31.25248105029653
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 1,
+        "station_name": "Ashkelon",
+        "name": [
+          {
+            "en": "Ashkelon"
+          },
+          {
+            "he": "אשקלון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.604302002609856,
+          31.67641681164381
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 2,
+        "station_name": "Ashdod Ad Halom",
+        "name": [
+          {
+            "en": "Ashdod Ad Halom"
+          },
+          {
+            "he": "אשדוד עד הלום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.666159260538606,
+          31.77362441808144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 3,
+        "station_name": "Bnei Darom",
+        "name": [
+          {
+            "en": "Bnei Darom"
+          },
+          {
+            "he": "בני דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.70123433542835,
+          31.81935772871937
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 4,
+        "station_name": "Yavne East",
+        "name": [
+          {
+            "en": "Yavne East"
+          },
+          {
+            "he": "יבנה מזרח"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.74389532056263,
+          31.861019039742047
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 5,
+        "station_name": "Rehovot Gvirol",
+        "name": [
+          {
+            "en": "Rehovot Gvirol"
+          },
+          {
+            "he": "רחובות גבירול"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79516120963845,
+          31.898975342481066
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 6,
+        "station_name": "Rehovot",
+        "name": [
+          {
+            "en": "Rehovot"
+          },
+          {
+            "he": "רחובות"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80598419702254,
+          31.908436179249343
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 7,
+        "station_name": "Beer Yaakov",
+        "name": [
+          {
+            "en": "Beer Yaakov"
+          },
+          {
+            "he": "באר יעקב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.828435882600296,
+          31.93273701556854
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 8,
+        "station_name": "Ramle West",
+        "name": [
+          {
+            "en": "Ramle West"
+          },
+          {
+            "he": "רמלה מערב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.85472986089828,
+          31.940020961142487
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 9,
+        "station_name": "Lod",
+        "name": [
+          {
+            "en": "Lod"
+          },
+          {
+            "he": "לוד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.873433942009484,
+          31.944377411468196
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 10,
+        "station_name": "Lod Ganei Aviv",
+        "name": [
+          {
+            "en": "Lod Ganei Aviv"
+          },
+          {
+            "he": "לוד גני אביב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.87905406972145,
+          31.96664913951493
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 11,
+        "station_name": "Kfar Habad",
+        "name": [
+          {
+            "en": "Kfar Habad"
+          },
+          {
+            "he": "כפר חב\"ד"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.85302134201258,
+          31.99308597719963
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 12,
+        "station_name": "Tel Aviv HaHagana",
+        "name": [
+          {
+            "en": "Tel Aviv HaHagana"
+          },
+          {
+            "he": "תל אביב ההגנה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7848524944837,
+          32.05431372276063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 13,
+        "station_name": "Tel Aviv Yitzchak Sadeh",
+        "name": [
+          {
+            "en": "Tel Aviv Yitzchak Sadeh"
+          },
+          {
+            "he": "תל אביב יצחק שדה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78937753472158,
+          32.064073592173145
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 14,
+        "station_name": "Tel Aviv HaShalom",
+        "name": [
+          {
+            "en": "Tel Aviv HaShalom"
+          },
+          {
+            "he": "תל אביב השלום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.793306574067586,
+          32.07320047094174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 15,
+        "station_name": "Tel Aviv Savidor Center",
+        "name": [
+          {
+            "en": "Tel Aviv Savidor Center"
+          },
+          {
+            "he": "תל אביב סבידור מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79817161729113,
+          32.08368133114801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 16,
+        "station_name": "Tel Aviv University",
+        "name": [
+          {
+            "en": "Tel Aviv University"
+          },
+          {
+            "he": "תל אביב אוניברסיטה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.804659722648246,
+          32.1036660783454
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 17,
+        "station_name": "Glilot South",
+        "name": [
+          {
+            "en": "Glilot South"
+          },
+          {
+            "he": "גלילות דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81015689854744,
+          32.131835743107295
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 18,
+        "station_name": "Glilot North",
+        "name": [
+          {
+            "en": "Glilot North"
+          },
+          {
+            "he": "גלילות צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81006698621956,
+          32.142965623308505
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 19,
+        "station_name": "Herzliya",
+        "name": [
+          {
+            "en": "Herzliya"
+          },
+          {
+            "he": "הרצליה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81750709187266,
+          32.16392435472349
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 20,
+        "station_name": "Shfayim",
+        "name": [
+          {
+            "en": "Shfayim"
+          },
+          {
+            "he": "שפיים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.83994631934431,
+          32.21567466864606
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 21,
+        "station_name": "Beit Yehoshua",
+        "name": [
+          {
+            "en": "Beit Yehoshua"
+          },
+          {
+            "he": "בית יהושוע"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.860336527963426,
+          32.26279304358433
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 22,
+        "station_name": "Netanya Sapir",
+        "name": [
+          {
+            "en": "Netanya Sapir"
+          },
+          {
+            "he": "נתניה ספיר"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.866115629071324,
+          32.281442809265016
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 23,
+        "station_name": "Netanya Michlala",
+        "name": [
+          {
+            "en": "Netanya Michlala"
+          },
+          {
+            "he": "נתניה מכללה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.86755970103842,
+          32.2920726858419
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 24,
+        "station_name": "Netanya",
+        "name": [
+          {
+            "en": "Netanya"
+          },
+          {
+            "he": "נתניה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.86974990412344,
+          32.319947372938046
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 25,
+        "station_name": "Hadera West",
+        "name": [
+          {
+            "en": "Hadera West"
+          },
+          {
+            "he": "חדרה מערב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.89927960493416,
+          32.438179926491
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 26,
+        "station_name": "Hadera North",
+        "name": [
+          {
+            "en": "Hadera North"
+          },
+          {
+            "he": "חדרה צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.921894500181494,
+          32.44758369529939
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 27,
+        "station_name": "Caesarea Pardes Hanna",
+        "name": [
+          {
+            "en": "Caesarea Pardes Hanna"
+          },
+          {
+            "he": "קיסריה פרדס חנה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.954163545499036,
+          32.48545310143504
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 28,
+        "station_name": "Binyamina",
+        "name": [
+          {
+            "en": "Binyamina"
+          },
+          {
+            "he": "בנימינה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.94936147060557,
+          32.51473904003607
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "ASK-ZYV",
+        "stop_order": 29,
+        "station_name": "Zichron Yaakov",
+        "name": [
+          {
+            "en": "Zichron Yaakov"
+          },
+          {
+            "he": "זכרון יעקב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.93022734053503,
+          32.57669062240368
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 1,
+        "station_name": "Be'er Sheva Center",
+        "name": [
+          {
+            "en": "Be'er Sheva Center"
+          },
+          {
+            "he": "באר שבע מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79845520080881,
+          31.242934409578794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 2,
+        "station_name": "Be'er Sheva University",
+        "name": [
+          {
+            "en": "Be'er Sheva University"
+          },
+          {
+            "he": "באר שבע אוניברסיטה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80929625750593,
+          31.26199714393909
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 3,
+        "station_name": "Be'er Sheva North",
+        "name": [
+          {
+            "en": "Be'er Sheva North"
+          },
+          {
+            "he": "באר שבע צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79304566297655,
+          31.298959834459982
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 4,
+        "station_name": "Ofakim",
+        "name": [
+          {
+            "en": "Ofakim"
+          },
+          {
+            "he": "אופקים"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.63413966724809,
+          31.32167366901787
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 5,
+        "station_name": "Netivot",
+        "name": [
+          {
+            "en": "Netivot"
+          },
+          {
+            "he": "נתיבות"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.57143024712479,
+          31.41099585260198
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 6,
+        "station_name": "Sderot",
+        "name": [
+          {
+            "en": "Sderot"
+          },
+          {
+            "he": "שדרות"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.58542092712631,
+          31.515582648998624
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 7,
+        "station_name": "Yad Mordechai",
+        "name": [
+          {
+            "en": "Yad Mordechai"
+          },
+          {
+            "he": "יד מרדכי"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.572733648591644,
+          31.597443838008036
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 8,
+        "station_name": "Ashkelon",
+        "name": [
+          {
+            "en": "Ashkelon"
+          },
+          {
+            "he": "אשקלון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.604302002609856,
+          31.67641681164381
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 9,
+        "station_name": "Ashdod Ad Halom",
+        "name": [
+          {
+            "en": "Ashdod Ad Halom"
+          },
+          {
+            "he": "אשדוד עד הלום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.666159260538606,
+          31.77362441808144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 10,
+        "station_name": "Yavne West",
+        "name": [
+          {
+            "en": "Yavne West"
+          },
+          {
+            "he": "יבנה מערב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.73134965540022,
+          31.891583780392686
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 11,
+        "station_name": "Rishon LeZion Moshe Dayan",
+        "name": [
+          {
+            "en": "Rishon LeZion Moshe Dayan"
+          },
+          {
+            "he": "ראשון לציון משה דיין"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.757222195692556,
+          31.987760597134567
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 12,
+        "station_name": "Bat Yam Komemiyut",
+        "name": [
+          {
+            "en": "Bat Yam Komemiyut"
+          },
+          {
+            "he": "בת ים קוממיות"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.75940928061133,
+          32.000949442134825
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 13,
+        "station_name": "Bat Yam Yoseftal",
+        "name": [
+          {
+            "en": "Bat Yam Yoseftal"
+          },
+          {
+            "he": "בת ים יוספטל"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76205436348303,
+          32.0143322829794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 14,
+        "station_name": "Holon Wolfson",
+        "name": [
+          {
+            "en": "Holon Wolfson"
+          },
+          {
+            "he": "חולון ןןלפסון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.759713545380734,
+          32.035416068748006
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 15,
+        "station_name": "Holon Junction",
+        "name": [
+          {
+            "en": "Holon Junction"
+          },
+          {
+            "he": "צומת חולון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7765644248257,
+          32.03704695583302
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 16,
+        "station_name": "Tel Aviv HaHagana",
+        "name": [
+          {
+            "en": "Tel Aviv HaHagana"
+          },
+          {
+            "he": "תל אביב ההגנה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7848524944837,
+          32.05431372276063
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 17,
+        "station_name": "Tel Aviv Yitzchak Sadeh",
+        "name": [
+          {
+            "en": "Tel Aviv Yitzchak Sadeh"
+          },
+          {
+            "he": "תל אביב יצחק שדה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78937753472158,
+          32.064073592173145
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 18,
+        "station_name": "Tel Aviv HaShalom",
+        "name": [
+          {
+            "en": "Tel Aviv HaShalom"
+          },
+          {
+            "he": "תל אביב השלום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.793306574067586,
+          32.07320047094174
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 19,
+        "station_name": "Tel Aviv Savidor Center",
+        "name": [
+          {
+            "en": "Tel Aviv Savidor Center"
+          },
+          {
+            "he": "תל אביב סבידור מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79817161729113,
+          32.08368133114801
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 20,
+        "station_name": "Tel Aviv University",
+        "name": [
+          {
+            "en": "Tel Aviv University"
+          },
+          {
+            "he": "תל אביב אוניברסיטה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.804659722648246,
+          32.1036660783454
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 21,
+        "station_name": "Bnei Brak",
+        "name": [
+          {
+            "en": "Bnei Brak"
+          },
+          {
+            "he": "בני ברק"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.83021851352329,
+          32.10282494316427
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 22,
+        "station_name": "Petach Tikva Kiryat Aryeh",
+        "name": [
+          {
+            "en": "Petach Tikva Kiryat Aryeh"
+          },
+          {
+            "he": "פתח תקווה קרית אריה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.863083280443036,
+          32.10622272057729
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 23,
+        "station_name": "Petach Tikva Sgula",
+        "name": [
+          {
+            "en": "Petach Tikva Sgula"
+          },
+          {
+            "he": "פתח תקווה סגולה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.901601019598395,
+          32.111747442795945
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 24,
+        "station_name": "Rosh HaAyin North",
+        "name": [
+          {
+            "en": "Rosh HaAyin North"
+          },
+          {
+            "he": "ראש העין צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.934529827826864,
+          32.12056416182203
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 25,
+        "station_name": "Kfar Saba Nordau",
+        "name": [
+          {
+            "en": "Kfar Saba Nordau"
+          },
+          {
+            "he": "כפר סבא נורדאו"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.91785332276708,
+          32.167135752171994
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 26,
+        "station_name": "Hod HaSharon Sokolov",
+        "name": [
+          {
+            "en": "Hod HaSharon Sokolov"
+          },
+          {
+            "he": "הוד השרון סוקולוב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.90154447553303,
+          32.17010581235273
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 27,
+        "station_name": "Raanana South",
+        "name": [
+          {
+            "en": "Raanana South"
+          },
+          {
+            "he": "רעננה דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.887989602324616,
+          32.172602862445736
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 28,
+        "station_name": "Raanana West",
+        "name": [
+          {
+            "en": "Raanana West"
+          },
+          {
+            "he": "רעננה מערב"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.85169494393203,
+          32.17958399208913
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "BSV-HZY",
+        "stop_order": 29,
+        "station_name": "Herzliya",
+        "name": [
+          {
+            "en": "Herzliya"
+          },
+          {
+            "he": "הרצליה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81750709187266,
+          32.16392435472349
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-BSV",
+        "stop_order": 1,
+        "station_name": "Jerusalem Center",
+        "name": [
+          {
+            "en": "Jerusalem Center"
+          },
+          {
+            "he": "ירושלים מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.21772296502563,
+          31.783127227091732
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-BSV",
+        "stop_order": 2,
+        "station_name": "Jerusalem Yitzchak Navon",
+        "name": [
+          {
+            "en": "Jerusalem Yitzchak Navon"
+          },
+          {
+            "he": "ירושלים יצחק נבון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.202359126632786,
+          31.788306257327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-BSV",
+        "stop_order": 3,
+        "station_name": "Kiryat Gat",
+        "name": [
+          {
+            "en": "Kiryat Gat"
+          },
+          {
+            "he": "קרית גת"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77814107476242,
+          31.60293563425733
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-BSV",
+        "stop_order": 4,
+        "station_name": "Be'er Sheva North",
+        "name": [
+          {
+            "en": "Be'er Sheva North"
+          },
+          {
+            "he": "באר שבע צפון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79304566297655,
+          31.298959834459982
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-BSV",
+        "stop_order": 5,
+        "station_name": "Be'er Sheva University",
+        "name": [
+          {
+            "en": "Be'er Sheva University"
+          },
+          {
+            "he": "באר שבע אוניברסיטה"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80929625750593,
+          31.26199714393909
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-BSV",
+        "stop_order": 6,
+        "station_name": "Be'er Sheva Center",
+        "name": [
+          {
+            "en": "Be'er Sheva Center"
+          },
+          {
+            "he": "באר שבע מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79845520080881,
+          31.242934409578794
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-ASK",
+        "stop_order": 1,
+        "station_name": "Jerusalem Center",
+        "name": [
+          {
+            "en": "Jerusalem Center"
+          },
+          {
+            "he": "ירושלים מרכז"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.21772296502563,
+          31.783127227091732
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-ASK",
+        "stop_order": 2,
+        "station_name": "Jerusalem Yitzchak Navon",
+        "name": [
+          {
+            "en": "Jerusalem Yitzchak Navon"
+          },
+          {
+            "he": "ירושלים יצחק נבון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.202359126632786,
+          31.788306257327
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-ASK",
+        "stop_order": 3,
+        "station_name": "Rehovot",
+        "name": [
+          {
+            "en": "Rehovot"
+          },
+          {
+            "he": "רחובות"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80598419702254,
+          31.908436179249343
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-ASK",
+        "stop_order": 4,
+        "station_name": "Bnei Darom",
+        "name": [
+          {
+            "en": "Bnei Darom"
+          },
+          {
+            "he": "בני דרום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.70123433542835,
+          31.81935772871937
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-ASK",
+        "stop_order": 5,
+        "station_name": "Ashdod Ad Halom",
+        "name": [
+          {
+            "en": "Ashdod Ad Halom"
+          },
+          {
+            "he": "אשדוד עד הלום"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.666159260538606,
+          31.77362441808144
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "service_id": "JLM-ASK",
+        "stop_order": 6,
+        "station_name": "Ashkelon",
+        "name": [
+          {
+            "en": "Ashkelon"
+          },
+          {
+            "he": "אשקלון"
+          }
+        ]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.604302002609856,
+          31.67641681164381
+        ]
+      }
+    }
+  ]
 }

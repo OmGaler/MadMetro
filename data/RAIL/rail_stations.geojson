@@ -1,6 +1,6 @@
 {
 "type": "FeatureCollection",
-"name": "rail_stationsSNAPPED",
+"name": "rail_stations",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "name": [ { "en": "Netanya Sapir" }, { "he": "נתניה ספיר" } ] }, "geometry": { "type": "Point", "coordinates": [ 34.866115629071324, 32.281442809265016 ] } },
