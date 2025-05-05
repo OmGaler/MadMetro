@@ -89,7 +89,7 @@ let showRail = document.getElementById("toggleRail").checked; //show lines and s
 let routesPreWF = showRoutes;
 let railPreWF = showRail;
 // Simulation constants:
-const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
+// const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
 let timeScale = 300; // 1 real sec = 5 simulated minutes
 let DEFAULT_DWELL_TIME = 1; // seconds dwell at each station
 const STATION_TOLERANCE = 30; // meters tolerance
@@ -396,9 +396,6 @@ function updateCustomSelectOptions(selectId) {
     selectItems.setAttribute('tabindex', '0');
 }
 
-
-
-
 const toggleRoutesCheckbox = document.getElementById("toggleRoutes");
 toggleRoutesCheckbox.addEventListener("change", function() {
     showRoutes = this.checked;
@@ -425,10 +422,19 @@ function toggleDisplayRail() {
     if (showRail) {
         toggleRailCheckbox.checked = true;
         map.addLayer(railLayersGroup);
+        spawnHeavyRailTrains(mainlineOps);
     } else {
         toggleRailCheckbox.checked = false;
+        // Despawn mainline trains
+        trains.forEach(train => {
+            if (train.vehicleType === "MAINLINE") {
+                // Remove the marker from the map
+                railLayersGroup.removeLayer(train.marker); 
+            }
+        });
+        trains = trains.filter(train => train.vehicleType !== "MAINLINE");
         map.removeLayer(railLayersGroup);
-
+        
     }
 }
 
@@ -1003,7 +1009,7 @@ function getRoute(startNode, endNode) {
         return;
     }
     // Get the routing preference
-    const routingPref = document.querySelector('input[name="routingPref"]:checked')?.value || "quickest";
+    const routingPref = routingToggle.checked ? "fewest_changes" : "quickest";
     const { distances, previous } = dijkstraWithTransfers(gr, startNode, endNode, routingPref);
     const route = reconstructPathWithTransfers(previous, distances, startNode, endNode);
     console.log("Route path:", route.path.map(p => `${stationLookup[p.station].name.en|| "Station not found"} (${p.line})`).join(" → "));
@@ -1023,13 +1029,20 @@ function exitWayfinder() {
     showRail = railPreWF;
     toggleDisplayRoutes();
     toggleDisplayRail();
-    startSimulation()
+    startSimulation();
     document.getElementById("pause").innerHTML = "<ion-icon name='pause'></ion-icon>";
 }
 
 function wayfind() {
     // Despawn all trains
-    trains.forEach(train => train.marker.remove());
+    // trains.forEach(train => train.marker.remove());
+    trains.forEach(train => {
+        if (train.vehicleType === "MAINLINE") {
+            railLayersGroup.removeLayer(train.marker);
+        } else {
+            train.marker.remove();   
+        }
+    });
     trains = [];
     console.log("Entering wayfinder mode");
     gr = buildGraph(G.edges);
@@ -1191,9 +1204,40 @@ document.getElementById("timePeriodSelect").addEventListener("change", function 
 });
 document.getElementById("startStationSelect").addEventListener("change", stationSelection);
 document.getElementById("endStationSelect").addEventListener("change", stationSelection);
-document.querySelectorAll('input[name="routingPref"]').forEach(radio => {
-    radio.addEventListener("change", stationSelection);
+
+const routingToggle = document.getElementById('routingPref');
+const quickestLabel = document.getElementById('quickest-label');
+const fewestLabel = document.getElementById('fewest-label');
+
+function updateRoutingToggle() {
+    if (routingToggle.checked) {
+        // Fewer Changes selected
+        quickestLabel.classList.remove('active');
+        fewestLabel.classList.add('active');
+    } else {
+        // Quickest selected
+        quickestLabel.classList.add('active');
+        fewestLabel.classList.remove('active');
+    }
+}
+
+routingToggle.addEventListener('change', () => {
+    updateRoutingToggle();
+    stationSelection();
 });
+
+quickestLabel.addEventListener('click', () => {
+    routingToggle.checked = false;
+    updateRoutingToggle();
+});
+
+fewestLabel.addEventListener('click', () => {
+    routingToggle.checked = true;
+    updateRoutingToggle();
+});
+
+updateRoutingToggle();
+
 
 function updateOperationSettings() {
     const dayType = document.getElementById("dayTypeSelect").value;
@@ -1486,7 +1530,7 @@ Promise.all([
  * Train Class
  ********************************************/
 class Train {
-    constructor(route, label, color, offset = 0) {
+    constructor(route, label, color, vtype, offset = 0) {
         // Extract the route coordinates.
         this.route = route.coords; // Array of [lon, lat]
         // Extract station distances as numbers.
@@ -1510,8 +1554,13 @@ class Train {
         // For next station lookup based on stationData.
         this.nextStationIndex = 1;
         this.updateNextStationIndex();
-        this.lineString = turf.lineString(this.route); // TODO: cache it
-
+        this.lineString = turf.lineString(this.route); 
+        this.vehicleType = vtype;
+        this.minimumHeadway = 75; // Minimum separation in meters
+        this.branchId = null; // To be set when spawning trains.
+        this.ahead = null;
+        this.behind = null;
+        
         let posFeature = turf.along(this.lineString, this.distance / 1000, {
             units: "kilometers"
         });
@@ -1523,7 +1572,14 @@ class Train {
                 iconSize: [24, 24],
                 iconAnchor: [12, 12]
             })
-        }).addTo(map);
+        });
+        if (this.vehicleType === 'MAINLINE') {
+            //TODO: despawn and unaminate trains when rail layer is hidden
+            this.marker.addTo(railLayersGroup);
+        } else {
+            this.marker.addTo(map);
+
+        }
         this.marker.getElement().style.backgroundColor = color;
 
         // When train marker is clicked, show pop-up with route bullet and station info.
@@ -1576,14 +1632,7 @@ class Train {
             }, 2500); //auto close after 2.5 seconds 
         });
 
-        // Determine vehicle type (Metro if label is "1","2","3", else LRT)
-        this.vehicleType = (this.label === "1" || this.label === "2" || this.label === "3") ?
-            'METRO' :
-            'LRT';
-        this.minimumHeadway = 75; // Minimum separation in meters
-        this.branchId = null; // To be set when spawning trains.
-        this.ahead = null;
-        this.behind = null;
+       
     }
 
     updateNextStationIndex() {
@@ -1679,30 +1728,31 @@ class Train {
                 : VEHICLE_SPEEDS.MAINLINE;
 
             this.distance += currentSpeed * deltaTime * timeScale * this.direction;
-
+            let mainlineDwellMult = this.vehicleType !== "MAINLINE" ? 1 : 5; // Scalar for mainline reversals, as they tend to dwell longer
             // Terminal reversal check
+            
             if (this.distance >= this.totalDistance) {
                 this.distance = this.totalDistance;
                 this.direction = -1;
                 this.isDwelling = true;
-                this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
+                this.dwellUntil = Date.now() + mainlineDwellMult * DEFAULT_DWELL_TIME * 1000;
                 this.currentStationIndex = this.stations.length - 1;
             } else if (this.distance <= 0) {
                 this.distance = 0;
                 this.direction = 1;
                 this.isDwelling = true;
-                this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
+                this.dwellUntil = Date.now() + mainlineDwellMult * DEFAULT_DWELL_TIME * 1000;
                 this.currentStationIndex = 0;
             }
+            mainlineDwellMult = this.vehicleType !== "MAINLINE" ? 1 : 2; // Scalar for mainline stops, as they tend to dwell longer
             // Station check: if the train reaches (or passes) a station target, dwell.
-
             if (this.stations.length > 0) {
                 let target = this.stations[this.currentStationIndex];
                 if ((this.direction === 1 && this.distance >= target) ||
                     (this.direction === -1 && this.distance <= target)) {
                     this.distance = target;
                     this.isDwelling = true;
-                    this.dwellUntil = Date.now() + DEFAULT_DWELL_TIME * 1000;
+                    this.dwellUntil = Date.now() + mainlineDwellMult * DEFAULT_DWELL_TIME * 1000;
                     this.updateNextStationIndex();
                     this.updateStationInfo();
                 }
@@ -1726,7 +1776,14 @@ let frameId;
 
 function startSimulation() {
     // Clear existing trains
-    trains.forEach(train => train.marker.remove());
+    // trains.forEach(train => train.marker.remove());
+    trains.forEach(train => {
+        if (train.vehicleType === "MAINLINE") {
+            railLayersGroup.removeLayer(train.marker);
+        } else {
+            train.marker.remove();  
+        }
+    });
     trains = [];
     // Get current schedule settings
     const dayType = document.getElementById("dayTypeSelect").value;
@@ -1798,8 +1855,7 @@ function startSimulation() {
                 }
                 
                 let trainLabel = lineId.startsWith('M') ? lineId.charAt(1) : lineId.charAt(0);
-                let train = new Train(route, trainLabel, lineColours[lineId.split('_')[0]], offset);
-                // let train = new Train(route, "ר", "#00458a", offset);
+                let train = new Train(route, trainLabel, lineColours[lineId.split('_')[0]], vtype, offset);
                 // Short turn southbound R3 trains at Elifelet outside of weekday peaks
                 if (
                     branchId === 'R23' &&    // For the R23 branch
@@ -1845,19 +1901,21 @@ function startSimulation() {
     }
 
     animate();
-    //Spawn heavy rail trains
-    spawnHeavyRailTrains(mainlineOps);
+    //Spawn heavy rail trains, if required
+    if (showRail) {
+        spawnHeavyRailTrains(mainlineOps);
+    }
 }
 
 function spawnHeavyRailTrains(operatingDetails) {
-    // Use preprocessed heavyRailRoutes if available
+    // Use preprocessed heavyRailRoutes
     if (Object.keys(heavyRailRoutes).length > 0) {
         Object.keys(heavyRailRoutes).forEach(serviceId => {
             const routeObj = heavyRailRoutes[serviceId];
             if (!routeObj) return;
             const coords = routeObj.coords;
             const stations = routeObj.stations;
-            // 5. Heavy rail parameters
+            // Heavy rail parameters
             const heavyRailColor = "#444";
             const heavyRailLabel = "<ion-icon name='train-sharp'></ion-icon>";
             // Set the appropriate speed and frequency for heavy rail trains;
@@ -1865,16 +1923,17 @@ function spawnHeavyRailTrains(operatingDetails) {
             if (!l) return;
             const heavyRailSpeed = l[serviceId].speed * 1000 / 3600; // Convert km/h to m/s 
             const timePeriod = document.getElementById("timePeriodSelect").value
+            // Mainline rail has only two time periods: peaks and off-peak
             const heavyRailFrequency = timePeriod === "peaks" ? l[serviceId].peakFreq : l[serviceId].offPeakFreq; // Frequency in tph
             const headway = 60 / heavyRailFrequency;
 
             const lineString = turf.lineString(coords);
             const routeLength = turf.length(lineString) * 1000;
-            const avgSpeed = heavyRailSpeed * 0.5;
+            const avgSpeed = heavyRailSpeed * 0.5; // Very rough heuristic
             const roundTripTime = (2 * routeLength) / avgSpeed;
             const trainsPerDirection = Math.ceil((roundTripTime / 60) / headway / 2);
             const totalTrains = 2 * trainsPerDirection;
-            console.log("Trains per direction for line", serviceId, " ", trainsPerDirection);
+            console.log("Trains per direction for line", serviceId, trainsPerDirection);
             let oppositeDirOffset = (routeLength / totalTrains) / 2;
             for (let i = 0; i < totalTrains; i++) {
                 const direction = i % 2 === 0 ? 1 : -1;
@@ -1886,87 +1945,10 @@ function spawnHeavyRailTrains(operatingDetails) {
                 } else {
                     offset = routeLength - (index * spacing) - oppositeDirOffset;
                 }
-                let train = new Train({ coords, stations }, heavyRailLabel, heavyRailColor, offset);
+                let train = new Train({ coords, stations }, heavyRailLabel, heavyRailColor, "MAINLINE", offset);
                 train.direction = direction;
-                train.vehicleType = "MAINLINE";
                 trains.push(train);
             }
         });
-        return;
     }
-    // ...existing code for fallback (old method)...
-    if (!railServiceLegs?.features || !railServiceStops?.features) return;
-    // Get all unique heavy rail service_ids
-    const heavyRailLines = [
-        ...new Set(railServiceLegs.features.map(f => f.properties.service_id))
-    ];
-    heavyRailLines.forEach(serviceId => {
-        // 1. Get all legs for this line
-        const legs = railServiceLegs.features.filter(
-            f => f.properties.service_id === serviceId
-        );
-        if (legs.length === 0) return;
-        // 2. Concatenate all coordinates, making sure not to duplicate endpoints
-        let coords = [];
-        legs.forEach((leg, idx) => {
-            const legCoords = leg.geometry.coordinates;
-            if (idx === 0) {
-                coords.push(...legCoords);
-            } else {
-                coords.push(...legCoords.slice(1));
-            }
-        });
-
-        // 3. Find all stops for this line, sorted by their sequence/order
-        const stops = railServiceStops.features
-            .filter(f => f.properties.service_id === serviceId)
-            .sort((a, b) => a.properties.stop_sequence - b.properties.stop_sequence);
-
-        // 4. Build station objects with distance along the line
-        const lineString = turf.lineString(coords);
-        const stations = stops.map(stop => ({
-            id: stop.properties.stop_id,
-            name: { en: stop.properties.name_en, he: stop.properties.name_he },
-            distance: turf.length(turf.lineSlice(coords[0], stop.geometry.coordinates, lineString)) * 1000
-        })).sort((a, b) => a.distance - b.distance);
-
-        // 5. Heavy rail parameters
-        const heavyRailColor = "#444";
-        const heavyRailLabel = "<ion-icon name='train-sharp'></ion-icon>";
-        // Set the appropriate speed and frequency for heavy rail trains;
-        // Intercity trains between BSV, Q8, TA, JLM and HFA run at 250km/h
-        // all the rest at 160km/h (in theory)
-        let l = operatingDetails.lines.find(obj => obj.hasOwnProperty(serviceId))
-        const heavyRailSpeed = l[serviceId].speed * 1000 / 3600; // Convert km/h to m/s 
-        const timePeriod = document.getElementById("timePeriodSelect").value
-        const heavyRailFrequency = timePeriod === "peaks" ? l[serviceId].peakFreq : l[serviceId].offPeakFreq; // Frequency in tph
-        const headway = 60 / heavyRailFrequency;
-
-        const routeLength = turf.length(lineString) * 1000;
-        const avgSpeed = heavyRailSpeed * 0.5;
-        const roundTripTime = (2 * routeLength) / avgSpeed;
-        const trainsPerDirection = Math.ceil((roundTripTime / 60) / headway / 2);
-        const totalTrains = 2 * trainsPerDirection;
-        console.log("Trains per direction for line", serviceId, " ", trainsPerDirection);
-        let oppositeDirOffset = (routeLength / totalTrains) / 2;
-        for (let i = 0; i < totalTrains; i++) {
-            const direction = i % 2 === 0 ? 1 : -1;
-            const index = Math.floor(i / 2);
-            const spacing = routeLength / trainsPerDirection;
-            let offset;
-            if (direction === 1) {
-                offset = index * spacing;
-            } else {
-                offset = routeLength - (index * spacing) - oppositeDirOffset;
-            }
-            const routeObj = {
-                coords: coords,
-                stations: stations
-            };
-            let train = new Train(routeObj, heavyRailLabel, heavyRailColor, offset);
-            train.direction = direction;
-            train.vehicleType = "MAINLINE";
-            trains.push(train);
-        }
-    });
 }

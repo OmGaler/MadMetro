@@ -360,16 +360,21 @@
                     </div>
                 </div>
             </div>
-                <div id="routePreferenceContainer" style="margin: 10px 0; display: flex; gap: 10px;">
-                    <label>
-                        <input type="radio" name="routingPref" value="quickest" checked>
-                        Quickest
-                    </label>
-                    <label>
-                        <input type="radio" name="routingPref" value="fewest_changes">
-                        Fewest Changes
-                    </label>
+                <div id="routePreferenceContainer">
+                    <div class="toggle-option">
+                        <label class="option-label quickest active" id="quickest-label">
+                            <span>Quickest</span>
+                        </label>
+                        <label class="route-switch">
+                            <input type="checkbox" id="routingPref">
+                            <span class="route-slider round"></span>
+                        </label>
+                        <label class="option-label fewest" id="fewest-label">
+                            <span>Fewest Changes</span>
+                        </label>
+                    </div>
                 </div>
+
             <!-- Route Details Container -->
             <div class="route-details-container">
                 <!-- Route details will be dynamically populated here -->
