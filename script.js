@@ -84,8 +84,10 @@ let originStn = null;
 let destinationStn = null;
 let stationLookup;
 let trains = [];
-let showRoutes = document.getElementById("toggleRoutes").checked; //show lines and stations, default off
+// let showRoutes = document.getElementById("toggleRoutes").checked; //show lines and stations, default off
+let showRoutes = true;
 let showRail = document.getElementById("toggleRail").checked; //show lines and stations, default off
+let activeLayers = "lrt-metro"; //default to lrt-metro, options: [lrt, lrt-metro, lrt-metro-rail]
 let routesPreWF = showRoutes;
 let railPreWF = showRail;
 // Simulation constants:
@@ -408,6 +410,21 @@ toggleRailCheckbox.addEventListener("change", function() {
     toggleDisplayRail();
 });
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const layerBtns = document.querySelectorAll("#showLayers .seg-btn");
+
+    layerBtns.forEach(button => {
+        button.addEventListener("click", function () {
+            activeLayers = this.getAttribute("data-layer");
+            console.log("Active layers:", activeLayers);
+            layerBtns.forEach(btn => btn.classList.remove("active"));
+            this.classList.add("active");
+            changeLayers();
+        });
+    });
+});
+
 function toggleDisplayRoutes() {
     if (showRoutes) {
         toggleRoutesCheckbox.checked = true;
@@ -638,6 +655,7 @@ document.addEventListener("keydown", (event) => {
         // event.preventDefault(); 
         showRail = !showRail;
         toggleDisplayRail();
+        activeLayers = showRail ? "lrt-metro-rail" : "lrt-metro";
     }
 });
 
@@ -693,11 +711,17 @@ window.addEventListener("click", function (event) {
 /********************************************
  * Wayfinder
  ********************************************/
-function populateWayfindingOptions() {
-    const stns = G.nodes;
+function populateWayfindingOptions(lrtonly = false) {
+    let stns = G.nodes;
+    if (lrtonly) {
+        // Filter out only Metro stations - that is any station without a line R, G or P
+        stns = stns.filter(stn => stn.lines.some(line => line.startsWith("R") || line.startsWith("G") || line.startsWith("P")));
+        // stns = stns.filter(stn => stn.lines.some(line => line.startsWith("M")));
+    }
     stns.forEach(stn => {
         stn.mergedName = getMergedStationName(stn);
     });
+
     const sortedStations = stns.sort((a, b) => 
         a.mergedName.localeCompare(b.mergedName)
     );
@@ -735,6 +759,10 @@ function populateWayfindingOptions() {
         `;
         // Add bullet HTML for each line
         stn.lines.forEach(line => {
+            if (lrtonly && line.startsWith("M")) {
+                // Don't add metro bullets if lrt only
+                return;
+            }
             const bullet = getRouteBullet(line);
             // Configure bullet to be smaller before getting HTML
             if (bullet.classList.contains("bullet")) {
@@ -1010,7 +1038,7 @@ function getRoute(startNode, endNode) {
     }
     // Get the routing preference
     const routingPref = routingToggle.checked ? "fewest_changes" : "quickest";
-    const { distances, previous } = dijkstraWithTransfers(gr, startNode, endNode, routingPref);
+    const { distances, previous } = dijkstraWithTransfers(gr, startNode, endNode, activeLayers === "lrt" ? true : false, routingPref);
     const route = reconstructPathWithTransfers(previous, distances, startNode, endNode);
     console.log("Route path:", route.path.map(p => `${stationLookup[p.station].name.en|| "Station not found"} (${p.line})`).join(" → "));
     console.log("Transfers:", route.transfers.length > 0 ? route.transfers : "No transfers needed.");
@@ -1332,6 +1360,8 @@ Promise.all([
                             opacity: 0, // fully transparent outline
                             fillOpacity: 0  // fully transparent fill
                         });
+                        visibleMarker.line = key.charAt(0);
+                        marker.line = key.charAt(0);
                         marker.on("click", event => {
                             if (wayfinderActive) { // Clicking on a station with wayfinder active should set the station
                                 if (!originStn) { // First click sets the origin station
@@ -1413,7 +1443,7 @@ Promise.all([
                             }, 2500); // Auto close after 2.5 seconds
                         });
                         marker.addTo(routeLayersGroup);
-                        visibleMarker.addTo(routeLayersGroup); 
+                        visibleMarker.addTo(stationDotsLayerGroup); 
                     }
                 });
             });
@@ -1526,6 +1556,56 @@ Promise.all([
     })
     .catch(error => console.error("Error loading data:", error));
     
+    function changeLayers() {
+        if (activeLayers !== "lrt-metro-rail") {
+            showRail = false;
+            toggleDisplayRail(); 
+        } else {
+            showRail = true;
+            toggleDisplayRail();
+        }   
+        // Hide all metro components when only LRT is selected
+        if (activeLayers === "lrt") {
+            // Hide all metro trains
+            trains.forEach(train => {
+                if (train.vehicleType === "METRO") {
+                    train.marker.remove();
+                }
+            });
+            // Hide all metro route lines and stations
+            routeLayersGroup.eachLayer(layer => {
+                // Check if this is a metro line (by color or other property)
+                if (layer.options && layer.options.color && Object.values(lineColours).includes(layer.options.color)) {
+                    // Metro lines use lineColours with keys starting with "M"
+                    const isMetro = Object.entries(lineColours).some(([key, color]) => key.startsWith("M") && color === layer.options.color);
+                    if (isMetro) {
+                        map.removeLayer(layer);
+                    }
+                }
+            });
+            stationDotsLayerGroup.eachLayer(layer => {  
+                if (layer.line && layer.line.startsWith("M")) { 
+                    map.removeLayer(layer); // Remove metro station dots
+                }
+            });
+            populateWayfindingOptions(true); // Update wayfinding options to only show LRT stations
+        } else {
+            // If not only LRT, ensure all metro lines and stations are visible
+            routeLayersGroup.eachLayer(layer => {
+                if (layer.options && layer.options.color && Object.values(lineColours).includes(layer.options.color)) {
+                    const isMetro = Object.entries(lineColours).some(([key, color]) => key.startsWith("M") && color === layer.options.color);
+                    if (isMetro && !map.hasLayer(layer)) {
+                        map.addLayer(layer);
+                    }
+                }
+            });
+            startSimulation(); 
+        }
+        //TODO: add a l/m shortcur??
+    }
+
+
+
 /********************************************
  * Train Class
  ********************************************/

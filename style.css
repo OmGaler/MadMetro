@@ -331,6 +331,48 @@ button#darkModeButton {
     display: inline-block;
 }
 
+.segmented-control {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.seg-btn {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s, color 0.2s;
+    outline: none;
+    border-radius: 0;
+}
+
+.seg-btn:not(:last-child) {
+    border-right: 1px solid #ccc;
+}
+
+.seg-btn:hover {
+    background-color: #e0e0e0;
+}
+
+.seg-btn.active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+.seg-btn:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.seg-btn:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
 #lineDetailsTab {
     padding: 10px;
 }

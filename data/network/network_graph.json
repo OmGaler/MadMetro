@@ -248,11 +248,12 @@
     {
       "id": 23,
       "name": {
-        "en": "Yitzhak Sade",
+        "en": "Yitzhak Sadeh",
         "he": "יצחק שדה"
       },
       "lines": [
-        "M1"
+        "M1",
+        "IR"
       ]
     },
     {

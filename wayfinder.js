@@ -145,7 +145,7 @@ export class PriorityQueue {
  * This algorithm tracks the current line along each path.
  * When a transfer occurs (i.e. the line changes), it adds a transfer penalty (in minutes).
  ********************************************/
-export function dijkstraWithTransfers(graph, start, end, pref = 'quickest') {
+export function dijkstraWithTransfers(graph, start, end, lrtOnly, pref = 'quickest') {
     const distances = {}; // Travel time
     const transfers = {}; // Number of transfers
     const previous = {};
@@ -176,6 +176,7 @@ export function dijkstraWithTransfers(graph, start, end, pref = 'quickest') {
         if (current == end) break;
 
         for (const neighbor of graph[current]) {
+            if (lrtOnly && neighbor.type === 'M') continue; // Skip metro edges if lrtOnly is true
             const { 
                 node: nextNode,
                 weight, 

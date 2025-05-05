@@ -285,6 +285,19 @@
                         <span class="slider round"></span>
                     </label>
                 </div>
+                <div class="toggle-option">
+                    <ion-icon name="layers-outline"></ion-icon>
+                    <div class="toggle-info">
+                        <h3 data-i18n="toggle-heavy">Show Layers</h3>
+                        <p class="toggle-description" data-i18n="toggle-heavy-detail">Show LRT/Metro/Heavy</p>
+                    </div>
+                    <div id="showLayers" class="segmented-control">
+                        <button type="button" class="seg-btn" data-layer="lrt">LRT</button>
+                        <button type="button" class="seg-btn active" data-layer="lrt-metro">LRT + Metro</button>
+                        <button type="button" class="seg-btn" data-layer="lrt-metro-rail">LRT + Metro + Heavy Rail</button>
+                        <!-- TODO: Add add bullets (R)/(R)(1)/(R)(1)(IR) -->
+                    </div>
+                </div>
             </div>
             <div class="tab-content" id="lineDetailsTab">
                 <h3 data-i18n="line-info">Line Information</h3>
