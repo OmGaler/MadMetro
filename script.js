@@ -86,8 +86,8 @@ let stationLookup;
 let trains = [];
 // let showRoutes = document.getElementById("toggleRoutes").checked; //show lines and stations, default off
 let showRoutes = true;
-let showRail = document.getElementById("toggleRail").checked; //show lines and stations, default off
 let activeLayers = "lrt-metro"; //default to lrt-metro, options: [lrt, lrt-metro, lrt-metro-rail]
+let showRail = activeLayers === "lrt-metro-rail";//document.getElementById("toggleRail").checked; //show lines and stations, default off
 let routesPreWF = showRoutes;
 let railPreWF = showRail;
 // Simulation constants:
@@ -404,20 +404,19 @@ toggleRoutesCheckbox.addEventListener("change", function() {
     toggleDisplayRoutes();
 });
 
-const toggleRailCheckbox = document.getElementById("toggleRail");
-toggleRailCheckbox.addEventListener("change", function() {
-    showRail = this.checked;
-    toggleDisplayRail();
-});
+// const toggleRailCheckbox = document.getElementById("toggleRail");
+// toggleRailCheckbox.addEventListener("change", function() {
+//     showRail = activeLayers === "lrt-metro-rail";
+//     toggleDisplayRail();
+// });
 
 
+const layerBtns = document.querySelectorAll("#showLayers .seg-btn");
 document.addEventListener("DOMContentLoaded", function () {
-    const layerBtns = document.querySelectorAll("#showLayers .seg-btn");
 
     layerBtns.forEach(button => {
         button.addEventListener("click", function () {
             activeLayers = this.getAttribute("data-layer");
-            console.log("Active layers:", activeLayers);
             layerBtns.forEach(btn => btn.classList.remove("active"));
             this.classList.add("active");
             changeLayers();
@@ -429,19 +428,21 @@ function toggleDisplayRoutes() {
     if (showRoutes) {
         toggleRoutesCheckbox.checked = true;
         map.addLayer(routeLayersGroup);
+        map.addLayer(stationDotsLayerGroup);
     } else {
         toggleRoutesCheckbox.checked = false;
         map.removeLayer(routeLayersGroup);
+        map.removeLayer(stationDotsLayerGroup);
     }
 }
 
 function toggleDisplayRail() {
     if (showRail) {
-        toggleRailCheckbox.checked = true;
+        // toggleRailCheckbox.checked = true;
         map.addLayer(railLayersGroup);
         spawnHeavyRailTrains(mainlineOps);
     } else {
-        toggleRailCheckbox.checked = false;
+        // toggleRailCheckbox.checked = false;
         // Despawn mainline trains
         trains.forEach(train => {
             if (train.vehicleType === "MAINLINE") {
@@ -656,7 +657,22 @@ document.addEventListener("keydown", (event) => {
         showRail = !showRail;
         toggleDisplayRail();
         activeLayers = showRail ? "lrt-metro-rail" : "lrt-metro";
+        layerBtns.forEach(btn => btn.classList.remove("active"));
+        document.querySelector("#showLayers .seg-btn[data-layer='lrt-metro-rail']").classList.add("active");
+        changeLayers();
     }
+    if (event.key.toLowerCase() === "m") {  
+        activeLayers = "lrt-metro";
+        layerBtns.forEach(btn => btn.classList.remove("active"));
+        document.querySelector("#showLayers .seg-btn[data-layer='lrt-metro']").classList.add("active");
+        changeLayers();
+    }
+    if (event.key.toLowerCase() === "l") {
+        activeLayers = "lrt";
+        layerBtns.forEach(btn => btn.classList.remove("active"));
+        document.querySelector("#showLayers .seg-btn[data-layer='lrt']").classList.add("active");
+        changeLayers();
+    } 
 });
 
 document.getElementById("pause").addEventListener("click", function () {
@@ -1038,6 +1054,7 @@ function getRoute(startNode, endNode) {
     }
     // Get the routing preference
     const routingPref = routingToggle.checked ? "fewest_changes" : "quickest";
+    // Call dijkstra algorithm with the appropriate parameters (quickest or fewest changes and whether to only use light rail)
     const { distances, previous } = dijkstraWithTransfers(gr, startNode, endNode, activeLayers === "lrt" ? true : false, routingPref);
     const route = reconstructPathWithTransfers(previous, distances, startNode, endNode);
     console.log("Route path:", route.path.map(p => `${stationLookup[p.station].name.en|| "Station not found"} (${p.line})`).join(" → "));
@@ -1556,7 +1573,9 @@ Promise.all([
     })
     .catch(error => console.error("Error loading data:", error));
     
+    // Change visibility of layers as required - either LRT only, LRT+Metro, or LRT+Metro+Rail
     function changeLayers() {
+        // Rail is only available with all layers visible
         if (activeLayers !== "lrt-metro-rail") {
             showRail = false;
             toggleDisplayRail(); 
@@ -1591,7 +1610,8 @@ Promise.all([
             populateWayfindingOptions(true); // Update wayfinding options to only show LRT stations
         } else {
             // If not only LRT, ensure all metro lines and stations are visible
-            routeLayersGroup.eachLayer(layer => {
+            if (showRoutes) {
+                routeLayersGroup.eachLayer(layer => {
                 if (layer.options && layer.options.color && Object.values(lineColours).includes(layer.options.color)) {
                     const isMetro = Object.entries(lineColours).some(([key, color]) => key.startsWith("M") && color === layer.options.color);
                     if (isMetro && !map.hasLayer(layer)) {
@@ -1599,9 +1619,15 @@ Promise.all([
                     }
                 }
             });
+            stationDotsLayerGroup.eachLayer(layer => {  
+                if (layer.line && layer.line.startsWith("M")) { 
+                    map.addLayer(layer); // Remove metro station dots
+                }
+            });
+            }
+            populateWayfindingOptions();
             startSimulation(); 
         }
-        //TODO: add a l/m shortcur??
     }
 
 

@@ -114,7 +114,14 @@
         "wayfinderShortcut": "Open wayfinder",
         "weekday": "Weekday",
         "weekend": "Weekend",
-        "wkday": "Weekday"
+        "wkday": "Weekday",
+        "show-layers": "Show Layers",
+        "show-layers-detail": "Choose which modes to show",
+        "lrt-only": "LRT",
+        "lrt-metro": "LRT + Metro",
+        "lrt-metro-heavy": "LRT + Metro + Heavy Rail",
+        "fewest-changes": "Fewest Changes",
+        "quickest": "Quickest"
     },
     "he": {
         "appearance": "מראה",
@@ -229,6 +236,13 @@
         "wayfinderShortcut": "מצב נווט",
         "weekday": "ימי חול",
         "weekend": "סופי שבוע",
-        "wkday": "ימי חול (א'-ה')"
+        "wkday": "ימי חול (א'-ה')",
+        "show-layers": "הצג שכבות",
+        "show-layers-detail": "בחר באילו אמצעי תחבורה להציג",
+        "lrt-only": "רכבת קלה בלבד",
+        "lrt-metro": "רכבת רלה + מטרו",
+        "lrt-metro-heavy": "רכבת קלה + מטרו + רכבת כבדה (ארצית)",
+        "fewest-changes": "פחות החלפות",
+        "quickest": "מהיר ביותר"
     }
 }

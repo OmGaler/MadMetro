@@ -74,7 +74,7 @@ MadMetro is compatible with most major browsers, on both desktop and mobile, inc
   - Speed Control: Adjust simulation speed and other options in settings.
 - **Train Information:** Click any train to view its route, next stop, and destination.
 - **Schedule Configuration:** Change service day (weekday/weekend) and time period in the settings to view real service levels.
-- **Wayfinder**: Activate Wayfinder mode by clicking the compass button or pressing 'w'. Click on any two stations on the map, or use the dropdowns to give the estimated journey time between them, as well as detailed route information, including any necessary changes.
+- **Wayfinder:** Activate Wayfinder mode by clicking the compass button or pressing 'w'. Click on any two stations on the map, or use the dropdowns to give the estimated journey time between them, as well as detailed route information, including any necessary changes.
 - **Language:** Switch between English and Hebrew using the globe icon.
 
 ## Data Sources

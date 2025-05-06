@@ -360,10 +360,12 @@ button#darkModeButton {
 }
 
 .seg-btn.active {
-    background-color: #007bff;
-    color: white;
+    color: #007bff;
+    border: 2px solid #007bff;
     font-weight: bold;
 }
+
+
 .seg-btn:first-child {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -382,6 +384,19 @@ button#darkModeButton {
     flex-direction: column;
     gap: 10px;
     margin-top: 10px;
+}
+
+.route-indicators {
+    display: flex;
+    gap: 4px;
+    margin-left: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-content {
+    display: flex;
+    align-items: center;
 }
 
 /* ==========================================
@@ -426,6 +441,15 @@ button#darkModeButton {
     color: white;
     font-weight: bold;
     font-family: Helvetica, sans-serif;
+}
+.rail-bullet {
+    flex-direction: column;
+}
+.rail-bullet ion-icon {
+    display: block;
+    width: 0.75em;
+    height: 0.75em;
+    color: white !important;
 }
 
 .train-marker {
@@ -651,6 +675,16 @@ button#darkModeButton {
 .switch input:checked+.slider:before {
     transform: translateX(16px);
 }
+
+html[dir="rtl"] .slider:before {
+    left: auto;
+    right: 3px;
+}
+
+html[dir="rtl"] .switch input:checked + .slider:before {
+    transform: translateX(-16px);
+}
+
 
 /* ==========================================
    CUSTOM SELECT DROPDOWNS
@@ -1007,7 +1041,14 @@ input:focus + .route-slider {
 input:checked + .route-slider:before {
     transform: translateX(24px);
 }
+html[dir="rtl"] .route-slider:before {
+    left: auto;           /* cancel the LTR left */
+    right: 3px;           /* start knob at right edge */
+}
 
+html[dir="rtl"] input:checked + .route-slider:before {
+    transform: translateX(-24px);  /* slide it back toward the left */
+}
 .route-details-container {
     border-radius: 8px;
     padding: 7px;

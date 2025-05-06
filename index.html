@@ -271,31 +271,38 @@
                         <span class="slider round"></span>
                     </label>
                 </div>
-                <!-- Show Heavy Rail -->
-                <div class="toggle-option">
-                    <ion-icon name="swap-horizontal"></ion-icon>
-                    <!-- <ion-icon name="train-sharp"></ion-icon>  -->
-                    <div class="toggle-info">
-                        <h3 data-i18n="toggle-heavy">Show Heavy Rail</h3>
-                        <p class="toggle-description" data-i18n="toggle-heavy-detail">Display intercity heavy rail
-                            stations and lines</p>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="toggleRail" checked>
-                        <span class="slider round"></span>
-                    </label>
-                </div>
+                <!-- Change visible layers -->
                 <div class="toggle-option">
                     <ion-icon name="layers-outline"></ion-icon>
                     <div class="toggle-info">
-                        <h3 data-i18n="toggle-heavy">Show Layers</h3>
-                        <p class="toggle-description" data-i18n="toggle-heavy-detail">Show LRT/Metro/Heavy</p>
+                        <h3 data-i18n="show-layers">Show Layers</h3>
+                        <p class="toggle-description" data-i18n="show-layers-detail">Show LRT/Metro/Heavy</p>
                     </div>
                     <div id="showLayers" class="segmented-control">
-                        <button type="button" class="seg-btn" data-layer="lrt">LRT</button>
-                        <button type="button" class="seg-btn active" data-layer="lrt-metro">LRT + Metro</button>
-                        <button type="button" class="seg-btn" data-layer="lrt-metro-rail">LRT + Metro + Heavy Rail</button>
-                        <!-- TODO: Add add bullets (R)/(R)(1)/(R)(1)(IR) -->
+                        <button type="button" class="seg-btn" data-layer="lrt">
+                            <span data-i18n="lrt-only">LRT</span>
+                            <div class="route-indicators">
+                                <div class="bullet" style="background-color: #ff0000;">R</div>
+                            </div>
+                        </button>
+                        <button type="button" class="seg-btn active" data-layer="lrt-metro">
+                            <span data-i18n="lrt-metro">LRT + Metro</span>
+                            <div class="route-indicators">
+                                <div class="bullet" style="background-color: #ff0000;">R</div>
+                                <div class="bullet" style="background-color: #0971ce;">1</div>
+                            </div>
+                        </button>
+                        <button type="button" class="seg-btn" data-layer="lrt-metro-rail">
+                            <span data-i18n="lrt-metro-heavy">LRT + Metro + Heavy Rail</span>
+                            <div class="route-indicators">
+                                <div class="bullet" style="background-color: #ff0000;">R</div>
+                                <div class="bullet" style="background-color: #0971ce;">1</div>
+                                <div class="bullet rail-bullet" id="railBullet" style="background-color: #444;">
+                                    <ion-icon name="train-sharp"></ion-icon>
+                                </div>
+                                
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -376,14 +383,14 @@
                 <div id="routePreferenceContainer">
                     <div class="toggle-option">
                         <label class="option-label quickest active" id="quickest-label">
-                            <span>Quickest</span>
+                            <span data-i18n="quickest">Quickest</span>
                         </label>
                         <label class="route-switch">
                             <input type="checkbox" id="routingPref">
                             <span class="route-slider round"></span>
                         </label>
                         <label class="option-label fewest" id="fewest-label">
-                            <span>Fewest Changes</span>
+                            <span data-i18n="fewest-changes">Fewest Changes</span>
                         </label>
                     </div>
                 </div>
@@ -446,8 +453,5 @@
     <!-- for icons -->
     <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <!-- <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script> -->
-    <!-- <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> -->
 </body>
-
 </html>
