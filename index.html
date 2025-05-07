@@ -14,18 +14,25 @@
 
 <body>
     <div class="legend">
-        <div class="legend-row">
+        <div class="legend-row" id="lrtLegendRow">
             <span class="bullet red">R</span>
             <span class="bullet green">G</span>
             <span class="bullet purple">P</span>
             <div data-i18n="light-rail" id="lrLegend"></div>
         </div>
-        <div class="legend-row">
+        <div class="legend-row" id="metroLegendRow">
             <span class="bullet one">1</span>
             <span class="bullet two">2</span>
             <span class="bullet three">3</span>
             <div data-i18n="metro" id="metroLegend"></div>
-
+        </div>
+        <div class="legend-row" id="hrLegendRow" style="display: none;">
+            <span class="bullet"></span> <!--Add two invisible bullets to keep spacing consistent-->
+            <span class="bullet"></span>
+            <span class="bullet rail-bullet-legend" id="railBullet">
+                <ion-icon name="train-sharp"></ion-icon>
+            </span>
+            <div data-i18n="heavy-rail" id="hrLegend"></div>
         </div>
     </div>
     <button id="pause">
@@ -276,7 +283,16 @@
                     <ion-icon name="layers-outline"></ion-icon>
                     <div class="toggle-info">
                         <h3 data-i18n="show-layers">Show Layers</h3>
-                        <p class="toggle-description" data-i18n="show-layers-detail">Show LRT/Metro/Heavy</p>
+                        <p class="toggle-description" data-i18n="show-layers-detail">Choose which modes to show</p>
+                        
+                        <div class="callout-warning" id="lrt-only-warning">
+                            <div class="callout-icon">
+                                <ion-icon name="information-circle-outline"></ion-icon>
+                            </div>
+                            <div class="callout-content">
+                                <span data-i18n="lrt-restriction-warning">Selecting LRT will restrict wayfinder accordingly</span>
+                            </div>
+                        </div>
                     </div>
                     <div id="showLayers" class="segmented-control">
                         <button type="button" class="seg-btn" data-layer="lrt">
@@ -300,7 +316,6 @@
                                 <div class="bullet rail-bullet" id="railBullet" style="background-color: #444;">
                                     <ion-icon name="train-sharp"></ion-icon>
                                 </div>
-                                
                             </div>
                         </button>
                     </div>
@@ -319,6 +334,7 @@
                 <ul id="keyboardShortcuts">
                     <li><strong data-i18n="pspace">P / Space:</strong> <span data-i18n="playPauseShortcut">Play/pause
                             simulation</span></li>
+                    <li><strong data-i18n="lmr">L / M / R:</strong> <span data-i18n="toggleLayersShortcut">Show LRT/Metro/Heavy Rail</span></li>
                     <li><strong>T:</strong> <span data-i18n="toggleRoutesShortcut">Show/hide stations and
                             lines</span></li>
                     <li><strong>S:</strong> <span data-i18n="settingsShortcut">Open settings</span></li>
@@ -380,8 +396,8 @@
                     </div>
                 </div>
             </div>
-                <div id="routePreferenceContainer">
-                    <div class="toggle-option">
+                <div id="routePreferenceContainer" style="display: flex; justify-content: center;">
+                    <div class="toggle-option" style=" display: inline-flex; align-items: center; flex-wrap: nowrap; flex-shrink: 0; gap: 1rem;">
                         <label class="option-label quickest active" id="quickest-label">
                             <span data-i18n="quickest">Quickest</span>
                         </label>

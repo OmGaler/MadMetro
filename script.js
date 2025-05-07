@@ -5,12 +5,15 @@ import { buildGraph, dijkstraWithTransfers, reconstructPathWithTransfers } from 
  ********************************************/
 const map = L.map('map').setView([32.0853, 34.7818], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
+    attribution: '&copy; OpenStreetMap contributors',
 }).addTo(map);
+
 let routeLayersGroup = L.layerGroup().addTo(map);
-let railLayersGroup = L.layerGroup().addTo(map);
+let railTrainsLayerGroup = L.layerGroup().addTo(map);
+let railRoutesLayerGroup = L.layerGroup().addTo(map);
 let wayfindLayersGroup = L.layerGroup().addTo(map);
 let stationDotsLayerGroup = L.layerGroup().addTo(map);
+let wayfinderRouteStnsLayerGroup = L.layerGroup().addTo(map);
 
 const lineColours = {
     "M1": "#0971ce", // blue
@@ -84,10 +87,9 @@ let originStn = null;
 let destinationStn = null;
 let stationLookup;
 let trains = [];
-// let showRoutes = document.getElementById("toggleRoutes").checked; //show lines and stations, default off
-let showRoutes = true;
+let showRoutes = document.getElementById("toggleRoutes").checked; //show lines and stations, default off
 let activeLayers = "lrt-metro"; //default to lrt-metro, options: [lrt, lrt-metro, lrt-metro-rail]
-let showRail = activeLayers === "lrt-metro-rail";//document.getElementById("toggleRail").checked; //show lines and stations, default off
+let showRail = activeLayers === "lrt-metro-rail"; //show lines and stations, default off
 let routesPreWF = showRoutes;
 let railPreWF = showRail;
 // Simulation constants:
@@ -276,7 +278,7 @@ function getRouteBullet(line, showConnectionBullet = false) {
         if (showConnectionBullet) {
             bullet.classList.add("bullet");
             bullet.style.backgroundColor = "#777";
-        }
+        } 
         bullet.innerHTML = '<ion-icon name="train-sharp"></ion-icon>';
     } else if (line.startsWith("B")) { // Bus
         if (showConnectionBullet) {
@@ -429,30 +431,39 @@ function toggleDisplayRoutes() {
         toggleRoutesCheckbox.checked = true;
         map.addLayer(routeLayersGroup);
         map.addLayer(stationDotsLayerGroup);
+        if (activeLayers === "lrt-metro-rail") {
+            map.addLayer(railRoutesLayerGroup);
+        }
+        changeLayers(false);
     } else {
         toggleRoutesCheckbox.checked = false;
         map.removeLayer(routeLayersGroup);
         map.removeLayer(stationDotsLayerGroup);
+        changeLayers(false);
     }
 }
 
 function toggleDisplayRail() {
-    if (showRail) {
+    if (activeLayers === "lrt-metro-rail") {
         // toggleRailCheckbox.checked = true;
-        map.addLayer(railLayersGroup);
-        spawnHeavyRailTrains(mainlineOps);
+        map.addLayer(railTrainsLayerGroup);
+        if (showRoutes && !wayfinderActive) {
+            map.addLayer(railRoutesLayerGroup);
+        } else {
+            map.removeLayer(railRoutesLayerGroup);
+        }
     } else {
         // toggleRailCheckbox.checked = false;
         // Despawn mainline trains
         trains.forEach(train => {
             if (train.vehicleType === "MAINLINE") {
                 // Remove the marker from the map
-                railLayersGroup.removeLayer(train.marker); 
+                railTrainsLayerGroup.removeLayer(train.marker); 
             }
         });
         trains = trains.filter(train => train.vehicleType !== "MAINLINE");
-        map.removeLayer(railLayersGroup);
-        
+        map.removeLayer(railTrainsLayerGroup);
+        map.removeLayer(railRoutesLayerGroup);
     }
 }
 
@@ -953,7 +964,7 @@ function createSegmentBlock(line, stationIds) {
 function highlightWayfoundRoute(path) {
     // Clear previous route and station dot layers
     wayfindLayersGroup.clearLayers();
-    stationDotsLayerGroup.clearLayers(); 
+    wayfinderRouteStnsLayerGroup.clearLayers(); 
     // Iterate over consecutive pairs in the computed path
     for (let i = 0; i < path.length - 1; i++) {
         const stationAId = path[i].station;
@@ -1022,7 +1033,7 @@ function highlightWayfoundRoute(path) {
             weight: 1,
             fillColor: highlightColour,
             fillOpacity: 0.9
-        }).addTo(stationDotsLayerGroup);
+        }).addTo(wayfinderRouteStnsLayerGroup);
 
         L.circleMarker(toCoords, {
             radius: 6,
@@ -1030,7 +1041,7 @@ function highlightWayfoundRoute(path) {
             weight: 1,
             fillColor: highlightColour,
             fillOpacity: 0.9
-        }).addTo(stationDotsLayerGroup);
+        }).addTo(wayfinderRouteStnsLayerGroup);
     }
 }
 
@@ -1065,9 +1076,9 @@ function getRoute(startNode, endNode) {
 
 // Restore various states upon leaving wayfinder 
 function exitWayfinder() {
-    // Clear route visualw
+    // Clear route visual
     wayfindLayersGroup.clearLayers();
-    stationDotsLayerGroup.clearLayers(); 
+    wayfinderRouteStnsLayerGroup.clearLayers(); 
     // Restart simulation respawn all trains 
     simPaused = false;
     showRoutes = routesPreWF;
@@ -1083,7 +1094,7 @@ function wayfind() {
     // trains.forEach(train => train.marker.remove());
     trains.forEach(train => {
         if (train.vehicleType === "MAINLINE") {
-            railLayersGroup.removeLayer(train.marker);
+            railTrainsLayerGroup.removeLayer(train.marker);
         } else {
             train.marker.remove();   
         }
@@ -1459,8 +1470,12 @@ Promise.all([
                                 }
                             }, 2500); // Auto close after 2.5 seconds
                         });
-                        marker.addTo(routeLayersGroup);
+                        
+                        marker.addTo(stationDotsLayerGroup);
                         visibleMarker.addTo(stationDotsLayerGroup); 
+                        if (!showRoutes) {
+                            map.removeLayer(stationDotsLayerGroup)
+                        }
                     }
                 });
             });
@@ -1471,7 +1486,7 @@ Promise.all([
                     weight: 6,
                     opacity: 1,
                 }
-            }).addTo(railLayersGroup);
+            }).addTo(railRoutesLayerGroup);
             // and rail stations
             L.geoJSON(railStations, {
                 pointToLayer: function (feature, latlng) {
@@ -1554,8 +1569,8 @@ Promise.all([
                         }, 2500);
                     });
 
-                    marker.addTo(railLayersGroup);
-                    visibleMarker.addTo(railLayersGroup);
+                    marker.addTo(railRoutesLayerGroup);
+                    visibleMarker.addTo(railRoutesLayerGroup);
                     return null;
                 }
             });
@@ -1565,7 +1580,7 @@ Promise.all([
                 map.removeLayer(routeLayersGroup);
             }
             if (!showRail) {
-                map.removeLayer(railLayersGroup);
+                map.removeLayer(railRoutesLayerGroup);
             }
         
         // Start the simulation 
@@ -1573,8 +1588,28 @@ Promise.all([
     })
     .catch(error => console.error("Error loading data:", error));
     
+    function updateLegend() {
+        const l = document.getElementById("lrtLegendRow");
+        const m = document.getElementById("metroLegendRow");
+        const r = document.getElementById("hrLegendRow");
+        if (activeLayers === "lrt") {
+            l.style.display = "flex";
+            m.style.display = "none";
+            r.style.display = "none";
+        } else if (activeLayers === "lrt-metro") {
+            l.style.display = "flex";
+            m.style.display = "flex";
+            r.style.display = "none";
+        } else {
+            l.style.display = "flex";
+            m.style.display = "flex";
+            r.style.display = "flex";
+        }
+    }
+
     // Change visibility of layers as required - either LRT only, LRT+Metro, or LRT+Metro+Rail
-    function changeLayers() {
+    function changeLayers(restartSim=true) {
+        updateLegend();
         // Rail is only available with all layers visible
         if (activeLayers !== "lrt-metro-rail") {
             showRail = false;
@@ -1626,7 +1661,10 @@ Promise.all([
             });
             }
             populateWayfindingOptions();
-            startSimulation(); 
+            if (restartSim) {
+                startSimulation(); 
+            }
+            
         }
     }
 
@@ -1681,7 +1719,7 @@ class Train {
         });
         if (this.vehicleType === 'MAINLINE') {
             //TODO: despawn and unaminate trains when rail layer is hidden
-            this.marker.addTo(railLayersGroup);
+            this.marker.addTo(railTrainsLayerGroup);
         } else {
             this.marker.addTo(map);
 
@@ -1885,7 +1923,7 @@ function startSimulation() {
     // trains.forEach(train => train.marker.remove());
     trains.forEach(train => {
         if (train.vehicleType === "MAINLINE") {
-            railLayersGroup.removeLayer(train.marker);
+            railTrainsLayerGroup.removeLayer(train.marker);
         } else {
             train.marker.remove();  
         }

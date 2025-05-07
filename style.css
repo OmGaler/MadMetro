@@ -35,8 +35,8 @@ body {
     border: 1px solid #888;
     border-radius: 4px;
     overflow: auto;
-    width: 30vh;
-    height: 75%;
+    width: 33vh;
+    height: 70%;
     pointer-events: auto;
 }
 
@@ -336,7 +336,9 @@ button#darkModeButton {
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
-    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box; 
+    
 }
 
 .seg-btn {
@@ -351,9 +353,27 @@ button#darkModeButton {
     border-radius: 0;
 }
 
-.seg-btn:not(:last-child) {
-    border-right: 1px solid #ccc;
+html[dir="lrt"] .seg-btn:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
+
+
+html[dir="rtl"] .seg-btn:first-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+html[dir="lrt"] .seg-btn:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+html[dir="rtl"] .seg-btn:last-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
 
 .seg-btn:hover {
     background-color: #e0e0e0;
@@ -365,16 +385,83 @@ button#darkModeButton {
     font-weight: bold;
 }
 
-
-.seg-btn:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+body.dark-mode .segmented-control {
+    border: 1px solid #444;
+    background-color: #1e1e1e;
 }
 
-.seg-btn:last-child {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+body.dark-mode .seg-btn {
+    background-color: #2a2a2a;
+    color: #ccc;
+    border-color: #444;
 }
+
+body.dark-mode .seg-btn:not(:last-child) {
+    border-right: 1px solid #444;
+}
+
+body.dark-mode .seg-btn:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode .seg-btn.active {
+    color: #66b2ff;
+    border: 2px solid #66b2ff;
+    font-weight: bold;
+    background-color: #1a1a1a;
+}
+
+.callout-warning {
+    display: flex;
+    align-items: center;
+    background-color: #fff8e6;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+    margin-inline-end: 15px;
+}
+
+body.dark-mode .callout-warning {
+    background-color: #ffb74d26;;
+    color: #fff;
+}
+
+body.dark-mode [dir="ltr"] .callout-warning {
+    border-left: 4px solid #ffb74d;
+}
+
+body.dark-mode [dir="rtl"] .callout-warning {
+    border-right: 4px solid #ffb74d;
+}
+
+body.dark-mode .callout-icon ion-icon {
+    color: #ffb74d !important;
+    background-color: #ffffff00 !important;
+}
+
+[dir="ltr"] .callout-warning {
+    border-left: 4px solid #ffb74d;
+    border-right: none;
+}
+
+[dir="rtl"] .callout-warning {
+    border-right: 4px solid #ffb74d;
+    border-left: none;
+    text-align: right;
+}
+
+.callout-icon ion-icon {
+    color: #ffb84d !important;
+    display: flex;
+    align-items: center;
+}
+
+.callout-content {
+    flex: 1;
+    font-size: 14px;
+}
+
 #lineDetailsTab {
     padding: 10px;
 }
@@ -445,8 +532,14 @@ button#darkModeButton {
 .rail-bullet {
     flex-direction: column;
 }
+.rail-bullet-legend {
+    background-color: #444; 
+    margin-inline-start: 0px !important;
+}
+
 .rail-bullet ion-icon {
     display: block;
+    margin-inline-start: 16px;
     width: 0.75em;
     height: 0.75em;
     color: white !important;
@@ -553,9 +646,10 @@ button#darkModeButton {
    ========================================== */
 .toggle-option {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #eee;
 }
 
@@ -565,8 +659,7 @@ button#darkModeButton {
 
 .toggle-option ion-icon {
     font-size: 24px;
-    margin-right: 16px;
-    margin-left: 16px;
+    margin-inline-end: 16px;
     color: #555;
 }
 
@@ -963,7 +1056,6 @@ Wayfinder
 
 .routePreferenceContainer {
     border-radius: 10px;
-    padding: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -971,7 +1063,6 @@ Wayfinder
 
 .route-switch {
     position: relative;
-    display: inline-block;
     width: 52px;
     height: 28px;
 }
@@ -985,8 +1076,6 @@ Wayfinder
 .option-label {
     display: flex;
     align-items: center;
-    gap: 6px;
-    margin: 0px 10px;
     cursor: pointer;
     font-size: 14px;
     color: #888;
@@ -1008,7 +1097,10 @@ Wayfinder
 
 .route-slider {
     position: absolute;
+    display: inline-block;
     cursor: pointer;
+    width: 52px;
+    height: 28px;
     top: 0;
     left: 0;
     right: 0;
@@ -1148,6 +1240,38 @@ body.dark-mode .lang-btn {
     color: #ffffff;
 }
 
+body.dark-mode .route-slider {
+    background-color: #555;
+}
+
+body.dark-mode input:checked + .route-slider {
+    background-color: #7e22ce;
+}
+
+body.dark-mode input:focus + .route-slider {
+    box-shadow: 0 0 1px #7e22ce;
+}
+
+body.dark-mode .route-slider {
+    background-color: #2563eb; /* Darker blue for "Quickest" */
+}
+
+body.dark-mode input:checked + .route-slider {
+    background-color: #7e22ce; /* Darker purple for "Fewest" */
+}
+
+body.dark-mode .route-slider:before {
+    background-color: #d1d5db; /* Slightly off-white knob */
+}
+
+body.dark-mode .option-label {
+    color: #adb5bd;
+}
+
+body.dark-mode .option-label.active {
+    color: var(--active-color);
+}
+
 .dark-mode a {
     color: #ffffff;
 }
@@ -1265,6 +1389,17 @@ body.dark-mode .select-selected:after {
     #speedSlider {
         max-width: 100%;
     }
+}
+
+@media (max-width: 768px) {
+    .toggle-option {
+        align-items: flex-start;
+    }
+    .segmented-control {
+        flex: 0 0 100%;          /* take full width of the container */
+        max-width: 100%;
+        margin-top: 0.75rem;     /* separation from the icon/text above */
+      }
 }
 
 @media (max-width: 768px) {
