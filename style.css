@@ -517,6 +517,10 @@ body.dark-mode .callout-icon ion-icon {
     margin-inline-start: 5px;
 }
 
+#hrLegend {
+    margin-inline-start: 5px;
+}
+
 .bullet {
     width: 22px;
     height: 22px;

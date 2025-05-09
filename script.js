@@ -205,7 +205,7 @@ fetch("data/translations.json")
         
         // Update any active route details
         const detailsContainer = document.querySelector(".route-details-container");
-        if (detailsContainer && detailsContainer.firstChild) {
+        if (detailsContainer && detailsContainer.firstChild && wayfinderActive) {
             // If there's an active route, recalculate and display it
             const start = startStationSelect.value;
             const end = endStationSelect.value;
@@ -221,11 +221,6 @@ fetch("data/translations.json")
     
 
 window.updateLanguage = updateLanguage;
-
-// function toggleLanguage() {
-//     const newLang = currentLang === "en" ? "he" : "en";
-//     updateLanguage(newLang);
-// }
 
 function updateTimePeriodOptions() {
     const dayTypeSelect = document.getElementById("dayTypeSelect");
@@ -329,7 +324,6 @@ function updateCustomSelectOptions(selectId) {
         customSelectContainer.keyListener = function(e) {
             // Only process if dropdown is open
             if (selectItems.style.display !== "block") return;
-
             // Prevent event propagation for any keypress while dropdown is open
             e.stopPropagation();
             e.preventDefault();
@@ -355,7 +349,7 @@ function updateCustomSelectOptions(selectId) {
                     // Update selection
                     const index = items.indexOf(foundItem);
                     foundItem.classList.add('selected');
-                    select.selectedIndex = index + 1; // +1 because of default option
+                    select.selectedIndex = index;
                     selectSelected.innerHTML = foundItem.innerHTML;
                     
                     // Scroll item into view
@@ -403,13 +397,6 @@ toggleRoutesCheckbox.addEventListener("change", function() {
     showRoutes = this.checked;
     toggleDisplayRoutes();
 });
-
-// const toggleRailCheckbox = document.getElementById("toggleRail");
-// toggleRailCheckbox.addEventListener("change", function() {
-//     showRail = activeLayers === "lrt-metro-rail";
-//     toggleDisplayRail();
-// });
-
 
 const layerBtns = document.querySelectorAll("#showLayers .seg-btn");
 document.addEventListener("DOMContentLoaded", function () {
@@ -1075,6 +1062,7 @@ function getRoute(startNode, endNode) {
 
 // Restore various states upon leaving wayfinder 
 function exitWayfinder() {
+    wayfinderActive = false;
     // Clear route visual
     wayfindLayersGroup.clearLayers();
     wayfinderRouteStnsLayerGroup.clearLayers(); 

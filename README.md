@@ -12,11 +12,11 @@ The Tel Aviv-Gush Dan Metropolitan Area is the densest and most populous in Isra
 
 ## Features
 
-- **Whole Network Visualisation:** Complete visualisation of the planned Gush Dan mass transit network, including all metro and light rail lines.
-- **Real-time Transit Simulation:** Dynamic visualisation of metro and light rail vehicles moving along their routes, adhering to realistic schedules and stopping patterns.
+- **Whole Network Visualisation:** Complete visualisation of the planned Gush Dan mass transit network, including all metro and light rail lines. Optionally additionally simulates and visualises the national mainline heavy rail network.
+- **Real-time Transit Simulation:** Dynamic visualisation of metro and light rail vehicles moving along their routes, adhering to realistic schedules and stopping patterns. Choose between simulating light rail, metro and heavy rail.
 - **Interactive Map Interface:** Easy navigation with pan and zoom capabilities using mouse or touch gestures.
 - **Detailed Train Information:** Access route details, next stop, and destination by clicking on any train.
-- **Wayfinder**:Provides estimated journey times and optimal route details, including transfer information, between any two stations on the network.
+- **Wayfinder:** Provides estimated journey times and optimal route details, including transfer information, between any two stations on the network. Routing can be set to prioritise the fastest journey or fewer line changes.
 - **Customisable Simulation Settings:** Adjust simulation speed, scheduling parameters, and view options.
 - **Multilingual Support:** Toggle between English and Hebrew interfaces.
 
