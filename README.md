@@ -125,7 +125,7 @@ This method efficiently handling complex network topologies including transfers 
 
 - **Accuracy:** Schedules, frequencies, and routes are approximations and may not match planned or actual services.
 - **Journey Time Estimation:** Calculated travel times incorporate theoretical physics models with approximate adjustments for real-world factors. These times should be considered indicative only and may significantly differ from actual journey durations due to operational variability, service disruptions, passenger volumes, and other external factors beyond the scope of this simulation.
-- **Not Official:** This project is not affiliated with or endorsed by NTA, MOT, or any other governmental or transit authority.
+- **Not Official:** This project is not affiliated with or endorsed by NTA, Israel Railways, the MoT, or any other governmental or transit authority.
 - **Performance Limitations:** While every effort has been made to optimise performance, the tool is designed for educational purposes and may not handle very high numbers of simulated vehicles without performance impacts.
 - **Naming and Service Patterns:** Station names and service patterns are subject to change and may differ from final implementations. Certain service patterns may be subject to abstraction for simulation purposes.
 - **Track Representation:** The app only displays tracks used for passenger services. Depots, sidings, and other non-revenue tracks are omitted.

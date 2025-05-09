@@ -338,7 +338,7 @@ button#darkModeButton {
     overflow: hidden;
     max-width: 100%;
     box-sizing: border-box; 
-    
+    align-self: flex-end
 }
 
 .seg-btn {
@@ -418,7 +418,7 @@ body.dark-mode .seg-btn.active {
     background-color: #fff8e6;
     border-radius: 4px;
     padding: 10px;
-    margin: 10px 0;
+    margin: 3px 0;
     margin-inline-end: 15px;
 }
 
@@ -455,6 +455,7 @@ body.dark-mode .callout-icon ion-icon {
     color: #ffb84d !important;
     display: flex;
     align-items: center;
+    padding-inline-end: 6px;
 }
 
 .callout-content {
@@ -539,7 +540,6 @@ body.dark-mode .callout-icon ion-icon {
 
 .rail-bullet ion-icon {
     display: block;
-    margin-inline-start: 16px;
     width: 0.75em;
     height: 0.75em;
     color: white !important;
@@ -560,24 +560,6 @@ body.dark-mode .callout-icon ion-icon {
 }
 
 .train-popup,
-.station-popup {
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    padding: 12px 18px;
-    border-radius: 16px;
-    font-size: 14px;
-    display: none;
-    align-items: center;
-    gap: 10px;
-    font-family: Helvetica;
-    animation: fadeIn 0.2s ease-out;
-    z-index: 9999;
-}
-
 .station-popup {
     position: fixed;
     bottom: 80px;
@@ -657,11 +639,16 @@ body.dark-mode .callout-icon ion-icon {
     border-bottom: none;
 }
 
-.toggle-option ion-icon {
+.toggle-option > ion-icon {
     font-size: 24px;
-    margin-inline-end: 16px;
+    margin-inline-end: 16px; 
     color: #555;
 }
+
+.toggle-option ion-icon {
+    font-size: 20px !important;
+}
+
 
 .toggle-container {
     display: flex;
@@ -807,6 +794,7 @@ html[dir="rtl"] .switch input:checked + .slider:before {
 .custom-select.description-top {
     flex: 0 0 50px;
 }
+
 
 .select-selected {
     width: 100%;

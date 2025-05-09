@@ -51,7 +51,11 @@ const junctions = {
 };
 export const ACCEL = 0.8; // Acceleration (and deceleration) in m/s²
 // Heuristic constants to adjust calculated journey times
-const SCALAR = {"M": 1.1, "LRU": 1.35, "LRO": 1.5};
+const SCALAR = {
+    "M": 1.1,
+    "LRU": 1.35,
+    "LRO": 1.5
+};
 const DWELL_BUFFER = 0.5; //30 seconds dwell time per station
 /********************************************
  * Convert edge weights to times using mechanics
@@ -89,7 +93,7 @@ export function calculateEdgeTime(distance, lineType) {
  * Graph Building
  * Expects edges in the form:
  * { source: <number>, destination: <number>, distance: <meters>, type: <string> }
-********************************************/
+ ********************************************/
 export function buildGraph(edges) {
     const graph = {};
     edges.forEach(edge => {
@@ -116,7 +120,7 @@ export function buildGraph(edges) {
 }
 
 /********************************************
- * Priority Queue Implementation
+ * Priority Queue Implementation (Tuple-based)
  ********************************************/
 export class PriorityQueue {
     constructor() {
@@ -128,7 +132,14 @@ export class PriorityQueue {
             element,
             priority
         });
-        this.elements.sort((a, b) => a.priority - b.priority);
+        // Lexicographical sort for tuple priorities
+        this.elements.sort((a, b) => {
+            for (let i = 0; i < a.priority.length; i++) {
+                if (a.priority[i] < b.priority[i]) return -1;
+                if (a.priority[i] > b.priority[i]) return 1;
+            }
+            return 0;
+        });
     }
 
     dequeue() {
@@ -141,78 +152,221 @@ export class PriorityQueue {
 }
 
 /********************************************
- * Dijsktra's Algorithm with Transfer Penalty
- * This algorithm tracks the current line along each path.
- * When a transfer occurs (i.e. the line changes), it adds a transfer penalty (in minutes).
+ * Dijsktra's Algorithm with Lexicographical Tuple Priority
  ********************************************/
-export function dijkstraWithTransfers(graph, start, end, lrtOnly, pref = 'quickest') {
-    const distances = {}; // Travel time
-    const transfers = {}; // Number of transfers
+/**
+ * Find the route minimizing transfers (primary) then time (secondary).
+ * Returns { path: [{station, line}], transfers, journeyTime }.
+ * Does NOT call dijkstraWithTransfers or a pure BFS.
+ */
+export function fewestTransferRoute(graph, start, end, lrtOnly) {
+    //TODO: add a transfer check
+    // visited[node][line] = [bestTransfers, bestTime]
+    const visited = {};
+
+    // PriorityQueue orders by [transfers, time] lexicographically
+    const queue = new PriorityQueue();
+    // seed with start: no line yet, 0 transfers, 0 time
+    queue.enqueue({
+            node: start,
+            line: null,
+            transfers: 0,
+            time: 0,
+            prev: null
+        },
+        [0, 0]
+    );
+
+    let finishState = null;
+
+    while (!queue.isEmpty()) {
+        const {
+            element: curr,
+            priority: [tCount, tTime]
+        } = queue.dequeue();
+        const key = `${curr.node}_${curr.line}`;
+
+        // If we've already seen a better-or-equal state, skip
+        if (visited[key]) {
+            const [bestT, bestTime] = visited[key];
+            if (bestT < tCount || (bestT === tCount && bestTime <= tTime)) {
+                continue;
+            }
+        }
+        visited[key] = [tCount, tTime];
+
+        // Found destination: optimal by lexicographical ordering
+        if (curr.node == end) {
+            finishState = curr;
+            break;
+        }
+
+        // Explore neighbors
+        for (const nbr of graph[curr.node]) {
+            if (lrtOnly && nbr.type === 'M') continue;
+
+            const isTransfer = curr.line !== null && curr.line !== nbr.line;
+            const nextTransfers = curr.transfers + (isTransfer ? 1 : 0);
+            const transferPenalty = isTransfer ? 2 : 0;
+
+            const nextTime = curr.time + nbr.weight + transferPenalty;
+            const nextLine = nbr.line;
+            const nextKey = `${nbr.node}_${nextLine}`;
+
+            // If neighbor state isn't an improvement, skip
+            if (visited[nextKey]) {
+                const [bestT, bestTime] = visited[nextKey];
+                if (bestT < nextTransfers ||
+                    (bestT === nextTransfers && bestTime <= nextTime)) {
+                    continue;
+                }
+            }
+
+            queue.enqueue({
+                    node: nbr.node,
+                    line: nextLine,
+                    transfers: nextTransfers,
+                    time: nextTime,
+                    prev: curr
+                },
+                [nextTransfers, nextTime]
+            );
+        }
+    }
+
+    if (!finishState) return null; // no path found
+
+    // Reconstruct path
+    const path = [];
+    let cursor = finishState;
+    while (cursor) {
+        path.unshift({
+            station: cursor.node,
+            line: cursor.line
+        });
+        cursor = cursor.prev;
+    }
+
+    return {
+        path,
+        transfers: finishState.transfers,
+        journeyTime: finishState.time
+    };
+}
+
+//Write a function that returns the {previous, distances} object for the route generated by fewestTransferRoute
+
+
+export function getDistsFromFewest(graph, start, end, lrtOnly) {
+    // Get the route generated by fewestTransferRoute
+    const routeResult = fewestTransferRoute(graph, start, end, lrtOnly);
+    if (!routeResult) return null;
+
+    const path = routeResult.path;
+    const previous = {};
+    const distances = {};
+    let cumTime = 0;
+
+    // Initialize with the starting station
+    distances[path[0].station] = 0;
+    previous[path[0].station] = null;
+
+    // Process each segment along the path
+    for (let i = 1; i < path.length; i++) {
+        const currStation = path[i].station;
+        const prevStation = path[i - 1].station;
+        const segmentLine = path[i].line; // line used to arrive at currStation
+
+        // Look-up the edge weight from the previous station to the current station
+        const edge = graph[prevStation].find(nbr => nbr.node === currStation && nbr.line === segmentLine);
+        const weight = edge ? edge.weight : 0;
+
+
+        // If the previous segment (if any) had a different line, add a transfer penalty of 2 minutes
+        if (path[i - 1].line !== null && path[i - 1].line !== segmentLine) {
+            cumTime += 2;
+        }
+        
+        cumTime += weight;
+        distances[currStation] = cumTime;
+        previous[currStation] = {
+            station: prevStation,
+            line: segmentLine
+        };
+    }
+
+    return {
+        previous,
+        distances
+    };
+}
+
+// ...existing code...
+export function dijkstraWithTransfers(graph, start, end, lrtOnly, pref) {
+    let fewestTransfers = null;
+    if (pref === "fewest_changes") {
+        // fewestTransfers=fewestTransferRoute(graph, start, end, lrtOnly).transfers;       
+        // console.log("Min transfers", fewestTransfers);
+        return getDistsFromFewest(graph, start, end, lrtOnly);
+    }
+    const distances = {};
     const previous = {};
     const queue = new PriorityQueue();
-
-    // Initialize distances, transfers and previous mapping
+    // Initialise distances and previous mapping
     for (let node in graph) {
         distances[node] = Infinity;
-        transfers[node] = Infinity;
         previous[node] = null;
     }
 
     // Start at the starting node with no assigned line
     distances[start] = 0;
-    transfers[start] = 0;
     queue.enqueue({
         node: start,
         line: null,
-        transferCount: 0
+        transfers: 0
     }, 0);
 
     while (!queue.isEmpty()) {
         const currentObj = queue.dequeue().element;
         const current = currentObj.node;
         const currentLine = currentObj.line;
-        const currentTransfers = currentObj.transferCount;
+        let currentTransfers = currentObj.transfers;
 
-        if (current == end) break;
+        // if (current == end) break;
 
         for (const neighbor of graph[current]) {
-            if (lrtOnly && neighbor.type === 'M') continue; // Skip metro edges if lrtOnly is true
-            const { 
+            if (lrtOnly && neighbor.type === 'M') continue;
+            const {
                 node: nextNode,
-                weight, 
-                line 
+                weight,
+                line
             } = neighbor;
 
-            let newTransfers = currentTransfers;
-            // Add a transfer penalty if switching lines
+            // Apply a transfer penalty if switching lines
             let transferPenalty = 0;
+            let nextTransfers = currentTransfers;
             if (currentLine && currentLine !== line) {
-                newTransfers += 1;
-                transferPenalty = 2; // 2 minutes for a transfer
+                if (pref === "fewest_changes") {
+                    nextTransfers++;
+                    // if (nextTransfers + 1 > fewestTransfers) { 
+                    // console.log("Too many transfers, skipping this path.");
+                    // continue;
+                    // }
+                }
+                transferPenalty = 2; // 2 minute transfer penalty
             }
-            const newDistance = distances[current] + weight + transferPenalty;
-            // Set priority based on user preference
-            let priority;
-            if (pref === 'fewest_changes') {
-                // For fewest changes: primary sort by transfers, secondary by time
-                priority = (newTransfers * 1e5) + newDistance;
+
+            if (pref === "fewest_changes" && (nextTransfers > fewestTransfers)) {
+                // debugger;
+                continue; // Skip this path entirely
             } else {
-                // For quickest: sort only by time 
-                priority = newDistance + newTransfers;
+                console.log(nextTransfers);
             }
 
-            // Check if this path is better than what we have
-            const isBetterPath = 
-                (pref === 'fewest_changes' && 
-                    (newTransfers < transfers[nextNode] || 
-                    (newTransfers === transfers[nextNode] && newDistance < distances[nextNode]))) ||
-                (pref === 'quickest' && 
-                    newDistance + transferPenalty < distances[nextNode]);
 
-            if (isBetterPath) {
-                // Update with the better path
-                distances[nextNode] = newDistance;
-                transfers[nextNode] = newTransfers;
+            const newTime = distances[current] + weight + transferPenalty;
+            if (newTime < distances[nextNode]) {
+                distances[nextNode] = newTime;
                 previous[nextNode] = {
                     station: current,
                     line: line
@@ -220,15 +374,14 @@ export function dijkstraWithTransfers(graph, start, end, lrtOnly, pref = 'quicke
                 queue.enqueue({
                     node: nextNode,
                     line: line,
-                    transferCount: newTransfers
-                }, priority);
+                    transfers: nextTransfers
+                }, newTime);
             }
         }
     }
 
     return {
         distances,
-        transfers,
         previous
     };
 }
@@ -249,7 +402,7 @@ export function reconstructPathWithTransfers(previous, distances, start, end) {
             station: current,
             line: lastLine
         });
-        
+
         // Check for a transfer: if the line used to arrive at the current station differs
         // from the line used at the previous station, record a transfer.
         if (previous[current].line !== lastLine) {
@@ -269,18 +422,18 @@ export function reconstructPathWithTransfers(previous, distances, start, end) {
         if (lastStation !== null && junctions.hasOwnProperty(current.toString())) {
             // Build the sequence: previous station -> current -> lastStation.
             const seq = [
-                previous[current].station.toString(), 
-                current.toString(), 
+                previous[current].station.toString(),
+                current.toString(),
                 lastStation.toString()
             ];
-            
+
             // Check if the sequence is one of the valid segments.
             const validSequences = junctions[current.toString()];
             const sequenceMatches = validSequences.some(validSeq =>
                 validSeq[0].toString() === seq[0].toString() && validSeq[1].toString() === seq[1].toString() && validSeq[2].toString() === seq[2].toString()
             );
 
-            console.log(validSequences, seq, sequenceMatches);  
+            console.log(validSequences, seq, sequenceMatches);
             if (!sequenceMatches) {
                 // console.log("Backtrack detected at junction: ", current, lastStation, previous[current].station);
                 // Record a transfer if the sequence does not match a valid segment - it means we've backtracked at a junction
@@ -295,9 +448,9 @@ export function reconstructPathWithTransfers(previous, distances, start, end) {
                 });
             }
         }
-        
+
         lastStation = current;
-    
+
 
         lastLine = previous[current].line;
         current = previous[current].station;

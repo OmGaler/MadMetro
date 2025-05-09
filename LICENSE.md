@@ -2,7 +2,7 @@
 Version 1.0  
 Copyright (c) 2025 Omer Galer
 
-IMPORTANT: This license is a modified version of the Mozilla Public License, version 2.0. It is provided "AS IS" without any warranty. 
+IMPORTANT: This license is a modified version of the Mozilla Public License, version 2.0. It is provided "AS IS" without any warranty.
 Use of the Licensed Software for any commercial purpose is prohibited unless you obtain explicit, written permission from the Licensor.
 
 ## 1. Definitions
@@ -21,7 +21,7 @@ Means the recipient or user of the Licensed Software, including any party that r
 
 ## 2. Grant of Rights
 
-Subject to the terms and conditions of this License, the Licensor hereby grants you a non‑exclusive, worldwide, royalty‑free license to use, reproduce, modify, distribute, and publicly display the Licensed Software (in both source code and object code form) solely for non‑commercial purposes. Any use of the Licensed Software for Commercial Use is expressly prohibited unless you first obtain explicit, written authorization from the Licensor.
+Subject to the terms and conditions of this License, the Licensor hereby grants you a non‑exclusive, worldwide, royalty‑free license to use, distribute, and publicly display the Licensed Software (in both source code and object code form) solely for non‑commercial purposes. Any use of the Licensed Software for Commercial Use is expressly prohibited unless you first obtain explicit, written authorization from the Licensor.
 
 ## 3. Commercial Use Restriction
 
@@ -29,9 +29,8 @@ The Licensed Software (including any derivative works) may not be used for any C
 
 ## 4. Distribution of Source and Modifications
 
-4.1 You may distribute copies of the Licensed Software in source or object form provided that you comply with the terms of this License.  
-4.2 If you modify the Licensed Software, you must mark your modifications and distribute the modified files under the terms of this License, including the Commercial Use Restriction.  
-4.3 You must include a complete copy of this License with any distribution of the Licensed Software or its derivative works.
+4.1 You may distribute copies of the Licensed Software in source or object form provided that you comply with the terms of this License and that you attribute the author.
+4.2 You must include a complete copy of this License with any distribution of the Licensed Software or its derivative works.
 
 ## 5. Disclaimer of Warranty and Limitation of Liability
 

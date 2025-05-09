@@ -271,7 +271,6 @@ function getMergedStationName(station) {
     return station.id.toString();
 }
 
-
 function getRouteBullet(line, showConnectionBullet = false) {
     const bullet = document.createElement("span");
     if (line === "IR") { // Israel Railways
@@ -286,7 +285,6 @@ function getRouteBullet(line, showConnectionBullet = false) {
             bullet.style.backgroundColor = "#777";
         }
         bullet.innerHTML = '<ion-icon name="bus"></ion-icon>';
-        
     } else if (line.startsWith("M")) { // Use the number 
         bullet.classList.add("bullet");
         bullet.style.backgroundColor = lineColours[line] || "#777";
@@ -1068,6 +1066,7 @@ function getRoute(startNode, endNode) {
     // Call dijkstra algorithm with the appropriate parameters (quickest or fewest changes and whether to only use light rail)
     const { distances, previous } = dijkstraWithTransfers(gr, startNode, endNode, activeLayers === "lrt" ? true : false, routingPref);
     const route = reconstructPathWithTransfers(previous, distances, startNode, endNode);
+    
     console.log("Route path:", route.path.map(p => `${stationLookup[p.station].name.en|| "Station not found"} (${p.line})`).join(" → "));
     console.log("Transfers:", route.transfers.length > 0 ? route.transfers : "No transfers needed.");
     console.log("Estimated travel time (minutes):", route.journeyTime);
@@ -1471,8 +1470,8 @@ Promise.all([
                             }, 2500); // Auto close after 2.5 seconds
                         });
                         
-                        marker.addTo(stationDotsLayerGroup);
                         visibleMarker.addTo(stationDotsLayerGroup); 
+                        marker.addTo(stationDotsLayerGroup);
                         if (!showRoutes) {
                             map.removeLayer(stationDotsLayerGroup)
                         }
