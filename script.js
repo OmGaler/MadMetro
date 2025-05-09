@@ -205,7 +205,7 @@ fetch("data/translations.json")
         
         // Update any active route details
         const detailsContainer = document.querySelector(".route-details-container");
-        if (detailsContainer && detailsContainer.firstChild && wayfinderActive) {
+        if (detailsContainer && detailsContainer.firstChild) {
             // If there's an active route, recalculate and display it
             const start = startStationSelect.value;
             const end = endStationSelect.value;
@@ -1057,7 +1057,9 @@ function getRoute(startNode, endNode) {
     console.log("Route path:", route.path.map(p => `${stationLookup[p.station].name.en|| "Station not found"} (${p.line})`).join(" → "));
     console.log("Transfers:", route.transfers.length > 0 ? route.transfers : "No transfers needed.");
     console.log("Estimated travel time (minutes):", route.journeyTime);
-    displayRoute(route);
+    if (wayfinderActive) {
+        displayRoute(route);
+    }
 }
 
 // Restore various states upon leaving wayfinder 
