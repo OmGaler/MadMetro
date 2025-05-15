@@ -319,45 +319,70 @@ function updateCustomSelectOptions(selectId) {
             selectSelected.removeEventListener('keydown', customSelectContainer.keyListener);
             selectItems.removeEventListener('keydown', customSelectContainer.keyListener);
         }
+        // Type-ahead buffer (to search for stations)
 
-        // Add keyboard navigation
         customSelectContainer.keyListener = function(e) {
-            // Only process if dropdown is open
+            // Only when dropdown is open
             if (selectItems.style.display !== "block") return;
-            // Prevent event propagation for any keypress while dropdown is open
-            e.stopPropagation();
-            e.preventDefault();
+            const key = e.key;
+            const now = Date.now();
+            // Escape clears the buffer and closes the dropdown
+            if (key === 'Escape') {
+                e.preventDefault();
+                // Clear buffer
+                _searchBuffer = '';
+                _lastKeyTime = 0;
+                // Reset native <select> to its placeholder (select station)
+                select.selectedIndex = 0;
+                // update the fake header text
+                selectSelected.textContent = currentLang === "en" ? 'Select station' : 'בחר תחנה';
+                // Clear any highlighted item
+                Array.from(selectItems.children).forEach(item =>
+                    item.classList.remove('same-as-selected', 'selected')
+                );
+                // Close the dropdown
+                selectItems.style.display = 'none';
+                return;
+            }
+            // Handle any single printable character (EN+HE)
+            if (key.length === 1) {
+                e.preventDefault();
+                e.stopPropagation();
+                const char = key.normalize('NFC').toLocaleLowerCase();
+                // Reset buffer if too slow
+                if (now - _lastKeyTime > BUFFER_CLEAR_DELAY) {
+                    _searchBuffer = char;
+                } else {
+                    _searchBuffer += char;
+                }
+                _lastKeyTime = now;
+                // Find matching option
+                const options = Array.from(select.options);
 
-            if (e.key.length === 1 && e.key.match(/[a-zA-Z]/)) {
-                const searchChar = e.key.toLowerCase();
-                const items = Array.from(selectItems.children);
-                
-                // Find first item that starts with the pressed key
-                const foundItem = items.find(item => {
-                    // Get only the station name text, ignoring the route bullets
-                    const stationNameSpan = item.querySelector('span');
-                    if (!stationNameSpan) return false;
-                    return stationNameSpan.textContent.trim().toLowerCase().startsWith(searchChar);
+                let idx = options.findIndex(o => {
+                    const text = o.text.normalize('NFC').toLocaleLowerCase();
+                    return text.startsWith(_searchBuffer);
                 });
 
-                if (foundItem) {
-                    // Remove previous selection
-                    items.forEach(item => {
-                        item.classList.remove('same-as-selected', 'selected');
+                if (idx === -1) {
+                    idx = options.findIndex(o => {
+                        const text = o.text.normalize('NFC').toLocaleLowerCase();
+                        return text.includes(_searchBuffer);
                     });
-                    
-                    // Update selection
-                    const index = items.indexOf(foundItem);
-                    foundItem.classList.add('selected');
-                    select.selectedIndex = index;
-                    selectSelected.innerHTML = foundItem.innerHTML;
-                    
-                    // Scroll item into view
-                    foundItem.scrollIntoView({ block: 'nearest' });
-                    
-                    // Trigger change event
-                    const event = new Event('change', { bubbles: true });
-                    select.dispatchEvent(event);
+                }
+
+                if (idx > -1) {
+                    // Highlight in the list
+                    const items = Array.from(selectItems.children);
+                    items.forEach(i =>
+                        i.classList.remove('same-as-selected', 'selected')
+                    );
+                    const found = items[idx];
+                    found.classList.add('selected');
+                    select.selectedIndex = idx;
+                    selectSelected.innerHTML = found.innerHTML;
+                    found.scrollIntoView({ block: 'nearest' });
+                    select.dispatchEvent(new Event('change', { bubbles: true }));
                 }
             }
         };
@@ -371,7 +396,6 @@ function updateCustomSelectOptions(selectId) {
     if (select.selectedIndex >= 0) {
         selectSelected.innerHTML = select.options[select.selectedIndex].innerHTML;
     }
-
     // Rebuild the dropdown items list
     selectItems.innerHTML = '';
     Array.from(select.options).forEach((option, index) => {
@@ -643,12 +667,12 @@ document.addEventListener("keydown", function (event) {
 });
 
 document.addEventListener("keydown", (event) => {
-    if (event.key.toLowerCase() === "t") {
+    if (event.key.toLowerCase() === "t" && !wayfinderActive) {
         event.preventDefault(); // Prevent unintended browser actions
         showRoutes = !showRoutes;
         toggleDisplayRoutes();
     }
-    if (event.key.toLowerCase() === "r") {
+    if (event.key.toLowerCase() === "r" && !wayfinderActive) {
         // event.preventDefault(); 
         showRail = !showRail;
         toggleDisplayRail();
@@ -657,13 +681,13 @@ document.addEventListener("keydown", (event) => {
         document.querySelector("#showLayers .seg-btn[data-layer='lrt-metro-rail']").classList.add("active");
         changeLayers();
     }
-    if (event.key.toLowerCase() === "m") {  
+    if (event.key.toLowerCase() === "m" && !wayfinderActive) {  
         activeLayers = "lrt-metro";
         layerBtns.forEach(btn => btn.classList.remove("active"));
         document.querySelector("#showLayers .seg-btn[data-layer='lrt-metro']").classList.add("active");
         changeLayers();
     }
-    if (event.key.toLowerCase() === "l") {
+    if (event.key.toLowerCase() === "l" && !wayfinderActive) {
         activeLayers = "lrt";
         layerBtns.forEach(btn => btn.classList.remove("active"));
         document.querySelector("#showLayers .seg-btn[data-layer='lrt']").classList.add("active");
@@ -1033,11 +1057,13 @@ function highlightWayfoundRoute(path) {
 
 
 function displayRoute(route) { // Visualises the computed path on the map by only highlighting the segments traversed
-    showRoutes = false;
-    showRail = false;
-    toggleDisplayRoutes();
-    toggleDisplayRail();
-    highlightWayfoundRoute(route.path);   
+    if (wayfinderActive) {
+        showRoutes = false;
+        showRail = false;
+        toggleDisplayRoutes();
+        toggleDisplayRail();
+        highlightWayfoundRoute(route.path);   
+    }
     const detailsContainer = document.querySelector(".route-details-container");
     detailsContainer.innerHTML = ""; 
     const routeElement = buildRouteDetails(route);
@@ -1057,9 +1083,8 @@ function getRoute(startNode, endNode) {
     console.log("Route path:", route.path.map(p => `${stationLookup[p.station].name.en|| "Station not found"} (${p.line})`).join(" → "));
     console.log("Transfers:", route.transfers.length > 0 ? route.transfers : "No transfers needed.");
     console.log("Estimated travel time (minutes):", route.journeyTime);
-    if (wayfinderActive) {
-        displayRoute(route);
-    }
+    displayRoute(route);
+    
 }
 
 // Restore various states upon leaving wayfinder 
@@ -1183,6 +1208,9 @@ function hideStationPopup() {
  * Day/Time Controls & Operation Settings
  ********************************************/
 const customSelects = document.querySelectorAll(".custom-select");
+let _searchBuffer = '';
+let _lastKeyTime  = 0;
+const BUFFER_CLEAR_DELAY = 999; // ms
         
 customSelects.forEach(select => {
     const selectSelected = select.querySelector(".select-selected");
@@ -1194,6 +1222,8 @@ customSelects.forEach(select => {
     selectSelected.addEventListener("click", function(e) {
         e.stopPropagation();
         closeAllSelects(this);
+        _searchBuffer = '';
+        _lastKeyTime  = 0;
         selectItems.style.display = selectItems.style.display === "block" ? "none" : "block";
         this.classList.toggle("select-arrow-active");
     });
@@ -1480,7 +1510,7 @@ Promise.all([
             L.geoJSON(railStations, {
                 pointToLayer: function (feature, latlng) {
                     const visibleMarker = L.circleMarker(latlng, {
-                        radius: 8,
+                        radius: 6,
                         color: "#777",
                         fillOpacity: 1
                     });

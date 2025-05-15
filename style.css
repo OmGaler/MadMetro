@@ -1,8 +1,32 @@
 /* ==========================================
    BASE STYLES
    ========================================== */
-body {
-    font-family: Helvetica;
+/* body {
+    font-family: Helvetica; */
+/* } */
+
+html, body {
+    font-family: 'Alef', sans-serif;
+}
+/* Leaflet popups & controls */
+.leaflet-container,
+.leaflet-popup-content,
+.leaflet-control,
+.leaflet-control * {
+    font-family: 'Alef', sans-serif;
+}
+
+.seg-btn,
+.tab-link,
+.select-selected,
+.select-items div,
+.custom-select,
+.custom-select * {
+    font-family: 'Alef', sans-serif;
+}
+
+* {
+  font-variant-ligatures: none;
 }
 
 #map {
@@ -23,7 +47,7 @@ body {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-    font-family: Helvetica;
+    /* font-family: Helvetica; */
 }
 
 .wayfinder-content {
@@ -499,7 +523,7 @@ body.dark-mode .callout-icon ion-icon {
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     z-index: 1000;
-    font-family: Helvetica, sans-serif;
+    /* font-family: Helvetica, sans-serif; */
 }
 
 .legend-row {
@@ -549,6 +573,10 @@ body.dark-mode .callout-icon ion-icon {
     color: white !important;
 }
 
+body.dark-mode .rail-bullet ion-icon {
+    background-color: #444 !important;
+}
+
 .train-marker {
     width: 24px;
     height: 24px;
@@ -561,6 +589,10 @@ body.dark-mode .callout-icon ion-icon {
     font-size: 14px;
     text-align: center;
     line-height: 24px;
+}
+
+.train-marker ion-icon {
+    transform: translateY(1px);
 }
 
 .train-popup,
@@ -577,7 +609,7 @@ body.dark-mode .callout-icon ion-icon {
     display: none;
     align-items: center;
     gap: 10px;
-    font-family: Helvetica;
+    /* font-family: Helvetica; */
     animation: fadeIn 0.2s ease-out;
     z-index: 9999;
 }
@@ -650,6 +682,7 @@ body.dark-mode .callout-icon ion-icon {
 }
 
 .toggle-option ion-icon {
+    background-color: transparent !important;
     font-size: 20px !important;
 }
 
@@ -921,9 +954,8 @@ html[dir="rtl"] .switch input:checked + .slider:before {
 
 input[type="range"] {
     width: 60%;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
-
 
 #speedSlider {
     width: 100%;
