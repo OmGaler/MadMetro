@@ -681,6 +681,12 @@ body.dark-mode .rail-bullet ion-icon {
     color: #555;
 }
 
+.description-top-container > ion-icon {
+    font-size: 24px;
+    margin-inline-end: 16px; 
+    color: #555;
+}
+
 .toggle-option ion-icon {
     background-color: transparent !important;
     font-size: 20px !important;
@@ -711,6 +717,20 @@ body.dark-mode .rail-bullet ion-icon {
     color: #666;
     margin-top: 2px;
 }
+
+.description-top-container {
+    display: inline-grid;
+    justify-items: center;   
+}
+
+
+.search-button ion-icon {
+    font-size: 24px;
+    margin-inline-end: 16px; 
+    color: #555;
+}
+
+
 
 .toggle-option.description-top {
     align-items: flex-start;
@@ -832,7 +852,6 @@ html[dir="rtl"] .switch input:checked + .slider:before {
     flex: 0 0 50px;
 }
 
-
 .select-selected {
     width: 100%;
     background-color: #f0f0f0;
@@ -842,6 +861,10 @@ html[dir="rtl"] .switch input:checked + .slider:before {
     color: #333;
     min-height: 1em;
     position: relative;
+}
+
+.select-selected.focused {
+    outline: auto;
 }
 
 .select-selected:empty::before {
@@ -887,8 +910,30 @@ html[dir="rtl"] .switch input:checked + .slider:before {
     background-color: #f0f0f0;
 }
 
+.search-field,
+.search-button {
+    display: none;
+}
 
+.search-field {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  /* width: 100%; */
+  padding: 0.5em;
+  font: inherit;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: transparent;
+  z-index: 999;
+}
 
+.search-button {
+    background-color: transparent;
+    border: none;
+    margin-top: 15px;
+}
 /* ==========================================
    TABLE STYLES
    ========================================== */
@@ -1392,7 +1437,9 @@ body.dark-mode .select-selected:after {
         grid-auto-flow: column;
         gap: 10px;
     }
+
 }
+
 
 @media (max-width: 1115px) {
     .modal-content {
@@ -1423,7 +1470,12 @@ body.dark-mode .select-selected:after {
         flex: 0 0 100%;          /* take full width of the container */
         max-width: 100%;
         margin-top: 0.75rem;     /* separation from the icon/text above */
-      }
+    }
+
+    /* Only show search on mobile */
+    .search-button {
+        display: inline;
+    }
 }
 
 @media (max-width: 768px) {

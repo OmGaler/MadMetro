@@ -92,6 +92,7 @@ let activeLayers = "lrt-metro"; //default to lrt-metro, options: [lrt, lrt-metro
 let showRail = activeLayers === "lrt-metro-rail"; //show lines and stations, default off
 let routesPreWF = showRoutes;
 let railPreWF = showRail;
+let isPredicting = false; // Flag to indicate if the user is currently predicting a station name - dont call getRoute if so
 // Simulation constants:
 // const trainSpeed = 80 * 1000 / 3600; // 80 km/h in m/s
 let timeScale = 300; // 1 real sec = 5 simulated minutes
@@ -303,6 +304,93 @@ function getStationRouteBullets(station, showConnectionBullet = false) {
     return container;
 }
 
+
+function activateSearchMode(selectId) {
+    let hasExited = false;
+    isPredicting = true; 
+    const select = document.getElementById(selectId);
+    const customSelect = select.closest('.custom-select');
+    const input = customSelect.querySelector('.search-field');
+    const selectItems = customSelect.querySelector('.select-items');
+    const selectSelected = customSelect.querySelector('.select-selected');
+    selectSelected.classList.add('focused');
+    const oldStart = document.getElementById("startStationSelect").value;
+    const oldEnd = document.getElementById("endStationSelect").value;
+    // Show input, focus, and clear any previous text
+    input.style.display = "block";
+    input.value = '';
+    input.focus();
+    input.addEventListener('keydown', e => {
+        e.stopPropagation(); // Prevent key events from bubbling up
+    });
+    // Live filtering
+    input.addEventListener('input', () => {
+        const query = input.value.normalize('NFC').toLocaleLowerCase();
+        const options = Array.from(select.options);
+
+        // startsWith preferred, fallback to includes
+        let idx = options.findIndex(o =>
+            o.text.normalize('NFC').toLocaleLowerCase().startsWith(query)
+        );
+        if (idx === -1) {
+            idx = options.findIndex(o =>
+            o.text.normalize('NFC').toLocaleLowerCase().includes(query)
+            );
+        }
+
+        if (idx > -1) {
+            Array.from(selectItems.children).forEach(i =>
+            i.classList.remove('same-as-selected', 'selected')
+            );
+            const found = selectItems.children[idx];
+            found.classList.add('selected');
+            select.selectedIndex = idx;
+            selectSelected.innerHTML = found.innerHTML;
+            found.scrollIntoView({ block: 'nearest' });
+            // select.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+    });
+
+    // Exit on blur or Enter
+    function exit() {
+        if (hasExited) return; // Prevent multiple exits
+        hasExited = true; // Set flag to prevent multiple exits
+        input.style.display = "none";
+        input.value = '';
+        selectSelected.classList.remove('focused');
+        input.removeEventListener('blur', exit);
+        input.removeEventListener('keydown', onKeyDown);
+        isPredicting = false;
+        const newStart = document.getElementById("startStationSelect").value
+        const newEnd  = document.getElementById("endStationSelect").value
+        if (newStart&& newEnd) {
+            getRoute(newStart, newEnd);
+        }
+    }
+
+    function onKeyDown(e) {
+        if (e.key === 'Enter' || e.key === "Escape") {
+            isPredicting = false;
+            input.blur();
+        }
+    }
+
+    input.addEventListener('blur', exit);
+    input.addEventListener('keydown', onKeyDown);
+}
+
+const startSearchButton = document.getElementById('start-search');
+    const endSearchButton   = document.getElementById('end-search');
+
+    startSearchButton.addEventListener('click', () => {
+        activateSearchMode('startStationSelect');
+    });
+
+    endSearchButton.addEventListener('click', () => {
+        activateSearchMode('endStationSelect');
+    });
+
+
 // Function to update custom select display after options change
 function updateCustomSelectOptions(selectId) {
     const select = document.getElementById(selectId);
@@ -311,7 +399,7 @@ function updateCustomSelectOptions(selectId) {
 
     const selectSelected = customSelectContainer.querySelector('.select-selected');
     const selectItems = customSelectContainer.querySelector('.select-items');
-
+    
     // Only add keyboard navigation for station selects
     if (selectId === "startStationSelect" || selectId === "endStationSelect") {
         // Clear existing keyboard listeners
@@ -1262,7 +1350,7 @@ function stationSelection() {
     const start = document.getElementById("startStationSelect").value;
     const end = document.getElementById("endStationSelect").value;
     // Check if both dropdowns have a valid selection and are not the same
-    if (start && end && start !== end) {
+    if (start && end && start !== end && !isPredicting) {
         getRoute(start, end);
     }
 

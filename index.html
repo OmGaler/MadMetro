@@ -12,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
@@ -364,17 +363,26 @@
                 <span class="modal-title" data-i18n="wayfinder">Wayfinder</span>
                 <span class="close">&times;</span>
             </div>
+            <!-- Start Station -->
             <div class="toggle-option description-top">
-                <ion-icon name="enter-outline" id="start-icon"></ion-icon>
+                <div class="description-top-container">
+                    <ion-icon name="enter-outline" id="start-icon"></ion-icon>
+                    <button id="start-search" class="search-button">
+                        <ion-icon name="search"></ion-icon>
+                    </button>
+                </div>
                 <div class="toggle-container">
                     <div class="toggle-info">
                         <p class="toggle-description" data-i18n="select-origin">Select origin</p>
                     </div>
+                    
                     <div class="custom-select description-top">
                         <select id="startStationSelect">
                             <option value="" data-i18n="select-station">Select station</option>
                         </select>
-                        <div class="select-selected"></div>
+                        <input class="search-field" hidden>
+                        <div class="select-selected">
+                        </div>
                         <div class="select-items">
                             <!-- Dynamically populate station options -->
                         </div>
@@ -383,16 +391,24 @@
             </div>
             <!-- End Station -->
             <div class="toggle-option description-top">
-                <ion-icon name="exit-outline" id="end-icon"></ion-icon>
+                <div class="description-top-container">
+                    <ion-icon name="exit-outline" id="end-icon"></ion-icon>
+                    <button id="end-search" class="search-button">
+                        <ion-icon name="search"></ion-icon>
+                    </button>
+                </div>
                 <div class="toggle-container">
                     <div class="toggle-info">
                         <p class="toggle-description" data-i18n="select-destination">Select destination</p>
                     </div>
+                    
                     <div class="custom-select description-top">
                         <select id="endStationSelect">
                             <option value="" data-i18n="select-station">Select station</option>
                         </select>
-                        <div class="select-selected"></div>
+                        <input class="search-field" hidden>
+                        <div class="select-selected">
+                        </div>
                         <div class="select-items">
                             <!-- Dynamically populate station options -->
                         </div>
