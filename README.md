@@ -1,6 +1,7 @@
 [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/OmGaler/MadMetro/blob/master/README.md) [![he](https://img.shields.io/badge/lang-he-blue.svg)](https://github.com/OmGaler/MadMetro/blob/master/README-he.md)
 
 # MadMetro - A Gush Dan Mass Transit Network Simulation & Visualisation
+[![Video Overview](https://img.youtube.com/vi/PLNg0jGRGbg/0.jpg)](https://www.youtube.com/watch?v=PLNg0jGRGbg)
 
 ## Overview
 
