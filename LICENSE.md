@@ -19,6 +19,9 @@ Means any use of the Licensed Software for monetary compensation or in any ventu
 **1.4 "You"**  
 Means the recipient or user of the Licensed Software, including any party that receives a copy or a derivative work.
 
+**1.5 "Generated Output"**
+Means any data, figures, visualisations, reports, or other results produced by the Licensed Software, whether in whole or in part.
+
 ## 2. Grant of Rights
 
 Subject to the terms and conditions of this License, the Licensor hereby grants you a non‑exclusive, worldwide, royalty‑free license to use, distribute, and publicly display the Licensed Software (in both source code and object code form) solely for non‑commercial purposes. Any use of the Licensed Software for Commercial Use is expressly prohibited unless you first obtain explicit, written authorization from the Licensor.
@@ -55,5 +58,11 @@ If you do not comply with any term of this License, your rights under this Licen
 ## 9. Alternate Licensing Rights
 
 The Licensor reserves the right to offer the Licensed Software, or any derivative works thereof, under a separate proprietary license at its sole discretion. This alternate licensing does not affect the rights granted under this License for recipients who receive the Licensed Software under its terms.
+
+## 10. Publication of Outputs
+10.1 Attribution Requirement – If you publicly distribute, publish, or otherwise make available any Generated Output, you must include a clear and reasonably prominent attribution to “MadMetro” and a link to the project repository or official website as designated by the Licensor.  
+10.2 No Removal of Attribution – You may not remove or obscure any embedded attribution, watermark, or source notice contained within any Generated Output.  
+10.3 Scope of Obligation – This attribution requirement applies to both non-commercial and Commercial Use of Generated Outputs.  
+10.4 Exclusions – This section does not apply to Generated Outputs consisting solely of factual information that you have independently derived without using the Licensed Software.
 
 BY USING OR DISTRIBUTING THE LICENSED SOFTWARE, YOU ACKNOWLEDGE THAT YOU HAVE READ, UNDERSTOOD, AND AGREE TO BE BOUND BY THE TERMS OF THIS LICENSE.
